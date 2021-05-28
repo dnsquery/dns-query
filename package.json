@@ -1,0 +1,42 @@
+{
+  "name": "doh-query",
+  "version": "0.0.1",
+  "description": "Node & Browser tested, Non-JSON DNS over HTTPS fetching with minimal dependencies.",
+  "main": "index.js",
+  "scripts": {
+    "lint": "standard",
+    "test": "tape test.js",
+    "browser-test": "browserify test.js | tape-run"
+  },
+  "browser": {
+    "./request.js": "./request.browser.js",
+    "./endpoints.js": "./endpoints.browser.js"
+  },
+  "keywords": [
+    "dns",
+    "over",
+    "http",
+    "https",
+    "doh",
+    "server"
+  ],
+  "author": "Martin Heidegger <martin.heidegger@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "dns-packet": "^5.2.4"
+  },
+  "devDependencies": {
+    "browserify": "^17.0.0",
+    "standard": "^16.0.3",
+    "tape": "^5.2.2",
+    "tape-run": "^9.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/martinheidegger/doh-query.git"
+  },
+  "bugs": {
+    "url": "https://github.com/martinheidegger/doh-query/issues"
+  },
+  "homepage": "https://github.com/martinheidegger/doh-query#readme"
+}

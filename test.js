@@ -1,5 +1,5 @@
 'use strict'
-const test = require('tape')
+const test = require('fresh-tape')
 const query = require('.')
 const pmap = require('p-map')
 const all = require('./endpoints.js').all

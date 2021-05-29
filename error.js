@@ -26,4 +26,4 @@ class ResponseError extends Error {
   }
 }
 
-module.exports = { AbortError, HTTPStatusError, ResponseError }
+module.exports = { AbortError: AbortError, HTTPStatusError: HTTPStatusError, ResponseError: ResponseError }

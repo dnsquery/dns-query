@@ -409,8 +409,8 @@ const servers = {
 Object.entries(servers).forEach((entry) => {
   const endpoint = entry[1]
   endpoint.name = entry[0]
-  endpoint.cors = !!entry[1].cors
-  endpoint.filtered = !!entry[1].filtered
+  endpoint.cors = entry[1].cors !== false
+  endpoint.filtered = entry[1].filtered !== false
   if (!endpoint.port) {
     endpoint.port = 443
   }

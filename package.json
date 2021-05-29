@@ -27,6 +27,7 @@
   },
   "devDependencies": {
     "browserify": "^17.0.0",
+    "p-map": "^4.0.0",
     "standard": "^16.0.3",
     "tape": "^5.2.2",
     "tape-run": "^9.0.0"

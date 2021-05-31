@@ -1,9 +1,11 @@
-const { AbortError, HTTPStatusError, ResponseError } = require('./error.js')
+const { AbortError, HTTPStatusError, TimeoutError } = require('./error.js')
 const contentType = 'application/dns-message'
 
-module.exports = function request (protocol, host, port, path, packet, abortSignal, cb) {
+module.exports = function request (protocol, host, port, path, packet, timeout, abortSignal, cb) {
+  let timer
   const client = protocol === 'https:' ? require('https') : require('http')
   const finish = (error, data) => {
+    clearTimeout(timer)
     if (abortSignal) {
       abortSignal.removeEventListener('abort', onabort)
     }
@@ -25,8 +27,8 @@ module.exports = function request (protocol, host, port, path, packet, abortSign
     abortSignal.addEventListener('abort', onabort)
   }
   req.on('error', finish)
-  req.write(packet)
-  req.end()
+  req.end(packet)
+  resetTimeout()
 
   function onabort () {
     req.destroy(new AbortError())
@@ -38,13 +40,19 @@ module.exports = function request (protocol, host, port, path, packet, abortSign
     }
     const result = []
     res.on('error', finish)
-    res.on('data', data => result.push(data))
-    res.on('end', () => {
-      if (!res.complete) {
-        finish(new ResponseError('Incomplete.'))
-      } else {
-        finish(null, Buffer.concat(result))
-      }
+    res.on('data', data => {
+      resetTimeout()
+      result.push(data)
     })
+    res.on('end', () => finish(null, Buffer.concat(result)))
+  }
+
+  function resetTimeout () {
+    clearTimeout(timer)
+    timer = setTimeout(ontimeout, timeout)
+  }
+
+  function ontimeout () {
+    req.destroy(new TimeoutError(timeout))
   }
 }

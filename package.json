@@ -5,8 +5,13 @@
   "main": "index.js",
   "scripts": {
     "lint": "standard",
-    "test": "fresh-tape test.js",
-    "browser-test": "browserify --debug test.js | tape-run"
+    "test": "./test/env npm run test-impl",
+    "test-impl": "fresh-tape test/all.js",
+    "test-cov": "./test/env c8 -r lcov -r html npm run test-impl",
+    "browser-test": "env TEST_ENV=browser ./test/env npm run browser-test-impl -s",
+    "browser-test-impl": "browserify -t envify --debug test/all.js | tape-run",
+    "browser-test-cov": "env TEST_ENV=browser ./test/env npm run browser-test-cov-impl -s",
+    "browser-test-cov-impl": "browserify -t envify -t coverify --debug test/all.js | tape-run | coverify"
   },
   "browser": {
     "./request.js": "./request.browser.js",
@@ -17,8 +22,10 @@
     "over",
     "http",
     "https",
+    "dns-over-https",
     "doh",
-    "server"
+    "query",
+    "client"
   ],
   "author": "Martin Heidegger <martin.heidegger@gmail.com>",
   "license": "MIT",
@@ -27,10 +34,15 @@
   },
   "devDependencies": {
     "browserify": "^17.0.0",
+    "c8": "^7.7.2",
+    "coverify": "^1.5.1",
+    "envify": "^4.1.0",
     "fresh-tape": "^5.2.4",
+    "ngrok": "^4.0.1",
     "p-map": "^4.0.0",
     "standard": "^16.0.3",
-    "tape-run": "^9.0.0"
+    "tape-run": "^9.0.0",
+    "xhr2": "^0.2.1"
   },
   "repository": {
     "type": "git",

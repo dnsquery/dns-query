@@ -1,10 +1,13 @@
+'use strict'
 const packet = require('dns-packet')
 const Buffer = require('buffer').Buffer
 const request = require('./request.js')
-const ResponseError = require('./error.js').ResponseError
+const errors = require('./error.js')
+const AbortError = errors.AbortError
+const ResponseError = errors.ResponseError
 const unfiltered = require('./endpoints.js').unfiltered
 
-function queryOne (endpoint, query, abortSignal) {
+function queryOne (endpoint, query, timeout, abortSignal) {
   const https = endpoint.https !== false
   return new Promise(function (resolve, reject) {
     if (abortSignal && abortSignal.aborted) {
@@ -19,6 +22,7 @@ function queryOne (endpoint, query, abortSignal) {
         flags: packet.RECURSION_DESIRED,
         type: 'query'
       }, query)),
+      timeout,
       abortSignal,
       function (error, data) {
         if (error !== null) {
@@ -38,17 +42,18 @@ function queryOne (endpoint, query, abortSignal) {
   })
 }
 
-function query (query, opts) {
+function query (q, opts) {
   opts = Object.assign({
     endpoints: unfiltered,
-    retry: 3
+    retry: 3,
+    timeout: 30000
   }, opts)
   const endpoints = opts.endpoints
   const signal = opts.signal
   const endpoint = Array.isArray(endpoints)
     ? endpoints[Math.floor(Math.random() * endpoints.length) % endpoints.length]
     : endpoints
-  return queryOne(endpoint, query, signal)
+  return queryOne(endpoint, q, opts.timeout, signal)
     .then(
       data => {
         // Add the endpoint to give a chance to identify which endpoint returned the result
@@ -60,7 +65,7 @@ function query (query, opts) {
           throw err
         }
         opts.retry -= 1
-        return query(query, opts)
+        return query(q, opts)
       }
     )
 }

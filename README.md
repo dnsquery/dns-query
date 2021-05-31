@@ -49,7 +49,8 @@ try {
   }, {
     /* Options (optional) */
     endpoints: require('doh-query/endpoints').unfiltered, // (optional) all known working unfiltered endpoints
-    retry: 3 // (optional) retries if a given endpoint fails
+    retry: 3, // (optional) retries if a given endpoint fails
+    timeout: 4000, // (optional, default=30000) timeout for single requests
     signal, // (optional) an AbortSignal to abort the request
   })
 } catch (error) {

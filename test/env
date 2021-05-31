@@ -1,0 +1,135 @@
+#!/usr/bin/env node
+'use strict'
+const http = require('http')
+const spawn = require('child_process').spawn
+const dnspacket = require('dns-packet')
+const ngrok = require('ngrok')
+const responseA = dnspacket.encode({
+  type: 'response',
+  answers: [{
+    type: 'A',
+    class: 'IN',
+    name: 'google.com',
+    ttl: 432,
+    data: '0.0.0.0'
+  }]
+})
+
+let url
+let exitCode = -1
+
+const server = http.createServer(handleRequest)
+server.listen(onListen)
+server.on('close', function () {
+  process.exit(exitCode)
+})
+
+function onListen () {
+  const port = server.address().port
+  url = 'http://localhost:' + port
+  console.log('# Listening to ' + url)
+  if (process.env.TEST_ENV === 'NGROK') {
+    connectNgrok(port)
+  } else {
+    spawnTests(false, 'localhost', port, onExit)
+  }
+}
+
+function connectNgrok (port) {
+  console.log('# Connecting to ngrok')
+  ngrok.connect(port).then(onSpawn, onError)
+
+  function onSpawn (url) {
+    console.log('# Port forwarded to ' + url)
+    const host = /^(https:\/\/)?(.*)/.exec(url)[2]
+    spawnTests(true, host, 443, onClose)
+  }
+
+  function onClose (code) {
+    ngrok.kill().then(
+      function () { onExit(code) },
+      onError
+    )
+  }
+}
+
+function spawnTests (https, host, port, onClose) {
+  const cmd = process.argv.slice(2).join(' ')
+  console.log('# Spawning: ' + cmd)
+  spawn(
+    '/bin/bash',
+    ['-c', cmd],
+    {
+      env: Object.assign({}, process.env, { TEST_HTTPS: https, TEST_HOST: host, TEST_PORT: port }),
+      stdio: 'inherit'
+    }
+  ).on('close', onClose)
+}
+
+function onError (error) {
+  console.error(error)
+  onExit(1)
+}
+
+function onExit (code) {
+  exitCode = code
+  server.close()
+}
+
+let log = []
+function handleRequest (req, res) {
+  res.setHeader('access-control-allow-headers', 'Content-Type')
+  res.setHeader('access-control-allow-methods', 'GET, HEAD, OPTIONS, POST')
+  res.setHeader('access-control-allow-origin', '*')
+  if (req.url === '/log') {
+    res.end(JSON.stringify(log))
+    log = []
+    return
+  }
+  log.push({ method: req.method, url: req.url })
+  if (req.method !== 'POST' && req.method !== 'OPTIONS') {
+    return res.writeHead(405).end('Wrong Method.')
+  }
+  if (req.url === '/text') {
+    return res.end('text')
+  }
+  if (req.url === '/dns-packet') {
+    return res.end(responseA)
+  }
+  if (req.url === '/404') {
+    return res.writeHead(404).end('Not Found.')
+  }
+  if (req.url === '/500') {
+    return res.writeHead(500).end('Internal Error.')
+  }
+  if (req.url === '/301-1') {
+    return res.writeHead(301, { Location: url + '/301-1-end'})
+  }
+  if (req.url === '/301-1-end') {
+    return res.end(responseA)
+  }
+  if (req.url === '/302-1') {
+    return res.writeHead(302, { Location: url + '/302-1-end'})
+  }
+  if (req.url === '/302-1-end') {
+    return res.end(responseA)
+  }
+  if (req.url === '/302-2') {
+    return res.writeHead(302, { Location: url + '/302-1'})
+  }
+  if (req.url === '/incomplete') {
+    return res.writeHead(200, { 'Content-Length': 99999 }).end('not-everything')
+  }
+  if (req.url === '/timeout') {
+    return res.writeHead(200, { 'Content-Length': 99999 }).write('not-everything')
+  }
+  if (req.url === '/infinite') {
+    const interval = setInterval(() => {
+      res.write(new Date().toISOString() + '\n')
+    }, 50)
+    res.once('close', () => clearInterval(interval))
+    req.once('close', () => clearInterval(interval))
+    return
+  }
+  return res.end('unexpected.')
+}

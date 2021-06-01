@@ -30,6 +30,7 @@
   "author": "Martin Heidegger <martin.heidegger@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "@types/dns-packet": "^5.2.0",
     "dns-packet": "^5.2.4"
   },
   "devDependencies": {

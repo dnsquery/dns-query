@@ -180,6 +180,31 @@ test('processing timeout', { timeout: 2000 }, function (t) {
     }
   )
 })
+test('randomness of endpoint choice', function (t) {
+  const paths = ['/dns-packet', '/dns-packet-b', '/dns-packet-c', '/dns-packet-d']
+  return req('/log', 'GET', 'json')
+    .then(function () {
+      // We need to clear the log
+      return pmap(new Array(100), function () {
+        return localQuery(paths)
+      })
+    })
+    .then(function () {
+      return req('/log', 'GET', 'json')
+    })
+    .then(function (data) {
+      const counts = {}
+      data.forEach(function (entry) {
+        counts[entry.url] = (counts[entry.url] || 0) + 1
+      })
+      t.deepEquals(Object.keys(counts).sort(), paths)
+      Object.keys(counts).forEach(function (key) {
+        t.ok(counts[key] > 10, key + ' count > 10')
+      })
+      t.end()
+    })
+    .catch(failErr(t))
+})
 
 function req (path, method, responseType, data) {
   return new Promise(function (resolve, reject) {
@@ -213,12 +238,15 @@ function failErr (t) {
   return function (error) { t.error(error) }
 }
 
-function localQuery (path, opts) {
+function localQuery (paths, opts) {
+  if (!Array.isArray(paths)) {
+    paths = [paths]
+  }
   return query(
     { questions: [{ type: 'A', name: 'google.com' }] },
     Object.assign(
       {
-        endpoints: [Object.assign({ path: path }, LOCAL_ENDPOINT)],
+        endpoints: paths.map(function (path) { return Object.assign({ path: path }, LOCAL_ENDPOINT) }),
         retry: 0
       },
       opts

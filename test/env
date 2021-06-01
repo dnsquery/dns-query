@@ -97,6 +97,15 @@ function handleRequest (req, res) {
   if (req.url === '/dns-packet') {
     return res.end(responseA)
   }
+  if (req.url === '/dns-packet-b') {
+    return res.end(responseA)
+  }
+  if (req.url === '/dns-packet-c') {
+    return res.end(responseA)
+  }
+  if (req.url === '/dns-packet-d') {
+    return res.end(responseA)
+  }
   if (req.url === '/404') {
     return res.writeHead(404).end('Not Found.')
   }
@@ -126,7 +135,6 @@ function handleRequest (req, res) {
   }
   if (req.url === '/infinite') {
     const write = () => {
-      console.log('# WRITE!')
       res.write(new Date().toISOString() + '\n')
     }
     const interval = setInterval(write, 300)

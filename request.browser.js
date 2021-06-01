@@ -1,4 +1,5 @@
 'use strict'
+/* global XMLHttpRequest, ProgressEvent */
 const errors = require('./error.js')
 const AbortError = errors.AbortError
 const HTTPStatusError = errors.HTTPStatusError

@@ -18,7 +18,7 @@ module.exports = function request (protocol, host, port, path, packet, timeout, 
     path: path,
     method: 'POST',
     headers: {
-      'Accept': contentType,
+      Accept: contentType,
       'Content-Type': contentType,
       'Content-Length': packet.byteLength
     }

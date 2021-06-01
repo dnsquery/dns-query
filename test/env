@@ -4,6 +4,7 @@ const http = require('http')
 const spawn = require('child_process').spawn
 const dnspacket = require('dns-packet')
 const ngrok = require('ngrok')
+const os = require('os')
 const responseA = dnspacket.encode({
   type: 'response',
   answers: [{
@@ -57,8 +58,8 @@ function spawnTests (https, host, port, onClose) {
   const cmd = process.argv.slice(2).join(' ')
   console.log('# Spawning: ' + cmd)
   spawn(
-    '/bin/bash',
-    ['-c', cmd],
+    os.platform() === 'win32' ? 'pwsh.exe' : '/bin/bash',
+    os.platform() === 'win32' ? ['-Command', cmd] : ['-c', cmd],
     {
       env: Object.assign({}, process.env, { TEST_HTTPS: https, TEST_HOST: host, TEST_PORT: port }),
       stdio: 'inherit'

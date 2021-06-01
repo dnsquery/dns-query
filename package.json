@@ -5,12 +5,12 @@
   "main": "index.js",
   "scripts": {
     "lint": "standard",
-    "test": "./test/env npm run test-impl",
+    "test": "node test/env npm run test-impl",
     "test-impl": "fresh-tape test/all.js",
-    "test-cov": "./test/env c8 -r lcov -r html npm run test-impl",
-    "browser-test": "env TEST_ENV=browser ./test/env npm run browser-test-impl -s",
+    "test-cov": "node test/env c8 -r lcov -r html npm run test-impl",
+    "browser-test": "env TEST_ENV=browser node test/env npm run browser-test-impl -s",
     "browser-test-impl": "browserify -t envify --debug test/all.js | tape-run",
-    "browser-test-cov": "env TEST_ENV=browser ./test/env npm run browser-test-cov-impl -s",
+    "browser-test-cov": "env TEST_ENV=browser node test/env npm run browser-test-cov-impl -s",
     "browser-test-cov-impl": "browserify -t envify -t coverify --debug test/all.js | tape-run | coverify"
   },
   "browser": {
@@ -33,6 +33,7 @@
     "dns-packet": "^5.2.4"
   },
   "devDependencies": {
+    "abort-controller": "^3.0.0",
     "browserify": "^17.0.0",
     "c8": "^7.7.2",
     "coverify": "^1.5.1",

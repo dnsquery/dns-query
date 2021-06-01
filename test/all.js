@@ -4,15 +4,16 @@ const pmap = require('p-map')
 const query = require('..')
 const all = require('../endpoints.js').all
 const XHR = require('xhr2')
+const AbortController = require('abort-controller')
 
 const IPV4 = /^[12]?\d{1,2}\.[12]?\d{1,2}\.[12]?\d{1,2}\.[12]?\d{1,2}$/
-var LOCAL_ENDPOINT = {
+const LOCAL_ENDPOINT = {
   https: process.env.TEST_HTTPS === 'true',
   host: process.env.TEST_HOST,
   port: process.env.TEST_PORT
 }
 
-test(`Looking up all Endpoints`, function (t) {
+test('Looking up all Endpoints', function (t) {
   return pmap(all, function (endpoint) {
     return query(
       { questions: [{ type: 'A', name: 'google.com' }] },
@@ -27,7 +28,7 @@ test(`Looking up all Endpoints`, function (t) {
         t.not(answers.length, 0, 'answers > 0')
         t.pass('answer count: ' + answers.length)
         const answer = answers[0]
-        t.equals(answer.name, 'google.com', 'name=google.com')
+        t.match(answer.name, /^google.com$/i, 'name=google.com')
         if (answer.type === 'A') {
           t.match(answer.data, IPV4, 'uses IPV4 address: ' + answer.data)
         } else {
@@ -46,15 +47,15 @@ test('Abort before start', function (t) {
   const c = new AbortController()
   c.abort()
   return query(
-      { questions: [{ type: 'A', name: 'google.com' }] },
-      { signal: c.signal }
-    ).then(
-      failSuccess(t),
-      function (err) {
-        t.equals(err.name, 'AbortError')
-        t.end()
-      }
-    )
+    { questions: [{ type: 'A', name: 'google.com' }] },
+    { signal: c.signal }
+  ).then(
+    failSuccess(t),
+    function (err) {
+      t.equals(err.name, 'AbortError')
+      t.end()
+    }
+  )
 })
 // Note: this needs to be the first local request!
 test('local /text causes ResponseError, with retry=0, once!', function (t) {

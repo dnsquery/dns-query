@@ -9,8 +9,9 @@ function inherit (ctor, superCtor) {
   Object.setPrototypeOf(ctor.prototype, superCtor.prototype)
 }
 
-if (typeof AbortError === 'undefined') {
-  var AbortError = function () {
+let AbortError = global.AbortError
+if (!AbortError) {
+  AbortError = function () {
     Error.captureStackTrace(this, AbortError)
     this.message = 'Request aborted.'
     this.code = 'ABORT_ERR'

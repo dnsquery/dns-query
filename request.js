@@ -41,10 +41,17 @@ module.exports = function request (protocol, host, port, path, packet, timeout, 
     const result = []
     res.on('error', finish)
     res.on('data', data => {
+      console.log('# RECEIVE!')
       resetTimeout()
       result.push(data)
     })
-    res.on('end', () => finish(null, Buffer.concat(result)))
+    res.on('end', () => {
+      console.log('# END!')
+      finish(null, Buffer.concat(result))
+    })
+    res.on('close', () => {
+      console.log('# CLOSE!')
+    })
   }
 
   function resetTimeout () {

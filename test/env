@@ -125,9 +125,12 @@ function handleRequest (req, res) {
     return res.writeHead(200, { 'Content-Length': 99999 }).write('not-everything')
   }
   if (req.url === '/infinite') {
-    const interval = setInterval(() => {
+    const write = () => {
+      console.log('# WRITE!')
       res.write(new Date().toISOString() + '\n')
-    }, 50)
+    }
+    const interval = setInterval(write, 300)
+    write()
     res.once('close', () => clearInterval(interval))
     req.once('close', () => clearInterval(interval))
     return

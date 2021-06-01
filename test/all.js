@@ -161,7 +161,7 @@ test('aborting /infinite requests while running', function (t) {
     }
   )
 })
-test('processing incomplete output', function (t) {
+test('processing incomplete output', { timeout: 10000 }, function (t) {
   return localQuery('/incomplete').then(
     failSuccess(t),
     function (error) {
@@ -170,7 +170,7 @@ test('processing incomplete output', function (t) {
     }
   )
 })
-test('processing timeout', function (t) {
+test('processing timeout', { timeout: 2000 }, function (t) {
   const timeout = 120
   return localQuery('/timeout', { timeout }).then(
     failSuccess(t),

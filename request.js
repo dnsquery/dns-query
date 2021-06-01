@@ -4,7 +4,8 @@ const contentType = 'application/dns-message'
 module.exports = function request (protocol, host, port, path, packet, timeout, abortSignal, cb) {
   let timer
   const client = protocol === 'https:' ? require('https') : require('http')
-  const finish = (error, data) => {
+  let finish = (error, data) => {
+    finish = null
     clearTimeout(timer)
     if (abortSignal) {
       abortSignal.removeEventListener('abort', onabort)
@@ -39,19 +40,26 @@ module.exports = function request (protocol, host, port, path, packet, timeout, 
       return res.destroy(new HTTPStatusError(uri, res.statusCode, 'POST'))
     }
     const result = []
-    res.on('error', finish)
+    res.on('error', onerror)
     res.on('data', data => {
       console.log('# RECEIVE!')
       resetTimeout()
       result.push(data)
     })
-    res.on('end', () => {
-      console.log('# END!')
-      finish(null, Buffer.concat(result))
-    })
-    res.on('close', () => {
-      console.log('# CLOSE!')
-    })
+    res.on('end', onclose)
+    res.on('close', onclose)
+
+    function onclose () {
+      if (finish !== null) {
+        finish(null, Buffer.concat(result))
+      }
+    }
+
+    function onerror (error) {
+      if (finish !== null) {
+        finish(error || new Error('Unknown Error.'))
+      }
+    }
   }
 
   function resetTimeout () {

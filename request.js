@@ -42,7 +42,6 @@ module.exports = function request (protocol, host, port, path, packet, timeout, 
     const result = []
     res.on('error', onerror)
     res.on('data', data => {
-      console.log('# RECEIVE!')
       resetTimeout()
       result.push(data)
     })

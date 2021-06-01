@@ -1,0 +1,43 @@
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - id: ubuntu:6
+            os: ubuntu-latest
+            node: 6
+          - id: ubuntu:7
+            os: ubuntu-latest
+            node: 7
+          - id: ubuntu:8
+            os: ubuntu-latest
+            node: 8
+          - id: ubuntu:10
+            os: ubuntu-latest
+            node: 10
+          - id: windows:12
+            os: windows-latest
+            node: 12
+          - id: macos:14
+            os: macos-latest
+            node: 14
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm i
+    - run: npm run test-cov
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node }}
+    - run: npm i
+    - run: npm run lint

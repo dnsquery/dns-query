@@ -1,0 +1,6 @@
+endpoints.json.js
+endpoints.md
+test/*
+*.tgz
+coverage/*
+.github/*

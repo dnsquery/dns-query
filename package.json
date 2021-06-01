@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "lint": "standard",
+    "endpoints": "node endpoints.json.js",
+    "prepack": "npm run endpoints",
     "test": "node test/env npm run test-impl",
     "test-impl": "fresh-tape test/all.js",
     "test-cov": "node test/env c8 -r lcov -r html npm run test-impl",
@@ -14,8 +16,7 @@
     "browser-test-cov-impl": "browserify -t envify -t coverify --debug test/all.js | tape-run | coverify"
   },
   "browser": {
-    "./request.js": "./request.browser.js",
-    "./endpoints.js": "./endpoints.browser.js"
+    "./lib.node.js": "./lib.browser.js"
   },
   "keywords": [
     "dns",
@@ -40,6 +41,7 @@
     "coverify": "^1.5.1",
     "envify": "^4.1.0",
     "fresh-tape": "^5.2.4",
+    "markdown-it": "^12.0.6",
     "ngrok": "^4.0.1",
     "p-map": "^4.0.0",
     "standard": "^16.0.3",

@@ -1,0 +1,116 @@
+# Endpoints
+
+| name                        | host(:port=443)(/path=/dns-query)          | loc    | filter | log | cors | method |
+|-----------------------------|--------------------------------------------|-------------|---|---|---|------|
+| [cloudflare][]              | cloudflare-dns.com                         | ?           | 𐄂 | 𐄂 | ✓ | GET |
+| [cloudflareFamily][]        | family.cloudflare-dns.com                  | ?           | ✓ | 𐄂 | ✓ | GET |
+| [cloudflareSecurity][]      | security.cloudflare-dns.com                | ?           | ✓ | 𐄂 | ✓ | GET |
+| [aAndA][]                   | dns.aa.net.uk                              | ?           | ✓ | 𐄂 | 𐄂 | GET |
+| [usablePrivacy][]           | adfree.usableprivacy.net                   | ?           | ✓ | 𐄂 | 𐄂 | GET |
+| [adguard][]                 | dns.adguard.com                            | ?           | ✓ | 𐄂 | 𐄂 | GET |
+| [adguardFamily][]           | dns-family.adguard.com                     | ?           | ✓ | 𐄂 | 𐄂 | GET |
+| [adguardUnfiltered][]       | dns-unfiltered.adguard.com                 | ?           | 𐄂 | 𐄂 | 𐄂 | GET |
+| [ahadnsIn][ahadns]          | doh.in.ahadns.net                          | India       | ✓ | 𐄂 | ✓ | GET |
+| [ahadnsIt][ahadns]          | doh.it.ahadns.net                          | Italy       | ✓ | 𐄂 | ✓ | GET |
+| [ahadnsEs][ahadns]          | doh.es.ahadns.net                          | Spain       | ✓ | 𐄂 | ✓ | GET |
+| [ahadnsNo][ahadns]          | doh.no.ahadns.net                          | Norway      | ✓ | 𐄂 | ✓ | GET |
+| [ahadnsNl][ahadns]          | doh.nl.ahadns.net                          | Netherlands | ✓ | 𐄂 | ✓ | GET |
+| [ahadnsPl][ahadns]          | doh.pl.ahadns.net                          | Poland      | ✓ | 𐄂 | ✓ | GET |
+| [ahadnsNy][ahadns]          | doh.ny.ahadns.net                          | New York    | ✓ | 𐄂 | ✓ | GET |
+| [ahadnsChi][ahadns]         | doh.chi.ahadns.net                         | Chicago     | ✓ | 𐄂 | ✓ | GET |
+| [ahadnsAu][ahadns]          | doh.au.ahadns.net                          | Australia   | ✓ | 𐄂 | ✓ | GET |
+| [ahadnsLa][ahadns]          | doh.la.ahadns.net                          | Los Angeles | ✓ | 𐄂 | ✓ | GET |
+| [alidns][]                  | dns.alidns.com                             | China       | ✓ | 𐄂 | ✓ | GET |
+| [amsNl][ams]                | dnsnl.alekberg.net                         | Amsterdam   | 𐄂 | 𐄂 | 𐄂 | GET |
+| [amsSe][ams]                | dnsse.alekberg.net                         | Sweden      | 𐄂 | 𐄂 | 𐄂 | GET |
+| [amsEs][ams]                | dnses.alekberg.net                         | Spain       | 𐄂 | 𐄂 | 𐄂 | GET |
+| [arapurayil][]              | dns.arapurayil.com                         | ?           | ✓ | 𐄂 | 𐄂 | GET |
+| [digitaleGesellschaft][]    | dns.digitale-gesellschaft.ch               | Switzerland | 𐄂 | 𐄂 | ✓ | GET |
+| [dnsCrypt1][dnsCrypt]       | dns1.dnscrypt.ca:453                       | Canada      | 𐄂 | 𐄂 | ✓ | GET |
+| [dnsCrypt2][dnsCrypt]       | dns2.dnscrypt.ca:453                       | Canada      | 𐄂 | 𐄂 | ✓ | GET |
+| [dnsForFamily][]            | dns-doh.dnsforfamily.com                   | ?           | ✓ | 𐄂 | 𐄂 | GET |
+| [dnsForge][]                | dnsforge.de                                | Germany     | ✓ | 𐄂 | ✓ | GET |
+| [dnsHome][]                 | dns.dnshome.de                             | Germany     | 𐄂 | 𐄂 | 𐄂 | GET |
+| [dnsPod][]                  | doh.pub                                    | China       | ✓ | 𐄂 | ✓ | GET |
+| [blahDnsCh][blahDns]        | doh-ch.blahdns.com                         | Switzerland | ✓ | 𐄂 | ✓ | GET |
+| [blahDnsSg][blahDns]        | doh-sg.blahdns.com                         | Singapore   | ✓ | 𐄂 | ✓ | GET |
+| [blahDnsJp][blahDns]        | doh-jp.blahdns.com                         | Japan       | ✓ | 𐄂 | ✓ | GET |
+| [blahDnsDe][blahDns]        | doh-de.blahdns.com                         | Germany     | ✓ | 𐄂 | ✓ | GET |
+| [blahDnsFi][blahDns]        | doh-fi.blahdns.com                         | Finland     | ✓ | 𐄂 | ✓ | GET |
+| [cleanBrowsingSecurity][cb] | doh.cleanbrowsing.org/doh/security-filter/ | ?           | ✓ | 𐄂 | ✓ | GET |
+| [cleanBrowsingFamily][cb]   | doh.cleanbrowsing.org/doh/family-filter/   | ?           | ✓ | 𐄂 | ✓ | GET |
+| [cleanBrowsingAdult][cb]    | doh.cleanbrowsing.org/doh/adult-filter/    | ?           | ✓ | 𐄂 | ✓ | GET |
+| [appliedPrivacy][]          | doh.applied-privacy.net/query              | Austria     | 𐄂 | 𐄂 | 𐄂 | GET |
+| [ffmuc][]                   | doh.ffmuc.net                              | Germany     | 𐄂 | 𐄂 | 𐄂 | GET |
+| [tiarap][]                  | doh.tiar.app                               | ?           | ✓ | 𐄂 | 𐄂 | GET |
+| [tiarapJp][]                | jp.tiar.app                                | Japan       | ✓ | 𐄂 | 𐄂 | GET |
+| [google][]                  | dns.google                                 | ?           | 𐄂 | 𐄂 | 𐄂 | GET |
+| [he][]                      | ordns.he.net                               | ?           | 𐄂 | ✓ | 𐄂 | GET |
+| [iij][]                     | public.dns.iij.jp                          | Japan       | ✓ | ✓ | 𐄂 | GET |
+| [libredns][]                | doh.libredns.gr                            | Germany     | 𐄂 | 𐄂 | 𐄂 | GET |
+| [librednsAds][libredns]     | doh.libredns.gr/ads                        | Germany     | ✓ | 𐄂 | 𐄂 | GET |
+| [linuxSec][]                | doh.linuxsec.org                           | Indonesia   | ✓ | 𐄂 | ✓ | GET |
+| [linuxSecAdGuard][linuxSec] | doh.linuxsec.org/adguard                   | Indonesia   | ✓ | 𐄂 | ✓ | GET |
+| [meganerd][]                | chewbacca.meganerd.nl/doh                  | Amsterdam   | 𐄂 | 𐄂 | 𐄂 | GET |
+| [moulticast][]              | dns.moulticast.net                         | ?           | 𐄂 | 𐄂 | 𐄂 | GET |
+| [njalla][]                  | dns.njal.la                                | Sweden      | 𐄂 | 𐄂 | 𐄂 | GET |
+| [opendns][]                 | doh.opendns.com                            | ?           | 𐄂 | 𐄂 | 𐄂 | GET |
+| [opendnsFamily][opendns]    | doh.familyshield.opendns.com               | ?           | ✓ | 𐄂 | 𐄂 | GET |
+| [plan9NJ][]                 | hydra.plan9-ns1.com                        | New Jersey  | 𐄂 | 𐄂 | ✓ | GET |
+| [powerDNS][]                | doh.powerdns.org                           | ?           | ✓ | 𐄂 | 𐄂 | GET |
+| [sebyVultr][seby]           | doh.seby.io:8443                           | Sydney      | ✓ | 𐄂 | ✓ | GET |
+| [sebyOVH][seby]             | doh-2.seby.io                              | Sydney      | ✓ | 𐄂 | ✓ | GET |
+| [quad9][]                   | dns10.quad9.net                            | ?           | 𐄂 | 𐄂 | 𐄂 | GET |
+| [quad9Ads][quad9]           | dns.quad9.net                              | ?           | ✓ | 𐄂 | 𐄂 | GET |
+| [switch][]                  | dns.switch.ch                              | Switzerland | ✓ | 𐄂 | 𐄂 | GET |
+| [yepdns][]                  | sg.yepdns.com                              | Singapore   | ✓ | 𐄂 | 𐄂 | GET |
+
+[cloudflare]: https://developers.cloudflare.com/1.1.1.1/dns-over-https
+[cloudflareFamily]: https://developers.cloudflare.com/1.1.1.1/1.1.1.1-for-families/setup-instructions/dns-over-https
+[cloudflareSecurity]: https://developers.cloudflare.com/1.1.1.1/1.1.1.1-for-families/setup-instructions/dns-over-https
+[aAndA]: https://www.aa.net.uk/legal/dohdot-disclaimer/
+[usablePrivacy]: https://docs.usableprivacy.com
+[adguard]: https://adguard.com/en/adguard-dns/overview.html
+[adguardFamily]: https://adguard.com/en/adguard-dns/overview.html
+[adguardUnfiltered]: https://adguard.com/en/adguard-dns/overview.html
+[ahadns]: https://ahadns.com/dns-over-https/
+[alidns]: https://alidns.com/knowledge?type=SETTING_DOCS#umpt6
+[ams]: https://alekberg.net/doh
+[arapurayil]: https://www.dns.arapurayil.com/
+[digitaleGesellschaft]: https://www.digitale-gesellschaft.ch/dns
+[dnsCrypt]: https://dnscrypt.ca/
+[dnsForFamily]: https://dnsforfamily.com/
+[dnsForge]: https://dnsforge.de/
+[dnsHome]: https://www.dnshome.de/doh-dot-public-resolver.php
+[dnsPod]: https://www.dnspod.cn/Products/Public.DNS?lang=en
+[blahDns]: https://blahdns.com/
+[cb]: https://cleanbrowsing.org/guides/dnsoverhttps
+[appliedPrivacy]: https://applied-privacy.net/services/dns/
+[ffmuc]: https://ffmuc.net/wiki/doku.php?id=knb:dohdot
+[tiarap]: https://tiarap.org/
+[tiarapJp]: https://jp.tiar.app/
+[google]: https://developers.google.com/speed/public-dns/docs/doh/
+[he]: https://dns.he.net/
+[iij]: https://public.dns.iij.jp/
+[libredns]: https://libredns.gr/
+[linuxSec]: https://doh.linuxsec.org/
+[meganerd]: https://www.meganerd.nl/encrypted-dns-server
+[moulticast]: https://moulticast.net/dnscrypt/
+[njalla]: https://dns.njal.la/
+[opendns]: https://support.opendns.com/hc/en-us/articles/360038086532-Using-DNS-over-HTTPS-DoH-with-OpenDNS
+[plan9NJ]: https://jlongua.github.io/plan9-dns/
+[powerDNS]: https://powerdns.org/
+[seby]: https://dns.seby.io/
+[quad9]: https://quad9.net/service/service-addresses-and-features
+[switch]: https://www.switch.ch/security/info/public-dns/
+[yepdns]: https://get.yepdns.com/
+
+
+## Known Broken
+
+- https://doh.bortzmeyer.fr (404)
+- https://www.nic.cz/odvr/ (socket hangup)
+- https://emeraldonion.org/faq/ (socket hangup) - dns.emeraldonion.org
+- https://mullvad.net/en/help/dns-over-https-and-dns-over-tls/ (socket hangup)
+- https://jlongua.github.io/plan9-dns/ (socket hangup) - FLORIDA! - draco.plan9-ns2.com
+- https://101.101.101.101/index_en.html (timeout) - Taiwan 

@@ -1,25 +1,33 @@
 'use strict'
-/* global XMLHttpRequest, ProgressEvent */
+/* global XMLHttpRequest */
 const errors = require('./error.js')
 const AbortError = errors.AbortError
 const HTTPStatusError = errors.HTTPStatusError
 const TimeoutError = errors.TimeoutError
 const contentType = 'application/dns-message'
+const endpoints = Object.values(require('./endpoints.json')).filter(function (endpoint) {
+  return !endpoint.filter && !endpoint.logging && endpoint.cors
+})
 
-module.exports = function request (protocol, host, port, path, packet, timeout, abortSignal, cb) {
-  const uri = `${protocol}//${host}:${port}${path}`
-  const method = 'POST'
+function request (protocol, host, port, path, method, packet, timeout, abortSignal, cb) {
+  const uri = protocol + '//' + host + ':' + port + path + (method === 'GET' ? '?dns=' + packet.toString('base64').replace(/=*/g, '') : '')
   const xhr = new XMLHttpRequest()
   xhr.open(method, uri, true)
   xhr.setRequestHeader('Accept', contentType)
-  xhr.setRequestHeader('Content-Type', contentType)
+  if (method === 'POST') {
+    xhr.setRequestHeader('Content-Type', contentType)
+  }
   xhr.responseType = 'arraybuffer'
   xhr.timeout = timeout
   xhr.ontimeout = ontimeout
   xhr.onreadystatechange = onreadystatechange
   xhr.onerror = onerror
   xhr.onload = onload
-  xhr.send(packet)
+  if (method === 'GET') {
+    xhr.send()
+  } else {
+    xhr.send(packet)
+  }
 
   if (abortSignal) {
     abortSignal.addEventListener('abort', onabort)
@@ -56,11 +64,8 @@ module.exports = function request (protocol, host, port, path, packet, timeout, 
     cb(error, data)
   }
 
-  function onerror (error) {
-    if (error instanceof ProgressEvent) {
-      error = xhr.status === 200 ? new Error('Inexplicable XHR Error') : new HTTPStatusError(uri, xhr.status, method)
-    }
-    finish(error || new Error('Unknown XHR Error'))
+  function onerror () {
+    finish(xhr.status === 200 ? new Error('Inexplicable XHR Error') : new HTTPStatusError(uri, xhr.status, method))
   }
 
   function onabort () {
@@ -69,4 +74,9 @@ module.exports = function request (protocol, host, port, path, packet, timeout, 
       xhr.abort()
     } catch (e) {}
   }
+}
+
+module.exports = {
+  request: request,
+  endpoints: endpoints
 }

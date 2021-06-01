@@ -1,7 +1,11 @@
+'use strict'
 const { AbortError, HTTPStatusError, TimeoutError } = require('./error.js')
 const contentType = 'application/dns-message'
+const endpoints = Object.values(require('./endpoints.json')).filter(function (endpoint) {
+  return !endpoint.filter && !endpoint.log
+})
 
-module.exports = function request (protocol, host, port, path, packet, timeout, abortSignal, cb) {
+function request (protocol, host, port, path, method, packet, timeout, abortSignal, cb) {
   let timer
   const client = protocol === 'https:' ? require('https') : require('http')
   let finish = (error, data) => {
@@ -12,23 +16,31 @@ module.exports = function request (protocol, host, port, path, packet, timeout, 
     }
     cb(error, data)
   }
-  const uri = `${protocol}//${host}:${port}${path}`
+  const pth = `${path}${method === 'GET' ? '?dns=' + packet.toString('base64').replace(/=*$/g, '') : ''}`
+  const uri = `${protocol}//${host}:${port}${pth}`
+  const headers = {
+    Accept: contentType
+  }
+  if (method === 'POST') {
+    headers['Content-Type'] = contentType
+    headers['Content-Length'] = packet.byteLength
+  }
   const req = client.request({
     host: host,
     port: port,
-    path: path,
-    method: 'POST',
-    headers: {
-      Accept: contentType,
-      'Content-Type': contentType,
-      'Content-Length': packet.byteLength
-    }
+    path: pth,
+    method: method,
+    headers: headers
   }, onresponse)
   if (abortSignal) {
     abortSignal.addEventListener('abort', onabort)
   }
   req.on('error', finish)
-  req.end(packet)
+  if (method === 'POST') {
+    req.end(packet)
+  } else {
+    req.end()
+  }
   resetTimeout()
 
   function onabort () {
@@ -37,7 +49,7 @@ module.exports = function request (protocol, host, port, path, packet, timeout, 
 
   function onresponse (res) {
     if (res.statusCode !== 200) {
-      return res.destroy(new HTTPStatusError(uri, res.statusCode, 'POST'))
+      return res.destroy(new HTTPStatusError(uri, res.statusCode, method))
     }
     const result = []
     res.on('error', onerror)
@@ -69,4 +81,9 @@ module.exports = function request (protocol, host, port, path, packet, timeout, 
   function ontimeout () {
     req.destroy(new TimeoutError(timeout))
   }
+}
+
+module.exports = {
+  request: request,
+  endpoints: endpoints
 }

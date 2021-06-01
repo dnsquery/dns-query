@@ -1,11 +1,12 @@
 'use strict'
 const packet = require('dns-packet')
 const Buffer = require('buffer').Buffer
-const request = require('./request.js')
-const errors = require('./error.js')
-const AbortError = errors.AbortError
-const ResponseError = errors.ResponseError
-const unfiltered = require('./endpoints.js').unfiltered
+const lib = require('./lib.node.js')
+const request = lib.request
+const defaultEndpoints = lib.endpoints
+const error = require('./error.js')
+const AbortError = error.AbortError
+const ResponseError = error.ResponseError
 
 function queryOne (endpoint, query, timeout, abortSignal) {
   const https = endpoint.https !== false
@@ -18,6 +19,7 @@ function queryOne (endpoint, query, timeout, abortSignal) {
       endpoint.host,
       endpoint.port ? parseInt(endpoint.port, 10) : (https ? 443 : 80),
       endpoint.path || '/dns-query',
+      /^post$/i.test(endpoint.method) ? 'POST' : 'GET',
       packet.encode(Object.assign({
         flags: packet.RECURSION_DESIRED,
         type: 'query'
@@ -44,7 +46,7 @@ function queryOne (endpoint, query, timeout, abortSignal) {
 
 function query (q, opts) {
   opts = Object.assign({
-    endpoints: unfiltered,
+    endpoints: defaultEndpoints,
     retry: 3,
     timeout: 30000
   }, opts)
@@ -70,4 +72,10 @@ function query (q, opts) {
     )
 }
 
-module.exports = query
+module.exports = {
+  query: query,
+  AbortError: AbortError,
+  ResponseError: ResponseError,
+  TimeoutError: error.TimeoutError,
+  HTTPStatusError: error.HTTPStatusError
+}

@@ -1,8 +1,17 @@
 'use strict'
 const test = require('fresh-tape')
 const pmap = require('p-map')
-const query = require('..')
-const all = require('../endpoints.js').all
+const dohQuery = require('..')
+const query = dohQuery.query
+let all = Object.entries(require('../endpoints.json')).map(function (parts) {
+  parts[1].name = parts[0]
+  return parts[1]
+})
+if (typeof window !== 'undefined') { // Browser
+  all = all.filter(function (endpoint) {
+    return endpoint.cors
+  })
+}
 const XHR = require('xhr2')
 const AbortController = require('abort-controller')
 
@@ -10,11 +19,12 @@ const IPV4 = /^[12]?\d{1,2}\.[12]?\d{1,2}\.[12]?\d{1,2}\.[12]?\d{1,2}$/
 const LOCAL_ENDPOINT = {
   https: process.env.TEST_HTTPS === 'true',
   host: process.env.TEST_HOST,
-  port: process.env.TEST_PORT
+  port: process.env.TEST_PORT,
+  method: 'POST'
 }
 
 test('Looking up all Endpoints', function (t) {
-  return pmap(all, function (endpoint) {
+  return pmap(Object.values(all), function (endpoint) {
     return query(
       { questions: [{ type: 'A', name: 'google.com' }] },
       { endpoints: endpoint }
@@ -162,7 +172,7 @@ test('aborting /infinite requests while running', function (t) {
   )
 })
 test('processing incomplete output', { timeout: 10000 }, function (t) {
-  return localQuery('/incomplete').then(
+  return localQuery('/incomplete', { timeout: 200 }).then(
     failSuccess(t),
     function (error) {
       t.not(error, null)

@@ -14,39 +14,39 @@ if (!AbortError) {
   AbortError = function () {
     Error.captureStackTrace(this, AbortError)
     this.message = 'Request aborted.'
-    this.code = 'ABORT_ERR'
-    this.name = 'AbortError'
   }
   inherit(AbortError, Error)
+  AbortError.prototype.code = 'ABORT_ERR'
+  AbortError.prototype.name = 'AbortError'
 }
 
 function HTTPStatusError (uri, code, method) {
   Error.captureStackTrace(this, HTTPStatusError)
-  this.message = 'HTTPStatusError (status=' + code + ' while requesting (' + uri + ' [' + method + '])'
+  this.message = 'status=' + code + ' while requesting ' + uri + ' [' + method + ']'
   this.uri = uri
   this.status = code
   this.method = method
-  this.code = 'HTTP_STATUS'
-  this.name = 'StatusError'
 }
 inherit(HTTPStatusError, Error)
+HTTPStatusError.prototype.code = 'HTTP_STATUS'
+HTTPStatusError.prototype.name = 'StatusError'
 
 function ResponseError (message) {
   Error.captureStackTrace(this, ResponseError)
   this.message = message
-  this.code = 'RESPONSE_ERR'
-  this.name = 'ResponseError'
 }
 inherit(ResponseError, Error)
+ResponseError.prototype.code = 'RESPONSE_ERR'
+ResponseError.prototype.name = 'ResponseError'
 
 function TimeoutError (timeout) {
   Error.captureStackTrace(this, TimeoutError)
   this.message = 'Timeout (t=' + timeout + ').'
-  this.code = 'ETIMEOUT'
-  this.name = 'TimeoutError'
   this.timeout = timeout
 }
 inherit(TimeoutError, Error)
+TimeoutError.prototype.code = 'ETIMEOUT'
+TimeoutError.prototype.name = 'TimeoutError'
 
 module.exports = {
   AbortError: AbortError,

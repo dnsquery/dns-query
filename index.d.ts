@@ -1,19 +1,8 @@
 import { Packet } from '@types/dns-packet'
+import { Endpoint } from './endpoints'
+import { AbortError, HTTPStatusError, ResponseError, TimeoutError } from './error'
 
 namespace query {
-  interface Endpoint {
-    host: string
-    /* Path, prefixed with /, defaults to /dns-query */
-    path?: string
-    /* Port, defaults to 443 */
-    port?: number
-    /* true, if endpoint logs requests */
-    logging?: boolean
-    /* true, if endpoint support CORS headers */
-    cors?: boolean
-    /* true, if endpoint filters/redirects DNS packets */
-    filtered?: boolean
-  }
   interface Options {
     /* Set of endpoints to lookup doh queries.  */
     endpoints?: Endpoint[]
@@ -26,5 +15,14 @@ namespace query {
   }
 }
 
-declare function query (packet: Packet, options?: query.Options): Promise<Packet>
+const query: {
+  query (packet: Packet, options?: query.Options): Promise<Packet & {
+    endpoint: Endpoint
+  }>
+  AbortError: typeof AbortError
+  HTTPStatusError: typeof HTTPStatusError
+  ResponseError: typeof ResponseError
+  TimeoutError: typeof TimeoutError
+}
+
 export = query

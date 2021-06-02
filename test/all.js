@@ -25,17 +25,19 @@ const LOCAL_ENDPOINT = {
 
 test('Looking up all Endpoints', function (t) {
   return pmap(Object.values(all), function (endpoint) {
+    let once = false
     return query(
       { questions: [{ type: 'A', name: 'google.com' }] },
       { endpoints: endpoint }
-    ).then(
-      function (result) {
+    )
+      .then(function (result) {
         const answers = result.answers
-        const title = 'Endpoint: ' + endpoint.name
-        t.pass('───╼━┳━' + repeat('━', title.length) + '━┳━╾───')
-        t.pass('───╼━┫ ' + title + ' ┣━╾───')
+        once = writeHeader(endpoint, once)
         t.equals(result.endpoint, endpoint, 'endpoint correctly supplied')
-        t.not(answers.length, 0, 'answers > 0')
+        if (answers.length === 0) {
+          t.fail('No answers.')
+          return
+        }
         t.pass('answer count: ' + answers.length)
         const answer = answers[0]
         t.match(answer.name, /^google.com$/i, 'name=google.com')
@@ -48,10 +50,21 @@ test('Looking up all Endpoints', function (t) {
         t.equals(answer.class, 'IN', 'class=IN')
         t.equals(answer.flush, false, 'flush=false')
         t.ok(typeof answer.ttl, 'ttl=' + answer.ttl + ' is number')
-      },
-      failErr(t)
-    )
+      })
+      .catch(function (err) {
+        once = writeHeader(endpoint, once)
+        t.error(err)
+      })
   }, { concurrency: 14 })
+
+  function writeHeader (endpoint, once) {
+    if (!once) {
+      const title = 'Endpoint: ' + endpoint.name
+      t.pass('───╼━┳━' + repeat('━', title.length) + '━┳━╾───')
+      t.pass('───╼━┫ ' + title + ' ┣━╾───')
+    }
+    return true
+  }
 })
 test('Abort before start', function (t) {
   const c = new AbortController()

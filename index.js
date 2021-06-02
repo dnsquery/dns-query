@@ -1,6 +1,5 @@
 'use strict'
 const packet = require('dns-packet')
-const Buffer = require('buffer').Buffer
 const lib = require('./lib.node.js')
 const error = require('./error.js')
 const AbortError = error.AbortError

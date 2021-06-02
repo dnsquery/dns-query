@@ -1,5 +1,6 @@
 'use strict'
 /* global XMLHttpRequest */
+const Buffer = require('buffer').Buffer
 const errors = require('./error.js')
 const AbortError = errors.AbortError
 const HTTPStatusError = errors.HTTPStatusError

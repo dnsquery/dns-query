@@ -65,7 +65,9 @@ function query (q, opts) {
         if (err.name === 'AbortError' || opts.retry === 0) {
           throw err
         }
-        opts.retry -= 1
+        if (opts.retry > 0) {
+          opts.retry -= 1
+        }
         return query(q, opts)
       }
     )

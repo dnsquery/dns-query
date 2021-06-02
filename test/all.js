@@ -220,6 +220,19 @@ test('empty data treated as response error', function (t) {
     }
   )
 })
+test('infinite retries', function (t) {
+  const c = new AbortController()
+  setTimeout(c.abort.bind(c), 800)
+  return getLog().then(localQuery.bind(null, '/500', { retry: -1, signal: c.signal })).then(
+    failSuccess(t),
+    function (err) {
+      t.equals(err.name, 'AbortError')
+      return getLog()
+    }
+  ).then(function (data) {
+    t.ok(data.length > 2, data.length + ' requests') // There should be at least ~400 requests, using 2 to account for slow computers/connections
+  })
+})
 
 function getLog () {
   return req('/log', 'GET', 'json')

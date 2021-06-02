@@ -45,11 +45,10 @@ function queryOne (endpoint, query, timeout, abortSignal) {
 
 function query (q, opts) {
   opts = Object.assign({
-    endpoints: lib.endpoints,
     retry: 3,
     timeout: 30000
   }, opts)
-  const endpoints = opts.endpoints
+  const endpoints = opts.endpoints || lib.endpoints
   const signal = opts.signal
   const endpoint = Array.isArray(endpoints)
     ? endpoints[Math.floor(Math.random() * endpoints.length) % endpoints.length]

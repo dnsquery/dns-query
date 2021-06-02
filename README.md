@@ -12,7 +12,7 @@ This package provides simple function to make DoH queries both in node and the b
 ## Important Note before getting started
 
 By default `doh-query` uses well-known public dns-over-https servers to execute
-queries! These servers come with caveats, please look at [`./endpoints.md`](./endpoints)
+queries! These servers come with caveats, please look at [`./endpoints.md`](./endpoints.md)
 for more information.
 
 ## JavaScript API

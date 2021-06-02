@@ -196,10 +196,10 @@ test('processing timeout', { timeout: 2000 }, function (t) {
 test('randomness of endpoint choice', function (t) {
   const paths = ['/dns-packet', '/dns-packet-b', '/dns-packet-c', '/dns-packet-d']
   return getLog().then(function () {
-      return pmap(new Array(100), function () {
-        return localQuery(paths)
-      })
+    return pmap(new Array(100), function () {
+      return localQuery(paths)
     })
+  })
     .then(getLog)
     .then(function (data) {
       const counts = {}

@@ -34,7 +34,7 @@ function queryOne (endpoint, query, timeout, abortSignal) {
           try {
             decoded = packet.decode(data)
           } catch (err) {
-            return reject(new ResponseError('Invalid packet (cause=' + err.message+ ')', err))
+            return reject(new ResponseError('Invalid packet (cause=' + err.message + ')', err))
           }
           resolve(decoded)
         }

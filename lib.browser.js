@@ -44,7 +44,7 @@ function request (protocol, host, port, path, method, packet, timeout, abortSign
     if (xhr.status !== 200) {
       finish(new HTTPStatusError(uri, xhr.status, method))
     } else {
-      finish(null, xhr.response)
+      finish(null, Buffer.from(xhr.response))
     }
   }
 

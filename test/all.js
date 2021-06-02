@@ -63,7 +63,6 @@ test('Abort before start', function (t) {
     failSuccess(t),
     function (err) {
       t.equals(err.name, 'AbortError')
-      t.end()
     }
   )
 })
@@ -84,9 +83,7 @@ test('local /text causes ResponseError, with retry=0, once!', function (t) {
               { method: 'POST', url: '/text' }
             ]
           )
-          t.end()
-        },
-        failErr(t)
+        }
       )
     }
   )
@@ -107,9 +104,7 @@ test('local /text causes ResponseError, with retry=3, several times', function (
               { method: 'POST', url: '/text' }
             ]
           )
-          t.end()
-        },
-        failErr(t)
+        }
       )
     }
   )
@@ -134,12 +129,9 @@ test('local /dns-packet endpoint', function (t) {
               { method: 'POST', url: '/dns-packet' }
             ]
           )
-          t.end()
-        },
-        failErr(t)
+        }
       )
-    },
-    failErr(t)
+    }
   )
 })
 test('local /404 causes StatusError', function (t) {
@@ -147,7 +139,6 @@ test('local /404 causes StatusError', function (t) {
     failSuccess(t),
     function (err) {
       t.equals(err.code, 'HTTP_STATUS')
-      t.end()
     }
   )
 })
@@ -156,7 +147,6 @@ test('local /500 causes StatusError', function (t) {
     failSuccess(t),
     function (err) {
       t.equals(err.code, 'HTTP_STATUS')
-      t.end()
     }
   )
 })
@@ -170,7 +160,6 @@ test('aborting /infinite requests while running', function (t) {
     failSuccess(t),
     function (err) {
       t.equals(err.name, 'AbortError')
-      t.end()
     }
   )
 })
@@ -179,7 +168,6 @@ test('processing incomplete output', { timeout: 10000 }, function (t) {
     failSuccess(t),
     function (error) {
       t.not(error, null)
-      t.end()
     }
   )
 })
@@ -214,9 +202,7 @@ test('randomness of endpoint choice', function (t) {
       Object.keys(counts).forEach(function (key) {
         t.ok(counts[key] > 10, key + ' count > 10')
       })
-      t.end()
     })
-    .catch(failErr(t))
 })
 
 function req (path, method, responseType, data) {
@@ -245,10 +231,6 @@ function req (path, method, responseType, data) {
 
 function failSuccess (t) {
   return function () { t.fail('Unexpected success') }
-}
-
-function failErr (t) {
-  return function (error) { t.error(error) }
 }
 
 function localQuery (paths, opts) {

@@ -2,8 +2,6 @@
 const packet = require('dns-packet')
 const Buffer = require('buffer').Buffer
 const lib = require('./lib.node.js')
-const request = lib.request
-const defaultEndpoints = lib.endpoints
 const error = require('./error.js')
 const AbortError = error.AbortError
 const ResponseError = error.ResponseError
@@ -14,7 +12,7 @@ function queryOne (endpoint, query, timeout, abortSignal) {
     if (abortSignal && abortSignal.aborted) {
       return reject(new AbortError())
     }
-    request(
+    lib.request(
       https ? 'https:' : 'http:',
       endpoint.host,
       endpoint.port ? parseInt(endpoint.port, 10) : (https ? 443 : 80),
@@ -30,7 +28,6 @@ function queryOne (endpoint, query, timeout, abortSignal) {
         if (error !== null) {
           reject(error)
         } else {
-          data = Buffer.from(data)
           let decoded
           try {
             decoded = packet.decode(data)
@@ -46,7 +43,7 @@ function queryOne (endpoint, query, timeout, abortSignal) {
 
 function query (q, opts) {
   opts = Object.assign({
-    endpoints: defaultEndpoints,
+    endpoints: lib.endpoints,
     retry: 3,
     timeout: 30000
   }, opts)

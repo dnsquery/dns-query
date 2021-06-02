@@ -27,7 +27,7 @@ test('Looking up all Endpoints', function (t) {
   return pmap(Object.values(all), function (endpoint) {
     let once = false
     return query(
-      { questions: [{ type: 'A', name: 'google.com' }] },
+      { id: '\x7f\xfe\xff\xfe' /* to test + and / encoding */, questions: [{ type: 'A', name: 'google.com' }] },
       { endpoints: endpoint }
     )
       .then(function (result) {

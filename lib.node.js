@@ -5,6 +5,14 @@ const endpoints = Object.values(require('./endpoints.json')).filter(function (en
   return !endpoint.filter && !endpoint.log
 })
 
+// https://tools.ietf.org/html/rfc8484
+function toRFC8484 (buffer) {
+  return buffer.toString('base64')
+    .replace(/=/g, '')
+    .replace(/\+/g, '-')
+    .replace(/\//g, '_')
+}
+
 function request (protocol, host, port, path, method, packet, timeout, abortSignal, cb) {
   let timer
   const client = protocol === 'https:' ? require('https') : require('http')
@@ -16,7 +24,7 @@ function request (protocol, host, port, path, method, packet, timeout, abortSign
     }
     cb(error, data)
   }
-  const pth = `${path}${method === 'GET' ? '?dns=' + packet.toString('base64').replace(/=*$/g, '') : ''}`
+  const pth = `${path}${method === 'GET' ? '?dns=' + toRFC8484(packet) : ''}`
   const uri = `${protocol}//${host}:${port}${pth}`
   const headers = {
     Accept: contentType

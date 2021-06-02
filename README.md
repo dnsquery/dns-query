@@ -19,6 +19,7 @@ for more information.
 
 ```js
 const { query } = require('doh-query')
+const { cloudflare, google, opendns } = require('doh-query/endpoints')
 try {
   const { answers } = await query({
     questions: [
@@ -27,7 +28,7 @@ try {
     ]
   }, {
     /* Options (optional) */
-    endpoints: require('doh-query/endpoints').unfiltered, // (optional) all known working unfiltered endpoints
+    endpoints: [cloudflare, google, opendns], // (optional) all known working unfiltered endpoints
     retry: 3, // (optional) retries if a given endpoint fails; -1 = infinite retries; 0 = no retry
     timeout: 4000, // (optional, default=30000) timeout for single requests
     signal, // (optional) an AbortSignal to abort the request

@@ -31,9 +31,10 @@ inherit(HTTPStatusError, Error)
 HTTPStatusError.prototype.code = 'HTTP_STATUS'
 HTTPStatusError.prototype.name = 'StatusError'
 
-function ResponseError (message) {
+function ResponseError (message, cause) {
   Error.captureStackTrace(this, ResponseError)
   this.message = message
+  this.cause = cause
 }
 inherit(ResponseError, Error)
 ResponseError.prototype.code = 'RESPONSE_ERR'

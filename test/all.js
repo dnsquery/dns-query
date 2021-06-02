@@ -73,6 +73,9 @@ test('local /text causes ResponseError, with retry=0, once!', function (t) {
     failSuccess(t),
     function (err) {
       t.equals(err.name, 'ResponseError')
+      t.equals(err.message, 'Invalid packet (cause=Header must be 12 bytes)')
+      t.notEqual(err.cause, undefined)
+      t.notEqual(err.cause, null)
       return req('/log', 'GET', 'json').then(
         function (data) {
           t.deepEquals(

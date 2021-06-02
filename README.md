@@ -9,37 +9,11 @@ Node & Browser tested, Non-JSON DNS over HTTPS fetching with minimal dependencie
 
 This package provides simple function to make DoH queries both in node and the browser.
 
-## Important note about endpoints
+## Important Note before getting started
 
-**TL;DR: It is recommended to choose what endpoints to use for doh!**
-
-To use DoH someone needs to host a DoH server.
-
-This server **can** filter, log or limit the requests!
-
-_Filtering_ can be useful in case you want to avoid malware/ads/adult-content. _Logging_ may be required in some countries and limiting may be part of a business model.
-
-Furthermore the different endpoints may or may not be distributed around the globe, making requests slower/faster depending on the client's location.
-
-This package comes with a pretty long list of well-known and tested endpoints. By default it will use the known endpoints that promise to not apply filters or logs.
-
-```js
-const endpoints = require('doh-query/endpoints')
-```
-
-You can also pick one specific endpoint by name such as:
-
-```js
-const { cloudflare, google, opendns,  } = require('doh-query/endpoints')
-```
-
-All available endpoints are listed in [`endpoints.md`](./endpoints.md).
-
-If you are presenting this library to your user, you may want to pass
-the offer _what_ endpoint they want to use as it has privacy and usage implications!
-
-_Note:_ Not all endpoints supply _CORS_ headers which means that the list
-is severly reduced if you use this library in the browser.
+By default `doh-query` uses well-known public dns-over-https servers to execute
+queries! These servers come with caveats, please look at [`./endpoints.md`](./endpoints)
+for more information.
 
 ## Usage
 

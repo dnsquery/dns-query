@@ -1,5 +1,25 @@
 # Endpoints
 
+To use DoH someone needs to host a DoH server.
+
+A server **may** filter, log or limit the requests it receives!
+
+_Filtering_ can be useful in case you want to avoid malware/ads/adult-content.
+
+_Logging_ may be required in some countries and limiting may be part of a business model.
+
+Furthermore the different endpoints may or may not be distributed around the globe,
+making requests slower/faster depending on the client's location.
+
+This package comes with a pretty long list of well-known and tested endpoints, listed below.
+By default it will use the known endpoints that promise to not apply filters or logs.
+
+If you are presenting this library to an end-user, you may want to pass the offer _what_
+endpoint they want to use as it has privacy and usage implications!
+
+_Note:_ Not all endpoints supply _CORS_ headers which means that the list is severly
+reduced if you use this library in the browser.
+
 | name                        | host(:port=443)(/path=/dns-query)          | loc    | filter | log | cors | method |
 |-----------------------------|--------------------------------------------|-------------|---|---|---|------|
 | [cloudflare][]              | cloudflare-dns.com                         | ?           | 𐄂 | 𐄂 | ✓ | GET |
@@ -115,7 +135,7 @@
 [lavaDns]: https://dns.lavate.ch/
 [controlId]: https://controld.com/
 
-## Known Broken
+## Known Broken Servers
 
 - https://doh.bortzmeyer.fr (404)
 - https://www.nic.cz/odvr/ (socket hangup)

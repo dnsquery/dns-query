@@ -66,16 +66,15 @@ test('Abort before start', function (t) {
     }
   )
 })
-// Note: this needs to be the first local request!
 test('local /text causes ResponseError, with retry=0, once!', function (t) {
-  return localQuery('/text').then(
+  return getLog().then(localQuery.bind(null, '/text')).then(
     failSuccess(t),
     function (err) {
       t.equals(err.name, 'ResponseError')
       t.equals(err.message, 'Invalid packet (cause=Header must be 12 bytes)')
       t.notEqual(err.cause, undefined)
       t.notEqual(err.cause, null)
-      return req('/log', 'GET', 'json').then(
+      return getLog().then(
         function (data) {
           t.deepEquals(
             data.filter(function (req) { return req.method !== 'OPTIONS' }),
@@ -93,7 +92,7 @@ test('local /text causes ResponseError, with retry=3, several times', function (
     failSuccess(t),
     function (err) {
       t.equals(err.name, 'ResponseError')
-      return req('/log', 'GET', 'json').then(
+      return getLog().then(
         function (data) {
           t.deepEquals(
             data.filter(function (req) { return req.method !== 'OPTIONS' }),
@@ -110,7 +109,7 @@ test('local /text causes ResponseError, with retry=3, several times', function (
   )
 })
 test('local /dns-packet endpoint', function (t) {
-  return localQuery('/dns-packet').then(
+  return getLog().then(localQuery.bind(null, '/dns-packet')).then(
     function (data) {
       t.equals(data.type, 'response')
       t.deepEquals(data.answers, [{
@@ -121,7 +120,7 @@ test('local /dns-packet endpoint', function (t) {
         flush: false,
         data: '0.0.0.0'
       }])
-      return req('/log', 'GET', 'json').then(
+      return getLog().then(
         function (data) {
           t.deepEquals(
             data.filter(function (req) { return req.method !== 'OPTIONS' }),
@@ -183,16 +182,12 @@ test('processing timeout', { timeout: 2000 }, function (t) {
 })
 test('randomness of endpoint choice', function (t) {
   const paths = ['/dns-packet', '/dns-packet-b', '/dns-packet-c', '/dns-packet-d']
-  return req('/log', 'GET', 'json')
-    .then(function () {
-      // We need to clear the log
+  return getLog().then(function () {
       return pmap(new Array(100), function () {
         return localQuery(paths)
       })
     })
-    .then(function () {
-      return req('/log', 'GET', 'json')
-    })
+    .then(getLog)
     .then(function (data) {
       const counts = {}
       data.forEach(function (entry) {
@@ -204,6 +199,10 @@ test('randomness of endpoint choice', function (t) {
       })
     })
 })
+
+function getLog () {
+  return req('/log', 'GET', 'json')
+}
 
 function req (path, method, responseType, data) {
   return new Promise(function (resolve, reject) {

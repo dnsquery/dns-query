@@ -1,0 +1,245 @@
+#!/usr/bin/env node
+const dns = require('dns-packet')
+const { query } = require('..')
+const path = require('path')
+const allEndpoints = require('../endpoints')
+const { version } = require('../package.json')
+const cmd = process.argv[1] ? path.relative(process.cwd(), process.argv[1]) : __filename
+
+const HELP = `
+${cmd} <options> <input>
+
+Execute a dns query over https.
+
+Examples:
+
+  $ ${cmd} --json -e google \\
+      '{ "questions": [{ "type": "A", "name": "google.com" }] }'
+
+  $ echo '{ "questions": [{ "type": "A", "name": "google.com" }] }' \\
+      | ${cmd} --stdin --endpoint cloudflare
+
+--help, -h ....... Show this help
+--version, -v .... Show the version
+--json ........... --type=json
+--base64 ......... --type=base64
+--binary ......... --type=binary
+--type ........... Input type. Options: json, base64, binary; Default: json
+--out ............ Output type. Defaults to the input --type.
+--stdin .......... Get <input> from stdin instead of cli arguments
+--endpoint, -e ... Use a specific endpoint. Can be either the name of a known
+    endpoint or a json object. By Default uses one of the known endpoints.
+    If multiple are provided, one at random will be used.
+--endpoints ...... Lists all known endpoints as json.
+--retry .......... Number of retries to do in case a request fails, default: 3
+--timeout ........ Timeout for the request in milliseconds, default: 30000
+`
+
+async function run (args, signal) {
+  const { input, options: rawOpts } = getArgs(args, signal)
+  if (rawOpts.h || rawOpts.help) {
+    return HELP
+  }
+  if (rawOpts.v || rawOpts.version) {
+    return `v${version}\n`
+  }
+  if (rawOpts.endpoints) {
+    return JSON.stringify(allEndpoints, null, 2)
+  }
+  let retry = 3
+  if (rawOpts.retry) {
+    retry = parseInt(rawOpts.retry, 10)
+    if (isNaN(retry)) {
+      throw new Error(`Unexpected value --retry=${rawOpts.retry}, expected integer`)
+    }
+  }
+  let timeout = 30000
+  if (rawOpts.timeout) {
+    timeout = parseInt(rawOpts.timeout, 10)
+    if (isNaN(timeout)) {
+      throw new Error(`Unexpected value --timeout=${rawOpts.timeout}, expected integer`)
+    }
+  }
+  let endpoints = rawOpts.endpoint.concat(rawOpts.e).map(input => {
+    let endpoint = allEndpoints[input]
+    if (!endpoint) {
+      try {
+        endpoint = JSON.parse(input)
+        if (typeof endpoint !== 'object') {
+          throw new Error('Endpoint not an object.')
+        }
+      } catch (error) {
+        throw new Error(`Unexpected endpoint=${input}, cause=${error}`)
+      }
+    }
+    return endpoint
+  })
+  if (endpoints.length === 0) {
+    endpoints = undefined
+  }
+  let { packet, options } = await getInput(rawOpts, input)
+  const result = await query(packet, { endpoints, signal, timeout, retry })
+  if (options.out === 'base64') {
+    return dns.encode(result).toString('base64')
+  }
+  if (options.out === 'json') {
+    return JSON.stringify(bufferPropsToString(result), null, 2)
+  }
+  return dns.encode(result)
+}
+
+function bufferPropsToString (result) {
+  for (const key in result) {
+    const value = result[key]
+    if (Buffer.isBuffer(value)) {
+      result[key] = value.toString()
+    } else if (typeof value === 'object' && value !== null) {
+      bufferPropsToString(value)
+    }
+  }
+  return result
+}
+
+if (require.main) {
+  run(process.argv.slice(2)).then(
+    data => {
+      process.stdout.write(data)
+    },
+    error => {
+      console.error(error)
+      process.exit(1)
+    }
+  )
+} else {
+  module.exports = run
+}
+
+async function getInput (options, input) {
+  if (options.json) {
+    if (options.type && options.type !== 'json') {
+      throw new Error(`Can not specify --json and --type=${options.type} at the same time.`)
+    }
+    options.type = 'json'
+  }
+  if (options.base64) {
+    if (options.type && options.type !== 'base64') {
+      throw new Error(`Can not specify --base64 and --type=${options.type} at the same time.`)
+    }
+    options.type = 'base64'
+  }
+  if (options.binary) {
+    if (options.type && options.type !== 'binary') {
+      throw new Error(`Can not specify --binary and --type=${options.type} at the same time.`)
+    }
+    options.type = 'binary'
+  }
+  if (!options.type) {
+    options.type = 'json'
+  }
+  if (!['json', 'base64', 'binary'].includes(options.type)) {
+    throw new Error(`Unknown --type=${options.type}`)
+  }
+  if (!options.out) {
+    options.out = options.type
+  }
+  if (!['json', 'base64', 'binary'].includes(options.out)) {
+    throw new Error(`Unknown --out=${options.out}`)
+  }
+  if (options.stdin) {
+    if (input) {
+      throw new Error(`Unexpected input ${input}`)
+    }
+    input = await readStream(process.stdin)
+  } else {
+    if (options.type === 'binary') {
+      throw new Error(`Binary input only works in combination with --stdin`)
+    }
+    if (!input) {
+      throw new Error('Missing input')
+    }
+  }
+  const packet = getPacket(input, options.type)
+  return { packet, options }
+}
+
+function getArgs (argv) {
+  const boolProps = ['help', 'h', 'json', 'base64', 'binary', 'stdin', 'endpoints', 'v', 'version']
+  const inputProp = ['input', 'packet']
+  const otherProp = ['type', 'out', 'timeout', 'retry']
+  const arrayProp = ['endpoint', 'e']
+  let input
+  let prop
+  let options = {
+    endpoint: [],
+    e: []
+  }
+  if (argv.length === 0) {
+    options.h = true
+  }
+  for (const arg of argv) {
+    if (prop) {
+      useProp(arg)
+      continue
+    }
+    const parts = /^--?([^=]*)(\=(.*))?$/g.exec(arg)
+    if (parts) {
+      prop = parts[1]
+      if (boolProps.includes(prop)) {
+        options[prop] = true
+        prop = null
+      } else if (!inputProp.includes(prop) && !otherProp.includes(prop) && !arrayProp.includes(prop)) {
+        throw new Error(`Unknown option ${prop}`)
+      } else if (parts[2]) {
+        useProp(parts[2])
+      }
+      continue
+    }
+    useInput(arg)
+  }
+  return { input, options }
+
+  function useProp (arg) {
+    if (arrayProp.includes(prop)) {
+      options[prop].push(arg)
+    } else if (inputProp.includes(prop)) {
+      useInput(arg)
+    } else {
+      if (options[prop] !== undefined) {
+        throw new Error(`Can not set --${prop} more than once`)
+      }
+      options[prop] = arg
+    }
+    prop = null
+  }
+
+  function useInput (arg) {
+    if (input) {
+      throw new Error(`Only able to handle one input! (${arg})`)
+    }
+    input = arg
+  }
+}
+
+function getPacket (input, type)  {
+  try {
+    if (type !== 'binary') {
+      input = input.toString()
+      if (type === 'json') {
+        return JSON.parse(input)
+      }
+      input = Buffer.from(input, 'base64')
+    }
+    return dns.decode(input)
+  } catch (error) {
+    throw new Error(`Error parsing input (type=${type}): ${error.message}`)
+  }
+}
+
+function readStream () {
+  return new Promise((resolve, reject) => {
+    const result = []
+    process.stdin.on('data', data => result.push(data))
+    process.stdin.on('error', reject)
+    process.stdin.on('close', () => resolve(Buffer.concat(result)))
+  })
+}

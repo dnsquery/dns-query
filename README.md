@@ -15,7 +15,7 @@ By default `doh-query` uses well-known public dns-over-https servers to execute
 queries! These servers come with caveats, please look at [`./endpoints.md`](./endpoints)
 for more information.
 
-## Usage
+## JavaScript API
 
 ```js
 const { query } = require('doh-query')
@@ -41,6 +41,40 @@ try {
     default: // Unexpected error
   }
 }
+```
+
+## CLI
+
+You can install `doh-query` as a command-line tool using `npm i doh-query -g`
+or by running `npx doh-query`.
+
+```sh
+$ doh-query <options> <input>
+
+Execute a dns query over https.
+
+Examples:
+
+  $ doh-query --json -e google \
+      '{ "questions": [{ "type": "A", "name": "google.com" }] }'
+
+  $ echo '{ "questions": [{ "type": "A", "name": "google.com" }] }' \
+      | doh-query --stdin --endpoint cloudflare
+
+--help, -h ....... Show this help
+--version, -v .... Show the version
+--json ........... --type=json
+--base64 ......... --type=base64
+--binary ......... --type=binary
+--type ........... Input type. Options: json, base64, binary; Default: json
+--out ............ Output type. Defaults to the input --type.
+--stdin .......... Get <input> from stdin instead of cli arguments
+--endpoint, -e ... Use a specific endpoint. Can be either the name of a known
+    endpoint or a json object. By Default uses one of the known endpoints.
+    If multiple are provided, one at random will be used.
+--endpoints ...... Lists all known endpoints as json.
+--retry .......... Number of retries to do in case a request fails, default: 3
+--timeout ........ Timeout for the request in milliseconds, default: 30000
 ```
 
 ## Endpoints

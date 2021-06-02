@@ -3,6 +3,9 @@
   "version": "0.3.2",
   "description": "Node & Browser tested, Non-JSON DNS over HTTPS fetching with minimal dependencies.",
   "main": "index.js",
+  "bin": {
+    "doh-query": "./bin/doh-query"
+  },
   "scripts": {
     "lint": "standard",
     "endpoints": "node endpoints.json.js",

@@ -64,6 +64,13 @@
 | [quad9Ads][quad9]           | dns.quad9.net                              | ?           | ✓ | 𐄂 | 𐄂 | GET |
 | [switch][]                  | dns.switch.ch                              | Switzerland | ✓ | 𐄂 | 𐄂 | GET |
 | [yepdns][]                  | sg.yepdns.com                              | Singapore   | ✓ | 𐄂 | 𐄂 | GET |
+| [dnsOverHttps][]            | dns.dns-over-https.com                     | ?           | 𐄂 | ✓ | ✓ | GET |
+| [lavaDnsEU1][lavaDns]       | eu1.dns.lavate.ch                          | Helsinki    | 𐄂 | 𐄂 | 𐄂 | GET |
+| [lavaDnsUS1][lavaDns]       | us1.dns.lavate.ch                          | California  | 𐄂 | 𐄂 | 𐄂 | GET |
+| [controlId][]               | freedns.controld.com/p0                    | ?           | 𐄂 | 𐄂 | 𐄂 | GET |
+| [controlIdMw][controlId]    | freedns.controld.com/p1                    | ?           | ✓ | 𐄂 | 𐄂 | GET |
+| [controlIdAds][controlId]   | freedns.controld.com/p2                    | ?           | ✓ | 𐄂 | 𐄂 | GET |
+| [controlIdSoc][controlId]   | freedns.controld.com/p3                    | ?           | ✓ | 𐄂 | 𐄂 | GET |
 
 [cloudflare]: https://developers.cloudflare.com/1.1.1.1/dns-over-https
 [cloudflareFamily]: https://developers.cloudflare.com/1.1.1.1/1.1.1.1-for-families/setup-instructions/dns-over-https
@@ -104,7 +111,9 @@
 [quad9]: https://quad9.net/service/service-addresses-and-features
 [switch]: https://www.switch.ch/security/info/public-dns/
 [yepdns]: https://get.yepdns.com/
-
+[dnsOverHttps]: https://dns-over-https.com/
+[lavaDns]: https://dns.lavate.ch/
+[controlId]: https://controld.com/
 
 ## Known Broken
 

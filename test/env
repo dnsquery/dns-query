@@ -134,6 +134,9 @@ function handleRequest (req, res) {
   if (req.url === '/timeout') {
     return res.writeHead(200, { 'Content-Length': 99999 }).write('not-everything')
   }
+  if (req.url === '/empty') {
+    return res.writeHead(200).end()
+  }
   if (req.url === '/infinite') {
     const write = () => {
       res.write(new Date().toISOString() + '\n')

@@ -28,6 +28,9 @@ function queryOne (endpoint, query, timeout, abortSignal) {
         if (error !== null) {
           reject(error)
         } else {
+          if (data.length === 0) {
+            return reject(new ResponseError('Empty.'))
+          }
           let decoded
           try {
             decoded = packet.decode(data)

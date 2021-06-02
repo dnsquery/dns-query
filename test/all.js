@@ -199,6 +199,14 @@ test('randomness of endpoint choice', function (t) {
       })
     })
 })
+test('empty data treated as response error', function (t) {
+  return localQuery('/empty').then(
+    failSuccess(t),
+    function (err) {
+      t.equals(err.message, 'Empty.')
+    }
+  )
+})
 
 function getLog () {
   return req('/log', 'GET', 'json')

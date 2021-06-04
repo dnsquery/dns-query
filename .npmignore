@@ -1,5 +1,8 @@
-endpoints.json.js
+endpoints-json.js
 test/*
 *.tgz
 coverage/*
 .github/*
+types/test.ts
+types/tsconfig.json
+*.bak

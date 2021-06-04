@@ -1,6 +1,6 @@
 {
   "name": "doh-query",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "description": "Node & Browser tested, Non-JSON DNS over HTTPS fetching with minimal dependencies.",
   "main": "index.js",
   "types": "types",

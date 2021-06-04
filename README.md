@@ -18,8 +18,8 @@ for more information.
 ## JavaScript API
 
 ```js
-const { query } = require('doh-query')
-const { cloudflare, google, opendns } = require('doh-query/endpoints')
+const { query, endpoints } = require('doh-query')
+const { cloudflare, google, opendns } = endpoints
 try {
   const { answers } = await query({
     questions: [

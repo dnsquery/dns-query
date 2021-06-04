@@ -59,3 +59,4 @@ typings/
 
 package-lock.json
 endpoints.json
+types/index.d.ts

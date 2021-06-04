@@ -4,6 +4,7 @@ const lib = require('./lib.node.js')
 const error = require('./error.js')
 const AbortError = error.AbortError
 const ResponseError = error.ResponseError
+const endpoints = require('./endpoints')
 
 function queryOne (endpoint, query, timeout, abortSignal) {
   const https = endpoint.https !== false
@@ -74,6 +75,7 @@ function query (q, opts) {
 
 module.exports = {
   query: query,
+  endpoints,
   AbortError: AbortError,
   ResponseError: ResponseError,
   TimeoutError: error.TimeoutError,

@@ -3,7 +3,7 @@ const test = require('fresh-tape')
 const pmap = require('p-map')
 const dohQuery = require('..')
 const query = dohQuery.query
-let all = Object.entries(require('../endpoints.json')).map(function (parts) {
+let all = Object.entries(dohQuery.endpoints).map(function (parts) {
   parts[1].name = parts[0]
   return parts[1]
 })

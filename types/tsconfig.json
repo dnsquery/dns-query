@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "strictNullChecks": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictFunctionTypes": true,
+    "alwaysStrict": true,
+    "resolveJsonModule": true,
+    "lib": ["es6", "dom"],
+    "baseUrl": ".",
+    "paths": { "doh-query": [".."] }
+  }
+}

@@ -3,12 +3,13 @@
   "version": "0.4.1",
   "description": "Node & Browser tested, Non-JSON DNS over HTTPS fetching with minimal dependencies.",
   "main": "index.js",
+  "types": "types",
   "bin": {
     "doh-query": "./bin/doh-query"
   },
   "scripts": {
-    "lint": "standard",
-    "endpoints": "node endpoints.json.js",
+    "lint": "npm run endpoints && standard *.js bin/* && dtslint --localTs node_modules/typescript/lib types",
+    "endpoints": "node endpoints-json.js",
     "prepack": "npm run endpoints",
     "test": "node test/env npm run test-impl",
     "test-impl": "fresh-tape test/all.js",
@@ -31,6 +32,10 @@
     "query",
     "client"
   ],
+  "standard": {
+    "ignore": "*.ts",
+    "include": "bin/*"
+  },
   "author": "Martin Heidegger <martin.heidegger@gmail.com>",
   "license": "MIT",
   "dependencies": {
@@ -42,6 +47,7 @@
     "browserify": "^17.0.0",
     "c8": "^7.7.2",
     "coverify": "^1.5.1",
+    "dtslint": "^4.1.0",
     "envify": "^4.1.0",
     "fresh-tape": "^5.2.4",
     "markdown-it": "^12.0.6",
@@ -49,6 +55,7 @@
     "p-map": "^4.0.0",
     "standard": "^16.0.3",
     "tape-run": "^9.0.0",
+    "typescript": "^4.3.2",
     "xhr2": "^0.2.1"
   },
   "repository": {

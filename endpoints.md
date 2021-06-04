@@ -82,7 +82,7 @@ reduced if you use this library in the browser.
 | [sebyOVH][seby]             | doh-2.seby.io                              | Sydney      | ✓ | 𐄂 | ✓ | GET |
 | [quad9][]                   | dns10.quad9.net                            | ?           | 𐄂 | 𐄂 | 𐄂 | GET |
 | [quad9Ads][quad9]           | dns.quad9.net                              | ?           | ✓ | 𐄂 | 𐄂 | GET |
-| [switch][]                  | dns.switch.ch                              | Switzerland | ✓ | 𐄂 | 𐄂 | GET |
+| [switchCh][]                  | dns.switch.ch                            | Switzerland | ✓ | 𐄂 | 𐄂 | GET |
 | [yepdns][]                  | sg.yepdns.com                              | Singapore   | ✓ | 𐄂 | 𐄂 | GET |
 | [dnsOverHttps][]            | dns.dns-over-https.com                     | ?           | 𐄂 | ✓ | ✓ | GET |
 | [lavaDnsEU1][lavaDns]       | eu1.dns.lavate.ch                          | Helsinki    | 𐄂 | 𐄂 | 𐄂 | GET |
@@ -129,7 +129,7 @@ reduced if you use this library in the browser.
 [powerDNS]: https://powerdns.org/
 [seby]: https://dns.seby.io/
 [quad9]: https://quad9.net/service/service-addresses-and-features
-[switch]: https://www.switch.ch/security/info/public-dns/
+[switchCh]: https://www.switch.ch/security/info/public-dns/
 [yepdns]: https://get.yepdns.com/
 [dnsOverHttps]: https://dns-over-https.com/
 [lavaDns]: https://dns.lavate.ch/

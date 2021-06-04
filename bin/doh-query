@@ -77,7 +77,7 @@ async function run (args, signal) {
   if (endpoints.length === 0) {
     endpoints = undefined
   }
-  let { packet, options } = await getInput(rawOpts, input)
+  const { packet, options } = await getInput(rawOpts, input)
   const result = await query(packet, { endpoints, signal, timeout, retry })
   if (options.out === 'base64') {
     return dns.encode(result).toString('base64')
@@ -152,7 +152,7 @@ async function getInput (options, input) {
     input = await readStream(process.stdin)
   } else {
     if (options.type === 'binary') {
-      throw new Error(`Binary input only works in combination with --stdin`)
+      throw new Error('Binary input only works in combination with --stdin')
     }
     if (!input) {
       throw new Error('Missing input')
@@ -169,7 +169,7 @@ function getArgs (argv) {
   const arrayProp = ['endpoint', 'e']
   let input
   let prop
-  let options = {
+  const options = {
     endpoint: [],
     e: []
   }
@@ -181,7 +181,7 @@ function getArgs (argv) {
       useProp(arg)
       continue
     }
-    const parts = /^--?([^=]*)(\=(.*))?$/g.exec(arg)
+    const parts = /^--?([^=]*)(=(.*))?$/g.exec(arg)
     if (parts) {
       prop = parts[1]
       if (boolProps.includes(prop)) {
@@ -220,7 +220,7 @@ function getArgs (argv) {
   }
 }
 
-function getPacket (input, type)  {
+function getPacket (input, type) {
   try {
     if (type !== 'binary') {
       input = input.toString()

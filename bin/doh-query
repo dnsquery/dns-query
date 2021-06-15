@@ -27,9 +27,9 @@ Options:
   --type ........... Input type. Options: json, base64, binary; Default: json
   --out ............ Output type. Defaults to the input --type.
   --stdin .......... Get <input> from stdin instead of cli arguments
-  --endpoint, -e ... Use a specific endpoint. Can be either the name of a
-      known endpoint or a json object. By Default uses one of the known
-      endpoints. If multiple are provided, one at random will be used.
+  --endpoint, -e ... Use a specific endpoint. Can be either the name of a known
+      endpoint, a json object or an url. By default uses one of the known endpoints.
+      If multiple are provided, one at random will be used.
   --endpoints ...... Lists all known endpoints as json.
   --retry .......... Number of retries to do in case requests fails, default: 3
   --timeout ........ Timeout for the request in milliseconds, default: 30000
@@ -61,17 +61,13 @@ async function run (args, signal) {
     }
   }
   let endpoints = rawOpts.endpoint.concat(rawOpts.e).map(input => {
-    let endpoint = allEndpoints[input]
-    if (!endpoint) {
-      try {
-        endpoint = JSON.parse(input)
-        if (typeof endpoint !== 'object') {
-          throw new Error('Endpoint not an object.')
-        }
-      } catch (error) {
-        throw new Error(`Unexpected endpoint=${input}, cause=${error}`)
+    let endpoint = input
+    try {
+      endpoint = JSON.parse(input)
+      if (typeof endpoint !== 'object' && typeof endpoint !== 'string') {
+        throw new Error('Endpoint not an object or string.')
       }
-    }
+    } catch (error) {}
     return endpoint
   })
   if (endpoints.length === 0) {

@@ -12,7 +12,7 @@ const p: Promise<Packet> = query({ id: 1 }, {
   endpoints: [{
     host: '0.0.0.0',
     cors: true
-  }, google, cloudflare, switchCh],
+  }, google, cloudflare, switchCh, 'https://google.com/dns-query'],
   signal: c.signal,
   retry: 5,
   timeout: 1000

@@ -49,7 +49,7 @@ function query (q, opts) {
     retry: 3,
     timeout: 30000
   }, opts)
-  const endpoints = opts.endpoints || lib.endpoints
+  const endpoints = parseEndpoints(opts.endpoints) || lib.endpoints
   const signal = opts.signal
   const endpoint = Array.isArray(endpoints)
     ? endpoints[Math.floor(Math.random() * endpoints.length) % endpoints.length]
@@ -73,9 +73,43 @@ function query (q, opts) {
     )
 }
 
+function parseEndpoints (input) {
+  if (!input) {
+    return
+  }
+  if (!Array.isArray(input)) {
+    input = [input]
+  }
+  const result = []
+  for (const endpoint of input) {
+    if (typeof endpoint === 'object') {
+      result.push(endpoint)
+    } else if (typeof endpoint === 'string') {
+      if (endpoints[endpoint]) {
+        result.push(endpoints[endpoint])
+      } else {
+        const parts = /^(https?:\/\/)?([^/:]+)(:([\d]+))?(\/.+?)?(\s\[(post|get)\])?$/i.exec(endpoint)
+        if (!parts) {
+          throw new Error('Invalid endpoint "' + endpoint + '". It needs to match')
+        }
+        const https = parts[1] !== 'http://'
+        result.push({
+          https: https,
+          host: parts[2],
+          port: parts[4] ? parseInt(parts[4]) : https ? 443 : 80,
+          path: parts[5],
+          method: parts[7]
+        })
+      }
+    }
+  }
+  return result
+}
+
 module.exports = {
   query: query,
   endpoints,
+  parseEndpoints,
   AbortError: AbortError,
   ResponseError: ResponseError,
   TimeoutError: error.TimeoutError,

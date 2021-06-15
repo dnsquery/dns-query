@@ -3,6 +3,7 @@ const test = require('fresh-tape')
 const pmap = require('p-map')
 const dohQuery = require('..')
 const query = dohQuery.query
+const parseEndpoints = dohQuery.parseEndpoints
 let all = Object.entries(dohQuery.endpoints).map(function (parts) {
   parts[1].name = parts[0]
   return parts[1]
@@ -232,6 +233,16 @@ test('infinite retries', function (t) {
   ).then(function (data) {
     t.ok(data.length > 2, data.length + ' requests') // There should be at least ~400 requests, using 2 to account for slow computers/connections
   })
+})
+test('parsing of endpoints', function (t) {
+  t.deepEquals(parseEndpoints(dohQuery.endpoints.google), [dohQuery.endpoints.google])
+  t.deepEquals(parseEndpoints(['google', 'cloudflare']), [dohQuery.endpoints.google, dohQuery.endpoints.cloudflare])
+  t.deepEquals(parseEndpoints({ host: 'abcd.com' }), [{ host: 'abcd.com' }])
+  t.deepEquals(parseEndpoints('https://abcd.com'), [{ https: true, host: 'abcd.com', port: 443, path: undefined, method: undefined }])
+  t.deepEquals(parseEndpoints('http://foo.com:123/ygga [post]'), [{ https: false, host: 'foo.com', port: 123, path: '/ygga', method: 'post' }])
+  t.deepEquals(parseEndpoints('http://foo.com/ygga/fuga [get]'), [{ https: false, host: 'foo.com', port: 80, path: '/ygga/fuga', method: 'get' }])
+  t.deepEquals(parseEndpoints('foo.com:8443/ygga/fuga [get]'), [{ https: true, host: 'foo.com', port: 8443, path: '/ygga/fuga', method: 'get' }])
+  t.end()
 })
 
 function getLog () {

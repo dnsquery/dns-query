@@ -70,7 +70,7 @@ Examples:
 --out ............ Output type. Defaults to the input --type.
 --stdin .......... Get <input> from stdin instead of cli arguments
 --endpoint, -e ... Use a specific endpoint. Can be either the name of a known
-    endpoint or a json object. By Default uses one of the known endpoints.
+    endpoint, a json object or an url. By default uses one of the known endpoints.
     If multiple are provided, one at random will be used.
 --endpoints ...... Lists all known endpoints as json.
 --retry .......... Number of retries to do in case a request fails, default: 3
@@ -105,6 +105,16 @@ interface Endpoint {
   https?: boolean
 }
 ```
+
+Instead of passing an object you can also pass an endpoint matching a url, with an 
+amendmend as to whether its a POST or GET endpoint.
+
+Examples:
+
+`foo.com` → `{ host: 'foo.com' }`
+
+`http://bar.com:81/query [post]` →
+  `{ host: 'bar.com', path: '/query', port: 81, method: 'post', https: false }`
 
 ## See Also
 

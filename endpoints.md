@@ -71,8 +71,6 @@ reduced if you use this library in the browser.
 | [librednsAds][libredns]     | doh.libredns.gr/ads                        | Germany     | ✓ | 𐄂 | 𐄂 | GET |
 | [linuxSec][]                | doh.linuxsec.org                           | Indonesia   | ✓ | 𐄂 | ✓ | GET |
 | [linuxSecAdGuard][linuxSec] | doh.linuxsec.org/adguard                   | Indonesia   | ✓ | 𐄂 | ✓ | GET |
-| [meganerd][]                | chewbacca.meganerd.nl/doh                  | Amsterdam   | 𐄂 | 𐄂 | 𐄂 | GET |
-| [moulticast][]              | dns.moulticast.net                         | ?           | 𐄂 | 𐄂 | 𐄂 | GET |
 | [njalla][]                  | dns.njal.la                                | Sweden      | 𐄂 | 𐄂 | 𐄂 | GET |
 | [opendns][]                 | doh.opendns.com                            | ?           | 𐄂 | 𐄂 | 𐄂 | GET |
 | [opendnsFamily][opendns]    | doh.familyshield.opendns.com               | ?           | ✓ | 𐄂 | 𐄂 | GET |
@@ -84,13 +82,13 @@ reduced if you use this library in the browser.
 | [quad9Ads][quad9]           | dns.quad9.net                              | ?           | ✓ | 𐄂 | 𐄂 | GET |
 | [switchCh][]                  | dns.switch.ch                            | Switzerland | ✓ | 𐄂 | 𐄂 | GET |
 | [yepdns][]                  | sg.yepdns.com                              | Singapore   | ✓ | 𐄂 | 𐄂 | GET |
-| [dnsOverHttps][]            | dns.dns-over-https.com                     | ?           | 𐄂 | ✓ | ✓ | GET |
 | [lavaDnsEU1][lavaDns]       | eu1.dns.lavate.ch                          | Helsinki    | 𐄂 | 𐄂 | 𐄂 | GET |
 | [lavaDnsUS1][lavaDns]       | us1.dns.lavate.ch                          | California  | 𐄂 | 𐄂 | 𐄂 | GET |
 | [controlId][]               | freedns.controld.com/p0                    | ?           | 𐄂 | 𐄂 | 𐄂 | GET |
 | [controlIdMw][controlId]    | freedns.controld.com/p1                    | ?           | ✓ | 𐄂 | 𐄂 | GET |
 | [controlIdAds][controlId]   | freedns.controld.com/p2                    | ?           | ✓ | 𐄂 | 𐄂 | GET |
 | [controlIdSoc][controlId]   | freedns.controld.com/p3                    | ?           | ✓ | 𐄂 | 𐄂 | GET |
+| [rubyfish][]                | rubyfish.cn                                | China       | ✓ | ✓ | ✓ | GET |
 
 [cloudflare]: https://developers.cloudflare.com/1.1.1.1/dns-over-https
 [cloudflareFamily]: https://developers.cloudflare.com/1.1.1.1/1.1.1.1-for-families/setup-instructions/dns-over-https
@@ -134,8 +132,15 @@ reduced if you use this library in the browser.
 [dnsOverHttps]: https://dns-over-https.com/
 [lavaDns]: https://dns.lavate.ch/
 [controlId]: https://controld.com/
+[rubyfish]: https://www.rubyfish.cn/dns/solutions/
 
 ## Known Broken Servers
+
+| name                        | host(:port=443)(/path=/dns-query)          | loc    | filter | log | cors | method | issues |
+|-----------------------------|--------------------------------------------|-------------|---|---|---|-----|---------------------|
+| [meganerd][]                | chewbacca.meganerd.nl/doh                  | Amsterdam   | 𐄂 | 𐄂 | 𐄂 | GET | Connection refused  |
+| [moulticast][]              | dns.moulticast.net                         | ?           | 𐄂 | 𐄂 | 𐄂 | GET | Certificate Expired |
+| [dnsOverHttps][]            | dns.dns-over-https.com                     | ?           | 𐄂 | ✓ | ✓ | GET | Timeout             |
 
 - https://doh.bortzmeyer.fr (404)
 - https://www.nic.cz/odvr/ (socket hangup)

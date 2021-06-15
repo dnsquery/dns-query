@@ -14,7 +14,7 @@ const p: Promise<Packet> = query({ id: 1 }, {
     cors: true
   }, google, cloudflare, switchCh, 'https://google.com/dns-query'],
   signal: c.signal,
-  retry: 5,
+  retries: 5,
   timeout: 1000
 });
 

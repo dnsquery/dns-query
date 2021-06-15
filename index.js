@@ -46,7 +46,7 @@ function queryOne (endpoint, query, timeout, abortSignal) {
 
 function query (q, opts) {
   opts = Object.assign({
-    retry: 3,
+    retries: 5,
     timeout: 30000
   }, opts)
   const endpoints = parseEndpoints(opts.endpoints) || lib.endpoints
@@ -62,11 +62,11 @@ function query (q, opts) {
         return data
       },
       err => {
-        if (err.name === 'AbortError' || opts.retry === 0) {
+        if (err.name === 'AbortError' || opts.retries === 0) {
           throw err
         }
-        if (opts.retry > 0) {
-          opts.retry -= 1
+        if (opts.retries > 0) {
+          opts.retries -= 1
         }
         return query(q, opts)
       }

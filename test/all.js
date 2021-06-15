@@ -80,7 +80,7 @@ test('Abort before start', function (t) {
     }
   )
 })
-test('local /text causes ResponseError, with retry=0, once!', function (t) {
+test('local /text causes ResponseError, with retries=0, once!', function (t) {
   return getLog().then(localQuery.bind(null, '/text')).then(
     failSuccess(t),
     function (err) {
@@ -101,8 +101,8 @@ test('local /text causes ResponseError, with retry=0, once!', function (t) {
     }
   )
 })
-test('local /text causes ResponseError, with retry=3, several times', function (t) {
-  return localQuery('/text', { retry: 3 }).then(
+test('local /text causes ResponseError, with retries=3, several times', function (t) {
+  return localQuery('/text', { retries: 3 }).then(
     failSuccess(t),
     function (err) {
       t.equals(err.name, 'ResponseError')
@@ -224,7 +224,7 @@ test('empty data treated as response error', function (t) {
 test('infinite retries', function (t) {
   const c = new AbortController()
   setTimeout(c.abort.bind(c), 800)
-  return getLog().then(localQuery.bind(null, '/500', { retry: -1, signal: c.signal })).then(
+  return getLog().then(localQuery.bind(null, '/500', { retries: -1, signal: c.signal })).then(
     failSuccess(t),
     function (err) {
       t.equals(err.name, 'AbortError')
@@ -286,7 +286,7 @@ function localQuery (paths, opts) {
     Object.assign(
       {
         endpoints: paths.map(function (path) { return Object.assign({ path: path }, LOCAL_ENDPOINT) }),
-        retry: 0
+        retries: 0
       },
       opts
     )

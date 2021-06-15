@@ -30,8 +30,8 @@ function createDTS (result) {
 export interface Options {
   /* Set of endpoints to lookup doh queries.  */
   endpoints?: Array<Endpoint | string>;
-  /* Amount of retry's if a request fails, defaults to 3 */
-  retry?: number;
+  /* Amount of retry's if a request fails, defaults to 5 */
+  retries?: number;
   /* Timeout for a single request in milliseconds, defaults to 30000 */
   timeout?: number;
   /* Signal to abort the request */

@@ -31,7 +31,7 @@ Options:
       endpoint, a json object or an url. By default uses one of the known endpoints.
       If multiple are provided, one at random will be used.
   --endpoints ...... Lists all known endpoints as json.
-  --retry .......... Number of retries to do in case requests fails, default: 3
+  --retries ........ Number of retries to do in case requests fails, default: 5
   --timeout ........ Timeout for the request in milliseconds, default: 30000
 `
 
@@ -46,11 +46,11 @@ async function run (args, signal) {
   if (rawOpts.endpoints) {
     return JSON.stringify(allEndpoints, null, 2)
   }
-  let retry = 3
-  if (rawOpts.retry) {
-    retry = parseInt(rawOpts.retry, 10)
-    if (isNaN(retry)) {
-      throw new Error(`Unexpected value --retry=${rawOpts.retry}, expected integer`)
+  let retries = 5
+  if (rawOpts.retries) {
+    retries = parseInt(rawOpts.retries, 10)
+    if (isNaN(retries)) {
+      throw new Error(`Unexpected value --retries=${rawOpts.retries}, expected integer`)
     }
   }
   let timeout = 30000
@@ -74,7 +74,7 @@ async function run (args, signal) {
     endpoints = undefined
   }
   const { packet, options } = await getInput(rawOpts, input)
-  const result = await query(packet, { endpoints, signal, timeout, retry })
+  const result = await query(packet, { endpoints, signal, timeout, retries })
   if (options.out === 'base64') {
     return dns.encode(result).toString('base64')
   }
@@ -161,7 +161,7 @@ async function getInput (options, input) {
 function getArgs (argv) {
   const boolProps = ['help', 'h', 'json', 'base64', 'binary', 'stdin', 'endpoints', 'v', 'version']
   const inputProp = ['input', 'packet']
-  const otherProp = ['type', 'out', 'timeout', 'retry']
+  const otherProp = ['type', 'out', 'timeout', 'retries']
   const arrayProp = ['endpoint', 'e']
   let input
   let prop

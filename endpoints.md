@@ -83,7 +83,6 @@ reduced if you use this library in the browser.
 | [switchCh][]                  | dns.switch.ch                            | Switzerland | ✓ | 𐄂 | 𐄂 | GET |
 | [yepdns][]                  | sg.yepdns.com                              | Singapore   | ✓ | 𐄂 | 𐄂 | GET |
 | [lavaDnsEU1][lavaDns]       | eu1.dns.lavate.ch                          | Helsinki    | 𐄂 | 𐄂 | 𐄂 | GET |
-| [lavaDnsUS1][lavaDns]       | us1.dns.lavate.ch                          | California  | 𐄂 | 𐄂 | 𐄂 | GET |
 | [controlId][]               | freedns.controld.com/p0                    | ?           | 𐄂 | 𐄂 | 𐄂 | GET |
 | [controlIdMw][controlId]    | freedns.controld.com/p1                    | ?           | ✓ | 𐄂 | 𐄂 | GET |
 | [controlIdAds][controlId]   | freedns.controld.com/p2                    | ?           | ✓ | 𐄂 | 𐄂 | GET |
@@ -141,6 +140,7 @@ reduced if you use this library in the browser.
 | [meganerd][]                | chewbacca.meganerd.nl/doh                  | Amsterdam   | 𐄂 | 𐄂 | 𐄂 | GET | Connection refused  |
 | [moulticast][]              | dns.moulticast.net                         | ?           | 𐄂 | 𐄂 | 𐄂 | GET | Certificate Expired |
 | [dnsOverHttps][]            | dns.dns-over-https.com                     | ?           | 𐄂 | ✓ | ✓ | GET | Timeout             |
+| [lavaDnsUS1][lavaDns]       | us1.dns.lavate.ch                          | California  | 𐄂 | 𐄂 | 𐄂 | GET | Timeout             |
 
 - https://doh.bortzmeyer.fr (404)
 - https://www.nic.cz/odvr/ (socket hangup)

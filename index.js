@@ -49,12 +49,14 @@ function query (q, opts) {
     retries: 5,
     timeout: 30000
   }, opts)
-  const endpoints = parseEndpoints(opts.endpoints) || lib.endpoints
-  const signal = opts.signal
-  const endpoint = Array.isArray(endpoints)
-    ? endpoints[Math.floor(Math.random() * endpoints.length) % endpoints.length]
-    : endpoints
-  return queryOne(endpoint, q, opts.timeout, signal)
+  return queryN(parseEndpoints(opts.endpoints) || lib.endpoints, q, opts)
+}
+
+function queryN (endpoints, q, opts) {
+  const endpoint = endpoints.length === 1
+    ? endpoints[0]
+    : endpoints[Math.floor(Math.random() * endpoints.length) % endpoints.length]
+  return queryOne(endpoint, q, opts.timeout, opts.signal)
     .then(
       data => {
         // Add the endpoint to give a chance to identify which endpoint returned the result
@@ -88,10 +90,7 @@ function parseEndpoints (input) {
       if (endpoints[endpoint]) {
         result.push(endpoints[endpoint])
       } else {
-        const parts = /^(https?:\/\/)?([^/:]+)(:([\d]+))?(\/.+?)?(\s\[(post|get)\])?$/i.exec(endpoint)
-        if (!parts) {
-          throw new Error('Invalid endpoint "' + endpoint + '". It needs to match')
-        }
+        const parts = /^(https?:\/\/)?([^/:]+)(:([\d]+))?(\/.*?)?(\s\[(post|get)\])?$/i.exec(endpoint)
         const https = parts[1] !== 'http://'
         result.push({
           https: https,
@@ -103,7 +102,7 @@ function parseEndpoints (input) {
       }
     }
   }
-  return result
+  return result.length === 0 ? Object.values(endpoints) : result
 }
 
 module.exports = {

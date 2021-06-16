@@ -239,9 +239,11 @@ test('parsing of endpoints', function (t) {
   t.deepEquals(parseEndpoints(['google', 'cloudflare']), [dohQuery.endpoints.google, dohQuery.endpoints.cloudflare])
   t.deepEquals(parseEndpoints({ host: 'abcd.com' }), [{ host: 'abcd.com' }])
   t.deepEquals(parseEndpoints('https://abcd.com'), [{ https: true, host: 'abcd.com', port: 443, path: undefined, method: undefined }])
+  t.deepEquals(parseEndpoints('https://abcd.com/'), [{ https: true, host: 'abcd.com', port: 443, path: '/', method: undefined }])
   t.deepEquals(parseEndpoints('http://foo.com:123/ygga [post]'), [{ https: false, host: 'foo.com', port: 123, path: '/ygga', method: 'post' }])
   t.deepEquals(parseEndpoints('http://foo.com/ygga/fuga [get]'), [{ https: false, host: 'foo.com', port: 80, path: '/ygga/fuga', method: 'get' }])
   t.deepEquals(parseEndpoints('foo.com:8443/ygga/fuga [get]'), [{ https: true, host: 'foo.com', port: 8443, path: '/ygga/fuga', method: 'get' }])
+  t.deepEquals(parseEndpoints([]), Object.values(dohQuery.endpoints))
   t.end()
 })
 

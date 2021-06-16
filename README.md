@@ -116,6 +116,9 @@ Examples:
 `http://bar.com:81/query [post]` →
   `{ host: 'bar.com', path: '/query', port: 81, method: 'post', https: false }`
 
+_Note:_ If no path is given, such as `foo.com`, the path will be assumed as `/dns-query`, but
+if a path is given such as `foo.com/` it will assume that path `/`!
+
 ## See Also
 
 - [dns-packet](https://github.com/mafintosh/dns-packet)

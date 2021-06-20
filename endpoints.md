@@ -74,7 +74,6 @@ reduced if you use this library in the browser.
 | [njalla][]                  | dns.njal.la                                | Sweden      | 𐄂 | 𐄂 | 𐄂 | GET |
 | [opendns][]                 | doh.opendns.com                            | ?           | 𐄂 | 𐄂 | 𐄂 | GET |
 | [opendnsFamily][opendns]    | doh.familyshield.opendns.com               | ?           | ✓ | 𐄂 | 𐄂 | GET |
-| [plan9NJ][]                 | hydra.plan9-ns1.com                        | New Jersey  | 𐄂 | 𐄂 | ✓ | GET |
 | [powerDNS][]                | doh.powerdns.org                           | ?           | ✓ | 𐄂 | 𐄂 | GET |
 | [sebyVultr][seby]           | doh.seby.io:8443                           | Sydney      | ✓ | 𐄂 | ✓ | GET |
 | [sebyOVH][seby]             | doh-2.seby.io                              | Sydney      | ✓ | 𐄂 | ✓ | GET |
@@ -141,6 +140,7 @@ reduced if you use this library in the browser.
 | [moulticast][]              | dns.moulticast.net                         | ?           | 𐄂 | 𐄂 | 𐄂 | GET | Certificate Expired |
 | [dnsOverHttps][]            | dns.dns-over-https.com                     | ?           | 𐄂 | ✓ | ✓ | GET | Timeout             |
 | [lavaDnsUS1][lavaDns]       | us1.dns.lavate.ch                          | California  | 𐄂 | 𐄂 | 𐄂 | GET | Timeout             |
+| [plan9NJ][]                 | hydra.plan9-ns1.com                        | New Jersey  | 𐄂 | 𐄂 | ✓ | GET | Certificate Expired |
 
 - https://doh.bortzmeyer.fr (404)
 - https://www.nic.cz/odvr/ (socket hangup)

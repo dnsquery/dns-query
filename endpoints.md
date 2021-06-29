@@ -46,8 +46,6 @@ reduced if you use this library in the browser.
 | [amsEs][ams]                | dnses.alekberg.net                         | Spain       | 𐄂 | 𐄂 | 𐄂 | GET |
 | [arapurayil][]              | dns.arapurayil.com                         | ?           | ✓ | 𐄂 | 𐄂 | GET |
 | [digitaleGesellschaft][]    | dns.digitale-gesellschaft.ch               | Switzerland | 𐄂 | 𐄂 | ✓ | GET |
-| [dnsCrypt1][dnsCrypt]       | dns1.dnscrypt.ca:453                       | Canada      | 𐄂 | 𐄂 | ✓ | GET |
-| [dnsCrypt2][dnsCrypt]       | dns2.dnscrypt.ca:453                       | Canada      | 𐄂 | 𐄂 | ✓ | GET |
 | [dnsForFamily][]            | dns-doh.dnsforfamily.com                   | ?           | ✓ | 𐄂 | 𐄂 | GET |
 | [dnsForge][]                | dnsforge.de                                | Germany     | ✓ | 𐄂 | ✓ | GET |
 | [dnsHome][]                 | dns.dnshome.de                             | Germany     | 𐄂 | 𐄂 | 𐄂 | GET |
@@ -79,7 +77,7 @@ reduced if you use this library in the browser.
 | [sebyOVH][seby]             | doh-2.seby.io                              | Sydney      | ✓ | 𐄂 | ✓ | GET |
 | [quad9][]                   | dns10.quad9.net                            | ?           | 𐄂 | 𐄂 | 𐄂 | GET |
 | [quad9Ads][quad9]           | dns.quad9.net                              | ?           | ✓ | 𐄂 | 𐄂 | GET |
-| [switchCh][]                  | dns.switch.ch                            | Switzerland | ✓ | 𐄂 | 𐄂 | GET |
+| [switchCh][]                | dns.switch.ch                              | Switzerland | ✓ | 𐄂 | 𐄂 | GET |
 | [yepdns][]                  | sg.yepdns.com                              | Singapore   | ✓ | 𐄂 | 𐄂 | GET |
 | [lavaDnsEU1][lavaDns]       | eu1.dns.lavate.ch                          | Helsinki    | 𐄂 | 𐄂 | 𐄂 | GET |
 | [controlId][]               | freedns.controld.com/p0                    | ?           | 𐄂 | 𐄂 | 𐄂 | GET |
@@ -141,6 +139,8 @@ reduced if you use this library in the browser.
 | [dnsOverHttps][]            | dns.dns-over-https.com                     | ?           | 𐄂 | ✓ | ✓ | GET | Timeout             |
 | [lavaDnsUS1][lavaDns]       | us1.dns.lavate.ch                          | California  | 𐄂 | 𐄂 | 𐄂 | GET | Timeout             |
 | [plan9NJ][]                 | hydra.plan9-ns1.com                        | New Jersey  | 𐄂 | 𐄂 | ✓ | GET | Certificate Expired |
+| [dnsCrypt1][dnsCrypt]       | dns1.dnscrypt.ca:453                       | Canada      | 𐄂 | 𐄂 | ✓ | GET | Occassional 503 err |
+| [dnsCrypt2][dnsCrypt]       | dns2.dnscrypt.ca:453                       | Canada      | 𐄂 | 𐄂 | ✓ | GET | Occassional 503 err |
 
 - https://doh.bortzmeyer.fr (404)
 - https://www.nic.cz/odvr/ (socket hangup)

@@ -9,7 +9,7 @@ function inherit (ctor, superCtor) {
   Object.setPrototypeOf(ctor.prototype, superCtor.prototype)
 }
 
-let AbortError = global.AbortError
+let AbortError = typeof global !== 'undefined' ? global.AbortError : typeof window !== 'undefined' ? window.AbortError : null
 if (!AbortError) {
   AbortError = function () {
     Error.captureStackTrace(this, AbortError)

@@ -48,9 +48,7 @@ reduced if you use this library in the browser.
 | [arapurayil][]              | dns.arapurayil.com                         | ?           | ✓ | 𐄂 | 𐄂 | GET |
 | [digitaleGesellschaft][]    | dns.digitale-gesellschaft.ch               | Switzerland | 𐄂 | 𐄂 | ✓ | GET |
 | [dnsForFamily][]            | dns-doh.dnsforfamily.com                   | ?           | ✓ | 𐄂 | 𐄂 | GET |
-| [dnsForge][]                | dnsforge.de                                | Germany     | ✓ | 𐄂 | ✓ | GET |
 | [dnsHome][]                 | dns.dnshome.de                             | Germany     | 𐄂 | 𐄂 | 𐄂 | GET |
-| [dnsPod][]                  | doh.pub                                    | China       | ✓ | 𐄂 | ✓ | GET |
 | [blahDnsCh][blahDns]        | doh-ch.blahdns.com                         | Switzerland | ✓ | 𐄂 | ✓ | GET |
 | [blahDnsSg][blahDns]        | doh-sg.blahdns.com                         | Singapore   | ✓ | 𐄂 | ✓ | GET |
 | [blahDnsJp][blahDns]        | doh-jp.blahdns.com                         | Japan       | ✓ | 𐄂 | ✓ | GET |
@@ -158,16 +156,18 @@ reduced if you use this library in the browser.
 ## Known Broken Servers
 
 | name                        | host(:port=443)(/path=/dns-query)          | loc    | filter | log | cors | method | issues |
-|-----------------------------|--------------------------------------------|-------------|---|---|---|-----|---------------------|
-| [meganerd][]                | chewbacca.meganerd.nl/doh                  | Amsterdam   | 𐄂 | 𐄂 | 𐄂 | GET | Connection refused  |
-| [moulticast][]              | dns.moulticast.net                         | ?           | 𐄂 | 𐄂 | 𐄂 | GET | Certificate Expired |
-| [dnsOverHttps][]            | dns.dns-over-https.com                     | ?           | 𐄂 | ✓ | ✓ | GET | Timeout             |
-| [lavaDnsUS1][lavaDns]       | us1.dns.lavate.ch                          | California  | 𐄂 | 𐄂 | 𐄂 | GET | Timeout             |
-| [plan9NJ][]                 | hydra.plan9-ns1.com                        | New Jersey  | 𐄂 | 𐄂 | ✓ | GET | Certificate Expired |
-| [dnsCrypt1][dnsCrypt]       | dns1.dnscrypt.ca:453                       | Canada      | 𐄂 | 𐄂 | ✓ | GET | Occassional 503 err |
-| [dnsCrypt2][dnsCrypt]       | dns2.dnscrypt.ca:453                       | Canada      | 𐄂 | 𐄂 | ✓ | GET | Occassional 503 err |
-| [irisden1][irisden]         | ns1.iriseden.fr                            | Paris       | 𐄂 | 𐄂 | ✓ | GET | Timeout             |
-| [irisden2][irisden]         | ns2.iriseden.fr                            | Paris       | 𐄂 | 𐄂 | ✓ | GET | Timeout             |
+|-----------------------------|--------------------------------------------|-------------|---|---|---|-----|----------------------------|
+| [meganerd][]                | chewbacca.meganerd.nl/doh                  | Amsterdam   | 𐄂 | 𐄂 | 𐄂 | GET | Connection refused         |
+| [moulticast][]              | dns.moulticast.net                         | ?           | 𐄂 | 𐄂 | 𐄂 | GET | Certificate Expired        |
+| [dnsOverHttps][]            | dns.dns-over-https.com                     | ?           | 𐄂 | ✓ | ✓ | GET | Timeout                    |
+| [lavaDnsUS1][lavaDns]       | us1.dns.lavate.ch                          | California  | 𐄂 | 𐄂 | 𐄂 | GET | Timeout                    |
+| [plan9NJ][]                 | hydra.plan9-ns1.com                        | New Jersey  | 𐄂 | 𐄂 | ✓ | GET | Certificate Expired        |
+| [dnsCrypt1][dnsCrypt]       | dns1.dnscrypt.ca:453                       | Canada      | 𐄂 | 𐄂 | ✓ | GET | Occassional 503 err        |
+| [dnsCrypt2][dnsCrypt]       | dns2.dnscrypt.ca:453                       | Canada      | 𐄂 | 𐄂 | ✓ | GET | Occassional 503 err        |
+| [irisden1][irisden]         | ns1.iriseden.fr                            | Paris       | 𐄂 | 𐄂 | ✓ | GET | Timeout                    |
+| [irisden2][irisden]         | ns2.iriseden.fr                            | Paris       | 𐄂 | 𐄂 | ✓ | GET | Timeout                    |
+| [dnsForge][]                | dnsforge.de                                | Germany     | ✓ | 𐄂 | ✓ | GET | Some TXT responses missing |
+| [dnsPod][]                  | doh.pub                                    | China       | ✓ | 𐄂 | ✓ | GET | Some TXT responses missing |
 
 - https://doh.bortzmeyer.fr (404)
 - https://www.nic.cz/odvr/ (socket hangup)

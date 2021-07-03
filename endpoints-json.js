@@ -9,9 +9,7 @@ run()
 
 function run () {
   console.log('# Loading Table from ./endpoints.md')
-  const mainTable = loadTables()[0]
-  let endpoints = mainTable.slice(1)
-  endpoints = endpoints.map(lineToEndpoint)
+  const endpoints = loadTable(0).slice(1).map(lineToEndpoint)
   const result = {}
   for (const endpoint of endpoints) {
     result[endpoint.name] = endpoint
@@ -135,31 +133,38 @@ function bool (txt) {
   return /✓/.test(txt)
 }
 
-function loadTables () {
-  const tables = []
+function loadTable (index) {
   let table
   let line
   let cell
+  let current = 0
+  let active = false
   for (let node of md.parse(fs.readFileSync('./endpoints.md', 'utf-8'), {})) {
     if (node.type === 'table_open') {
       table = []
-      tables.push(table)
+      active = current === index
     }
-    if (node.type === 'tr_open') {
-      line = []
-      table.push(line)
-    }
-    if (node.type === 'td_open' || node.type === 'th_open') {
-      cell = []
-      line.push(cell)
-      continue
-    }
-    if (node.type === 'td_close' || node.type === 'th_close') {
-      cell = null
+    if (active) {
+      if (node.type === 'tr_open') {
+        line = []
+        table.push(line)
+      }
+      if (node.type === 'td_open' || node.type === 'th_open') {
+        cell = []
+        line.push(cell)
+        continue
+      }
+      if (node.type === 'td_close' || node.type === 'th_close') {
+        cell = null
+      }
     }
     if (node.type === 'table_close') {
+      if (current === index) {
+        return table
+      }
       table = null
       line = null
+      current++
     }
     if (cell) {
       if (node.type === 'inline') {
@@ -171,7 +176,6 @@ function loadTables () {
       cell.push(node)
     }
   }
-  return tables
 }
 
 function reduceLinks (node) {
@@ -179,11 +183,14 @@ function reduceLinks (node) {
   let link
   for (const entry of node) {
     if (entry.type === 'link_open') {
-      link = {}
-      link.href = getAttr('href', entry.attrs)
-      result.push(link)
+      link = {
+        href: getAttr('href', entry.attrs)
+      }
     }
     if (entry.type === 'link_close') {
+      if (link) {
+        result.push(link)
+      }
       link = null
     }
     if (entry.type === 'text') {

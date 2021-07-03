@@ -8,11 +8,7 @@ let all = Object.entries(dohQuery.endpoints).map(function (parts) {
   parts[1].name = parts[0]
   return parts[1]
 })
-if (typeof window !== 'undefined') { // Browser
-  all = all.filter(function (endpoint) {
-    return endpoint.cors
-  })
-}
+const isBrowser = typeof window !== 'undefined'
 const XHR = require('xhr2')
 const AbortController = require('abort-controller')
 
@@ -39,6 +35,9 @@ test('Looking up all Endpoints', function (t) {
           t.fail('No answers.')
           return
         }
+        if (isBrowser) {
+          t.ok(endpoint.cors, 'marked as cors')
+        }
         t.pass('answer count: ' + answers.length)
         const answer = answers[0]
         t.match(answer.name, /^google.com$/i, 'name=google.com')
@@ -54,7 +53,11 @@ test('Looking up all Endpoints', function (t) {
       })
       .catch(function (err) {
         once = writeHeader(endpoint, once)
-        t.error(err)
+        if (isBrowser && !endpoint.cors) {
+          t.ok('cors=false')
+        } else {
+          t.error(err)
+        }
       })
   }, { concurrency: 14 })
 

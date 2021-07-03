@@ -25,6 +25,7 @@ reduced if you use this library in the browser.
 | [cloudflare][]              | cloudflare-dns.com                         | ?           | 𐄂 | 𐄂 | ✓ | GET |
 | [cloudflareFamily][]        | family.cloudflare-dns.com                  | ?           | ✓ | 𐄂 | ✓ | GET |
 | [cloudflareSecurity][]      | security.cloudflare-dns.com                | ?           | ✓ | 𐄂 | ✓ | GET |
+| [cloudflareEth][]           | eth.resolver.cloudflare-eth.com            | ?           | ✓ | 𐄂 | ✓ | GET |
 | [aAndA][]                   | dns.aa.net.uk                              | ?           | ✓ | 𐄂 | 𐄂 | GET |
 | [usablePrivacy][]           | adfree.usableprivacy.net                   | ?           | ✓ | 𐄂 | 𐄂 | GET |
 | [adguard][]                 | dns.adguard.com                            | ?           | ✓ | 𐄂 | 𐄂 | GET |
@@ -62,7 +63,7 @@ reduced if you use this library in the browser.
 | [ffmuc][]                   | doh.ffmuc.net                              | Germany     | 𐄂 | 𐄂 | 𐄂 | GET |
 | [tiarap][]                  | doh.tiar.app                               | ?           | ✓ | 𐄂 | 𐄂 | GET |
 | [tiarapJp][]                | jp.tiar.app                                | Japan       | ✓ | 𐄂 | 𐄂 | GET |
-| [google][]                  | dns.google                                 | ?           | 𐄂 | 𐄂 | 𐄂 | GET |
+| [google][]                  | dns.google                                 | ?           | 𐄂 | 𐄂 | ✓ | GET |
 | [he][]                      | ordns.he.net                               | ?           | 𐄂 | ✓ | 𐄂 | GET |
 | [iij][]                     | public.dns.iij.jp                          | Japan       | ✓ | ✓ | 𐄂 | GET |
 | [libredns][]                | doh.libredns.gr                            | Germany     | 𐄂 | 𐄂 | 𐄂 | GET |
@@ -85,10 +86,30 @@ reduced if you use this library in the browser.
 | [controlIdAds][controlId]   | freedns.controld.com/p2                    | ?           | ✓ | 𐄂 | 𐄂 | GET |
 | [controlIdSoc][controlId]   | freedns.controld.com/p3                    | ?           | ✓ | 𐄂 | 𐄂 | GET |
 | [rubyfish][]                | rubyfish.cn                                | China       | ✓ | ✓ | ✓ | GET |
+| [uncensoredAny][uncensored] | anycast.censurfridns.dk                    | ?           | 𐄂 | 𐄂 | 𐄂 | GET |
+| [uncensoredUni][uncensored] | unicast.censurfridns.dk                    | Copenhagen  | 𐄂 | 𐄂 | 𐄂 | GET |
+| [dnssb][]                   | doh.sb                                     | ?           | 𐄂 | 𐄂 | ✓ | GET |
+| [dnssbGlobal][dnssb]        | doh.dns.sb                                 | ?           | 𐄂 | 𐄂 | ✓ | GET |
+| [dbssbDeDus][dnssb]         | de-dus.doh.sb                              | Düsseldorf  | 𐄂 | 𐄂 | ✓ | GET |
+| [dnssbDeFra][dnssb]         | de-fra.doh.sb                              | Frankfurt   | 𐄂 | 𐄂 | ✓ | GET |
+| [dnssbNlAms][dnssb]         | nl-ams.doh.sb                              | Amsterdam   | 𐄂 | 𐄂 | ✓ | GET |
+| [dnssbNlAms2][dnssb]        | nl-ams2.doh.sb                             | Amsterdam   | 𐄂 | 𐄂 | ✓ | GET |
+| [dnssbUkLon][dnssb]         | uk-lon.doh.sb                              | London      | 𐄂 | 𐄂 | ✓ | GET |
+| [dnssbEeTll][dnssb]         | ee-tll.doh.sb                              | Tallinn     | 𐄂 | 𐄂 | ✓ | GET |
+| [dnssbJpKix][dnssb]         | jp-kix.doh.sb                              | Osaka       | 𐄂 | 𐄂 | ✓ | GET |
+| [dnssbHkHkg][dnssb]         | hk-hkg.doh.sb                              | Hong Kong   | 𐄂 | 𐄂 | ✓ | GET |
+| [dnssbAuSyd][dnssb]         | au-syd.doh.sb                              | Sydney      | 𐄂 | 𐄂 | ✓ | GET |
+| [dnssbUsChi][dnssb]         | us-chi.doh.sb                              | Chicago     | 𐄂 | 𐄂 | ✓ | GET |
+| [dnssbInBlr][dnssb]         | in-blr.doh.sb                              | Bengaluru   | 𐄂 | 𐄂 | ✓ | GET |
+| [dnssbSgSin][dnssb]         | sg-sin.doh.sb                              | Singapore   | 𐄂 | 𐄂 | ✓ | GET |
+| [dnssbKrSel][dnssb]         | kr-sel.doh.sb                              | Seoul       | 𐄂 | 𐄂 | ✓ | GET |
+| [dnssbRuMow][dnssb]         | ru-mow.doh.sb                              | Moscow      | 𐄂 | 𐄂 | ✓ | GET |
+| [ethlink][]                 | eth.link                                   | ?           | 𐄂 | 𐄂 | ✓ | GET |
 
 [cloudflare]: https://developers.cloudflare.com/1.1.1.1/dns-over-https
 [cloudflareFamily]: https://developers.cloudflare.com/1.1.1.1/1.1.1.1-for-families/setup-instructions/dns-over-https
 [cloudflareSecurity]: https://developers.cloudflare.com/1.1.1.1/1.1.1.1-for-families/setup-instructions/dns-over-https
+[cloudflareEth]: https://www.cloudflare.com/distributed-web-gateway/#ethereum-gateway
 [aAndA]: https://www.aa.net.uk/legal/dohdot-disclaimer/
 [usablePrivacy]: https://docs.usableprivacy.com
 [adguard]: https://adguard.com/en/adguard-dns/overview.html
@@ -129,6 +150,10 @@ reduced if you use this library in the browser.
 [lavaDns]: https://dns.lavate.ch/
 [controlId]: https://controld.com/
 [rubyfish]: https://www.rubyfish.cn/dns/solutions/
+[uncensored]: https://blog.uncensoreddns.org/
+[dnssb]: https://dns.sb/doh/
+[ethlink]: https://eth.link/
+[irisden]: https://iriseden.fr/
 
 ## Known Broken Servers
 
@@ -141,6 +166,8 @@ reduced if you use this library in the browser.
 | [plan9NJ][]                 | hydra.plan9-ns1.com                        | New Jersey  | 𐄂 | 𐄂 | ✓ | GET | Certificate Expired |
 | [dnsCrypt1][dnsCrypt]       | dns1.dnscrypt.ca:453                       | Canada      | 𐄂 | 𐄂 | ✓ | GET | Occassional 503 err |
 | [dnsCrypt2][dnsCrypt]       | dns2.dnscrypt.ca:453                       | Canada      | 𐄂 | 𐄂 | ✓ | GET | Occassional 503 err |
+| [irisden1][irisden]         | ns1.iriseden.fr                            | Paris       | 𐄂 | 𐄂 | ✓ | GET | Timeout             |
+| [irisden2][irisden]         | ns2.iriseden.fr                            | Paris       | 𐄂 | 𐄂 | ✓ | GET | Timeout             |
 
 - https://doh.bortzmeyer.fr (404)
 - https://www.nic.cz/odvr/ (socket hangup)

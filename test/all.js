@@ -206,9 +206,7 @@ test('aborting requests while running (dns)', {
 }, function (t) {
   const c = new AbortController()
   const p = query({ questions: [{ type: 'A', name: 'google.com' }]}, { signal: c.signal, endpoints: 'dns' })
-  setTimeout(() => {
-    c.abort()
-  }, 5)
+  setImmediate(() => { c.abort() })
   return p.then(
     failSuccess(t),
     function (err) {

@@ -90,7 +90,7 @@ export class TimeoutError extends Error {
   code: 'ETIMEOUT';
   name: 'TimeoutError';
 }
-export function parseEndpoints (endpoints?: Iterable<Endpoint | EndpointProps | string>): Endpoint[]
+export function parseEndpoints(endpoints?: Iterable<Endpoint | EndpointProps | string>): Endpoint[];
 export const endpoints: {
   ${Object.keys(result).map(createDTSEndpoint).join('\n  ')}
 };

@@ -30,6 +30,7 @@ let endpoints // If undefined endpoints will be assumed to use one of the dns or
 endpoints = 'doh' // Use any of the given defaultEndpoints to resolve
 endpoints = 'dns' // Use the system default dns servers to resolve (Node.js only!)
 endpoints = [cloudflare, google, opendns] // Use predefined, well-known endpoints
+endpoints = ['cloudflare', 'google', 'opendns'] // Use predefined, well-known endpoints by their name
 endpoints = ['https://cloudflare-dns.com/dns-query'] // Use a custom endpoint
 endpoints = [{ host: 'cloudflare-dns.com' }] // Specify using properties
 try {

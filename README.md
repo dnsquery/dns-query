@@ -1,6 +1,6 @@
-# doh-query
+# dns-query
 
-Node & Browser tested, Non-JSON DNS over HTTPS fetching with minimal dependencies.
+Node & Browser tested, Non-JSON DNS over HTTPS (and DNS) fetching with minimal dependencies.
 
 > DNS over HTTPS (DoH) is protocol designed for performing remote Domain Name System
 > resolution over HTTPS. Requests are made of HTTP to increase user security and privacy.
@@ -11,15 +11,27 @@ This package provides simple function to make DoH queries both in node and the b
 
 ## Important Note before getting started
 
-By default `doh-query` uses well-known public dns-over-https servers to execute
+By default `dns-query` uses well-known public dns-over-https servers to execute
 queries! These servers come with caveats, please look at [`./endpoints.md`](./endpoints.md)
 for more information.
+
+## DNS support
+
+Node.js's dns support is limited, primary example being: `lookupTXT` does not support `ttl`
+results. For that reason, when using `dns-query` in node you can also specify `dns` endpoints.
 
 ## JavaScript API
 
 ```js
-const { query, endpoints } = require('doh-query')
-const { cloudflare, google, opendns } = endpoints
+const { query, endpoints: defaultEndpoints } = require('dns-query')
+const { cloudflare, google, opendns } = defaultEndpoints
+
+let endpoints // If undefined endpoints will be assumed to use one of the dns or doh endpoints!
+endpoints = 'doh' // Use any of the given defaultEndpoints to resolve
+endpoints = 'dns' // Use the system default dns servers to resolve (Node.js only!)
+endpoints = [cloudflare, google, opendns] // Use predefined, well-known endpoints
+endpoints = ['https://cloudflare-dns.com/dns-query'] // Use a custom endpoint
+endpoints = [{ host: 'cloudflare-dns.com' }] // Specify using properties
 try {
   const { answers } = await query({
     questions: [
@@ -28,7 +40,7 @@ try {
     ]
   }, {
     /* Options (optional) */
-    endpoints: [cloudflare, google, opendns], // (optional) all known working unfiltered endpoints
+    endpoints,
     retry: 3, // (optional) retries if a given endpoint fails; -1 = infinite retries; 0 = no retry
     timeout: 4000, // (optional, default=30000) timeout for single requests
     signal, // (optional) an AbortSignal to abort the request
@@ -45,21 +57,21 @@ try {
 
 ## CLI
 
-You can install `doh-query` as a command-line tool using `npm i doh-query -g`
-or by running `npx doh-query`.
+You can install `dns-query` as a command-line tool using `npm i dns-query -g`
+or by running `npx dns-query`.
 
 ```sh
-$ doh-query <options> <input>
+$ dns-query <options> <input>
 
 Execute a dns query over https.
 
 Examples:
 
-  $ doh-query --json -e google \
+  $ dns-query --json -e google \
       '{ "questions": [{ "type": "A", "name": "google.com" }] }'
 
   $ echo '{ "questions": [{ "type": "A", "name": "google.com" }] }' \
-      | doh-query --stdin --endpoint cloudflare
+      | dns-query --stdin --endpoint cloudflare
 
 --help, -h ....... Show this help
 --version, -v .... Show the version
@@ -82,27 +94,27 @@ Examples:
 For an endpoint to work, it needs to satisfy this interface:
 
 ```typescript
-interface Endpoint {
-  /* Domain name, required! */
-  host: string
-  /* Path, prefixed with /, defaults to /dns-query */
-  path?: string
-  /* https port, defaults to 443 */
-  port?: number
-  /* true, if endpoint logs requests, defaults to false */
-  log?: boolean
-  /* true, if endpoint support CORS headers, defaults to false */
-  cors?: boolean
-  /* true, if endpoint filters/redirects DNS packets, defaults to false */
-  filter?: boolean
+interface EndpointProps {
+  /* https is the default for DoH endpoints, udp4:/upd6: for regular dns endpoints and http for debug only! defaults to https: */
+  protocol?: 'http:' | 'https:' | 'udp4:' | 'udp6:';
+  /* Host to look up */
+  host: string;
+  /* Path, prefixed with /, defaults to /dns-query for the http/https protocol, ignored for udp */
+  path?: string;
+  /* https port, defaults to 443 for https, 80 for http and 53 for udp*/
+  port?: number;
+  /* true, if endpoint is known to log requests, defaults to false */
+  log?: boolean;
+  /* true, if endpoint supports http/https CORS headers, defaults to false */
+  cors?: boolean;
+  /* true, if endpoint is known to filters/redirects DNS packets, defaults to false */
+  filter?: boolean;
   /* link to documentation, if available */
-  docs?: string
+  docs?: string;
   /* Known geographical location */
-  location?: string
-  /* Method to request dns, defaults to GET */
-  method?: 'post' | 'Post' | 'POST' | 'get' | 'Get' | 'GET'
-  /* DEBUG ONLY! false to use http to connect instead of https, defaults to true */
-  https?: boolean
+  location?: string;
+  /* Method to request in case of http/https, defaults to GET */
+  method?: 'post' | 'Post' | 'POST' | 'get' | 'Get' | 'GET';
 }
 ```
 
@@ -114,10 +126,15 @@ Examples:
 `foo.com` → `{ host: 'foo.com' }`
 
 `http://bar.com:81/query [post]` →
-  `{ host: 'bar.com', path: '/query', port: 81, method: 'post', https: false }`
+  `{ host: 'bar.com', path: '/query', port: 81, method: 'post', protocol: 'http:' }`
 
 _Note:_ If no path is given, such as `foo.com`, the path will be assumed as `/dns-query`, but
 if a path is given such as `foo.com/` it will assume that path `/`!
+
+To specify DNS endpoints you need to prefix them using `udp:` (or `udp4:`, `udp6`)
+
+`udp://1.1.1.1` → `{ host: '1.1.1.1', protocol: 'udp4' }`
+
 
 ## See Also
 

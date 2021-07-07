@@ -1,21 +1,31 @@
 'use strict'
 const packet = require('dns-packet')
 const lib = require('./lib.node.js')
-const error = require('./error.js')
-const AbortError = error.AbortError
-const ResponseError = error.ResponseError
-const endpoints = require('./endpoints')
+const common = require('./common.js')
+const AbortError = common.AbortError
+const ResponseError = common.ResponseError
+const Endpoint = common.Endpoint
+const endpoints = common.endpoints
+const v4Regex = /^((\d{1,3}\.){3,3}\d{1,3})(:(\d{2,5}))?$/
+const v6Regex = /^((::)?(((\d{1,3}\.){3}(\d{1,3}){1})?([0-9a-f]){0,4}:{0,2}){1,8}(::)?)(:(\d{2,5}))?$/i
 
 function queryOne (endpoint, query, timeout, abortSignal) {
-  const https = endpoint.https !== false
+  if (abortSignal && abortSignal.aborted) {
+    return Promise.reject(new AbortError())
+  }
+  if (endpoint.protocol === 'udp4:' || endpoint.protocol === 'udp6:') {
+    return lib.queryDns(endpoint, query, timeout, abortSignal)
+  }
+  return queryDoh(endpoint, query, timeout, abortSignal)
+}
+
+function queryDoh (endpoint, query, timeout, abortSignal) {
+  const protocol = endpoint.protocol || 'https:'
   return new Promise(function (resolve, reject) {
-    if (abortSignal && abortSignal.aborted) {
-      return reject(new AbortError())
-    }
     lib.request(
-      https ? 'https:' : 'http:',
+      protocol,
       endpoint.host,
-      endpoint.port ? parseInt(endpoint.port, 10) : (https ? 443 : 80),
+      endpoint.port ? parseInt(endpoint.port, 10) : (protocol === 'https:' ? 443 : 80),
       endpoint.path || '/dns-query',
       /^post$/i.test(endpoint.method) ? 'POST' : 'GET',
       packet.encode(Object.assign({
@@ -49,7 +59,22 @@ function query (q, opts) {
     retries: 5,
     timeout: 30000
   }, opts)
-  return queryN(parseEndpoints(opts.endpoints) || lib.endpoints, q, opts)
+  let endpoints
+  try {
+    if (opts.endpoints === 'doh') {
+      endpoints = lib.endpoints({ doh: true, dns: false })
+    } else if (opts.endpoints === 'dns') {
+      endpoints = lib.endpoints({ doh: false, dns: true })
+    } else {
+      endpoints = parseEndpoints(opts.endpoints) || lib.endpoints({ doh: true, dns: true })
+    }
+    if (!endpoints || endpoints.length === 0) {
+      throw new Error('No endpoints defined.')
+    }
+  } catch (error) {
+    return Promise.reject(error)
+  }
+  return queryN(endpoints, q, opts)
 }
 
 function queryN (endpoints, q, opts) {
@@ -79,38 +104,70 @@ function parseEndpoints (input) {
   if (!input) {
     return
   }
-  if (!Array.isArray(input)) {
-    input = [input]
+  if (typeof input[Symbol.iterator] !== 'function' || typeof input === 'string') {
+    throw new Error('Endpoints needs to be iterable.')
   }
   const result = []
-  for (const endpoint of input) {
+  for (let endpoint of input) {
     if (typeof endpoint === 'object') {
+      if (!(endpoint instanceof Endpoint)) {
+        endpoint = new Endpoint(endpoint)
+      }
       result.push(endpoint)
     } else if (typeof endpoint === 'string') {
-      if (endpoints[endpoint]) {
-        result.push(endpoints[endpoint])
-      } else {
-        const parts = /^(https?:\/\/)?([^/:]+)(:([\d]+))?(\/.*?)?(\s\[(post|get)\])?$/i.exec(endpoint)
-        const https = parts[1] !== 'http://'
-        result.push({
-          https: https,
-          host: parts[2],
-          port: parts[4] ? parseInt(parts[4]) : https ? 443 : 80,
-          path: parts[5],
-          method: parts[7]
-        })
-      }
+      result.push(endpoints[endpoint] || parseEndpoint(endpoint))
     }
   }
-  return result.length === 0 ? Object.values(endpoints) : result
+  return result
+}
+
+function parseEndpoint (endpoint) {
+  const parts = /^(([^:]+?:)\/\/)?([^/]*?)(\/.*?)?(\s\[(post|get)\])?$/i.exec(endpoint)
+  let protocol = parts[2] || 'https:'
+  let family = 1
+  let host
+  let port
+  const ipv6Parts = v6Regex.exec(parts[3])
+  if (ipv6Parts) {
+    const ipv4Parts = v4Regex.exec(parts[3])
+    if (ipv4Parts) {
+      host = ipv4Parts[1]
+      if (ipv4Parts[4]) {
+        port = parseInt(ipv4Parts[4])
+      }
+    } else {
+      family = 2
+      host = ipv6Parts[1]
+      if (ipv6Parts[9]) {
+        port = parseInt(ipv6Parts[10])
+      }
+    }
+  } else {
+    const portParts = /^([^:]*)(:(.*))?$/.exec(parts[3])
+    host = portParts[1]
+    if (portParts[3]) {
+      port = parseInt(portParts[3])
+    }
+  }
+  if (protocol === 'udp:') {
+    protocol = family === 2 ? 'udp6:' : 'udp4:'
+  }
+  return new Endpoint({
+    protocol: protocol,
+    host,
+    port,
+    path: parts[4],
+    method: parts[6]
+  })
 }
 
 module.exports = {
   query: query,
-  endpoints,
-  parseEndpoints,
+  endpoints: endpoints,
+  parseEndpoints: parseEndpoints,
   AbortError: AbortError,
   ResponseError: ResponseError,
-  TimeoutError: error.TimeoutError,
-  HTTPStatusError: error.HTTPStatusError
+  TimeoutError: common.TimeoutError,
+  HTTPStatusError: common.HTTPStatusError,
+  Endpoint: Endpoint
 }

@@ -1,4 +1,4 @@
-import { query, AbortError, HTTPStatusError, ResponseError, TimeoutError, endpoints } from 'doh-query';
+import { query, AbortError, HTTPStatusError, ResponseError, TimeoutError, endpoints, Endpoint, EndpointProps } from 'dns-query';
 import { Packet } from 'dns-packet';
 
 const { google, cloudflare, switchCh } = endpoints;
@@ -9,10 +9,17 @@ query('');
 const c = new AbortController();
 
 const p: Promise<Packet> = query({ id: 1 }, {
-  endpoints: [{
-    host: '0.0.0.0',
-    cors: true
-  }, google, cloudflare, switchCh, 'https://google.com/dns-query'],
+  endpoints: [
+    {
+      protocol: 'https:',
+      host: '0.0.0.0',
+      cors: true
+    },
+    google,
+    cloudflare,
+    switchCh,
+    'https://google.com/dns-query'
+  ] as Array<Endpoint | EndpointProps | string>,
   signal: c.signal,
   retries: 5,
   timeout: 1000

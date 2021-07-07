@@ -1,7 +1,11 @@
 'use strict'
-const { AbortError, HTTPStatusError, TimeoutError } = require('./error.js')
+const dns = require('dns')
+const dgram = require('dgram')
+const createDnsSocket = require('dns-socket')
+const codec = require('@leichtgewicht/ip-codec')
+const { AbortError, HTTPStatusError, TimeoutError, Endpoint, endpoints } = require('./common.js')
 const contentType = 'application/dns-message'
-const endpoints = Object.values(require('./endpoints.json')).filter(function (endpoint) {
+const dohEndpoints = Object.values(endpoints).filter(function (endpoint) {
   return !endpoint.filter && !endpoint.log
 })
 
@@ -11,6 +15,63 @@ function toRFC8484 (buffer) {
     .replace(/=/g, '')
     .replace(/\+/g, '-')
     .replace(/\//g, '_')
+}
+
+let socket4
+let socket6
+
+function clearSocketMaybe (socket) {
+  if (socket.inflight === 0) {
+    socket.destroy()
+    if (socket === socket4) {
+      socket4 = null
+    } else {
+      socket6 = null
+    }
+  }
+}
+
+const MAX_32BIT_INT = 2147483647
+
+function queryDns (endpoint, query, timeout, signal) {
+  return new Promise((resolve, reject) => {
+    let socket
+    const t = setTimeout(onTimeout, timeout)
+    const done = (err, res) => {
+      if (signal) {
+        signal.removeEventListener('abort', onAbort)
+      }
+      clearSocketMaybe(socket)
+      clearTimeout(t)
+      if (err) return reject(err)
+      resolve(res)
+    }
+    if (endpoint.protocol === 'udp4:') {
+      if (!socket4) {
+        socket4 = createDnsSocket({ timeout: MAX_32BIT_INT, timeoutChecks: MAX_32BIT_INT, retries: 0, socket: dgram.createSocket('udp4') })
+      }
+      socket = socket4
+    } else if (endpoint.protocol === 'udp6:') {
+      if (!socket6) {
+        socket6 = createDnsSocket({ timeout: MAX_32BIT_INT, timeoutChecks: MAX_32BIT_INT, retries: 0, socket: dgram.createSocket('udp6') })
+      }
+      socket = socket6
+    }
+    const requestId = socket.query(query, endpoint.port || 53, endpoint.host, done)
+    if (signal) {
+      signal.addEventListener('abort', onAbort)
+    }
+    function onAbort () {
+      done(new AbortError())
+      socket.cancel(requestId)
+      clearSocketMaybe(socket)
+    }
+    function onTimeout () {
+      done(new TimeoutError(timeout))
+      socket.cancel(requestId)
+      clearSocketMaybe(socket)
+    }
+  })
 }
 
 function request (protocol, host, port, path, method, packet, timeout, abortSignal, cb) {
@@ -92,6 +153,19 @@ function request (protocol, host, port, path, method, packet, timeout, abortSign
 }
 
 module.exports = {
+  queryDns: queryDns,
   request: request,
-  endpoints: endpoints
+  endpoints: opts => {
+    if (opts.dns) {
+      const servers = dns.getServers().map(host => new Endpoint({
+        protocol: codec.familyOf(host) === 1 ? 'udp4:' : 'udp6:',
+        host
+      }))
+
+      return opts.doh ? servers.concat(dohEndpoints) : servers
+    }
+    if (opts.doh) {
+      return dohEndpoints
+    }
+  }
 }

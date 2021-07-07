@@ -1,12 +1,12 @@
 'use strict'
 /* global XMLHttpRequest */
 const Buffer = require('buffer').Buffer
-const errors = require('./error.js')
-const AbortError = errors.AbortError
-const HTTPStatusError = errors.HTTPStatusError
-const TimeoutError = errors.TimeoutError
+const common = require('./common.js')
+const AbortError = common.AbortError
+const HTTPStatusError = common.HTTPStatusError
+const TimeoutError = common.TimeoutError
 const contentType = 'application/dns-message'
-const endpoints = Object.values(require('./endpoints.json')).filter(function (endpoint) {
+const endpoints = Object.values(common.endpoints).filter(function (endpoint) {
   return !endpoint.filter && !endpoint.logging && endpoint.cors
 })
 
@@ -87,5 +87,15 @@ function request (protocol, host, port, path, method, packet, timeout, abortSign
 
 module.exports = {
   request: request,
-  endpoints: endpoints
+  queryDns: function () {
+    throw new Error('Only "doh" endpoints are supported in the browser')
+  },
+  endpoints: opts => {
+    if (opts.doh) {
+      return endpoints
+    }
+    if (opts.dns) {
+      throw new Error('Only "doh" is supported in the browser')
+    }
+  }
 }

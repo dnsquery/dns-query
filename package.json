@@ -1,11 +1,11 @@
 {
-  "name": "doh-query",
+  "name": "dns-query",
   "version": "0.6.4",
   "description": "Node & Browser tested, Non-JSON DNS over HTTPS fetching with minimal dependencies.",
   "main": "index.js",
   "types": "types",
   "bin": {
-    "doh-query": "./bin/doh-query"
+    "dns-query": "./bin/dns-query"
   },
   "scripts": {
     "lint": "npm run endpoints && standard *.js bin/* && dtslint --localTs node_modules/typescript/lib types",
@@ -39,31 +39,33 @@
   "author": "Martin Heidegger <martin.heidegger@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "@leichtgewicht/ip-codec": "^2.0.2",
     "@types/dns-packet": "^5.2.0",
-    "dns-packet": "^5.2.4"
+    "dns-packet": "^5.3.0",
+    "dns-socket": "^4.2.2"
   },
   "devDependencies": {
     "abort-controller": "^3.0.0",
     "browserify": "^17.0.0",
-    "c8": "^7.7.2",
+    "c8": "^7.7.3",
     "coverify": "^1.5.1",
-    "dtslint": "^4.1.0",
+    "dtslint": "^4.1.1",
     "envify": "^4.1.0",
     "fresh-tape": "^5.2.4",
-    "markdown-it": "^12.0.6",
+    "markdown-it": "^12.1.0",
     "ngrok": "^4.0.1",
     "p-map": "^4.0.0",
     "standard": "^16.0.3",
     "tape-run": "^9.0.0",
-    "typescript": "^4.3.2",
+    "typescript": "^4.3.5",
     "xhr2": "^0.2.1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/martinheidegger/doh-query.git"
+    "url": "git+https://github.com/martinheidegger/dns-query.git"
   },
   "bugs": {
-    "url": "https://github.com/martinheidegger/doh-query/issues"
+    "url": "https://github.com/martinheidegger/dns-query/issues"
   },
-  "homepage": "https://github.com/martinheidegger/doh-query#readme"
+  "homepage": "https://github.com/martinheidegger/dns-query#readme"
 }

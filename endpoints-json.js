@@ -27,7 +27,7 @@ function createDTS (result) {
 
 export interface Options {
   /* Set of endpoints to lookup doh queries.  */
-  endpoints?: Array<Endpoint | string>;
+  endpoints?: 'doh' | 'dns' | Iterable<Endpoint | EndpointProps | string>;
   /* Amount of retry's if a request fails, defaults to 5 */
   retries?: number;
   /* Timeout for a single request in milliseconds, defaults to 30000 */
@@ -36,28 +36,31 @@ export interface Options {
   signal?: AbortSignal;
 }
 
-export interface Endpoint {
-  /* Domain name, required! */
+export class Endpoint {
+  /* https is the default for DoH endpoints, udp4:/upd6: for regular dns endpoints and http for debug only! defaults to https: */
+  protocol?: 'http:' | 'https:' | 'udp4:' | 'udp6:';
+  /* Host to look up */
   host: string;
-  /* Path, prefixed with /, defaults to /dns-query */
+  /* Path, prefixed with /, defaults to /dns-query for the http/https protocol, ignored for udp */
   path?: string;
-  /* https port, defaults to 443 */
+  /* https port, defaults to 443 for https, 80 for http and 53 for udp*/
   port?: number;
-  /* true, if endpoint logs requests, defaults to false */
+  /* true, if endpoint is known to log requests, defaults to false */
   log?: boolean;
-  /* true, if endpoint support CORS headers, defaults to false */
+  /* true, if endpoint supports http/https CORS headers, defaults to false */
   cors?: boolean;
-  /* true, if endpoint filters/redirects DNS packets, defaults to false */
+  /* true, if endpoint is known to filters/redirects DNS packets, defaults to false */
   filter?: boolean;
   /* link to documentation, if available */
   docs?: string;
   /* Known geographical location */
   location?: string;
-  /* Method to request dns, defaults to GET */
+  /* Method to request in case of http/https, defaults to GET */
   method?: 'post' | 'Post' | 'POST' | 'get' | 'Get' | 'GET';
-  /* DEBUG ONLY! false to use http to connect instead of https, defaults to true */
-  https?: boolean;
+  constructor(data: EndpointProps);
 }
+
+export type EndpointProps = Omit<Endpoint, ''>;
 
 export function query(packet: Packet, options?: Options): Promise<Packet & {
   endpoint: Endpoint;
@@ -87,6 +90,7 @@ export class TimeoutError extends Error {
   code: 'ETIMEOUT';
   name: 'TimeoutError';
 }
+export function parseEndpoints (endpoints?: Iterable<Endpoint | EndpointProps | string>): Endpoint[]
 export const endpoints: {
   ${Object.keys(result).map(createDTSEndpoint).join('\n  ')}
 };

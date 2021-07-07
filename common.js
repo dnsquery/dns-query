@@ -49,9 +49,36 @@ inherit(TimeoutError, Error)
 TimeoutError.prototype.code = 'ETIMEOUT'
 TimeoutError.prototype.name = 'TimeoutError'
 
+function Endpoint (opts) {
+  if (!opts.protocol) {
+    opts.protocol = 'https:'
+  } else if (!['http:', 'https:', 'udp4:', 'udp6:'].includes(opts.protocol)) {
+    throw new Error(`Invalid Endpoint: unsupported protocol "${opts.protocol}" for endpoint: ${JSON.stringify(opts)}`)
+  }
+  if (typeof opts.host !== 'string') {
+    throw new Error(`Invalid Endpoint: host "${opts.host}" needs to be a string: ${JSON.stringify(opts)}`)
+  }
+  if (typeof opts.port !== 'number' && !isNaN(opts.port)) {
+    throw new Error(`Invalid Endpoint: port "${opts.port}" needs to be a number: ${JSON.stringify(opts)}`)
+  }
+  for (const key in opts) {
+    if (opts[key] !== undefined) {
+      this[key] = opts[key]
+    }
+  }
+}
+
+const rawEndpoints = require('./endpoints.json')
+const endpoints = {}
+for (const name in rawEndpoints) {
+  endpoints[name] = new Endpoint(rawEndpoints[name])
+}
+
 module.exports = {
+  endpoints,
   AbortError: AbortError,
   HTTPStatusError: HTTPStatusError,
   ResponseError: ResponseError,
-  TimeoutError: TimeoutError
+  TimeoutError: TimeoutError,
+  Endpoint: Endpoint
 }

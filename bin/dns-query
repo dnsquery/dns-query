@@ -3,22 +3,30 @@ const dns = require('dns-packet')
 const { query } = require('..')
 const allEndpoints = require('../endpoints')
 const { version } = require('../package.json')
-const cmd = 'doh-query'
+const cmd = 'dns-query'
 
-const HELP = `
-${cmd} <Options> <Input>
+const HELP = `${cmd} - Execute a dns query over https.
 
-Execute a dns query over https.
+USAGE:
 
-Examples:
+  ${cmd} <Options> <Input>
 
+EXAMPLES:
+
+  # Fetch from the google dns-over-https endpoint the A-name of google.com
   $ ${cmd} --json -e google \\
       '{ "questions": [{ "type": "A", "name": "google.com" }] }'
 
+  # Fetch TXT entries for ipfs.io through regular dns
+  $ ${cmd} --json --dns \\
+      '{ "questions": [{ "type": "TXT", "name": "ipfs.io" }] }'
+
+  # Pass the query through stdin
   $ echo '{ "questions": [{ "type": "A", "name": "google.com" }] }' \\
       | ${cmd} --stdin --endpoint cloudflare
 
-Options:
+OPTIONS:
+
   --help, -h ....... Show this help
   --version, -v .... Show the version
   --json ........... --type=json
@@ -27,12 +35,16 @@ Options:
   --type ........... Input type. Options: json, base64, binary; Default: json
   --out ............ Output type. Defaults to the input --type.
   --stdin .......... Get <input> from stdin instead of cli arguments
+  --dns ............ Use dns endpoints
+  --doh ............ Use doh endpoints
   --endpoint, -e ... Use a specific endpoint. Can be either the name of a known
       endpoint, a json object or an url. By default uses one of the known endpoints.
       If multiple are provided, one at random will be used.
   --endpoints ...... Lists all known endpoints as json.
   --retries ........ Number of retries to do in case requests fails, default: 5
   --timeout ........ Timeout for the request in milliseconds, default: 30000
+
+dns-query@${version}
 `
 
 async function run (args, signal) {
@@ -60,18 +72,27 @@ async function run (args, signal) {
       throw new Error(`Unexpected value --timeout=${rawOpts.timeout}, expected integer`)
     }
   }
-  let endpoints = rawOpts.endpoint.concat(rawOpts.e).map(input => {
-    let endpoint = input
-    try {
-      endpoint = JSON.parse(input)
-      if (typeof endpoint !== 'object' && typeof endpoint !== 'string') {
-        throw new Error('Endpoint not an object or string.')
-      }
-    } catch (error) {}
-    return endpoint
-  })
-  if (endpoints.length === 0) {
-    endpoints = undefined
+  let endpoints
+  if (rawOpts.dns) {
+    if (rawOpts.doh) {
+      throw new Error('Can not use --dns and --doh option at the same time.')
+    }
+    if (rawOpts.endpoint.length > 0) {
+      throw new Error('Can not use --dns and --endpoint at the same time.')
+    }
+    endpoints = 'dns'
+  } else if (rawOpts.doh) {
+    if (rawOpts.endpoint.length > 0) {
+      throw new Error('Can not use --doh and --endpoint at the same time.')
+    }
+    endpoints = 'doh'
+  } else if (rawOpts.endpoint.length > 0) {
+    endpoints = rawOpts.endpoint.concat(rawOpts.e).map(input => {
+      try {
+        return JSON.parse(input)
+      } catch (error) {}
+      return input
+    })
   }
   const { packet, options } = await getInput(rawOpts, input)
   const result = await query(packet, { endpoints, signal, timeout, retries })
@@ -159,7 +180,7 @@ async function getInput (options, input) {
 }
 
 function getArgs (argv) {
-  const boolProps = ['help', 'h', 'json', 'base64', 'binary', 'stdin', 'endpoints', 'v', 'version']
+  const boolProps = ['help', 'h', 'json', 'base64', 'binary', 'stdin', 'endpoints', 'v', 'version', 'dns', 'doh']
   const inputProp = ['input', 'packet']
   const otherProp = ['type', 'out', 'timeout', 'retries']
   const arrayProp = ['endpoint', 'e']

@@ -118,10 +118,13 @@ interface EndpointProps {
 }
 ```
 
-Instead of passing an object you can also pass an endpoint matching a url, with an 
-amendmend as to whether its a POST or GET endpoint.
+### String endpoints
 
-Examples:
+Instead of passing an object you can also pass a string. If the string matches the name
+of one of the [endpoints](./endpoints.md), that endpoint will be used, else it needs
+to be a url, with a possible `[post]` or `[get]` suffix to indicate the method.
+
+_Examples:_
 
 `foo.com` → `{ host: 'foo.com' }`
 

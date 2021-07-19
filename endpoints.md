@@ -102,6 +102,7 @@ reduced if you use this library in the browser.
 | [dnssbKrSel][dnssb]         | kr-sel.doh.sb                              | Seoul       | 𐄂 | 𐄂 | ✓ | GET |
 | [dnssbRuMow][dnssb]         | ru-mow.doh.sb                              | Moscow      | 𐄂 | 𐄂 | ✓ | GET |
 | [ethlink][]                 | eth.link                                   | ?           | 𐄂 | 𐄂 | ✓ | GET |
+| [handshake][]               | query.hdns.io                              | ?           | 𐄂 | 𐄂 | ✓ | GET |
 
 [cloudflare]: https://developers.cloudflare.com/1.1.1.1/dns-over-https
 [cloudflareFamily]: https://developers.cloudflare.com/1.1.1.1/1.1.1.1-for-families/setup-instructions/dns-over-https
@@ -151,6 +152,7 @@ reduced if you use this library in the browser.
 [dnssb]: https://dns.sb/doh/
 [ethlink]: https://eth.link/
 [irisden]: https://iriseden.fr/
+[handshake]: https://docs.namebase.io/guides-1/resolving-handshake-1/hdns.io#dns-over-https-doh
 
 ## Known Broken Servers
 

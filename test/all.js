@@ -27,7 +27,7 @@ test('Looking up all Endpoints', function (t) {
     let once = false
     return query(
       { id: '\x7f\xfe\xff\xfe' /* to test + and / encoding */, questions: [{ type: 'A', name: 'google.com' }] },
-      { endpoints: [endpoint] }
+      { endpoints: [endpoint], timeout: 2000 }
     )
       .then(function (result) {
         const answers = result.answers

@@ -91,7 +91,6 @@ reduced if you use this library in the browser.
 | [dnssbDeFra][dnssb]         | de-fra.doh.sb                              | Frankfurt   | 𐄂 | 𐄂 | ✓ | GET |
 | [dnssbNlAms][dnssb]         | nl-ams.doh.sb                              | Amsterdam   | 𐄂 | 𐄂 | ✓ | GET |
 | [dnssbNlAms2][dnssb]        | nl-ams2.doh.sb                             | Amsterdam   | 𐄂 | 𐄂 | ✓ | GET |
-| [dnssbUkLon][dnssb]         | uk-lon.doh.sb                              | London      | 𐄂 | 𐄂 | ✓ | GET |
 | [dnssbEeTll][dnssb]         | ee-tll.doh.sb                              | Tallinn     | 𐄂 | 𐄂 | ✓ | GET |
 | [dnssbJpKix][dnssb]         | jp-kix.doh.sb                              | Osaka       | 𐄂 | 𐄂 | ✓ | GET |
 | [dnssbHkHkg][dnssb]         | hk-hkg.doh.sb                              | Hong Kong   | 𐄂 | 𐄂 | ✓ | GET |
@@ -170,6 +169,7 @@ reduced if you use this library in the browser.
 | [dnsForge][]                | dnsforge.de                                | Germany     | ✓ | 𐄂 | ✓ | GET | Some TXT responses missing |
 | [dnsPod][]                  | doh.pub                                    | China       | ✓ | 𐄂 | ✓ | GET | Some TXT responses missing |
 | [blahDnsSg][blahDns]        | doh-sg.blahdns.com                         | Singapore   | ✓ | 𐄂 | ✓ | GET | Certificate expired        |
+| [dnssbUkLon][dnssb]         | uk-lon.doh.sb                              | London      | 𐄂 | 𐄂 | ✓ | GET | Timeout (t=2000)           |
 
 - https://doh.bortzmeyer.fr (404)
 - https://www.nic.cz/odvr/ (socket hangup)

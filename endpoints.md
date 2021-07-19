@@ -50,7 +50,6 @@ reduced if you use this library in the browser.
 | [dnsForFamily][]            | dns-doh.dnsforfamily.com                   | ?           | ✓ | 𐄂 | 𐄂 | GET |
 | [dnsHome][]                 | dns.dnshome.de                             | Germany     | 𐄂 | 𐄂 | 𐄂 | GET |
 | [blahDnsCh][blahDns]        | doh-ch.blahdns.com                         | Switzerland | ✓ | 𐄂 | ✓ | GET |
-| [blahDnsSg][blahDns]        | doh-sg.blahdns.com                         | Singapore   | ✓ | 𐄂 | ✓ | GET |
 | [blahDnsJp][blahDns]        | doh-jp.blahdns.com                         | Japan       | ✓ | 𐄂 | ✓ | GET |
 | [blahDnsDe][blahDns]        | doh-de.blahdns.com                         | Germany     | ✓ | 𐄂 | ✓ | GET |
 | [blahDnsFi][blahDns]        | doh-fi.blahdns.com                         | Finland     | ✓ | 𐄂 | ✓ | GET |
@@ -168,6 +167,7 @@ reduced if you use this library in the browser.
 | [irisden2][irisden]         | ns2.iriseden.fr                            | Paris       | 𐄂 | 𐄂 | ✓ | GET | Timeout                    |
 | [dnsForge][]                | dnsforge.de                                | Germany     | ✓ | 𐄂 | ✓ | GET | Some TXT responses missing |
 | [dnsPod][]                  | doh.pub                                    | China       | ✓ | 𐄂 | ✓ | GET | Some TXT responses missing |
+| [blahDnsSg][blahDns]        | doh-sg.blahdns.com                         | Singapore   | ✓ | 𐄂 | ✓ | GET | Certificate expired        |
 
 - https://doh.bortzmeyer.fr (404)
 - https://www.nic.cz/odvr/ (socket hangup)

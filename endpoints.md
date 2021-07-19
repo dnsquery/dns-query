@@ -85,7 +85,6 @@ reduced if you use this library in the browser.
 | [rubyfish][]                | rubyfish.cn                                | China       | ✓ | ✓ | ✓ | GET |
 | [uncensoredAny][uncensored] | anycast.censurfridns.dk                    | ?           | 𐄂 | 𐄂 | 𐄂 | GET |
 | [uncensoredUni][uncensored] | unicast.censurfridns.dk                    | Copenhagen  | 𐄂 | 𐄂 | 𐄂 | GET |
-| [dnssb][]                   | doh.sb                                     | ?           | 𐄂 | 𐄂 | ✓ | GET |
 | [dnssbGlobal][dnssb]        | doh.dns.sb                                 | ?           | 𐄂 | 𐄂 | ✓ | GET |
 | [dbssbDeDus][dnssb]         | de-dus.doh.sb                              | Düsseldorf  | 𐄂 | 𐄂 | ✓ | GET |
 | [dnssbDeFra][dnssb]         | de-fra.doh.sb                              | Frankfurt   | 𐄂 | 𐄂 | ✓ | GET |
@@ -170,6 +169,7 @@ reduced if you use this library in the browser.
 | [dnsPod][]                  | doh.pub                                    | China       | ✓ | 𐄂 | ✓ | GET | Some TXT responses missing |
 | [blahDnsSg][blahDns]        | doh-sg.blahdns.com                         | Singapore   | ✓ | 𐄂 | ✓ | GET | Certificate expired        |
 | [dnssbUkLon][dnssb]         | uk-lon.doh.sb                              | London      | 𐄂 | 𐄂 | ✓ | GET | Timeout (t=2000)           |
+| [dnssb][]                   | doh.sb                                     | ?           | 𐄂 | 𐄂 | ✓ | GET | Timeout (t=2000)           |
 
 - https://doh.bortzmeyer.fr (404)
 - https://www.nic.cz/odvr/ (socket hangup)

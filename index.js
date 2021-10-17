@@ -34,19 +34,24 @@ function queryDoh (endpoint, query, timeout, abortSignal) {
       }, query)),
       timeout,
       abortSignal,
-      function (error, data) {
-        if (error !== null) {
-          reject(error)
-        } else {
+      function (error, data, response) {
+        let decoded
+        if (error === null) {
           if (data.length === 0) {
-            return reject(new ResponseError('Empty.'))
+            error = new ResponseError('Empty.')
+          } else {
+            try {
+              decoded = packet.decode(data)
+            } catch (err) {
+              error = new ResponseError('Invalid packet (cause=' + err.message + ')', err)
+            }
           }
-          let decoded
-          try {
-            decoded = packet.decode(data)
-          } catch (err) {
-            return reject(new ResponseError('Invalid packet (cause=' + err.message + ')', err))
-          }
+        }
+        if (error !== null) {
+          reject(Object.assign(error, { response, endpoint }))
+        } else {
+          decoded.endpoint = endpoint
+          decoded.response = response
           resolve(decoded)
         }
       }

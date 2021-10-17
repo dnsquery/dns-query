@@ -33,6 +33,7 @@ test('Looking up all Endpoints', function (t) {
         const answers = result.answers
         once = writeHeader(endpoint, once)
         t.equals(result.endpoint, endpoint, 'endpoint correctly supplied')
+        t.notLooseEqual(result.response, null)
         if (answers.length === 0) {
           t.fail('No answers.')
           return
@@ -108,6 +109,8 @@ test('local /text causes ResponseError, with retries=0, once!', function (t) {
       t.equals(err.message, 'Invalid packet (cause=Header must be 12 bytes)')
       t.notEqual(err.cause, undefined)
       t.notEqual(err.cause, null)
+      t.deepEqual(err.endpoint, new Endpoint(Object.assign({}, LOCAL_ENDPOINT, { path: '/text' })))
+      t.notEqual(err.response, undefined)
       return getLog().then(
         function (data) {
           t.deepEquals(
@@ -126,6 +129,8 @@ test('local /text causes ResponseError, with retries=3, several times', function
     failSuccess(t),
     function (err) {
       t.equals(err.name, 'ResponseError')
+      t.deepEqual(err.endpoint, new Endpoint(Object.assign({}, LOCAL_ENDPOINT, { path: '/text' })))
+      t.notEquals(err.response, undefined)
       return getLog().then(
         function (data) {
           t.deepEquals(
@@ -171,6 +176,8 @@ test('local /404 causes StatusError', function (t) {
   return localQuery('/404').then(
     failSuccess(t),
     function (err) {
+      t.deepEqual(err.endpoint, new Endpoint(Object.assign({}, LOCAL_ENDPOINT, { path: '/404' })))
+      t.notEqual(err.response, undefined)
       t.equals(err.code, 'HTTP_STATUS')
     }
   )

@@ -24,6 +24,7 @@ function run () {
 
 function createDTS (result) {
   return `import { Packet } from 'dns-packet';
+import { IncomingMessage } from 'http';
 
 export interface Options {
   /* Set of endpoints to lookup doh queries.  */
@@ -61,9 +62,11 @@ export class Endpoint {
 }
 
 export type EndpointProps = Omit<Endpoint, ''>;
+export type Response = undefined | XMLHttpRequest | IncomingMessage;
 
 export function query(packet: Packet, options?: Options): Promise<Packet & {
   endpoint: Endpoint;
+  response: Response;
 }>;
 
 export class AbortError extends Error {
@@ -78,11 +81,15 @@ export class HTTPStatusError extends Error {
   method: 'POST' | 'GET';
   code: 'HTTP_STATUS';
   name: 'StatusError';
+  response: Response;
+  endpoint: Endpoint;
 }
 export class ResponseError extends Error {
   constructor(message: string)
   code: 'RESPONSE_ERR';
   name: 'ResponseError';
+  response: Response;
+  endpoint: Endpoint;
 }
 export class TimeoutError extends Error {
   constructor(timeout: number)

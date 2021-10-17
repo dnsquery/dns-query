@@ -18,6 +18,8 @@ function toRFC8484 (buffer) {
     .replace(/\//g, '_')
 }
 
+function noop () {}
+
 function request (protocol, host, port, path, method, packet, timeout, abortSignal, cb) {
   const uri = protocol + '//' + host + ':' + port + path + (method === 'GET' ? '?dns=' + toRFC8484(packet) : '')
   const xhr = new XMLHttpRequest()
@@ -66,11 +68,12 @@ function request (protocol, host, port, path, method, packet, timeout, abortSign
     }
   }
 
-  function finish (error, data) {
+  let finish = function (error, data) {
+    finish = noop
     if (abortSignal) {
       abortSignal.removeEventListener('abort', onabort)
     }
-    cb(error, data)
+    cb(error, data, xhr)
   }
 
   function onerror () {

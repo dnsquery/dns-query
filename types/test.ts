@@ -27,9 +27,12 @@ const p: Promise<Packet> = query({ id: 1 }, {
 
 p.catch(error => {
   if (
-    error instanceof AbortError ||
-    error instanceof HTTPStatusError ||
     error instanceof ResponseError ||
+    error instanceof HTTPStatusError
+  ) {
+    console.log(error.name, error.code, error.response, error.endpoint);
+  } else if (
+    error instanceof AbortError ||
     error instanceof TimeoutError
   ) {
     console.log(error.name, error.code);

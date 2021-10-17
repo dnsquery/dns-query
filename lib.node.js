@@ -77,13 +77,13 @@ function queryDns (endpoint, query, timeout, signal) {
 function request (protocol, host, port, path, method, packet, timeout, abortSignal, cb) {
   let timer
   const client = protocol === 'https:' ? require('https') : require('http')
-  let finish = (error, data) => {
+  let finish = (error, data, response) => {
     finish = null
     clearTimeout(timer)
     if (abortSignal) {
       abortSignal.removeEventListener('abort', onabort)
     }
-    cb(error, data)
+    cb(error, data, response)
   }
   const pth = `${path}${method === 'GET' ? '?dns=' + toRFC8484(packet) : ''}`
   const uri = `${protocol}//${host}:${port}${pth}`
@@ -104,7 +104,7 @@ function request (protocol, host, port, path, method, packet, timeout, abortSign
   if (abortSignal) {
     abortSignal.addEventListener('abort', onabort)
   }
-  req.on('error', finish)
+  req.on('error', onerror)
   if (method === 'POST') {
     req.end(packet)
   } else {
@@ -118,7 +118,10 @@ function request (protocol, host, port, path, method, packet, timeout, abortSign
 
   function onresponse (res) {
     if (res.statusCode !== 200) {
-      return res.destroy(new HTTPStatusError(uri, res.statusCode, method))
+      const error = new HTTPStatusError(uri, res.statusCode, method)
+      finish(error, null, res)
+      res.destroy(error)
+      return
     }
     const result = []
     res.on('error', onerror)
@@ -131,14 +134,14 @@ function request (protocol, host, port, path, method, packet, timeout, abortSign
 
     function onclose () {
       if (finish !== null) {
-        finish(null, Buffer.concat(result))
+        finish(null, Buffer.concat(result), res)
       }
     }
+  }
 
-    function onerror (error) {
-      if (finish !== null) {
-        finish(error || new Error('Unknown Error.'))
-      }
+  function onerror (error) {
+    if (finish !== null) {
+      finish(error || new Error('Unknown Error.'))
     }
   }
 

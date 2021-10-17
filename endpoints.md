@@ -65,12 +65,9 @@ reduced if you use this library in the browser.
 | [iij][]                     | public.dns.iij.jp                          | Japan       | ✓ | ✓ | 𐄂 | GET |
 | [libredns][]                | doh.libredns.gr                            | Germany     | 𐄂 | 𐄂 | 𐄂 | GET |
 | [librednsAds][libredns]     | doh.libredns.gr/ads                        | Germany     | ✓ | 𐄂 | 𐄂 | GET |
-| [linuxSec][]                | doh.linuxsec.org                           | Indonesia   | ✓ | 𐄂 | ✓ | GET |
-| [linuxSecAdGuard][linuxSec] | doh.linuxsec.org/adguard                   | Indonesia   | ✓ | 𐄂 | ✓ | GET |
 | [njalla][]                  | dns.njal.la                                | Sweden      | 𐄂 | 𐄂 | 𐄂 | GET |
 | [opendns][]                 | doh.opendns.com                            | ?           | 𐄂 | 𐄂 | 𐄂 | GET |
 | [opendnsFamily][opendns]    | doh.familyshield.opendns.com               | ?           | ✓ | 𐄂 | 𐄂 | GET |
-| [powerDNS][]                | doh.powerdns.org                           | ?           | ✓ | 𐄂 | 𐄂 | GET |
 | [sebyVultr][seby]           | doh.seby.io:8443                           | Sydney      | ✓ | 𐄂 | ✓ | GET |
 | [sebyOVH][seby]             | doh-2.seby.io                              | Sydney      | ✓ | 𐄂 | ✓ | GET |
 | [quad9][]                   | dns10.quad9.net                            | ?           | 𐄂 | 𐄂 | 𐄂 | GET |
@@ -82,7 +79,6 @@ reduced if you use this library in the browser.
 | [controlIdMw][controlId]    | freedns.controld.com/p1                    | ?           | ✓ | 𐄂 | 𐄂 | GET |
 | [controlIdAds][controlId]   | freedns.controld.com/p2                    | ?           | ✓ | 𐄂 | 𐄂 | GET |
 | [controlIdSoc][controlId]   | freedns.controld.com/p3                    | ?           | ✓ | 𐄂 | 𐄂 | GET |
-| [rubyfish][]                | rubyfish.cn                                | China       | ✓ | ✓ | ✓ | GET |
 | [uncensoredAny][uncensored] | anycast.censurfridns.dk                    | ?           | 𐄂 | 𐄂 | 𐄂 | GET |
 | [uncensoredUni][uncensored] | unicast.censurfridns.dk                    | Copenhagen  | 𐄂 | 𐄂 | 𐄂 | GET |
 | [dnssbGlobal][dnssb]        | doh.dns.sb                                 | ?           | 𐄂 | 𐄂 | ✓ | GET |
@@ -170,6 +166,10 @@ reduced if you use this library in the browser.
 | [blahDnsSg][blahDns]        | doh-sg.blahdns.com                         | Singapore   | ✓ | 𐄂 | ✓ | GET | Certificate expired        |
 | [dnssbUkLon][dnssb]         | uk-lon.doh.sb                              | London      | 𐄂 | 𐄂 | ✓ | GET | Timeout (t=2000)           |
 | [dnssb][]                   | doh.sb                                     | ?           | 𐄂 | 𐄂 | ✓ | GET | Timeout (t=2000)           |
+| [linuxSec][]                | doh.linuxsec.org                           | Indonesia   | ✓ | 𐄂 | ✓ | GET | Timeout (t=2000)           |
+| [linuxSecAdGuard][linuxSec] | doh.linuxsec.org/adguard                   | Indonesia   | ✓ | 𐄂 | ✓ | GET | Timeout (t=2000)           |
+| [rubyfish][]                | rubyfish.cn                                | China       | ✓ | ✓ | ✓ | GET | 503 err                    |
+| [powerDNS][]                | doh.powerdns.org                           | ?           | ✓ | 𐄂 | 𐄂 | GET | Timeout (t=2000)           |
 
 - https://doh.bortzmeyer.fr (404)
 - https://www.nic.cz/odvr/ (socket hangup)

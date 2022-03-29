@@ -41,7 +41,7 @@ try {
     ]
   }, {
     /* Options (optional) */
-    endpoints,
+    endpoints: endpoints,
     retry: 3, // (optional) retries if a given endpoint fails; -1 = infinite retries; 0 = no retry
     timeout: 4000, // (optional, default=30000) timeout for single requests
     signal, // (optional) an AbortSignal to abort the request

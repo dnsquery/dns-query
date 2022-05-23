@@ -7,12 +7,9 @@ on:
   pull_request:
     branches:
       - main
-  schedule:
-    - cron:  '0 8 * * *'
 
 jobs:
   test:
-    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         include:
@@ -34,20 +31,23 @@ jobs:
           - id: ubuntu:16
             os: ubuntu-latest
             node: 16
+    runs-on: ${{ matrix.os }}
+    needs: strict
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v1
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm i
-    - run: npm run test-cov
+    - run: npm run test
 
-  lint:
+  strict:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v1
       with:
-        node-version: ${{ matrix.node }}
+        node-version: 18
     - run: npm i
     - run: npm run lint
+    - run: npm run test-cov

@@ -1,0 +1,145 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema",
+  "$id": "https://martinheidegger.github.io/dns-query/endpoints.schema.json",
+  "title": "DNS Endpoint JSON Table",
+  "description": "DNS Endpoint consumable JSON format",
+  "type": "object",
+  "properties": {
+    "resolvers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "endpoint": {
+            "oneOf": [
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "description": "http/https endpoints",
+                "properties": {
+                  "protocol": {
+                    "description": "https is the default for DoH endpoints, http for debug only!",
+                    "enum": ["http:", "https:"]
+                  },
+                  "host": {
+                    "type": "string"
+                  },
+                  "path": {
+                    "type": "string",
+                    "description": "Path, prefixed with /, defaults to /dns-query"
+                  },
+                  "method": {
+                    "enum": ["POST", "GET"],
+                    "description": "Method to request in case of http/https, defaults to GET"
+                  },
+                  "port": {
+                    "type": "integer",
+                    "description": "port to connect to, defaults to 443 for https, 80 for http"
+                  },
+                  "cors": {
+                    "type": "boolean",
+                    "description": "true, if endpoint supports http/https CORS headers, defaults to false"
+                  },
+                  "ipv4": {
+                    "type": "string",
+                    "format": "ipv4",
+                    "description": "well-known ipv4 address for the host"
+                  },
+                  "ipv6": {
+                    "type": "string",
+                    "format": "ipv6",
+                    "description": "well-known ipv6 address for the host"
+                  }
+                },
+                "required": ["protocol", "host"]
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "description": "udp4 endpoints",
+                "properties": {
+                  "protocol": {
+                    "enum": ["udp4:"]
+                  },
+                  "ipv4": {
+                    "type": "string",
+                    "format": "ipv4"
+                  },
+                  "port": {
+                    "type": "integer",
+                    "description": "port to connect to, defaults to 53"
+                  },
+                  "pk": {
+                    "type": "string",
+                    "description": "public key for dnscrypt verification"
+                  }
+                },
+                "required": ["protocol", "ipv4"]
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "description": "udp6 endpoints",
+                "properties": {
+                  "protocol": {
+                    "enum": ["udp6:"]
+                  },
+                  "ipv6": {
+                    "type": "string",
+                    "format": "ipv6"
+                  },
+                  "port": {
+                    "type": "integer",
+                    "description": "port to connect to, defaults to 53"
+                  },
+                  "pk": {
+                    "type": "string",
+                    "description": "public key for dnscrypt verification"
+                  }
+                },
+                "required": ["protocol", "ipv6"]
+              }
+            ]
+          },
+          "description": {
+            "type": "string",
+            "description": "Description as provided by hoster."
+          },
+          "log": {
+            "type": "boolean",
+            "description": "true, if endpoint is known to log requests, defaults to false"
+          },
+          "filter": {
+            "type": "boolean",
+            "description": "true, if endpoint is known to filters/redirects DNS packets, defaults to false"
+          },
+          "docs": {
+            "type": "string",
+            "format": "uri",
+            "description": "link to documentation"
+          },
+          "country": {
+            "type": "string"
+          },
+          "location": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "lat": {
+                "type": "number"
+              },
+              "long": {
+                "type": "number"
+              }
+            }
+          }
+        },
+        "required": ["name", "endpoint"]
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "json.format.enable": true,
+  "json.validate.enable": true,
+  "json.schemas": [
+    {
+      "fileMatch": [
+        "/data/endpoints.json"
+      ],
+      "url": "./data/endpoints.schema.json"
+    }
+  ]
+}

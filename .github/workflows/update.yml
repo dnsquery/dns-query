@@ -1,4 +1,4 @@
-name: Update Endpoints
+name: Update Resolvers
 
 on:
   push:
@@ -19,7 +19,7 @@ jobs:
       with:
         node-version: 18
     - run: npm i
-    - run: npm run endpoints
+    - run: npm run update-resolvers
     - uses: JamesIves/github-pages-deploy-action@v4.3.3
       with:
         branch: gh-pages

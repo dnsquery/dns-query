@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft-07/schema",
-  "$id": "https://martinheidegger.github.io/dns-query/endpoints.schema.json",
+  "$id": "https://martinheidegger.github.io/dns-query/resolvers.schema.json",
   "title": "DNS Endpoint JSON Table",
   "description": "DNS Endpoint consumable JSON format",
   "type": "object",
@@ -26,7 +26,8 @@
                     "enum": ["http:", "https:"]
                   },
                   "host": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "DNS host for the endpoint"
                   },
                   "path": {
                     "type": "string",

@@ -1,4 +1,3 @@
-endpoints-json.js
 test/*
 *.tgz
 coverage/*
@@ -6,3 +5,5 @@ coverage/*
 types/test.ts
 types/tsconfig.json
 *.bak
+bin/update-resolvers
+data

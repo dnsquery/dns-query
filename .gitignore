@@ -58,6 +58,7 @@ typings/
 .env
 
 package-lock.json
-endpoints.json
-types/index.d.ts
-
+resolvers.json
+resolvers.mjs
+*.cjs
+.cache

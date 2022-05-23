@@ -4,9 +4,9 @@
   "json.schemas": [
     {
       "fileMatch": [
-        "/data/endpoints.json"
+        "/data/resolvers.json"
       ],
-      "url": "./data/endpoints.schema.json"
+      "url": "./data/resolvers.schema.json"
     }
   ]
 }

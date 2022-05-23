@@ -2,16 +2,16 @@
   "name": "dns-query",
   "version": "0.8.0",
   "description": "Node & Browser tested, Non-JSON DNS over HTTPS fetching with minimal dependencies.",
-  "main": "index.js",
+  "main": "index.cjs",
+  "module": "index.mjs",
   "types": "types",
   "bin": {
     "dns-query": "./bin/dns-query"
   },
   "scripts": {
-    "lint": "npm run endpoints && standard *.js bin/* && dtslint --localTs node_modules/typescript/lib types",
-    "endpoints": "node bin/update-endpoints",
-    "build": "esm2umd",
-    "prepare": "npm run build && npm run endpoints",
+    "lint": "standard *.mjs bin/*",
+    "update-resolvers": "node bin/update-resolvers && standard --fix resolvers.mjs && esm2umd",
+    "prepare": "esm2umd",
     "test": "node test/env npm run test-impl",
     "test-impl": "fresh-tape test/all.js",
     "test-cov": "node test/env c8 -r lcov -r html npm run test-impl",
@@ -21,7 +21,31 @@
     "browser-test-cov-impl": "browserify -t envify -t coverify --debug test/all.js | tape-run | coverify"
   },
   "browser": {
-    "./lib.node.js": "./lib.browser.js"
+    "./lib.cjs": "./lib.browser.cjs",
+    "./lib.mjs": "./lib.browser.mjs"
+  },
+  "exports": {
+    ".": {
+      "import": "./index.mjs",
+      "require": "./index.cjs"
+    },
+    "./common.js": {
+      "import": "./common.mjs",
+      "require": "./common.cjs"
+    },
+    "./resolvers.js": {
+      "import": "./resolvers.mjs",
+      "require": "./resolvers.cjs"
+    },
+    "./lib.js": {
+      "import": "./lib.mjs",
+      "types": "./lib.d.ts",
+      "require": "./lib.cjs",
+      "browser": {
+        "import": "./lib.browser.mjs",
+        "require": "./lib.browser.cjs"
+      }
+    }
   },
   "keywords": [
     "dns",
@@ -47,7 +71,7 @@
   "devDependencies": {
     "@definitelytyped/dtslint": "0.0.112",
     "@leichtgewicht/dnsstamp": "^1.1.4",
-    "@leichtgewicht/esm2umd": "^0.1.1",
+    "@leichtgewicht/esm2umd": "^0.2.0",
     "abort-controller": "^3.0.0",
     "browserify": "^17.0.0",
     "c8": "^7.11.3",
@@ -56,7 +80,7 @@
     "fresh-tape": "^5.5.3",
     "markdown-it": "^13.0.1",
     "ngrok": "^4.3.1",
-    "p-map": "^5.4.0",
+    "p-filter": "^3.0.0",
     "standard": "^17.0.0",
     "tape-run": "^10.0.0",
     "typescript": "^4.6.4",

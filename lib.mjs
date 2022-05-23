@@ -7,7 +7,24 @@ import http from 'http'
 import {
   AbortError, HTTPStatusError, TimeoutError, Endpoint
 } from 'dns-query/common.js'
+import fs from 'fs'
+import { join } from 'path'
 
+// Node 6 support
+const writeFile = (path, data) => new Promise(
+  (resolve, reject) => fs.writeFile(path, data, err => { err ? reject(err) : resolve() })
+)
+const readFile = (path, opts) => new Promise(
+  (resolve, reject) => fs.readFile(path, opts, (err, data) => { err ? reject(err) : resolve(data) })
+)
+const mkdir = path => new Promise(
+  (resolve, reject) => fs.mkdir(path, err => { err ? reject(err) : resolve() })
+)
+const stat = path => new Promise(
+  (resolve, reject) => fs.stat(path, (err, stats) => { err ? reject(err) : resolve(stats) })
+)
+
+const filename = new URL(import.meta.url).pathname
 const contentType = 'application/dns-message'
 
 // https://tools.ietf.org/html/rfc8484
@@ -38,23 +55,11 @@ function getSocket (protocol) {
   if (protocol === 'udp4:') {
     if (!socket4) {
       socket4 = new DNSSocket({ timeout: MAX_32BIT_INT, timeoutChecks: MAX_32BIT_INT, retries: 0, socket: dgram.createSocket('udp4') })
-      socket4.on('error', (error) => {
-        console.log({ error })
-      })
-      socket4.on('warning', (warning) => {
-        console.log({ warning })
-      })
     }
     return socket4
   }
   if (!socket6) {
     socket6 = new DNSSocket({ timeout: MAX_32BIT_INT, timeoutChecks: MAX_32BIT_INT, retries: 0, socket: dgram.createSocket('udp6') })
-    socket6.on('error', (error) => {
-      console.log({ error })
-    })
-    socket6.on('warning', (warning) => {
-      console.log({ warning })
-    })
   }
   return socket6
 }
@@ -191,14 +196,44 @@ export async function request (url, method, packet, timeout, abortSignal) {
   return await requestRaw(url, method, packet, timeout, abortSignal, headers)
 }
 
-export async function loadJSON (url, useCache, timeout, abortSignal) {
+export async function loadJSON (url, cache, timeout, abortSignal) {
+  const folder = join(filename, '..', '.cache')
+  const cachePath = cache ? join(folder, cache.name) : null
+  if (cachePath) {
+    try {
+      const stats = await stat(cachePath)
+      const time = stats.mtime.getTime()
+      if (stats.isFile && time > cache.maxTime) {
+        return {
+          time,
+          data: JSON.parse(await readFile(cachePath))
+        }
+      }
+    } catch (err) {}
+  }
   const { data } = await requestRaw(url, 'GET', null, timeout, abortSignal)
-  return JSON.parse(data)
+  let time = null
+  if (cachePath) {
+    try {
+      await mkdir(folder)
+    } catch (err) {}
+    try {
+      const before = Date.now()
+      await writeFile(cachePath, data)
+      time = before + (Date.now() - before) / 2
+    } catch (err) {}
+  }
+  return {
+    time,
+    data: JSON.parse(data)
+  }
 }
 
 export function nativeEndpoints () {
-  return dns.getServers().map(host => new Endpoint({
-    protocol: codec.familyOf(host) === 1 ? 'udp4:' : 'udp6:',
-    host
-  }))
+  return dns.getServers().map(host =>
+    new Endpoint(codec.familyOf(host) === 1
+      ? { protocol: 'udp4:', ipv4: host }
+      : { protocol: 'udp6:', ipv6: host }
+    )
+  )
 }

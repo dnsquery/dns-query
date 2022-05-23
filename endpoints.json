@@ -5,12 +5,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "adfree.usableprivacy.net",
-        "ipv4": "78.47.163.141",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://adfree.usableprivacy.net/dns-query"
+        "ipv4": "78.47.163.141"
       },
       "description": "Public updns DoH service with advertising, tracker and malware filters.\nHosted in Europe by @usableprivacy, details see: https://docs.usableprivacy.com",
       "country": "Germany",
@@ -24,12 +19,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "adfree.usableprivacy.net",
-        "ipv6": "2a01:4f8:1c0c:832d::",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://adfree.usableprivacy.net/dns-query"
+        "ipv6": "2a01:4f8:1c0c:832d::"
       },
       "description": "Public updns DoH service with advertising, tracker and malware filters.\nHosted in Europe by @usableprivacy, details see: https://docs.usableprivacy.com",
       "country": "Germany",
@@ -43,12 +33,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns.adguard.com",
-        "ipv4": "94.140.15.15",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://dns.adguard.com/dns-query"
+        "ipv4": "94.140.15.15"
       },
       "description": "Remove ads and protect your computer from malware (over DoH)",
       "country": "France",
@@ -62,12 +47,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns-family.adguard.com",
-        "ipv4": "94.140.15.16",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://dns-family.adguard.com/dns-query"
+        "ipv4": "94.140.15.16"
       },
       "description": "Adguard DNS with safesearch and adult content blocking (over DoH)",
       "country": "France",
@@ -81,12 +61,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns-unfiltered.adguard.com",
-        "ipv4": "94.140.14.140",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://dns-unfiltered.adguard.com/dns-query"
+        "ipv4": "94.140.14.140"
       },
       "description": "AdGuard public DNS servers without filters (over DoH)",
       "country": "France",
@@ -101,11 +76,7 @@
         "protocol": "https:",
         "host": "doh.chi.ahadns.net",
         "ipv4": "193.29.62.196",
-        "port": 443,
-        "cors": true,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://doh.chi.ahadns.net/dns-query"
+        "cors": true
       },
       "description": "A zero logging DNS with support for DNS-over-HTTPS (DoH) & DNS-over-TLS (DoT). Blocks ads, malware, trackers, viruses, ransomware, telemetry and more. No persistent logs. DNSSEC. Hosted in Chicago, USA. By https://ahadns.com/\nServer statistics can be seen at: https://statistics.ahadns.com/?server=chi",
       "country": "United States",
@@ -120,11 +91,7 @@
         "protocol": "https:",
         "host": "doh.chi.ahadns.net",
         "ipv6": "2605:4840:3:c4::c4",
-        "port": 443,
-        "cors": true,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://doh.chi.ahadns.net/dns-query"
+        "cors": true
       },
       "description": "A zero logging DNS with support for DNS-over-HTTPS (DoH) & DNS-over-TLS (DoT). Blocks ads, malware, trackers, viruses, ransomware, telemetry and more. No persistent logs. DNSSEC. Hosted in Chicago, USA. By https://ahadns.com/\nServer statistics can be seen at: https://statistics.ahadns.com/?server=chi",
       "country": "United States",
@@ -139,11 +106,7 @@
         "protocol": "https:",
         "host": "doh.in.ahadns.net",
         "ipv4": "45.79.120.233",
-        "port": 443,
-        "cors": true,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://doh.in.ahadns.net/dns-query"
+        "cors": true
       },
       "description": "A zero logging DNS with support for DNS-over-HTTPS (DoH) & DNS-over-TLS (DoT). Blocks ads, malware, trackers, viruses, ransomware, telemetry and more. No persistent logs. DNSSEC. Hosted in Mumbai, India. By https://ahadns.com/\nServer statistics can be seen at: https://statistics.ahadns.com/?server=in",
       "country": "India",
@@ -158,11 +121,7 @@
         "protocol": "https:",
         "host": "doh.in.ahadns.net",
         "ipv6": "2400:8904:e001:43::43",
-        "port": 443,
-        "cors": true,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://doh.in.ahadns.net/dns-query"
+        "cors": true
       },
       "description": "A zero logging DNS with support for DNS-over-HTTPS (DoH) & DNS-over-TLS (DoT). Blocks ads, malware, trackers, viruses, ransomware, telemetry and more. No persistent logs. DNSSEC. Hosted in Mumbai, India. By https://ahadns.com/\nServer statistics can be seen at: https://statistics.ahadns.com/?server=in",
       "country": "India",
@@ -177,11 +136,7 @@
         "protocol": "https:",
         "host": "doh.la.ahadns.net",
         "ipv4": "45.67.219.208",
-        "port": 443,
-        "cors": true,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://doh.la.ahadns.net/dns-query"
+        "cors": true
       },
       "description": "A zero logging DNS with support for DNS-over-HTTPS (DoH) & DNS-over-TLS (DoT). Blocks ads, malware, trackers, viruses, ransomware, telemetry and more. No persistent logs. DNSSEC. Hosted in Los Angeles, USA. By https://ahadns.com/\nServer statistics can be seen at: https://statistics.ahadns.com/?server=la",
       "country": "United States",
@@ -196,11 +151,7 @@
         "protocol": "https:",
         "host": "doh.la.ahadns.net",
         "ipv6": "2a04:bdc7:100:70::70",
-        "port": 443,
-        "cors": true,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://doh.la.ahadns.net/dns-query"
+        "cors": true
       },
       "description": "A zero logging DNS with support for DNS-over-HTTPS (DoH) & DNS-over-TLS (DoT). Blocks ads, malware, trackers, viruses, ransomware, telemetry and more. No persistent logs. DNSSEC. Hosted in Los Angeles, USA. By https://ahadns.com/\nServer statistics can be seen at: https://statistics.ahadns.com/?server=la",
       "country": "United States",
@@ -215,11 +166,7 @@
         "protocol": "https:",
         "host": "doh.nl.ahadns.net",
         "ipv4": "5.2.75.75",
-        "port": 443,
-        "cors": true,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://doh.nl.ahadns.net/dns-query"
+        "cors": true
       },
       "description": "A zero logging DNS with support for DNS-over-HTTPS (DoH) & DNS-over-TLS (DoT). Blocks ads, malware, trackers, viruses, ransomware, telemetry and more. No persistent logs. DNSSEC. Hosted in Amsterdam, Netherlands. By https://ahadns.com/\nServer statistics can be seen at: https://statistics.ahadns.com/?server=nl",
       "country": "Netherlands",
@@ -234,11 +181,7 @@
         "protocol": "https:",
         "host": "doh.nl.ahadns.net",
         "ipv6": "2a04:52c0:101:75::75",
-        "port": 443,
-        "cors": true,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://doh.nl.ahadns.net/dns-query"
+        "cors": true
       },
       "description": "A zero logging DNS with support for DNS-over-HTTPS (DoH) & DNS-over-TLS (DoT). Blocks ads, malware, trackers, viruses, ransomware, telemetry and more. No persistent logs. DNSSEC. Hosted in Amsterdam, Netherlands. By https://ahadns.com/\nServer statistics can be seen at: https://statistics.ahadns.com/?server=nl",
       "country": "Netherlands",
@@ -253,11 +196,7 @@
         "protocol": "https:",
         "host": "doh.ny.ahadns.net",
         "ipv4": "185.213.26.187",
-        "port": 443,
-        "cors": true,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://doh.ny.ahadns.net/dns-query"
+        "cors": true
       },
       "description": "A zero logging DNS with support for DNS-over-HTTPS (DoH) & DNS-over-TLS (DoT). Blocks ads, malware, trackers, viruses, ransomware, telemetry and more. No persistent logs. DNSSEC. Hosted in New York. By https://ahadns.com/\nServer statistics can be seen at: https://statistics.ahadns.com/?server=ny",
       "country": "United States",
@@ -272,11 +211,7 @@
         "protocol": "https:",
         "host": "doh.ny.ahadns.net",
         "ipv6": "2a0d:5600:33:3::3",
-        "port": 443,
-        "cors": true,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://doh.ny.ahadns.net/dns-query"
+        "cors": true
       },
       "description": "A zero logging DNS with support for DNS-over-HTTPS (DoH) & DNS-over-TLS (DoT). Blocks ads, malware, trackers, viruses, ransomware, telemetry and more. No persistent logs. DNSSEC. Hosted in New York. By https://ahadns.com/\nServer statistics can be seen at: https://statistics.ahadns.com/?server=ny",
       "country": "China",
@@ -291,11 +226,7 @@
         "protocol": "https:",
         "host": "doh.pl.ahadns.net",
         "ipv4": "45.132.75.16",
-        "port": 443,
-        "cors": true,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://doh.pl.ahadns.net/dns-query"
+        "cors": true
       },
       "description": "A zero logging DNS with support for DNS-over-HTTPS (DoH) & DNS-over-TLS (DoT). Blocks ads, malware, trackers, viruses, ransomware, telemetry and more. No persistent logs. DNSSEC. Hosted in Poland. By https://ahadns.com/\nServer statistics can be seen at: https://statistics.ahadns.com/?server=pl",
       "country": "Netherlands",
@@ -310,11 +241,7 @@
         "protocol": "https:",
         "host": "doh.pl.ahadns.net",
         "ipv6": "2a0e:dc0:7:d::d",
-        "port": 443,
-        "cors": true,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://doh.pl.ahadns.net/dns-query"
+        "cors": true
       },
       "description": "A zero logging DNS with support for DNS-over-HTTPS (DoH) & DNS-over-TLS (DoT). Blocks ads, malware, trackers, viruses, ransomware, telemetry and more. No persistent logs. DNSSEC. Hosted in Poland. By https://ahadns.com/\nServer statistics can be seen at: https://statistics.ahadns.com/?server=pl",
       "country": "Netherlands",
@@ -329,11 +256,7 @@
         "protocol": "https:",
         "host": "dns.alidns.com",
         "ipv4": "223.5.5.5",
-        "port": 443,
-        "cors": true,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://dns.alidns.com/dns-query"
+        "cors": true
       },
       "description": "A public DNS resolver that supports DoH/DoT in mainland China, provided by Alibaba-Cloud.\nWarning: GFW filtering rules are applied by that resolver.\nHomepage: https://alidns.com/",
       "country": "China",
@@ -347,12 +270,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dnsnl-noads.alekberg.net",
-        "ipv4": "51.15.124.208",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://dnsnl-noads.alekberg.net/dns-query"
+        "ipv4": "51.15.124.208"
       },
       "description": "Resolver in Amsterdam. DoH protocol. Non-logging. Blocks ads, malware and trackers. DNSSEC enabled.",
       "country": "Netherlands",
@@ -366,12 +284,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dnsnl.alekberg.net",
-        "ipv4": "51.15.124.208",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://dnsnl.alekberg.net/dns-query"
+        "ipv4": "51.15.124.208"
       },
       "description": "Resolver in Amsterdam. DoH protocol. Non-logging, non-filtering, DNSSEC.",
       "country": "Netherlands",
@@ -385,12 +298,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dnsnl.alekberg.net",
-        "ipv6": "2001:bc8:1830:2018::1",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://dnsnl.alekberg.net/dns-query"
+        "ipv6": "2001:bc8:1830:2018::1"
       },
       "description": "Resolver in Amsterdam. DoH protocol. Non-logging, non-filtering, DNSSEC.",
       "country": "Netherlands",
@@ -403,12 +311,7 @@
       "name": "att",
       "endpoint": {
         "protocol": "https:",
-        "host": "dohtrial.att.net",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://dohtrial.att.net/dns-query"
+        "host": "dohtrial.att.net"
       },
       "description": "AT&T test DoH server."
     },
@@ -417,12 +320,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dnses-noads.alekberg.net",
-        "ipv4": "185.253.154.66",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://dnses-noads.alekberg.net/dns-query"
+        "ipv4": "185.253.154.66"
       },
       "description": "Resolver in Spain. DoH protocol. Non-logging, remove ads and malware, DNSSEC.",
       "country": "Spain",
@@ -436,12 +334,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dnses.alekberg.net",
-        "ipv4": "185.253.154.66",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://dnses.alekberg.net/dns-query"
+        "ipv4": "185.253.154.66"
       },
       "description": "Resolver in Spain. DoH protocol. Non-logging, non-filtering, DNSSEC.",
       "country": "Spain",
@@ -455,12 +348,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns.brahma.world",
-        "ipv4": "16.170.150.221",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://dns.brahma.world/dns-query"
+        "ipv4": "16.170.150.221"
       },
       "description": "DNS-over-HTTPS server. Non Logging, filters ads, trackers and malware. DNSSEC ready, QNAME Minimization, No EDNS Client-Subnet.\nHosted in Stockholm, Sweden. (https://dns.brahma.world)",
       "country": "United States",
@@ -474,12 +362,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns.brahma.world",
-        "ipv6": "2a05:d016:af8:4000:7710:6fc:bde3:fe0e",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://dns.brahma.world/dns-query"
+        "ipv6": "2a05:d016:af8:4000:7710:6fc:bde3:fe0e"
       },
       "description": "DNS-over-HTTPS server. Non Logging, filters ads, trackers and malware. DNSSEC ready, QNAME Minimization, No EDNS Client-Subnet.\nHosted in Stockholm, Sweden. (https://dns.brahma.world)",
       "country": "Sweden",
@@ -493,12 +376,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "doh.opendns.com",
-        "ipv4": "146.112.41.2",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://doh.opendns.com/dns-query"
+        "ipv4": "146.112.41.2"
       },
       "description": "Remove your DNS blind spot (DoH protocol)\nWarning: modifies your queries to include a copy of your network\naddress when forwarding them to a selection of companies and organizations.",
       "country": "United States",
@@ -512,12 +390,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "doh.opendns.com",
-        "ipv6": "2620:119:fc::2",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://doh.opendns.com/dns-query"
+        "ipv6": "2620:119:fc::2"
       },
       "description": "Cisco OpenDNS over IPv6 (DoH protocol)\nWarning: modifies your queries to include a copy of your network\naddress when forwarding them to a selection of companies and organizations.",
       "country": "United States",
@@ -532,11 +405,7 @@
         "protocol": "https:",
         "host": "dns.cloudflare.com",
         "ipv4": "1.0.0.1",
-        "port": 443,
-        "cors": true,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://dns.cloudflare.com/dns-query"
+        "cors": true
       },
       "description": "Cloudflare DNS (anycast) - aka 1.1.1.1 / 1.0.0.1",
       "country": "Australia",
@@ -551,11 +420,7 @@
         "protocol": "https:",
         "host": "family.cloudflare-dns.com",
         "ipv4": "1.0.0.3",
-        "port": 443,
-        "cors": true,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://family.cloudflare-dns.com/dns-query"
+        "cors": true
       },
       "description": "Cloudflare DNS (anycast) with malware protection and parental control - aka 1.1.1.3 / 1.0.0.3",
       "country": "Australia",
@@ -570,11 +435,7 @@
         "protocol": "https:",
         "host": "family.cloudflare-dns.com",
         "ipv6": "2606:4700:4700::1113",
-        "port": 443,
-        "cors": true,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://family.cloudflare-dns.com/dns-query"
+        "cors": true
       },
       "description": "Cloudflare DNS over IPv6 (anycast) with malware protection and parental control",
       "country": "United States",
@@ -589,11 +450,7 @@
         "protocol": "https:",
         "host": "1dot1dot1dot1.cloudflare-dns.com",
         "ipv6": "2606:4700:4700::1111",
-        "port": 443,
-        "cors": true,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://1dot1dot1dot1.cloudflare-dns.com/dns-query"
+        "cors": true
       },
       "description": "Cloudflare DNS over IPv6 (anycast)",
       "country": "United States",
@@ -608,11 +465,7 @@
         "protocol": "https:",
         "host": "security.cloudflare-dns.com",
         "ipv4": "1.0.0.2",
-        "port": 443,
-        "cors": true,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://security.cloudflare-dns.com/dns-query"
+        "cors": true
       },
       "description": "Cloudflare DNS (anycast) with malware blocking - aka 1.1.1.2 / 1.0.0.2",
       "country": "Australia",
@@ -627,11 +480,7 @@
         "protocol": "https:",
         "host": "security.cloudflare-dns.com",
         "ipv6": "2606:4700:4700::1112",
-        "port": 443,
-        "cors": true,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://security.cloudflare-dns.com/dns-query"
+        "cors": true
       },
       "description": "Cloudflare DNS over IPv6 (anycast) with malware blocking",
       "country": "United States",
@@ -646,11 +495,7 @@
         "protocol": "https:",
         "host": "freedns.controld.com",
         "path": "/p1",
-        "ipv4": "76.76.2.11",
-        "port": 443,
-        "cors": false,
-        "method": "GET",
-        "url": "https://freedns.controld.com/p1"
+        "ipv4": "76.76.2.11"
       },
       "description": "ControlD Free DNS. Take CONTROL of your Internet. Block unwanted content, bypass geo-restrictions and be more productive. DoH protocol and No logging. - https://controld.com/free-dns\nThis DNS blocks Malware domains.",
       "country": "Canada",
@@ -665,11 +510,7 @@
         "protocol": "https:",
         "host": "freedns.controld.com",
         "path": "/p2",
-        "ipv4": "76.76.2.11",
-        "port": 443,
-        "cors": false,
-        "method": "GET",
-        "url": "https://freedns.controld.com/p2"
+        "ipv4": "76.76.2.11"
       },
       "description": "ControlD Free DNS. Take CONTROL of your Internet. Block unwanted content, bypass geo-restrictions and be more productive. DoH protocol and No logging. - https://controld.com/free-dns\nThis DNS blocks Malware, Ads & Tracking domains.",
       "country": "Canada",
@@ -684,11 +525,7 @@
         "protocol": "https:",
         "host": "freedns.controld.com",
         "path": "/p3",
-        "ipv4": "76.76.2.11",
-        "port": 443,
-        "cors": false,
-        "method": "GET",
-        "url": "https://freedns.controld.com/p3"
+        "ipv4": "76.76.2.11"
       },
       "description": "ControlD Free DNS. Take CONTROL of your Internet. Block unwanted content, bypass geo-restrictions and be more productive. DoH protocol and No logging. - https://controld.com/free-dns\nThis DNS blocks Malware, Ads & Tracking and Social Networks domains.",
       "country": "Canada",
@@ -703,11 +540,7 @@
         "protocol": "https:",
         "host": "freedns.controld.com",
         "path": "/family",
-        "ipv4": "76.76.2.11",
-        "port": 443,
-        "cors": false,
-        "method": "GET",
-        "url": "https://freedns.controld.com/family"
+        "ipv4": "76.76.2.11"
       },
       "description": "ControlD Free DNS. Take CONTROL of your Internet. Block unwanted content, bypass geo-restrictions and be more productive. DoH protocol and No logging. - https://controld.com/free-dns\nThis DNS blocks Malware, Ads & Tracking, Adult Content and Drugs domains.",
       "country": "Canada",
@@ -722,11 +555,7 @@
         "protocol": "https:",
         "host": "freedns.controld.com",
         "path": "/uncensored",
-        "ipv4": "76.76.2.11",
-        "port": 443,
-        "cors": false,
-        "method": "GET",
-        "url": "https://freedns.controld.com/uncensored"
+        "ipv4": "76.76.2.11"
       },
       "description": "ControlD Free DNS. Take CONTROL of your Internet. Block unwanted content, bypass geo-restrictions and be more productive. DoH protocol and No logging. - https://controld.com/free-dns\nThis DNS unblocks censored domains from various countries.",
       "country": "Canada",
@@ -741,11 +570,7 @@
         "protocol": "https:",
         "host": "freedns.controld.com",
         "path": "/p0",
-        "ipv4": "76.76.2.11",
-        "port": 443,
-        "cors": false,
-        "method": "GET",
-        "url": "https://freedns.controld.com/p0"
+        "ipv4": "76.76.2.11"
       },
       "description": "ControlD Free DNS. Take CONTROL of your Internet. Block unwanted content, bypass geo-restrictions and be more productive. DoH protocol and No logging. - https://controld.com/free-dns\nThis is a Unfiltered DNS, no DNS record blocking or manipulation here, if you want to block Malware, Ads & Tracking or Social Network domains, use the other ControlD DNS configs.",
       "country": "Canada",
@@ -759,12 +584,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns.digitale-gesellschaft.ch",
-        "ipv4": "185.95.218.42",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://dns.digitale-gesellschaft.ch/dns-query"
+        "ipv4": "185.95.218.42"
       },
       "description": "Public DoH resolver operated by the Digital Society (https://www.digitale-gesellschaft.ch).\nHosted in Zurich, Switzerland.\nNon-logging, non-filtering, supports DNSSEC.",
       "country": "Switzerland",
@@ -778,12 +598,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns.digitale-gesellschaft.ch",
-        "ipv4": "185.95.218.43",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://dns.digitale-gesellschaft.ch/dns-query"
+        "ipv4": "185.95.218.43"
       },
       "description": "Public DoH resolver operated by the Digital Society (https://www.digitale-gesellschaft.ch).\nHosted in Zurich, Switzerland.\nNon-logging, non-filtering, supports DNSSEC.",
       "country": "Switzerland",
@@ -797,12 +612,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns.digitale-gesellschaft.ch",
-        "ipv6": "2a05:fc84::42",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://dns.digitale-gesellschaft.ch/dns-query"
+        "ipv6": "2a05:fc84::42"
       },
       "description": "Public IPv6 DoH resolver operated by the Digital Society (https://www.digitale-gesellschaft.ch).\nHosted in Zurich, Switzerland.\nNon-logging, non-filtering, supports DNSSEC.",
       "country": "Switzerland",
@@ -816,12 +626,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns.digitale-gesellschaft.ch",
-        "ipv6": "2a05:fc84::43",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://dns.digitale-gesellschaft.ch/dns-query"
+        "ipv6": "2a05:fc84::43"
       },
       "description": "Public IPv6 DoH resolver operated by the Digital Society (https://www.digitale-gesellschaft.ch).\nHosted in Zurich, Switzerland.\nNon-logging, non-filtering, supports DNSSEC.",
       "country": "Switzerland",
@@ -835,12 +640,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns1.ryan-palmer.com",
-        "ipv4": "68.183.253.200",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://dns1.ryan-palmer.com/dns-query"
+        "ipv4": "68.183.253.200"
       },
       "description": "Non-logging, non-filtering, DNSSEC DoH Server. Hosted in the UK.",
       "country": "United Kingdom",
@@ -855,11 +655,7 @@
         "protocol": "https:",
         "host": "doh.sb",
         "ipv4": "185.222.222.222",
-        "port": 443,
-        "cors": true,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://doh.sb/dns-query"
+        "cors": true
       },
       "description": "DNSSEC-enabled DoH server by https://xtom.com/\nhttps://dns.sb/doh/",
       "country": "Unknown",
@@ -874,11 +670,7 @@
         "protocol": "https:",
         "host": "doh.sb",
         "ipv6": "2a09::",
-        "port": 443,
-        "cors": true,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://doh.sb/dns-query"
+        "cors": true
       },
       "description": "DNSSEC-enabled DoH server by https://xtom.com/ - IPv6\nhttps://dns.sb/doh/",
       "country": "Unknown",
@@ -892,12 +684,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns.therifleman.name",
-        "ipv4": "172.104.206.174",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://dns.therifleman.name/dns-query"
+        "ipv4": "172.104.206.174"
       },
       "description": "DNS-over-HTTPS DNS forwarder from Mumbai, India. Blocks web and Android trackers and ads.\nIP addresses are not logged, but queries are logged for 24 hours for debugging.\nReport issues, send suggestions @ joker349 at protonmail.com.\nAlso supports DoT (for android) @ dns.therifleman.name and plain DNS @ 172.104.206.174",
       "country": "United States",
@@ -911,12 +698,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "doh.dnscrypt.uk",
-        "ipv4": "165.227.233.200",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://doh.dnscrypt.uk/dns-query"
+        "ipv4": "165.227.233.200"
       },
       "description": "DoH, no logs, uncensored, DNSSEC. Hosted in London UK on Digital Ocean\nhttps://www.dnscrypt.uk",
       "country": "United Kingdom",
@@ -930,12 +712,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "doh.dnscrypt.uk",
-        "ipv6": "2a03:b0c0:1:d0::ebe:d001",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://doh.dnscrypt.uk/dns-query"
+        "ipv6": "2a03:b0c0:1:d0::ebe:d001"
       },
       "description": "DoH, no logs, uncensored, DNSSEC. Hosted in London UK on Digital Ocean\nhttps://www.dnscrypt.uk",
       "country": "United Kingdom",
@@ -949,12 +726,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns-doh.dnsforfamily.com",
-        "ipv4": "95.217.213.94",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://dns-doh.dnsforfamily.com/dns-query"
+        "ipv4": "95.217.213.94"
       },
       "description": "(DoH Protocol) Block adult websites, gambling websites, malwares and advertisements.\nIt also enforces safe search in: Google, YouTube, Bing, DuckDuckGo and Yandex.\nSocial websites like Facebook and Instagram are not blocked. No DNS queries are logged.\nAs of December 2020 2.7 million websites are blocked and new websites are added to blacklist daily.\nCompletely free, no ads or any commercial motive. Operating for 3 years now.\nProvided by: https://dnsforfamily.com",
       "country": "Finland",
@@ -968,12 +740,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns-doh-no-safe-search.dnsforfamily.com",
-        "ipv4": "95.217.213.94",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://dns-doh-no-safe-search.dnsforfamily.com/dns-query"
+        "ipv4": "95.217.213.94"
       },
       "description": "(DoH Protocol) Block adult websites, gambling websites, malwares and advertisements.\nUnlike other dnsforfamily DNSCrypt servers, this one does not enforces safe search. So Google, YouTube, Bing, DuckDuckGo and Yandex are completely accessible without any restriction.\nSocial websites like Facebook and Instagram are not blocked. No DNS queries are logged.\nAs of December 2020 2.7 million websites are blocked and new websites are added to blacklist daily.\nCompletely free, no ads or any commercial motive. Operating for 3 years now.\nWarning: This server is incompatible with anonymization.\nProvided by: https://dnsforfamily.com",
       "country": "Finland",
@@ -988,11 +755,7 @@
         "protocol": "https:",
         "host": "dnsforge.de",
         "ipv4": "176.9.93.198",
-        "port": 443,
-        "cors": true,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://dnsforge.de/dns-query"
+        "cors": true
       },
       "description": "Public DoH resolver running with Pihole for Adblocking (https://dnsforge.de).\nNon-logging, AD-filtering, supports DNSSEC. Hosted in Germany.",
       "country": "Germany",
@@ -1005,12 +768,7 @@
       "name": "dnshome-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns.dnshome.de",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://dns.dnshome.de/dns-query"
+        "host": "dns.dnshome.de"
       },
       "description": "https://www.dnshome.de/ public resolver in Germany"
     },
@@ -1019,11 +777,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "doh.pub",
-        "port": 443,
-        "cors": true,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://doh.pub/dns-query"
+        "cors": true
       },
       "description": "A public DNS resolver in mainland China provided by DNSPod (Tencent Cloud).\nhttps://www.dnspod.cn/Products/Public.DNS?lang=en"
     },
@@ -1033,11 +787,7 @@
         "protocol": "https:",
         "host": "doh.asia.dnswarden.com",
         "path": "/adblock",
-        "ipv4": "207.148.120.244",
-        "port": 443,
-        "cors": false,
-        "method": "GET",
-        "url": "https://doh.asia.dnswarden.com/adblock"
+        "ipv4": "207.148.120.244"
       },
       "description": "Hosted in Singapore. For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com).",
       "country": "Singapore",
@@ -1052,11 +802,7 @@
         "protocol": "https:",
         "host": "doh.asia.dnswarden.com",
         "path": "/adblock",
-        "ipv6": "2001:19f0:4400:4de2:5400:3ff:fea9:d418",
-        "port": 443,
-        "cors": false,
-        "method": "GET",
-        "url": "https://doh.asia.dnswarden.com/adblock"
+        "ipv6": "2001:19f0:4400:4de2:5400:3ff:fea9:d418"
       },
       "description": "Hosted in Singapore. For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com).",
       "country": "United States",
@@ -1071,11 +817,7 @@
         "protocol": "https:",
         "host": "doh.asia.dnswarden.com",
         "path": "/adultfilter",
-        "ipv4": "207.148.120.244",
-        "port": 443,
-        "cors": false,
-        "method": "GET",
-        "url": "https://doh.asia.dnswarden.com/adultfilter"
+        "ipv4": "207.148.120.244"
       },
       "description": "Hosted in Singapore. For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com).",
       "country": "Singapore",
@@ -1090,11 +832,7 @@
         "protocol": "https:",
         "host": "doh.asia.dnswarden.com",
         "path": "/adultfilter",
-        "ipv6": "2001:19f0:4400:4de2:5400:3ff:fea9:d418",
-        "port": 443,
-        "cors": false,
-        "method": "GET",
-        "url": "https://doh.asia.dnswarden.com/adultfilter"
+        "ipv6": "2001:19f0:4400:4de2:5400:3ff:fea9:d418"
       },
       "description": "Hosted in Singapore. For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com).",
       "country": "United States",
@@ -1109,11 +847,7 @@
         "protocol": "https:",
         "host": "doh.asia.dnswarden.com",
         "path": "/uncensored",
-        "ipv4": "207.148.120.244",
-        "port": 443,
-        "cors": false,
-        "method": "GET",
-        "url": "https://doh.asia.dnswarden.com/uncensored"
+        "ipv4": "207.148.120.244"
       },
       "description": "Hosted in Singapore. For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com).",
       "country": "Singapore",
@@ -1128,11 +862,7 @@
         "protocol": "https:",
         "host": "doh.asia.dnswarden.com",
         "path": "/uncensored",
-        "ipv6": "2001:19f0:4400:4de2:5400:3ff:fea9:d418",
-        "port": 443,
-        "cors": false,
-        "method": "GET",
-        "url": "https://doh.asia.dnswarden.com/uncensored"
+        "ipv6": "2001:19f0:4400:4de2:5400:3ff:fea9:d418"
       },
       "description": "Hosted in Singapore. For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com).",
       "country": "United States",
@@ -1146,12 +876,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "doh.eu.dnswarden.com",
-        "ipv4": "45.76.88.20",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://doh.eu.dnswarden.com/dns-query"
+        "ipv4": "45.76.88.20"
       },
       "description": "Hosted in Germany. For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com).",
       "country": "Germany",
@@ -1165,12 +890,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "doh.eu.dnswarden.com",
-        "ipv6": "2001:19f0:6c01:2b17:5400:3ff:fea9:d42f",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://doh.eu.dnswarden.com/dns-query"
+        "ipv6": "2001:19f0:6c01:2b17:5400:3ff:fea9:d42f"
       },
       "description": "Hosted in Germany. For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com).",
       "country": "Germany",
@@ -1184,12 +904,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "doh.eu.dnswarden.com",
-        "ipv4": "45.76.88.20",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://doh.eu.dnswarden.com/dns-query"
+        "ipv4": "45.76.88.20"
       },
       "description": "Hosted in Germany. For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com).",
       "country": "Germany",
@@ -1203,12 +918,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "doh.eu.dnswarden.com",
-        "ipv6": "2001:19f0:6c01:2b17:5400:3ff:fea9:d42f",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://doh.eu.dnswarden.com/dns-query"
+        "ipv6": "2001:19f0:6c01:2b17:5400:3ff:fea9:d42f"
       },
       "description": "Hosted in Germany. For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com).",
       "country": "Germany",
@@ -1222,12 +932,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "doh.eu.dnswarden.com",
-        "ipv4": "45.76.88.20",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://doh.eu.dnswarden.com/dns-query"
+        "ipv4": "45.76.88.20"
       },
       "description": "Hosted in Germany. For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com).",
       "country": "Germany",
@@ -1241,12 +946,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "doh.eu.dnswarden.com",
-        "ipv6": "2001:19f0:6c01:2b17:5400:3ff:fea9:d42f",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://doh.eu.dnswarden.com/dns-query"
+        "ipv6": "2001:19f0:6c01:2b17:5400:3ff:fea9:d42f"
       },
       "description": "Hosted in Germany. For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com).",
       "country": "Germany",
@@ -1260,12 +960,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "doh.us.dnswarden.com",
-        "ipv4": "144.202.69.149",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://doh.us.dnswarden.com/dns-query"
+        "ipv4": "144.202.69.149"
       },
       "description": "Hosted in USA (Dallas) . For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com).",
       "country": "United States",
@@ -1279,12 +974,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "doh.us.dnswarden.com",
-        "ipv6": "2001:19f0:6401:d6e:5400:3ff:fea9:d45e",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://doh.us.dnswarden.com/dns-query"
+        "ipv6": "2001:19f0:6401:d6e:5400:3ff:fea9:d45e"
       },
       "description": "Hosted in USA (Dallas) . For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com).",
       "country": "United States",
@@ -1298,12 +988,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "doh.us.dnswarden.com",
-        "ipv4": "144.202.69.149",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://doh.us.dnswarden.com/dns-query"
+        "ipv4": "144.202.69.149"
       },
       "description": "Hosted in USA (Dallas) . For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com).",
       "country": "United States",
@@ -1317,12 +1002,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "doh.us.dnswarden.com",
-        "ipv6": "2001:19f0:6401:d6e:5400:3ff:fea9:d45e",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://doh.us.dnswarden.com/dns-query"
+        "ipv6": "2001:19f0:6401:d6e:5400:3ff:fea9:d45e"
       },
       "description": "Hosted in USA (Dallas) . For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com).",
       "country": "United States",
@@ -1336,12 +1016,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "doh.us.dnswarden.com",
-        "ipv4": "144.202.69.149",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://doh.us.dnswarden.com/dns-query"
+        "ipv4": "144.202.69.149"
       },
       "description": "Hosted in USA (Dallas) . For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com).",
       "country": "United States",
@@ -1355,12 +1030,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "doh.us.dnswarden.com",
-        "ipv6": "2001:19f0:6401:d6e:5400:3ff:fea9:d45e",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://doh.us.dnswarden.com/dns-query"
+        "ipv6": "2001:19f0:6401:d6e:5400:3ff:fea9:d45e"
       },
       "description": "Hosted in USA (Dallas) . For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com).",
       "country": "United States",
@@ -1375,11 +1045,7 @@
         "protocol": "https:",
         "host": "doh-ch.blahdns.com",
         "ipv4": "45.91.92.121",
-        "port": 443,
-        "cors": true,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://doh-ch.blahdns.com/dns-query"
+        "cors": true
       },
       "description": "Blocks ad and Tracking, no Logging, DNSSEC, Hosted in Switzerland. By https://blahdns.com/",
       "country": "Netherlands",
@@ -1394,11 +1060,7 @@
         "protocol": "https:",
         "host": "doh-ch.blahdns.com",
         "ipv6": "2a0e:dc0:6:23::2",
-        "port": 443,
-        "cors": true,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://doh-ch.blahdns.com/dns-query"
+        "cors": true
       },
       "description": "Blocks ad and Tracking, no Logging, DNSSEC, Hosted in Switzerland. By https://blahdns.com/",
       "country": "Netherlands",
@@ -1413,10 +1075,7 @@
         "protocol": "https:",
         "host": "doh.cleanbrowsing.org",
         "path": "/doh/adult-filter/",
-        "port": 443,
-        "cors": true,
-        "method": "GET",
-        "url": "https://doh.cleanbrowsing.org/doh/adult-filter/"
+        "cors": true
       },
       "description": "Blocks access to all adult, pornographic and explicit sites. It does\nnot block proxy or VPNs, nor mixed-content sites. Sites like Reddit\nare allowed. Google and Bing are set to the Safe Mode.\nBy https://cleanbrowsing.org/"
     },
@@ -1426,10 +1085,7 @@
         "protocol": "https:",
         "host": "doh.cleanbrowsing.org",
         "path": "/doh/family-filter/",
-        "port": 443,
-        "cors": true,
-        "method": "GET",
-        "url": "https://doh.cleanbrowsing.org/doh/family-filter/"
+        "cors": true
       },
       "description": "Blocks access to all adult, pornographic and explicit sites. It also\nblocks proxy and VPN domains that are used to bypass the filters.\nMixed content sites (like Reddit) are also blocked. Google, Bing and\nYoutube are set to the Safe Mode.\nBy https://cleanbrowsing.org/"
     },
@@ -1439,10 +1095,7 @@
         "protocol": "https:",
         "host": "doh.cleanbrowsing.org",
         "path": "/doh/security-filter/",
-        "port": 443,
-        "cors": true,
-        "method": "GET",
-        "url": "https://doh.cleanbrowsing.org/doh/security-filter/"
+        "cors": true
       },
       "description": "Block access to phishing, malware and malicious domains. It does not block adult content.\nBy https://cleanbrowsing.org/"
     },
@@ -1452,11 +1105,7 @@
         "protocol": "https:",
         "host": "doh.crypto.sx",
         "ipv4": "104.21.6.78",
-        "port": 443,
-        "cors": true,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://doh.crypto.sx/dns-query"
+        "cors": true
       },
       "description": "DNS-over-HTTPS server. Anycast, no logs, no censorship, DNSSEC.\nBackend hosted by Scaleway, globally cached via Cloudflare.\nMaintained by Frank Denis.",
       "country": "United States",
@@ -1471,11 +1120,7 @@
         "protocol": "https:",
         "host": "doh-ipv6.crypto.sx",
         "ipv6": "2606:4700:3036::ac43:869d",
-        "port": 443,
-        "cors": true,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://doh-ipv6.crypto.sx/dns-query"
+        "cors": true
       },
       "description": "DNS-over-HTTPS server accessible over IPv6. Anycast, no logs, no censorship, DNSSEC.\nBackend hosted by Scaleway, globally cached via Cloudflare.\nMaintained by Frank Denis.",
       "country": "United States",
@@ -1490,11 +1135,7 @@
         "protocol": "https:",
         "host": "doh-de.blahdns.com",
         "ipv4": "78.46.244.143",
-        "port": 443,
-        "cors": true,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://doh-de.blahdns.com/dns-query"
+        "cors": true
       },
       "description": "Blocks ad and Tracking, no Logging, DNSSEC, Hosted in Germany. By https://blahdns.com/",
       "country": "Germany",
@@ -1509,11 +1150,7 @@
         "protocol": "https:",
         "host": "doh-de.blahdns.com",
         "ipv6": "2a01:4f8:c17:ec67::1",
-        "port": 443,
-        "cors": true,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://doh-de.blahdns.com/dns-query"
+        "cors": true
       },
       "description": "Blocks ad and Tracking, no Logging, DNSSEC, Hosted in Germany. By https://blahdns.com/",
       "country": "Germany",
@@ -1528,11 +1165,7 @@
         "protocol": "https:",
         "host": "doh-fi.blahdns.com",
         "ipv4": "95.216.212.177",
-        "port": 443,
-        "cors": true,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://doh-fi.blahdns.com/dns-query"
+        "cors": true
       },
       "description": "Blocks ad and Tracking, no Logging, DNSSEC, Hosted in Finland. By https://blahdns.com/",
       "country": "Finland",
@@ -1547,11 +1180,7 @@
         "protocol": "https:",
         "host": "doh-fi.blahdns.com",
         "ipv6": "2a01:4f9:c010:43ce::1",
-        "port": 443,
-        "cors": true,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://doh-fi.blahdns.com/dns-query"
+        "cors": true
       },
       "description": "Blocks ad and Tracking, no Logging, DNSSEC, Hosted in Finland. By https://blahdns.com/",
       "country": "Germany",
@@ -1561,29 +1190,12 @@
       }
     },
     {
-      "name": "doh-ibksturm",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "ibksturm.synology.me",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://ibksturm.synology.me/dns-query"
-      },
-      "description": "DoH & DoT Server, No Logging, No Filters, DNSSEC\nRunning privately by ibksturm in Thurgau, Switzerland"
-    },
-    {
       "name": "doh-jp-blahdns",
       "endpoint": {
         "protocol": "https:",
         "host": "doh-jp.blahdns.com",
         "ipv4": "139.162.112.47",
-        "port": 443,
-        "cors": true,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://doh-jp.blahdns.com/dns-query"
+        "cors": true
       },
       "description": "Blocks ad and Tracking, no Logging, DNSSEC, Hosted in Japan. By https://blahdns.com/",
       "country": "Japan",
@@ -1598,11 +1210,7 @@
         "protocol": "https:",
         "host": "doh-jp.blahdns.com",
         "ipv6": "2400:8902::f03c:92ff:fe27:344b",
-        "port": 443,
-        "cors": true,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://doh-jp.blahdns.com/dns-query"
+        "cors": true
       },
       "description": "Blocks ad and Tracking, no Logging, DNSSEC, Hosted in Japan. By https://blahdns.com/",
       "country": "Japan",
@@ -1616,12 +1224,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "doh.ffmuc.net",
-        "ipv4": "5.1.66.255",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://doh.ffmuc.net/dns-query"
+        "ipv4": "5.1.66.255"
       },
       "description": "An open (non-logging, non-filtering, non-censoring) DoH resolver operated by Freifunk Munich with nodes in DE.\nhttps://ffmuc.net/",
       "country": "Germany",
@@ -1635,12 +1238,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "doh.ffmuc.net",
-        "ipv4": "185.150.99.255",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://doh.ffmuc.net/dns-query"
+        "ipv4": "185.150.99.255"
       },
       "description": "An open (non-logging, non-filtering, non-censoring) DoH resolver operated by Freifunk Munich with nodes in DE.\nhttps://ffmuc.net/",
       "country": "Germany",
@@ -1654,12 +1252,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "doh.ffmuc.net",
-        "ipv6": "2001:678:e68:f000::",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://doh.ffmuc.net/dns-query"
+        "ipv6": "2001:678:e68:f000::"
       },
       "description": "An open (non-logging, non-filtering, non-censoring) DoH resolver operated by Freifunk Munich with nodes in DE.\nhttps://ffmuc.net/"
     },
@@ -1668,12 +1261,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "doh.ffmuc.net",
-        "ipv6": "2001:678:ed0:f000::",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://doh.ffmuc.net/dns-query"
+        "ipv6": "2001:678:ed0:f000::"
       },
       "description": "An open (non-logging, non-filtering, non-censoring) DoH resolver operated by Freifunk Munich with nodes in DE.\nhttps://ffmuc.net/"
     },
@@ -1682,12 +1270,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "doh.tiarap.org",
-        "ipv4": "104.21.65.60",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://doh.tiarap.org/dns-query"
+        "ipv4": "104.21.65.60"
       },
       "description": "Non-Logging DNS-over-HTTPS server, cached via Cloudflare.\nFilters out ads, trackers and malware, NO ECS, supports DNSSEC.",
       "country": "United States",
@@ -1701,12 +1284,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "doh.tiarap.org",
-        "ipv6": "2606:4700:3034::6815:413c",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://doh.tiarap.org/dns-query"
+        "ipv6": "2606:4700:3034::6815:413c"
       },
       "description": "Non-Logging DNS-over-HTTPS server (IPv6), cached via Cloudflare.\nFilters out ads, trackers and malware, NO ECS, supports DNSSEC.",
       "country": "United States",
@@ -1721,11 +1299,7 @@
         "protocol": "https:",
         "host": "dns.google",
         "ipv4": "8.8.8.8",
-        "port": 443,
-        "cors": true,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://dns.google/dns-query"
+        "cors": true
       },
       "description": "Google DNS (anycast)",
       "country": "United States",
@@ -1740,11 +1314,7 @@
         "protocol": "https:",
         "host": "dns.google",
         "ipv6": "2001:4860:4860::8888",
-        "port": 443,
-        "cors": true,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://dns.google/dns-query"
+        "cors": true
       },
       "description": "Google DNS (anycast)",
       "country": "United States",
@@ -1759,11 +1329,7 @@
         "protocol": "https:",
         "host": "query.hdns.io",
         "ipv4": "103.196.38.200",
-        "port": 443,
-        "cors": true,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://query.hdns.io/dns-query"
+        "cors": true
       },
       "description": "HDNS is a public DNS resolver that supports Handshake domains.\nhttps://www.hdns.io",
       "country": "United States",
@@ -1777,12 +1343,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "ordns.he.net",
-        "ipv4": "74.82.42.42",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://ordns.he.net/dns-query"
+        "ipv4": "74.82.42.42"
       },
       "description": "Hurricane Electric DoH server (anycast)\nUnknown logging policy.",
       "country": "United States",
@@ -1796,12 +1357,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "doh.tiar.app",
-        "ipv4": "174.138.29.175",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://doh.tiar.app/dns-query"
+        "ipv4": "174.138.29.175"
       },
       "description": "Non-Logging DNS-over-HTTPS server located in Singapore.\nFilters out ads, trackers and malware, supports DNSSEC, provided by id-gmail.",
       "country": "Singapore",
@@ -1815,12 +1371,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "doh.tiar.app",
-        "ipv6": "2400:6180:0:d0::5f73:4001",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://doh.tiar.app/dns-query"
+        "ipv6": "2400:6180:0:d0::5f73:4001"
       },
       "description": "Non-Logging DNS-over-HTTPS (IPv6) server located in Singapore.\nFilters out ads, trackers and malware, supports DNSSEC, provided by id-gmail.",
       "country": "Singapore",
@@ -1834,12 +1385,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "public.dns.iij.jp",
-        "ipv4": "103.2.57.5",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://public.dns.iij.jp/dns-query"
+        "ipv4": "103.2.57.5"
       },
       "description": "DoH server operated by Internet Initiative Japan in Tokyo.\nhttps://www.iij.ad.jp/",
       "country": "Japan",
@@ -1853,12 +1399,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "jp.tiar.app",
-        "ipv4": "172.104.93.80",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://jp.tiar.app/dns-query"
+        "ipv4": "172.104.93.80"
       },
       "description": "Non-Logging, Non-Filtering DNS-over-HTTPS server in Japan.\nNo ECS, Support DNSSEC",
       "country": "Japan",
@@ -1872,12 +1413,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "jp.tiar.app",
-        "ipv6": "2400:8902::f03c:91ff:feda:c514",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://jp.tiar.app/dns-query"
+        "ipv6": "2400:8902::f03c:91ff:feda:c514"
       },
       "description": "Non-Logging, Non-Filtering DNS-over-HTTPS (IPv6) server in Japan.\nNo ECS, Support DNSSEC",
       "country": "Japan",
@@ -1890,12 +1426,7 @@
       "name": "jp.tiarap.org",
       "endpoint": {
         "protocol": "https:",
-        "host": "jp.tiarap.org",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://jp.tiarap.org/dns-query"
+        "host": "jp.tiarap.org"
       },
       "description": "DNS-over-HTTPS Server. Non-Logging, Non-Filtering, No ECS, Support DNSSEC.\nCached via Cloudflare."
     },
@@ -1904,12 +1435,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "jp.tiarap.org",
-        "ipv6": "2606:4700:3036::681b:96aa",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://jp.tiarap.org/dns-query"
+        "ipv6": "2606:4700:3036::681b:96aa"
       },
       "description": "DNS-over-HTTPS Server (IPv6). Non-Logging, Non-Filtering, No ECS, Support DNSSEC.\nCached via Cloudflare.",
       "country": "United States",
@@ -1923,12 +1449,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "doh.libredns.gr",
-        "ipv4": "116.202.176.26",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://doh.libredns.gr/dns-query"
+        "ipv4": "116.202.176.26"
       },
       "description": "DoH server in Germany. No logging, but no DNS padding and no DNSSEC support.\nhttps://libredns.gr/",
       "country": "Germany",
@@ -1942,12 +1463,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "doh.libredns.gr",
-        "ipv4": "116.202.176.26",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://doh.libredns.gr/dns-query"
+        "ipv4": "116.202.176.26"
       },
       "description": "DoH server in Germany. No logging, but no DNS padding and no DNSSEC support.\nno ads version, uses StevenBlack's host list: https://github.com/StevenBlack/hosts",
       "country": "Germany",
@@ -1963,10 +1479,7 @@
         "host": "chewbacca.meganerd.nl",
         "path": "/doh",
         "ipv4": "136.244.97.114",
-        "port": 443,
-        "cors": true,
-        "method": "GET",
-        "url": "https://chewbacca.meganerd.nl/doh"
+        "cors": true
       },
       "description": "DoH server by MegaNerd.nl (IPv4) - https://meganerd.nl/encrypted-dns-server\nHosted in Amsterdam (AMS1), The Netherlands.\nNon-logging, non-filtering, supports DNSSEC.",
       "country": "Netherlands",
@@ -1982,10 +1495,7 @@
         "host": "chewbacca.meganerd.nl",
         "path": "/doh",
         "ipv6": "2001:19f0:5001:cbb:5400:03ff:fe07:f70d",
-        "port": 443,
-        "cors": true,
-        "method": "GET",
-        "url": "https://chewbacca.meganerd.nl/doh"
+        "cors": true
       },
       "description": "DoH server by MegaNerd.nl (IPv6) - https://meganerd.nl/encrypted-dns-server\nHosted in Amsterdam (AMS1), The Netherlands.\nNon-logging, non-filtering, supports DNSSEC.",
       "country": "United States",
@@ -1999,12 +1509,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "anycsast.dns.nextdns.io",
-        "ipv4": "95.179.134.211",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://anycsast.dns.nextdns.io/dns-query"
+        "ipv4": "95.179.134.211"
       },
       "description": "NextDNS is a cloud-based private DNS service that gives you full control\nover what is allowed and what is blocked on the Internet.\nDNSSEC, Anycast, Non-logging, NoFilters\nhttps://www.nextdns.io/",
       "country": "Netherlands",
@@ -2018,12 +1523,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "anycsast.dns.nextdns.io",
-        "ipv6": "2a07:a8c0::",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://anycsast.dns.nextdns.io/dns-query"
+        "ipv6": "2a07:a8c0::"
       },
       "description": "Connects to NextDNS over IPv6.\nNextDNS is a cloud-based private DNS service that gives you full control\nover what is allowed and what is blocked on the Internet.\nDNSSEC, Anycast, Non-logging, NoFilters\nhttps://www.nextdns.io/",
       "country": "United States",
@@ -2037,11 +1537,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns.nextdns.io",
-        "path": "/dnscrypt-proxy",
-        "port": 443,
-        "cors": false,
-        "method": "GET",
-        "url": "https://dns.nextdns.io/dnscrypt-proxy"
+        "path": "/dnscrypt-proxy"
       },
       "description": "NextDNS is a cloud-based private DNS service that gives you full control\nover what is allowed and what is blocked on the Internet.\nhttps://www.nextdns.io/\nTo select the server location, the \"-ultralow\" variant relies on bootstrap servers\ninstead of anycast."
     },
@@ -2051,11 +1547,7 @@
         "protocol": "https:",
         "host": "dns.njal.la",
         "ipv4": "95.215.19.53",
-        "port": 443,
-        "cors": true,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://dns.njal.la/dns-query"
+        "cors": true
       },
       "description": "Non-logging DoH server in Sweden operated by Njalla.\nhttps://dns.njal.la/",
       "country": "Sweden",
@@ -2069,11 +1561,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "odoh.cloudflare-dns.com",
-        "port": 443,
-        "cors": true,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://odoh.cloudflare-dns.com/dns-query"
+        "cors": true
       },
       "description": "Cloudflare ODoH server.\nhttps://cloudflare.com"
     },
@@ -2082,37 +1570,16 @@
       "endpoint": {
         "protocol": "https:",
         "host": "odoh.crypto.sx",
-        "port": 443,
-        "cors": true,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://odoh.crypto.sx/dns-query"
+        "cors": true
       },
       "description": "ODoH target server. Anycast, no logs.\nBackend hosted by Scaleway. Maintained by Frank Denis."
-    },
-    {
-      "name": "odoh-ibksturm",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "ibksturm.synology.me",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://ibksturm.synology.me/dns-query"
-      },
-      "description": "ODoH target server hosted by Ibksturm. No logs, No Filter, DNSSEC."
     },
     {
       "name": "odoh-id-gmail",
       "endpoint": {
         "protocol": "https:",
         "host": "doh.tiar.app",
-        "path": "/odoh",
-        "port": 443,
-        "cors": false,
-        "method": "GET",
-        "url": "https://doh.tiar.app/odoh"
+        "path": "/odoh"
       },
       "description": "ODoH target server. Based in Singapore, no logs.\nFilter ads, trackers and malware."
     },
@@ -2121,11 +1588,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "jp.tiar.app",
-        "path": "/odoh",
-        "port": 443,
-        "cors": false,
-        "method": "GET",
-        "url": "https://jp.tiar.app/odoh"
+        "path": "/odoh"
       },
       "description": "ODoH target server. no logs."
     },
@@ -2134,11 +1597,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "jp.tiarap.org",
-        "path": "/odoh",
-        "port": 443,
-        "cors": false,
-        "method": "GET",
-        "url": "https://jp.tiarap.org/odoh"
+        "path": "/odoh"
       },
       "description": "ODoH target server via Cloudflare, no logs."
     },
@@ -2147,11 +1606,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "odoh-target.alekberg.net",
-        "port": 443,
-        "cors": true,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://odoh-target.alekberg.net/dns-query"
+        "cors": true
       },
       "description": "Oblivious DoH target server in The Netherlands. No logs, No filter, DNSSEC."
     },
@@ -2160,11 +1615,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "odoh-target-es.alekberg.net",
-        "port": 443,
-        "cors": true,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://odoh-target-es.alekberg.net/dns-query"
+        "cors": true
       },
       "description": "Oblivious DoH target server in Spain. No logs, No filter, DNSSEC."
     },
@@ -2173,11 +1624,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "odoh-target-noads.alekberg.net",
-        "port": 443,
-        "cors": true,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://odoh-target-noads.alekberg.net/dns-query"
+        "cors": true
       },
       "description": "Oblivious DoH target server in The Netherlands. No logs, filter ads and malware, DNSSEC."
     },
@@ -2186,11 +1633,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "odoh-target-noads-se.alekberg.net",
-        "port": 443,
-        "cors": true,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://odoh-target-noads-se.alekberg.net/dns-query"
+        "cors": true
       },
       "description": "Oblivious DoH target server in Sweden. No logs, filter ads and malware, DNSSEC."
     },
@@ -2199,11 +1642,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "odoh-target-se.alekberg.net",
-        "port": 443,
-        "cors": true,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://odoh-target-se.alekberg.net/dns-query"
+        "cors": true
       },
       "description": "Oblivious DoH target server in Sweden. No logs, No filter, DNSSEC."
     },
@@ -2211,12 +1650,7 @@
       "name": "odoh-resolver4.dns.openinternet.io",
       "endpoint": {
         "protocol": "https:",
-        "host": "resolver4.dns.openinternet.io",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://resolver4.dns.openinternet.io/dns-query"
+        "host": "resolver4.dns.openinternet.io"
       },
       "description": "ODoH target server. no logs, no filter, DNSSEC.\nRunning on dedicated hardware colocated at Sonic.net in Santa Rosa, CA in the United States.\nUses Sonic's recusrive DNS servers as upstream resolvers (but is not affiliated with Sonic\nin any way). Provided by https://openinternet.io"
     },
@@ -2225,11 +1659,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "doh.tiarap.org",
-        "path": "/odoh",
-        "port": 443,
-        "cors": false,
-        "method": "GET",
-        "url": "https://doh.tiarap.org/odoh"
+        "path": "/odoh"
       },
       "description": "ODoH target server via Cloudflare, no logs.\nFilter ads, trackers and malware."
     },
@@ -2238,12 +1668,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "opennic.i2pd.xyz",
-        "ipv6": "2001:470:1f15:b80::53",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://opennic.i2pd.xyz/dns-query"
+        "ipv6": "2001:470:1f15:b80::53"
       },
       "description": "DOH • DNSSEC • OpenNIC • Non-logging • Uncensored - hosted on OVH - https://opennic.i2pd.xyz/\nLocation: Paris, France\nMaintained by R4SAS - https://github.com/r4sas",
       "country": "Russia",
@@ -2258,11 +1683,7 @@
         "protocol": "https:",
         "host": "doh-2.seby.io",
         "ipv4": "139.99.222.72",
-        "port": 443,
-        "cors": true,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://doh-2.seby.io/dns-query"
+        "cors": true
       },
       "description": "DNSSEC • OpenNIC • Non-logging • Uncensored - hosted on ovh.com.au\nMaintained by publicarray - https://dns.seby.io",
       "country": "Australia",
@@ -2277,11 +1698,7 @@
         "protocol": "https:",
         "host": "puredns.org",
         "ipv4": "146.190.6.13",
-        "port": 443,
-        "cors": true,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://puredns.org/dns-query"
+        "cors": true
       },
       "description": "Public uncensored DNS resolver in Singapore - https://puredns.org\n** Only available in Indonesia and Singapore **",
       "country": "United States",
@@ -2296,11 +1713,7 @@
         "protocol": "https:",
         "host": "puredns.org",
         "ipv6": "2400:6180:0:d0::1111:c001",
-        "port": 443,
-        "cors": true,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://puredns.org/dns-query"
+        "cors": true
       },
       "description": "Public uncensored DNS resolver in Singapore - https://puredns.org\n** Only available in Indonesia and Singapore **",
       "country": "Singapore",
@@ -2314,11 +1727,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns.twnic.tw",
-        "port": 443,
-        "cors": true,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://dns.twnic.tw/dns-query"
+        "cors": true
       },
       "description": "DNSSEC-aware public resolver by the Taiwan Network Information Center (TWNIC)\nhttps://101.101.101.101/index_en.html"
     },
@@ -2327,12 +1736,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns11.quad9.net",
-        "ipv4": "149.112.112.11",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://dns11.quad9.net/dns-query"
+        "ipv4": "149.112.112.11"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter/ecs 9.9.9.11 - 149.112.112.11",
       "country": "United States",
@@ -2346,12 +1750,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns9.quad9.net",
-        "ipv4": "149.112.112.9",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://dns9.quad9.net/dns-query"
+        "ipv4": "149.112.112.9"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
       "country": "United States",
@@ -2365,12 +1764,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns12.quad9.net",
-        "ipv4": "9.9.9.12",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://dns12.quad9.net/dns-query"
+        "ipv4": "9.9.9.12"
       },
       "description": "Quad9 (anycast) no-dnssec/no-log/no-filter/ecs 9.9.9.12 - 149.112.112.12",
       "country": "United States",
@@ -2384,12 +1778,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns10.quad9.net",
-        "ipv4": "149.112.112.10",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://dns10.quad9.net/dns-query"
+        "ipv4": "149.112.112.10"
       },
       "description": "Quad9 (anycast) no-dnssec/no-log/no-filter 9.9.9.10 - 149.112.112.10",
       "country": "United States",
@@ -2403,12 +1792,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns11.quad9.net",
-        "ipv4": "9.9.9.11",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://dns11.quad9.net/dns-query"
+        "ipv4": "9.9.9.11"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter/ecs 9.9.9.11 - 149.112.112.11",
       "country": "United States",
@@ -2422,12 +1806,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns9.quad9.net",
-        "ipv4": "149.112.112.9",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://dns9.quad9.net/dns-query"
+        "ipv4": "149.112.112.9"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
       "country": "United States",
@@ -2441,12 +1820,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns12.quad9.net",
-        "ipv4": "9.9.9.12",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://dns12.quad9.net/dns-query"
+        "ipv4": "9.9.9.12"
       },
       "description": "Quad9 (anycast) no-dnssec/no-log/no-filter/ecs 9.9.9.12 - 149.112.112.12",
       "country": "United States",
@@ -2460,12 +1834,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns10.quad9.net",
-        "ipv4": "149.112.112.10",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://dns10.quad9.net/dns-query"
+        "ipv4": "149.112.112.10"
       },
       "description": "Quad9 (anycast) no-dnssec/no-log/no-filter 9.9.9.10 - 149.112.112.10",
       "country": "United States",
@@ -2479,12 +1848,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns11.quad9.net",
-        "ipv6": "2620:fe::11",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://dns11.quad9.net/dns-query"
+        "ipv6": "2620:fe::11"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter/ecs 2620:fe::11 - 2620:fe::fe:11",
       "country": "United States",
@@ -2498,12 +1862,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns9.quad9.net",
-        "ipv6": "2620:fe::fe:9",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://dns9.quad9.net/dns-query"
+        "ipv6": "2620:fe::fe:9"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter 2620:fe::fe - 2620:fe::9 - 2620:fe::fe:9",
       "country": "United States",
@@ -2517,12 +1876,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns12.quad9.net",
-        "ipv6": "2620:fe::fe:12",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://dns12.quad9.net/dns-query"
+        "ipv6": "2620:fe::fe:12"
       },
       "description": "Quad9 (anycast) no-dnssec/no-log/no-filter/ecs 2620:fe::12 - 2620:fe::fe:12",
       "country": "United States",
@@ -2536,12 +1890,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns10.quad9.net",
-        "ipv6": "2620:fe::10",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://dns10.quad9.net/dns-query"
+        "ipv6": "2620:fe::10"
       },
       "description": "Quad9 (anycast) no-dnssec/no-log/no-filter 2620:fe::10 - 2620:fe::fe:10",
       "country": "United States",
@@ -2555,12 +1904,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns11.quad9.net",
-        "ipv6": "2620:fe::fe:11",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://dns11.quad9.net/dns-query"
+        "ipv6": "2620:fe::fe:11"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter/ecs 2620:fe::11 - 2620:fe::fe:11",
       "country": "United States",
@@ -2574,12 +1918,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns9.quad9.net",
-        "ipv6": "2620:fe::fe:9",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://dns9.quad9.net/dns-query"
+        "ipv6": "2620:fe::fe:9"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter 2620:fe::fe - 2620:fe::9 - 2620:fe::fe:9",
       "country": "United States",
@@ -2593,12 +1932,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns12.quad9.net",
-        "ipv6": "2620:fe::fe:12",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://dns12.quad9.net/dns-query"
+        "ipv6": "2620:fe::fe:12"
       },
       "description": "Quad9 (anycast) no-dnssec/no-log/no-filter/ecs 2620:fe::12 - 2620:fe::fe:12",
       "country": "United States",
@@ -2612,12 +1946,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns10.quad9.net",
-        "ipv6": "2620:fe::10",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://dns10.quad9.net/dns-query"
+        "ipv6": "2620:fe::10"
       },
       "description": "Quad9 (anycast) no-dnssec/no-log/no-filter 2620:fe::10 - 2620:fe::fe:10",
       "country": "United States",
@@ -2630,12 +1959,7 @@
       "name": "safesurfer-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "doh.safesurfer.io",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://doh.safesurfer.io/dns-query"
+        "host": "doh.safesurfer.io"
       },
       "description": "Family safety focused blocklist for over 2 million adult sites, as well as phishing and malware and more.\nFree to use, paid for customizing blocking for more categories+sites and viewing usage at my.safesurfer.io. Logs taken for viewing\nusage, data never sold - https://safesurfer.io"
     },
@@ -2644,12 +1968,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dnsse-noads.alekberg.net",
-        "ipv4": "45.153.187.96",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://dnsse-noads.alekberg.net/dns-query"
+        "ipv4": "45.153.187.96"
       },
       "description": "Resolver in Stockholm, Sweden. DoH server. Non-logging, remove ads and malware, DNSSEC.",
       "country": "Bulgaria",
@@ -2663,12 +1982,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dnsse.alekberg.net",
-        "ipv4": "45.153.187.96",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://dnsse.alekberg.net/dns-query"
+        "ipv4": "45.153.187.96"
       },
       "description": "Resolver in Stockholm, Sweden. DoH server. Non-logging, non-filtering, DNSSEC.",
       "country": "Bulgaria",
@@ -2682,12 +1996,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dnsse.alekberg.net",
-        "ipv6": "2a09:cd42:f:425b::1",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://dnsse.alekberg.net/dns-query"
+        "ipv6": "2a09:cd42:f:425b::1"
       },
       "description": "Resolver in Stockholm, Sweden. DoH server. Non-logging, non-filtering, DNSSEC.",
       "country": "Sweden",
@@ -2700,12 +2009,7 @@
       "name": "switch",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns.switch.ch",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://dns.switch.ch/dns-query"
+        "host": "dns.switch.ch"
       },
       "description": "Public DoH service provided by SWITCH in Switzerland\nhttps://www.switch.ch\nProvides protection against malware, but does not block ads."
     },
@@ -2714,12 +2018,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "unicast.uncensoreddns.org",
-        "ipv4": "89.233.43.71",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://unicast.uncensoreddns.org/dns-query"
+        "ipv4": "89.233.43.71"
       },
       "description": "Also known as censurfridns.\nDoH, no logs, no filter, DNSSEC, unicast hosted in Denmark - https://blog.uncensoreddns.org",
       "country": "Denmark",
@@ -2733,12 +2032,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "unicast.uncensoreddns.org",
-        "ipv6": "2a01:3a0:53:53::",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://unicast.uncensoreddns.org/dns-query"
+        "ipv6": "2a01:3a0:53:53::"
       },
       "description": "Also known as censurfridns.\nDoH, no logs, no filter, DNSSEC, unicast hosted in Denmark - https://blog.uncensoreddns.org",
       "country": "Denmark",
@@ -2752,12 +2046,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "anycast.uncensoreddns.org",
-        "ipv4": "91.239.100.100",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://anycast.uncensoreddns.org/dns-query"
+        "ipv4": "91.239.100.100"
       },
       "description": "Also known as censurfridns.\nDoH, no logs, no filter, DNSSEC, anycast - https://blog.uncensoreddns.org",
       "country": "Denmark",
@@ -2771,12 +2060,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "anycast.uncensoreddns.org",
-        "ipv6": "2001:67c:28a4::",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://anycast.uncensoreddns.org/dns-query"
+        "ipv6": "2001:67c:28a4::"
       },
       "description": "Also known as censurfridns.\nDoH, no logs, no filter, DNSSEC, anycast - https://blog.uncensoreddns.org",
       "country": "Denmark",
@@ -2790,12 +2074,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "v.dnscrypt.uk",
-        "ipv4": "136.244.65.20",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://v.dnscrypt.uk/dns-query"
+        "ipv4": "136.244.65.20"
       },
       "description": "DoH, no logs, uncensored, DNSSEC. Hosted in London UK on Digital Ocean\nhttps://www.dnscrypt.uk",
       "country": "United Kingdom",
@@ -2809,12 +2088,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "v.dnscrypt.uk",
-        "ipv6": "2a05:f480:1000:967:5400:3ff:fe7e:55d3",
-        "port": 443,
-        "cors": false,
-        "path": "/dns-query",
-        "method": "GET",
-        "url": "https://v.dnscrypt.uk/dns-query"
+        "ipv6": "2a05:f480:1000:967:5400:3ff:fe7e:55d3"
       },
       "description": "DoH, no logs, uncensored, DNSSEC. Hosted in London UK on Digital Ocean\nhttps://www.dnscrypt.uk",
       "country": "France",

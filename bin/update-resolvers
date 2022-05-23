@@ -1,0 +1,292 @@
+#!/usr/bin/env node
+const { DNSStamp } = require('@leichtgewicht/dnsstamp')
+const dnsPacket = require('@leichtgewicht/dns-packet')
+const { request, queryDns, loadJSON } = require('../lib.cjs')
+const { toEndpoint } = require('../common.cjs')
+const { writeFile } = require('fs/promises')
+const { join } = require('path')
+const { inspect } = require('util')
+const { URL } = require('url')
+
+function byName (a, b) {
+  if (a.name > b.name) return 1
+  if (a.name < b.name) return -1
+  return 0
+}
+
+function removeBraces (ipv6) {
+  return /^\[(.+)\]$/.exec(ipv6)[1]
+}
+
+function toResolver (dnscryptResolver) {
+  const { stamp, name, description, country, location, proto } = dnscryptResolver
+  const parsed = DNSStamp.parse(stamp)
+  const {
+    path,
+    pk,
+    port
+  } = parsed
+  let endpoint
+  if (proto === 'DNSCrypt') {
+    if (dnscryptResolver.ipv6) {
+      endpoint = {
+        protocol: 'udp6:',
+        ipv6: removeBraces(dnscryptResolver.addrs[0])
+      }
+    } else {
+      endpoint = {
+        protocol: 'udp4:',
+        ipv4: dnscryptResolver.addrs[0]
+      }
+    }
+    if (pk) {
+      endpoint.pk = pk
+    }
+    if (port !== 53) {
+      endpoint.port = port ?? 443
+    }
+  } else {
+    endpoint = {
+      protocol: 'https:',
+      host: dnscryptResolver.addrs[0] || parsed.host
+    }
+    if (path && path !== '/dns-query') {
+      endpoint.path = path
+    }
+    if (port && port !== 443) {
+      endpoint.port = port
+    }
+    const ip = dnscryptResolver.addrs[1]
+    if (ip) {
+      if (ip.startsWith('[')) {
+        endpoint.ipv6 = removeBraces(ip)
+      } else {
+        endpoint.ipv4 = ip
+      }
+    }
+  }
+  const resolver = {
+    name,
+    endpoint,
+    description,
+    country,
+    location
+  }
+  if (!dnscryptResolver.nofilter) {
+    resolver.filter = true
+  }
+  if (!dnscryptResolver.nolog) {
+    resolver.log = true
+  }
+  return resolver
+}
+const TIMEOUT = 5000
+const query = {
+  flags: dnsPacket.RECURSION_DESIRED,
+  type: 'query',
+  id: '\x7f\xfe\xff\xfe' /* to test + and / encoding */,
+  questions: [{ type: 'A', name: 'google.com' }]
+}
+const packet = dnsPacket.encode(query)
+
+async function verifyDoHMethod (endpoint, method) {
+  try {
+    const { data, response } = await request(
+      endpoint.url,
+      method,
+      packet,
+      TIMEOUT
+    )
+    const cors = response.headers['access-control-allow-origin'] === '*'
+    return {
+      success: { data, cors }
+    }
+  } catch (error) {
+    return { error }
+  }
+}
+
+async function verifyDoH (resolver) {
+  const endpoint = toEndpoint(resolver.endpoint)
+  const [get, post] = await Promise.all([
+    verifyDoHMethod(endpoint, 'GET'),
+    verifyDoHMethod(endpoint, 'POST')
+  ])
+  if (!get.success && !post.success) {
+    throw get.error
+  }
+  const usePost = !get.success || (post.success.cors && !get.success.cors)
+  const { success } = usePost ? post : get
+  if (usePost) {
+    resolver.endpoint.method = 'POST'
+  }
+  if (success.cors) {
+    resolver.endpoint.cors = true
+  }
+  const [ipv4, ipv6] = await Promise.all([
+    resolver.endpoint.ipv4
+      ? verifyDoHMethod(
+        toEndpoint({
+          ...resolver.endpoint,
+          host: resolver.endpoint.ipv4,
+          port: 443
+        }),
+        resolver.endpoint.method || 'GET'
+      )
+      : Promise.resolve({}),
+    resolver.endpoint.ipv6
+      ? verifyDoHMethod(
+        toEndpoint({
+          ...resolver.endpoint,
+          host: resolver.endpoint.ipv6,
+          port: 443
+        }),
+        resolver.endpoint.method || 'GET'
+      )
+      : Promise.resolve({})
+  ])
+  if (ipv4.error) {
+    console.log(`[WARN] [${resolver.name}] Removing ipv4 (${resolver.endpoint.ipv4}) due to error when testing: ${inspect(reduceError(ipv4.error), false, 100, true)}`)
+    resolver.endpoint.ipv4 = undefined
+  }
+  if (ipv6.error) {
+    console.log(`[WARN] [${resolver.name}] Removing ipv6 (${resolver.endpoint.ipv6}) due to error when testing: ${inspect(reduceError(ipv6.error), false, 100, true)}`)
+    resolver.endpoint.ipv6 = undefined
+  }
+  return success.data
+}
+
+async function verifyDns (resolver) {
+  const data = await queryDns(
+    resolver.endpoint.protocol,
+    resolver.endpoint.ipv4 || resolver.endpoint.ipv6,
+    resolver.endpoint.port ?? 53,
+    resolver.endpoint.pk,
+    query,
+    TIMEOUT
+  )
+  return data
+}
+
+function reduceError (err) {
+  if (typeof err === 'string') {
+    return {
+      message: err
+    }
+  }
+  try {
+    const json = JSON.stringify(err)
+    if (json !== '{}') {
+      return JSON.parse(json)
+    }
+  } catch (e) {}
+  const error = {
+    message: err.message || String(err)
+  }
+  if (err.code) {
+    error.code = err.code
+  }
+  return error
+}
+
+async function verifyResover (resolver) {
+  let error = null
+  try {
+    const data = await (
+      resolver.endpoint.protocol === 'https:'
+        ? verifyDoH(resolver)
+        : verifyDns(resolver)
+    )
+    const decoded = dnsPacket.decode(data)
+    if (decoded.answers[0].name !== 'google.com') {
+      error = {
+        message: 'Google.com fetch failed'
+      }
+    }
+  } catch (err) {
+    error = reduceError(err)
+  }
+  if (error) {
+    console.log(`[SKIP] ${resolver.name} ─── ${inspect(error, { sorted: true, depth: 7, colors: true })}`)
+    return false
+  } else {
+    console.log(`[USE] ${resolver.name}`)
+    return true
+  }
+}
+
+function combineDoHResolvers (resolvers) {
+  const final = []
+  const dohByHost = {}
+  for (const resolver of resolvers) {
+    if (resolver.endpoint.protocol !== 'https:') {
+      final.push(resolver)
+      continue
+    }
+    const { host, path, port } = resolver.endpoint
+    const key = JSON.stringify({ host, path, port })
+    const existing = dohByHost[key]
+    if (!existing) {
+      dohByHost[key] = resolver
+      continue
+    }
+    const { base, merge } = existing.name < resolver.name
+      ? { base: existing, merge: resolver }
+      : { base: resolver, merge: existing }
+
+    base.endpoint.ipv4 = base.endpoint.ipv4 || merge.endpoint.ipv4
+    base.endpoint.ipv6 = base.endpoint.ipv6 || merge.endpoint.ipv6
+    console.log(`[LOG] [${merge.name}] Merging into ${base.name}`)
+    dohByHost[key] = base
+  }
+  return final.concat(Object.values(dohByHost)).sort(byName)
+}
+
+async function main () {
+  const { default: filter } = await import('p-filter')
+  const { data: dnscryptResolvers } = await loadJSON(new URL('https://download.dnscrypt.info:443/resolvers-list/json/public-resolvers.json'), false, 10000)
+
+  const resolvers = await filter(
+    combineDoHResolvers(dnscryptResolvers.map(toResolver)),
+    verifyResover,
+    { concurrency: 10 }
+  )
+
+  await Promise.all([
+    writeFile(
+      join(__dirname, '..', 'data', 'resolvers.json'),
+      JSON.stringify({
+        $schema: 'https://martinheidegger.github.io/dns-query/resolvers.schema.json',
+        resolvers
+      }, null, 2)
+    ),
+    writeFile(
+      join(__dirname, '..', 'resolvers.mjs'),
+      `import { toEndpoint } from 'dns-query/common.js'
+
+const resolvers = ${JSON.stringify(resolvers, null, 2)}.map(function (resolver) {
+  resolver.endpoint = toEndpoint(Object.assign({ name: resolver.name }, resolver.endpoint))
+  return resolver
+})
+const endpoints = resolvers.map(resolver => resolver.endpoint)
+export const lookup = {
+  resolvers,
+  resolverByName: resolvers.reduce((byName, resolver) => {
+    byName[resolver.name] = resolver
+    return byName
+  }, {}),
+  endpoints,
+  endpointByName: endpoints.reduce((byName, endpoint) => {
+    byName[endpoint.name] = endpoint
+    return byName
+  }, {})
+}
+`
+    )
+  ])
+}
+
+main().catch(err => {
+  console.error(err.stack || err)
+  process.exit(1)
+})

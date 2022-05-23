@@ -12,8 +12,29 @@ This package provides simple function to make DoH queries both in node and the b
 ## Important Note before getting started
 
 By default `dns-query` uses well-known public dns-over-https servers to execute
-queries! These servers come with caveats, please look at [`./endpoints.md`](./endpoints.md)
-for more information.
+queries [automatically compiled][] by the data from the [DNSCrypt][] project.
+
+[automatically compiled]: https://github.com/martinheidegger/dns-query/actions/workflows/update.yml
+[DNSCrypt]: https://dnscrypt.info/
+
+The npm package comes with the list that was/is current on the time of the publication.
+It will will try to automatically download the list from [the dns-query website][] unless
+you set the `.update` property on a `Session` object.
+
+[the dns-query website]: https://martinheidegger.github.io/dns-query/resolvers.json
+
+These servers come with caveats that you should be aware of:
+
+- A server may filter, log or limit the requests it receives!
+- Filtering can be useful in case you want to avoid malware/ads/adult-content.
+- Logging may be required in some countries and limiting may be part of a business model.
+- Furthermore the different endpoints may or may not be distributed around the globe,
+    making requests slower/faster depending on the client's location.
+- Not all endpoints supply CORS headers which means that the list is severly reduced if you use this
+    library in the browser.
+
+If you are presenting this library to an end-user, you may want to allow them to decide what endpoint
+they want to use as it has privacy and usage implications!
 
 ## DNS support
 
@@ -33,6 +54,8 @@ endpoints = [cloudflare, google, opendns] // Use predefined, well-known endpoint
 endpoints = ['cloudflare', 'google', 'opendns'] // Use predefined, well-known endpoints by their name
 endpoints = ['https://cloudflare-dns.com/dns-query'] // Use a custom endpoint
 endpoints = [{ host: 'cloudflare-dns.com' }] // Specify using properties
+endpoints = (endpoint) => endpoint.protocol === 'https:' // Use a filter against the well-known endpoints
+endpoints = Promise.resolve('doh') // The endpoints can also be a promise
 try {
   const { answers } = await query({
     questions: [
@@ -95,35 +118,48 @@ Examples:
 For an endpoint to work, it needs to satisfy this interface:
 
 ```typescript
-interface EndpointProps {
-  /* https is the default for DoH endpoints, udp4:/upd6: for regular dns endpoints and http for debug only! defaults to https: */
-  protocol?: 'http:' | 'https:' | 'udp4:' | 'udp6:';
+type EndpointProps = {
+  /* https is the default for DoH endpoints and http for debug only! If you don't specify a protocol, https is assumed */
+  protocol: 'https:' | 'http:'
+  /* https port, defaults to 443 for https, 80 for http */
+  port?: number | string | null
   /* Host to look up */
-  host: string;
-  /* Path, prefixed with /, defaults to /dns-query for the http/https protocol, ignored for udp */
-  path?: string;
-  /* https port, defaults to 443 for https, 80 for http and 53 for udp*/
-  port?: number;
-  /* true, if endpoint is known to log requests, defaults to false */
-  log?: boolean;
+  host: string
+  /* Known IPV4 address that can be used for the lookup */
+  ipv4?: string
+  /* Known IPV6 address that can be used for the lookup */
+  ipv6?: string
   /* true, if endpoint supports http/https CORS headers, defaults to false */
-  cors?: boolean;
-  /* true, if endpoint is known to filters/redirects DNS packets, defaults to false */
-  filter?: boolean;
-  /* link to documentation, if available */
-  docs?: string;
-  /* Known geographical location */
-  location?: string;
+  cors?: boolean
+  /* Path, prefixed with /, defaults to /dns-query for the http/https protocol */
+  path?: string
   /* Method to request in case of http/https, defaults to GET */
-  method?: 'post' | 'Post' | 'POST' | 'get' | 'Get' | 'GET';
+  method?: 'POST' | 'GET'
+} | {
+  protocol: 'udp4:'
+  /* ipv4 endpoint to connect-to */
+  ipv4: string
+  /* https port, defaults to 53; 443 if pk is present */
+  port?: number | string | null
+  /* dnscrypt public key */
+  pk?: string | null
+} | {
+  protocol: 'udp6:'
+  /* ipv4 endpoint to connect-to */
+  ipv6: string
+  /* https port, defaults to 53; 443 if pk is present */
+  port?: number | string | null
+  /* dnscrypt public key */
+  pk?: string | null
 }
 ```
 
 ### String endpoints
 
 Instead of passing an object you can also pass a string. If the string matches the name
-of one of the [endpoints](./endpoints.md), that endpoint will be used, else it needs
-to be a url, with a possible `[post]` or `[get]` suffix to indicate the method.
+of one of the endpoints, that endpoint will be used. If it doesnt match any endpoint,
+then it will be parsed using the `parseEndpoint` method understands an URL like structure
+with additional properties defined like flags (`[<name>]`).
 
 _Examples:_
 

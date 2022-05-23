@@ -1,10 +1,7 @@
 #!/usr/bin/env node
-'use strict'
-require('../endpoints-json.js')
 const http = require('http')
 const spawn = require('child_process').spawn
-const dnspacket = require('dns-packet')
-const ngrok = require('ngrok')
+const dnspacket = require('@leichtgewicht/dns-packet')
 const os = require('os')
 const responseA = dnspacket.encode({
   type: 'response',
@@ -39,6 +36,7 @@ function onListen () {
 
 function connectNgrok (port) {
   console.log('# Connecting to ngrok')
+  const ngrok = require('ngrok')
   ngrok.connect(port).then(onSpawn, onError)
 
   function onSpawn (url) {
@@ -90,7 +88,8 @@ function handleRequest (req, res) {
   }
   log.push({ method: req.method, url: req.url })
   if (req.method !== 'POST' && req.method !== 'OPTIONS') {
-    return res.writeHead(405).end('Wrong Method.')
+    res.writeHead(405)
+    return res.end('Wrong Method.')
   }
   if (req.url === '/text') {
     return res.end('text')
@@ -108,34 +107,42 @@ function handleRequest (req, res) {
     return res.end(responseA)
   }
   if (req.url === '/404') {
-    return res.writeHead(404).end('Not Found.')
+    res.writeHead(404)
+    return res.end('Not Found.')
   }
   if (req.url === '/500') {
-    return res.writeHead(500).end('Internal Error.')
+    res.writeHead(500)
+    return res.end('Internal Error.')
   }
   if (req.url === '/301-1') {
-    return res.writeHead(301, { Location: url + '/301-1-end'})
+    res.writeHead(301, { Location: url + '/301-1-end' })
+    return res.end('ok')
   }
   if (req.url === '/301-1-end') {
     return res.end(responseA)
   }
   if (req.url === '/302-1') {
-    return res.writeHead(302, { Location: url + '/302-1-end'})
+    res.writeHead(302, { Location: url + '/302-1-end' })
+    return res.end('ok')
   }
   if (req.url === '/302-1-end') {
     return res.end(responseA)
   }
   if (req.url === '/302-2') {
-    return res.writeHead(302, { Location: url + '/302-1'})
+    res.writeHead(302, { Location: url + '/302-1' })
+    return res.end('ok')
   }
   if (req.url === '/incomplete') {
-    return res.writeHead(200, { 'Content-Length': 99999 }).end('not-everything')
+    res.writeHead(200, { 'Content-Length': 99999 })
+    return res.end('not-everything')
   }
   if (req.url === '/timeout') {
-    return res.writeHead(200, { 'Content-Length': 99999 }).write('not-everything')
+    res.writeHead(200, { 'Content-Length': 99999 })
+    return res.write('not-everything')
   }
   if (req.url === '/empty') {
-    return res.writeHead(200).end()
+    res.writeHead(200)
+    return res.end()
   }
   if (req.url === '/infinite') {
     const write = () => {

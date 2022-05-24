@@ -99,16 +99,6 @@
       "filter": true
     },
     {
-      "name": "odoh-jp.tiar.app",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "jp.tiar.app",
-        "path": "/odoh",
-        "method": "POST"
-      },
-      "description": "ODoH target server. no logs."
-    },
-    {
       "name": "odoh-jp.tiarap.org",
       "endpoint": {
         "protocol": "https:",
@@ -181,6 +171,15 @@
       },
       "description": "ODoH target server via Cloudflare, no logs.\nFilter ads, trackers and malware.",
       "filter": true
+    },
+    {
+      "name": "quad101",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.twnic.tw",
+        "cors": true
+      },
+      "description": "DNSSEC-aware public resolver by the Taiwan Network Information Center (TWNIC)\nhttps://101.101.101.101/index_en.html"
     },
     {
       "name": "safesurfer-doh",

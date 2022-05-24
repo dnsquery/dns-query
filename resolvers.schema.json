@@ -56,7 +56,7 @@
                     "description": "well-known ipv6 address for the host"
                   }
                 },
-                "required": ["protocol", "host", "method"]
+                "required": ["protocol", "host"]
               },
               {
                 "type": "object",

@@ -689,6 +689,14 @@
       "filter": true
     },
     {
+      "name": "doh-ibksturm",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "ibksturm.synology.me"
+      },
+      "description": "DoH & DoT Server, No Logging, No Filters, DNSSEC\nRunning privately by ibksturm in Thurgau, Switzerland"
+    },
+    {
       "name": "doh-jp-blahdns",
       "endpoint": {
         "protocol": "https:",
@@ -773,6 +781,20 @@
         "long": -97.822
       },
       "log": true
+    },
+    {
+      "name": "id-gmail-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "doh.tiar.app"
+      },
+      "description": "Non-Logging DNS-over-HTTPS server located in Singapore.\nFilters out ads, trackers and malware, supports DNSSEC, provided by id-gmail.",
+      "country": "Singapore",
+      "location": {
+        "lat": 1.2929,
+        "long": 103.8547
+      },
+      "filter": true
     },
     {
       "name": "iij",
@@ -883,16 +905,6 @@
       "description": "Cloudflare ODoH server.\nhttps://cloudflare.com"
     },
     {
-      "name": "odoh-id-gmail",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh.tiar.app",
-        "path": "/odoh"
-      },
-      "description": "ODoH target server. Based in Singapore, no logs.\nFilter ads, trackers and malware.",
-      "filter": true
-    },
-    {
       "name": "odoh-jp.tiar.app",
       "endpoint": {
         "protocol": "https:",
@@ -974,6 +986,19 @@
       },
       "description": "ODoH target server via Cloudflare, no logs.\nFilter ads, trackers and malware.",
       "filter": true
+    },
+    {
+      "name": "opennic-R4SAS-doh-ipv6",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "opennic.i2pd.xyz"
+      },
+      "description": "DOH • DNSSEC • OpenNIC • Non-logging • Uncensored - hosted on OVH - https://opennic.i2pd.xyz/\nLocation: Paris, France\nMaintained by R4SAS - https://github.com/r4sas",
+      "country": "Russia",
+      "location": {
+        "lat": 51.5626,
+        "long": 46.0271
+      }
     },
     {
       "name": "publicarray-au2-doh",

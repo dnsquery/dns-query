@@ -64,10 +64,10 @@ function getSocket (protocol) {
   return socket6
 }
 
-export function queryDns (protocol, host, port, pk, query, timeout, signal) {
+export function queryDns (endpoint, query, timeout, signal) {
   return new Promise((resolve, reject) => {
-    const socket = getSocket(protocol)
-    if (pk) {
+    const socket = getSocket(endpoint.protocol)
+    if (endpoint.pk) {
       // TODO: add dnscrypt support to @leichtgewicht/dns-socket
       return reject(new Error('dnscrypt servers currently not supported'))
     }
@@ -81,7 +81,7 @@ export function queryDns (protocol, host, port, pk, query, timeout, signal) {
       if (err) return reject(err)
       resolve(res)
     }
-    const requestId = socket.query(query, port, host, done)
+    const requestId = socket.query(query, endpoint.port, endpoint.ipv4 || endpoint.ipv6, done)
     if (signal) {
       signal.addEventListener('abort', onAbort)
     }
@@ -109,7 +109,14 @@ function requestRaw (url, method, body, timeout, abortSignal, headers) {
         abortSignal.removeEventListener('abort', onabort)
       }
       if (error) {
-        reject(error)
+        if (response) {
+          resolve({
+            error,
+            response
+          })
+        } else {
+          reject(error)
+        }
       } else {
         resolve({
           data,

@@ -1,13 +1,11 @@
-'use strict'
-const test = require('fresh-tape')
-const dohQuery = require('..')
+import test from 'fresh-tape'
+import AbortController from 'abort-controller'
+import * as dohQuery from 'dns-query'
+import { TimeoutError } from 'dns-query/common.js'
+import XHR from 'xhr2'
 const query = dohQuery.query
 const Endpoint = dohQuery.Endpoint
-const parseEndpoints = dohQuery.parseEndpoints
 const isBrowser = typeof window !== 'undefined'
-const XHR = require('xhr2')
-const AbortController = require('abort-controller')
-const { TimeoutError } = require('../common.cjs')
 
 const LOCAL_ENDPOINT = {
   protocol: process.env.TEST_HTTPS === 'true' ? 'https:' : 'http:',
@@ -29,14 +27,15 @@ test('Abort before start (doh)', function (t) {
     }
   )
 })
+
 test('Abort before start (dns)', {
   skip: isBrowser
 }, function (t) {
   const c = new AbortController()
   c.abort()
   return query(
-    { questions: [{ type: 'A', name: 'google.com' }], endpoints: 'dns' },
-    { signal: c.signal }
+    { questions: [{ type: 'A', name: 'google.com' }] },
+    { signal: c.signal, endpoints: 'dns' }
   ).then(
     failSuccess(t),
     function (err) {
@@ -44,8 +43,9 @@ test('Abort before start (dns)', {
     }
   )
 })
+
 test('local /text causes ResponseError, with retries=0, once!', function (t) {
-  return getLog().then(localQuery.bind(null, '/text')).then(
+  return getLog().then(function () { return localQuery('/text') }).then(
     failSuccess(t),
     function (err) {
       t.equals(err.name, 'ResponseError')
@@ -67,6 +67,7 @@ test('local /text causes ResponseError, with retries=0, once!', function (t) {
     }
   )
 })
+
 test('local /text causes ResponseError, with retries=3, several times', function (t) {
   return localQuery('/text', { retries: 3 }).then(
     failSuccess(t),
@@ -90,6 +91,7 @@ test('local /text causes ResponseError, with retries=3, several times', function
     }
   )
 })
+
 test('local /dns-packet endpoint', function (t) {
   return getLog().then(localQuery.bind(null, '/dns-packet')).then(
     function (data) {
@@ -115,6 +117,7 @@ test('local /dns-packet endpoint', function (t) {
     }
   )
 })
+
 test('local /404 causes StatusError', function (t) {
   return localQuery('/404').then(
     failSuccess(t),
@@ -125,6 +128,7 @@ test('local /404 causes StatusError', function (t) {
     }
   )
 })
+
 test('local /500 causes StatusError', function (t) {
   return localQuery('/500').then(
     failSuccess(t),
@@ -133,6 +137,7 @@ test('local /500 causes StatusError', function (t) {
     }
   )
 })
+
 test('aborting /infinite requests while running (doh)', function (t) {
   const c = new AbortController()
   const p = localQuery('/infinite', { signal: c.signal })
@@ -151,6 +156,7 @@ test('aborting /infinite requests while running (doh)', function (t) {
     }
   )
 })
+
 test('aborting requests while running (dns)', {
   skip: isBrowser
 }, function (t) {
@@ -163,12 +169,12 @@ test('aborting requests while running (dns)', {
       if (err.name === 'AbortError') {
         t.pass('Aborted')
       } else {
-        console.log(err.stack)
         t.fail('Error')
       }
     }
   )
 })
+
 test('processing incomplete output', { timeout: 10000 }, function (t) {
   return localQuery('/incomplete', { timeout: 200 }).then(
     failSuccess(t),
@@ -177,6 +183,7 @@ test('processing incomplete output', { timeout: 10000 }, function (t) {
     }
   )
 })
+
 test('processing timeout', { timeout: 2000 }, function (t) {
   const timeout = 120
   return localQuery('/timeout', { timeout }).then(
@@ -187,10 +194,11 @@ test('processing timeout', { timeout: 2000 }, function (t) {
     }
   )
 })
+
 test('randomness of endpoint choice', function (t) {
   const paths = ['/dns-packet', '/dns-packet-b', '/dns-packet-c', '/dns-packet-d']
   return getLog().then(function () {
-    return Promise.all((new Array(100)).map(function () {
+    return Promise.all(Array.from(new Array(100).keys()).map(function () {
       return localQuery(paths)
     }))
   })
@@ -206,6 +214,7 @@ test('randomness of endpoint choice', function (t) {
       })
     })
 })
+
 test('empty data treated as response error', function (t) {
   return localQuery('/empty').then(
     failSuccess(t),
@@ -214,6 +223,7 @@ test('empty data treated as response error', function (t) {
     }
   )
 })
+
 test('infinite retries', function (t) {
   const c = new AbortController()
   setTimeout(c.abort.bind(c), 800)
@@ -227,6 +237,7 @@ test('infinite retries', function (t) {
     t.ok(data.length > 2, data.length + ' requests') // There should be at least ~400 requests, using 2 to account for slow computers/connections
   })
 })
+
 test('timeout on udp6 sockets', {
   skip: isBrowser
 }, function (t) {
@@ -237,31 +248,100 @@ test('timeout on udp6 sockets', {
     }
   )
 })
+
 test('parsing of endpoints', function (t) {
-  const endpoints = dohQuery.endpoints
-  t.deepEquals(parseEndpoints([endpoints.google]), [endpoints.google])
-  t.deepEquals(parseEndpoints(['google', 'cloudflare']), [dohQuery.endpoints.google, dohQuery.endpoints.cloudflare])
-  t.deepEquals(parseEndpoints([{ protocol: 'https:', host: 'abcd.com' }]), [new Endpoint({ protocol: 'https:', host: 'abcd.com' })])
-  t.deepEquals(parseEndpoints(['https://abcd.com']), [new Endpoint({ protocol: 'https:', host: 'abcd.com' })])
-  t.deepEquals(parseEndpoints(['https://abcd.com:8443/']), [new Endpoint({ protocol: 'https:', host: 'abcd.com', port: 8443, path: '/' })])
-  t.deepEquals(parseEndpoints(['http://foo.com:123/ygga [post]']), [new Endpoint({ protocol: 'http:', host: 'foo.com', port: 123, path: '/ygga', method: 'post' })])
-  t.deepEquals(parseEndpoints(['http://foo.com/ygga/fuga [get]']), [new Endpoint({ protocol: 'http:', host: 'foo.com', path: '/ygga/fuga', method: 'get' })])
-  t.deepEquals(parseEndpoints(['foo.com:8443/ygga/fuga [get]']), [new Endpoint({ protocol: 'https:', host: 'foo.com', port: 8443, path: '/ygga/fuga', method: 'get' })])
-  t.deepEquals(parseEndpoints(['1.1.1.1']), [new Endpoint({ protocol: 'https:', host: '1.1.1.1' })])
-  t.deepEquals(parseEndpoints(['::ffff:ff00']), [new Endpoint({ protocol: 'https:', host: '::ffff:ff00' })])
-  t.deepEquals(parseEndpoints(['ffff:ff00:0000:00ff:f000:000f:f0f0:0f0f:53']), [new Endpoint({ protocol: 'https:', host: 'ffff:ff00:0000:00ff:f000:000f:f0f0:0f0f', port: 53 })])
-  t.deepEquals(parseEndpoints(['udp://1.1.1.1']), [new Endpoint({ protocol: 'udp4:', host: '1.1.1.1' })])
-  t.deepEquals(parseEndpoints(['udp4://1.1.1.1']), [new Endpoint({ protocol: 'udp4:', host: '1.1.1.1' })])
-  t.deepEquals(parseEndpoints(['udp://1.1.1.1:53']), [new Endpoint({ protocol: 'udp4:', host: '1.1.1.1', port: 53 })])
-  t.deepEquals(parseEndpoints(['udp://ffff:ff00:0000:00ff:f000:000f:f0f0:0f0f:53']), [new Endpoint({ protocol: 'udp6:', host: 'ffff:ff00:0000:00ff:f000:000f:f0f0:0f0f', port: 53 })])
-  t.deepEquals(parseEndpoints([]), [])
-  t.throws(function () { parseEndpoints('hello') }, /needs to be iterable/i)
-  t.throws(function () { parseEndpoints({}) }, /needs to be iterable/i)
-  t.throws(function () { parseEndpoints(['xx://funny']) }, /unsupported protocol/)
-  t.throws(function () { parseEndpoints([{ protocol: 'https:' }]) }, /host "undefined"/)
-  t.throws(function () { parseEndpoints([{ protocol: 'https:', host: 'hi', port: false }]) }, /needs to be a number/)
-  t.end()
+  const r = new dohQuery.Resolver({
+    update: false
+  })
+  return r.wellknown().then(function (wellknown) {
+    const endpoints = wellknown.endpointByName
+    return Promise.resolve(null)
+      .then(function () {
+        const fixtures = [
+          { input: [endpoints.google], expected: [endpoints.google] },
+          { input: ['google', 'cloudflare'], expected: [endpoints.google, endpoints.cloudflare] },
+          { input: [{ protocol: 'https:', host: 'abcd.com' }], expected: [new Endpoint({ protocol: 'https:', host: 'abcd.com' })] },
+          { input: ['https://abcd.com'], expected: [new Endpoint({ protocol: 'https:', host: 'abcd.com' })] },
+          { input: ['https://abcd.com:8443/'], expected: [new Endpoint({ protocol: 'https:', host: 'abcd.com', port: 8443, path: '/' })] },
+          { input: ['http://foo.com:123/ygga [post]'], expected: [new Endpoint({ protocol: 'http:', host: 'foo.com', port: 123, path: '/ygga', method: 'post' })] },
+          { input: ['http://foo.com/ygga/fuga [get]'], expected: [new Endpoint({ protocol: 'http:', host: 'foo.com', path: '/ygga/fuga', method: 'get' })] },
+          { input: ['foo.com:8443/ygga/fuga [get]'], expected: [new Endpoint({ protocol: 'https:', host: 'foo.com', port: 8443, path: '/ygga/fuga', method: 'get' })] },
+          { input: ['1.1.1.1'], expected: [new Endpoint({ protocol: 'https:', host: '1.1.1.1' })] },
+          { input: ['::ffff:ff00'], expected: [new Endpoint({ protocol: 'https:', host: '::ffff:ff00' })] },
+          { input: ['ffff:ff00:0000:00ff:f000:000f:f0f0:0f0f:53'], expected: [new Endpoint({ protocol: 'https:', host: 'ffff:ff00:0000:00ff:f000:000f:f0f0:0f0f', port: 53 })] },
+          { input: ['udp://1.1.1.1'], expected: [new Endpoint({ protocol: 'udp4:', ipv4: '1.1.1.1' })] },
+          { input: ['udp4://1.1.1.1'], expected: [new Endpoint({ protocol: 'udp4:', ipv4: '1.1.1.1' })] },
+          { input: ['udp://1.1.1.1:53'], expected: [new Endpoint({ protocol: 'udp4:', ipv4: '1.1.1.1', port: 53 })] },
+          { input: ['udp://ffff:ff00:0000:00ff:f000:000f:f0f0:0f0f:53'], expected: [new Endpoint({ protocol: 'udp6:', ipv6: 'ffff:ff00:0000:00ff:f000:000f:f0f0:0f0f', port: 53 })] },
+          {
+            input: (function * () {
+              yield 'google'
+              yield 'cloudflare'
+            })(),
+            expected: [endpoints.google, endpoints.cloudflare]
+          },
+          {
+            input: function (endpoint) {
+              return endpoint.name === 'google'
+            },
+            expected: [endpoints.google]
+          },
+          {
+            input: 'dns',
+            expected: wellknown.endpoints.filter(function (endpoint) {
+              return endpoint.protocol === 'udp4:' || endpoint.protocol === 'upd6:'
+            })
+          },
+          {
+            input: 'doh',
+            expected: wellknown.endpoints.filter(function (endpoint) {
+              return endpoint.protocol === 'http:' || endpoint.protocol === 'https:'
+            })
+          },
+          { input: Promise.resolve(['google']), expected: [endpoints.google] },
+          { input: ['google'], expected: [endpoints.google] },
+          { input: [], expected: [] }
+        ]
+        return Promise.all(fixtures.map(function (fixture, index) {
+          return dohQuery.loadEndpoints(r, fixture.input).catch(err => {
+            return Object.assign(err, { fixture, index })
+          })
+        })).then(function (results) {
+          results.forEach(function (res, index) {
+            const fixture = fixtures[index]
+            t.equals(res.length, fixture.expected.length)
+            res.forEach(function (resEntry, resIndex) {
+              const fixtureEntry = fixture.expected[resIndex]
+              t.deepEquals(resEntry, fixtureEntry, `#${index}[${resIndex}] ${resEntry} ?? ${fixtureEntry}`)
+            })
+          })
+          t.pass('fixtures done.')
+        })
+      })
+      .then(function () {
+        const fixtures = [
+          { input: 'hello', expected: /needs to be iterable/i },
+          { input: {}, expected: /needs to be iterable/i },
+          { input: ['xx://funny'], expected: /unsupported protocol/ },
+          { input: [{ protocol: 'https:' }], expected: /host "undefined"/ },
+          { input: [{ protocol: 'https:', host: 'hi', port: false }], expected: /needs to be a number/ }
+        ]
+        return Promise.all(fixtures.map(function (fixture) {
+          return dohQuery.loadEndpoints(r, fixture.input).then(
+            failSuccess(t),
+            err => Promise.resolve(err)
+          )
+        })).then(function (results) {
+          results.forEach(function (error, index) {
+            const fixture = fixtures[index]
+            t.match(error.message, fixture.expected, `error #${index} ... ${fixture.expected}`)
+          })
+          t.pass('errors done.')
+        })
+      })
+  })
 })
+
 test('dns query using the default servers', {
   skip: isBrowser
 }, function (t) {
@@ -328,7 +408,7 @@ function localQuery (paths, opts) {
     { questions: [{ type: 'A', name: 'google.com' }] },
     Object.assign(
       {
-        endpoints: paths.map(function (path) { return Object.assign({ path: path }, LOCAL_ENDPOINT) }),
+        endpoints: paths.map(function (path) { return Object.assign({ path }, LOCAL_ENDPOINT) }),
         retries: 0
       },
       opts

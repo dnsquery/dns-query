@@ -96,7 +96,7 @@ For an endpoint to work, it needs to satisfy this interface:
 
 ```typescript
 interface EndpointProps {
-  /* https is the default for DoH endpoints, udp4:/upd6: for regular dns endpoints and http for debug only! defaults to https: */
+  /* https is the default for DoH endpoints, udp4:/udp6: for regular dns endpoints and http for debug only! defaults to https: */
   protocol?: 'http:' | 'https:' | 'udp4:' | 'udp6:';
   /* Host to look up */
   host: string;

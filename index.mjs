@@ -1,5 +1,6 @@
 import * as packet from '@leichtgewicht/dns-packet'
 import * as lib from 'dns-query/lib.js'
+import * as backup from 'dns-query/resolvers.js'
 import {
   AbortError,
   ResponseError,
@@ -27,39 +28,40 @@ function queryOne (endpoint, query, timeout, abortSignal) {
 }
 
 function queryDoh (endpoint, query, timeout, abortSignal) {
-  return new Promise(function (resolve, reject) {
-    lib.request(
-      endpoint.url,
-      endpoint.method,
-      packet.encode(Object.assign({
-        flags: packet.RECURSION_DESIRED,
-        type: 'query'
-      }, query)),
-      timeout,
-      abortSignal,
-      function (error, data, response) {
-        let decoded
-        if (error === null) {
-          if (data.length === 0) {
-            error = new ResponseError('Empty.')
-          } else {
-            try {
-              decoded = packet.decode(data)
-            } catch (err) {
-              error = new ResponseError('Invalid packet (cause=' + err.message + ')', err)
-            }
+  return lib.request(
+    endpoint.url,
+    endpoint.method,
+    packet.encode(Object.assign({
+      flags: packet.RECURSION_DESIRED,
+      type: 'query'
+    }, query)),
+    timeout,
+    abortSignal
+  ).then(
+    function (res) {
+      const data = res.data
+      const response = res.response
+      let error = res.error
+      if (error === undefined) {
+        if (data.length === 0) {
+          error = new ResponseError('Empty.')
+        } else {
+          try {
+            const decoded = packet.decode(data)
+            decoded.endpoint = endpoint
+            decoded.response = response
+            return decoded
+          } catch (err) {
+            error = new ResponseError('Invalid packet (cause=' + err.message + ')', err)
           }
         }
-        if (error !== null) {
-          reject(Object.assign(error, { response, endpoint }))
-        } else {
-          decoded.endpoint = endpoint
-          decoded.response = response
-          resolve(decoded)
-        }
       }
-    )
-  })
+      throw Object.assign(error, { response, endpoint })
+    },
+    error => {
+      throw Object.assign(error, { endpoint })
+    }
+  )
 }
 
 const UPDATE_URL = new URL('https://martinheidegger.github.io/dns-query/resolvers.json')
@@ -122,10 +124,10 @@ export class Resolver {
         .catch(() => null)
       : Promise.resolve(null)
     )
-      .then(res => res || import('dns-query/resolvers.js').then(data => ({
-        data,
+      .then(res => res || {
+        data: backup,
         time: null
-      })))
+      })
       .then(res => {
         const native = lib.nativeEndpoints()
         return {
@@ -148,12 +150,9 @@ export class Resolver {
   }
 
   query (q, opts) {
-    const start = Date.now()
-    return loadEndpoints(this, opts).then(endpoints => {
-      opts = Object.assign({}, this.opts, opts)
-      opts.timeout = opts.timeout - (Date.now() - start)
-      return queryN(endpoints, q, opts)
-    })
+    opts = Object.assign({}, this.opts, opts)
+    return loadEndpoints(this, opts.endpoints)
+      .then(endpoints => queryN(endpoints, q, opts))
   }
 }
 
@@ -172,6 +171,9 @@ export function wellknown () {
 }
 
 function queryN (endpoints, q, opts) {
+  if (endpoints.length === 0) {
+    throw new Error('No endpoints defined.')
+  }
   const endpoint = endpoints.length === 1
     ? endpoints[0]
     : endpoints[Math.floor(Math.random() * endpoints.length) % endpoints.length]
@@ -222,8 +224,8 @@ function isString (entry) {
   return typeof entry === 'string'
 }
 
-export function loadEndpoints (resolver, opts) {
-  const p = isPromise(opts.endpoints) ? opts.endpoints : Promise.resolve(opts.endpoints)
+export function loadEndpoints (resolver, input) {
+  const p = isPromise(input) ? input : Promise.resolve(input)
   return p.then(function (endpoints) {
     if (endpoints === 'doh') {
       return resolver.endpoints().then(filterDoh)
@@ -231,22 +233,14 @@ export function loadEndpoints (resolver, opts) {
     if (endpoints === 'dns') {
       return resolver.endpoints().then(filterDns)
     }
-    if (endpoints === null || endpoints === undefined) {
-      endpoints = []
-    } else {
-      const type = typeof endpoints
-      if (type === 'function') {
-        return resolver.endpoints().then(filterEndpoints(endpoints))
-      } else if (type === 'string' || type === 'number' || type === 'boolean1') {
-        endpoints = [endpoints]
-      } else if (!Array.isArray(endpoints)) {
-        endpoints = Array.from(endpoints)
-      }
+    const type = typeof endpoints
+    if (type === 'function') {
+      return resolver.endpoints().then(filterEndpoints(endpoints))
     }
-    endpoints = endpoints.filter(Boolean)
-    if (endpoints.length === 0) {
-      throw new Error('No endpoints defined.')
+    if (endpoints === null || endpoints === undefined || type === 'string' || typeof endpoints[Symbol.iterator] !== 'function') {
+      throw new Error(`Endpoints (${endpoints}) needs to be iterable.`)
     }
+    endpoints = Array.from(endpoints).filter(Boolean)
     if (endpoints.findIndex(isString) === -1) {
       return endpoints.map(endpoint => {
         if (endpoint instanceof Endpoint) {

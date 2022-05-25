@@ -4,7 +4,7 @@ import {
   AbortError,
   HTTPStatusError,
   TimeoutError
-} from './common.js'
+} from 'dns-query/common.js'
 const contentType = 'application/dns-message'
 
 // https://tools.ietf.org/html/rfc8484
@@ -49,7 +49,11 @@ export async function loadJSON (url, cache, timeout, abortSignal) {
 
 function requestRaw (url, method, data, timeout, abortSignal) {
   return new Promise((resolve, reject) => {
-    const uri = url.protocol + '//' + url.host + ':' + url.port + url.path + (method === 'GET' && data ? '?dns=' + toRFC8484(data) : '')
+    const target = new URL(url)
+    if (method === 'GET' && data) {
+      target.search = '?dns=' + toRFC8484(data)
+    }
+    const uri = target.toString()
     const xhr = new XMLHttpRequest()
     xhr.open(method, uri, true)
     xhr.setRequestHeader('Accept', contentType)
@@ -102,11 +106,14 @@ function requestRaw (url, method, data, timeout, abortSignal) {
         abortSignal.removeEventListener('abort', onabort)
       }
       if (error) {
-        reject(error)
+        resolve({
+          error,
+          response: xhr
+        })
       } else {
         resolve({
           data,
-          xhr
+          response: xhr
         })
       }
     }

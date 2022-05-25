@@ -1,4 +1,3 @@
-import { URL } from 'url'
 let AbortError = typeof global !== 'undefined' ? global.AbortError : typeof window !== 'undefined' ? window.AbortError : null
 if (!AbortError) {
   AbortError = class AbortError extends Error {
@@ -7,8 +6,9 @@ if (!AbortError) {
       Error.captureStackTrace(this, AbortError)
     }
   }
-  AbortError.prototype.code = 'ABORT_ERR'
 }
+AbortError.prototype.name = 'AbortError'
+AbortError.prototype.code = 'ABORT_ERR'
 
 export { AbortError }
 
@@ -30,6 +30,7 @@ export class HTTPStatusError extends Error {
     }
   }
 }
+HTTPStatusError.prototype.name = 'HTTPStatusError'
 HTTPStatusError.prototype.code = 'HTTP_STATUS'
 
 export class ResponseError extends Error {
@@ -47,6 +48,7 @@ export class ResponseError extends Error {
     }
   }
 }
+ResponseError.prototype.name = 'ResponseError'
 ResponseError.prototype.code = 'RESPONSE_ERR'
 
 export class TimeoutError extends Error {
@@ -63,6 +65,7 @@ export class TimeoutError extends Error {
     }
   }
 }
+TimeoutError.prototype.name = 'TimeoutError'
 TimeoutError.prototype.code = 'ETIMEOUT'
 
 const v4Regex = /^((\d{1,3}\.){3,3}\d{1,3})(:(\d{2,5}))?$/
@@ -97,7 +100,7 @@ export function parseEndpoint (endpoint) {
     }
   }
   if ((protocol === 'udp:' && family === 2) || protocol === 'udp6:') {
-    return new Endpoint({ protocol: 'upd6:', ipv6: host, pk: parts[8], port })
+    return new Endpoint({ protocol: 'udp6:', ipv6: host, pk: parts[8], port })
   }
   if ((protocol === 'udp:' && family === 1) || protocol === 'udp4:') {
     return new Endpoint({ protocol: 'udp4:', ipv4: host, pk: parts[8], port })
@@ -111,14 +114,15 @@ export function parseEndpoint (endpoint) {
   })
 }
 
+export const supportedProtocols = ['http:', 'https:', 'udp4:', 'udp6:']
 export class Endpoint {
   constructor (opts) {
     this.name = opts.name || null
 
     if (!opts.protocol) {
       this.protocol = 'https:'
-    } else if (!['http:', 'https:', 'udp4:', 'udp6:'].includes(opts.protocol)) {
-      throw new Error(`Invalid Endpoint: unsupported protocol "${opts.protocol}" for endpoint: ${JSON.stringify(opts)}`)
+    } else if (!supportedProtocols.includes(opts.protocol)) {
+      throw new Error(`Invalid Endpoint: unsupported protocol "${opts.protocol}" for endpoint: ${JSON.stringify(opts)}, supported protocols: ${supportedProtocols.join(', ')}`)
     } else {
       this.protocol = opts.protocol
     }

@@ -128,8 +128,10 @@ function requestRaw (url, method, body, timeout, abortSignal, headers) {
       target.search = '?dns=' + toRFC8484(body)
     }
     const req = client.request(
-      target,
       {
+        hostname: target.hostname,
+        port: target.port || (target.protocol === 'https:' ? 443 : 80),
+        path: `${target.pathname}${target.search}`,
         method,
         headers
       },

@@ -197,9 +197,16 @@ function queryN (endpoints, q, opts) {
     )
 }
 
-function filterEndpoints (fn) {
+function filterEndpoints (filter) {
   return function (endpoints) {
-    return Object.values(endpoints).filter(fn)
+    const result = []
+    for (const name in endpoints) {
+      const endpoint = endpoints[name]
+      if (filter(endpoint)) {
+        result.push(endpoint)
+      }
+    }
+    return result
   }
 }
 

@@ -115,7 +115,14 @@ async function verifyDoH (resolver) {
   if (!get.success && !post.success) {
     throw get.error
   }
-  const usePost = !get.success || (post.success.cors && !get.success.cors)
+  let usePost = false
+  if (!get.success) {
+    console.log(`[WARN] [${resolver.name}] Using POST as GET failed: ${inspect(reduceError(get.error), false, 100, true)}`)
+    usePost = true
+  } else if (post.success.cors && !get.success.cors) {
+    console.log(`[WARN] [${resolver.name}] Using POST as GET doesnt come with CORS`)
+    usePost = true
+  }
   const { success } = usePost ? post : get
   if (usePost) {
     resolver.endpoint.method = 'POST'
@@ -158,10 +165,7 @@ async function verifyDoH (resolver) {
 
 async function verifyDns (resolver) {
   const data = await queryDns(
-    resolver.endpoint.protocol,
-    resolver.endpoint.ipv4 || resolver.endpoint.ipv6,
-    resolver.endpoint.port ?? 53,
-    resolver.endpoint.pk,
+    resolver.endpoint,
     query,
     TIMEOUT
   )

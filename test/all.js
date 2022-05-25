@@ -1,20 +1,14 @@
 'use strict'
 const test = require('fresh-tape')
-const pmap = require('p-map')
 const dohQuery = require('..')
 const query = dohQuery.query
 const Endpoint = dohQuery.Endpoint
 const parseEndpoints = dohQuery.parseEndpoints
-let all = Object.entries(dohQuery.endpoints).map(function (parts) {
-  parts[1].name = parts[0]
-  return parts[1]
-})
 const isBrowser = typeof window !== 'undefined'
 const XHR = require('xhr2')
 const AbortController = require('abort-controller')
-const { TimeoutError } = require('../common')
+const { TimeoutError } = require('../common.cjs')
 
-const IPV4 = /^[12]?\d{1,2}\.[12]?\d{1,2}\.[12]?\d{1,2}\.[12]?\d{1,2}$/
 const LOCAL_ENDPOINT = {
   protocol: process.env.TEST_HTTPS === 'true' ? 'https:' : 'http:',
   host: process.env.TEST_HOST,
@@ -22,57 +16,6 @@ const LOCAL_ENDPOINT = {
   method: 'POST'
 }
 
-test('Looking up all Endpoints', function (t) {
-  return pmap(Object.values(all), function (endpoint) {
-    let once = false
-    return query(
-      { id: '\x7f\xfe\xff\xfe' /* to test + and / encoding */, questions: [{ type: 'A', name: 'google.com' }] },
-      { endpoints: [endpoint], timeout: 2000 }
-    )
-      .then(function (result) {
-        const answers = result.answers
-        once = writeHeader(endpoint, once)
-        t.equals(result.endpoint, endpoint, 'endpoint correctly supplied')
-        t.notLooseEqual(result.response, null)
-        if (answers.length === 0) {
-          t.fail('No answers.')
-          return
-        }
-        if (isBrowser) {
-          t.ok(endpoint.cors, 'marked as cors')
-        }
-        t.pass('answer count: ' + answers.length)
-        const answer = answers[0]
-        t.match(answer.name, /^google.com$/i, 'name=google.com')
-        if (answer.type === 'A') {
-          t.match(answer.data, IPV4, 'uses IPV4 address: ' + answer.data)
-        } else {
-          t.equals(answer.type, 'CNAME', 'uses CNAME')
-          t.equals(answer.data, 'forcesafesearch.google.com', 'redirects to safesearch google')
-        }
-        t.equals(answer.class, 'IN', 'class=IN')
-        t.equals(answer.flush, false, 'flush=false')
-        t.ok(typeof answer.ttl, 'ttl=' + answer.ttl + ' is number')
-      })
-      .catch(function (err) {
-        once = writeHeader(endpoint, once)
-        if (isBrowser && !endpoint.cors) {
-          t.ok('cors=false')
-        } else {
-          t.error(err)
-        }
-      })
-  }, { concurrency: 14 })
-
-  function writeHeader (endpoint, once) {
-    if (!once) {
-      const title = 'Endpoint: ' + endpoint.name
-      t.pass('───╼━┳━' + repeat('━', title.length) + '━┳━╾───')
-      t.pass('───╼━┫ ' + title + ' ┣━╾───')
-    }
-    return true
-  }
-})
 test('Abort before start (doh)', function (t) {
   const c = new AbortController()
   c.abort()
@@ -212,7 +155,7 @@ test('aborting requests while running (dns)', {
   skip: isBrowser
 }, function (t) {
   const c = new AbortController()
-  const p = query({ questions: [{ type: 'A', name: 'google.com' }]}, { signal: c.signal, endpoints: 'dns' })
+  const p = query({ questions: [{ type: 'A', name: 'google.com' }] }, { signal: c.signal, endpoints: 'dns' })
   setImmediate(() => { c.abort() })
   return p.then(
     failSuccess(t),
@@ -247,9 +190,9 @@ test('processing timeout', { timeout: 2000 }, function (t) {
 test('randomness of endpoint choice', function (t) {
   const paths = ['/dns-packet', '/dns-packet-b', '/dns-packet-c', '/dns-packet-d']
   return getLog().then(function () {
-    return pmap(new Array(100), function () {
+    return Promise.all((new Array(100)).map(function () {
       return localQuery(paths)
-    })
+    }))
   })
     .then(getLog)
     .then(function (data) {
@@ -287,7 +230,7 @@ test('infinite retries', function (t) {
 test('timeout on udp6 sockets', {
   skip: isBrowser
 }, function (t) {
-  return query({ questions: [] }, { timeout: 100, endpoints: ['udp6://' + LOCAL_ENDPOINT.host + ':' + LOCAL_ENDPOINT.port]}).then(
+  return query({ questions: [] }, { timeout: 100, endpoints: ['udp6://' + LOCAL_ENDPOINT.host + ':' + LOCAL_ENDPOINT.port] }).then(
     failSuccess(t),
     function (err) {
       t.equals(err.message, (new TimeoutError(100)).message)
@@ -322,7 +265,7 @@ test('parsing of endpoints', function (t) {
 test('dns query using the default servers', {
   skip: isBrowser
 }, function (t) {
-  return query({ questions: [{ type: 'A', name: 'google.com' }]}, { endpoints: 'dns' })
+  return query({ questions: [{ type: 'A', name: 'google.com' }] }, { endpoints: 'dns' })
     .then(data => {
       t.deepEquals(data.answers, [{
         name: 'google.com',
@@ -391,12 +334,4 @@ function localQuery (paths, opts) {
       opts
     )
   )
-}
-
-function repeat (char, count) {
-  let res = ''
-  for (let i = 0; i < count; i++) {
-    res += char
-  }
-  return res
 }

@@ -464,6 +464,20 @@ export const resolvers = [
     filter: true
   },
   {
+    name: 'dnsforfamily-doh',
+    endpoint: {
+      protocol: 'https:',
+      host: 'dns-doh.dnsforfamily.com'
+    },
+    description: '(DoH Protocol) Block adult websites, gambling websites, malwares and advertisements.\nIt also enforces safe search in: Google, YouTube, Bing, DuckDuckGo and Yandex.\nSocial websites like Facebook and Instagram are not blocked. No DNS queries are logged.\nAs of December 2020 2.7 million websites are blocked and new websites are added to blacklist daily.\nCompletely free, no ads or any commercial motive. Operating for 3 years now.\nProvided by: https://dnsforfamily.com',
+    country: 'Finland',
+    location: {
+      lat: 60.1758,
+      long: 24.9349
+    },
+    filter: true
+  },
+  {
     name: 'dnsforfamily-doh-no-safe-search',
     endpoint: {
       protocol: 'https:',
@@ -478,6 +492,21 @@ export const resolvers = [
     filter: true
   },
   {
+    name: 'dnsforge.de',
+    endpoint: {
+      protocol: 'https:',
+      host: 'dnsforge.de',
+      cors: true
+    },
+    description: 'Public DoH resolver running with Pihole for Adblocking (https://dnsforge.de).\nNon-logging, AD-filtering, supports DNSSEC. Hosted in Germany.',
+    country: 'Germany',
+    location: {
+      lat: 52.2998,
+      long: 9.447
+    },
+    filter: true
+  },
+  {
     name: 'dnspod-doh',
     endpoint: {
       protocol: 'https:',
@@ -487,21 +516,6 @@ export const resolvers = [
     description: 'A public DNS resolver in mainland China provided by DNSPod (Tencent Cloud).\nhttps://www.dnspod.cn/Products/Public.DNS?lang=en',
     filter: true,
     log: true
-  },
-  {
-    name: 'dnswarden-asia-adblock-dohv4',
-    endpoint: {
-      protocol: 'https:',
-      host: 'doh.asia.dnswarden.com',
-      path: '/adblock'
-    },
-    description: 'Hosted in Singapore. For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com).',
-    country: 'Singapore',
-    location: {
-      lat: 1.2929,
-      long: 103.8547
-    },
-    filter: true
   },
   {
     name: 'dnswarden-asia-adultfilter-dohv4',
@@ -531,6 +545,20 @@ export const resolvers = [
       lat: 1.2929,
       long: 103.8547
     }
+  },
+  {
+    name: 'dnswarden-eu-adblock-dohv4',
+    endpoint: {
+      protocol: 'https:',
+      host: 'doh.eu.dnswarden.com'
+    },
+    description: 'Hosted in Germany. For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com).',
+    country: 'Germany',
+    location: {
+      lat: 50.1103,
+      long: 8.7147
+    },
+    filter: true
   },
   {
     name: 'dnswarden-us-adblock-dohv4',
@@ -1020,7 +1048,7 @@ export const resolvers = [
     endpoint: {
       protocol: 'https:',
       host: 'dns10.quad9.net',
-      ipv4: '9.9.9.10'
+      ipv4: '149.112.112.10'
     },
     description: 'Quad9 (anycast) no-dnssec/no-log/no-filter 9.9.9.10 - 149.112.112.10',
     country: 'United States',
@@ -1030,13 +1058,12 @@ export const resolvers = [
     }
   },
   {
-    name: 'quad9-doh-ip4-port5053-filter-pri',
+    name: 'quad9-doh-ip6-port5053-filter-pri',
     endpoint: {
       protocol: 'https:',
-      host: 'dns.quad9.net',
-      ipv4: '149.112.112.112'
+      host: 'dns.quad9.net'
     },
-    description: 'Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112',
+    description: 'Quad9 (anycast) dnssec/no-log/filter 2620:fe::fe - 2620:fe::9 - 2620:fe::fe:9',
     country: 'United States',
     location: {
       lat: 37.751,

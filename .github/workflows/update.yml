@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - next
   schedule:
     - cron:  '0 8 * * *'
 

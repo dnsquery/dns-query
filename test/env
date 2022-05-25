@@ -1,9 +1,7 @@
 #!/usr/bin/env node
-'use strict'
-require('../endpoints-json.js')
 const http = require('http')
 const spawn = require('child_process').spawn
-const dnspacket = require('dns-packet')
+const dnspacket = require('@leichtgewicht/dns-packet')
 const ngrok = require('ngrok')
 const os = require('os')
 const responseA = dnspacket.encode({
@@ -114,19 +112,19 @@ function handleRequest (req, res) {
     return res.writeHead(500).end('Internal Error.')
   }
   if (req.url === '/301-1') {
-    return res.writeHead(301, { Location: url + '/301-1-end'})
+    return res.writeHead(301, { Location: url + '/301-1-end' })
   }
   if (req.url === '/301-1-end') {
     return res.end(responseA)
   }
   if (req.url === '/302-1') {
-    return res.writeHead(302, { Location: url + '/302-1-end'})
+    return res.writeHead(302, { Location: url + '/302-1-end' })
   }
   if (req.url === '/302-1-end') {
     return res.end(responseA)
   }
   if (req.url === '/302-2') {
-    return res.writeHead(302, { Location: url + '/302-1'})
+    return res.writeHead(302, { Location: url + '/302-1' })
   }
   if (req.url === '/incomplete') {
     return res.writeHead(200, { 'Content-Length': 99999 }).end('not-everything')

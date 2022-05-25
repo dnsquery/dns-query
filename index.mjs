@@ -98,9 +98,7 @@ export class Resolver {
         this.opts.timeout
       )
         .then(res => {
-          console.log(res.data.resolvers.length)
           const resolvers = res.data.resolvers.map(resolver => {
-            console.log(resolver.name)
             resolver.endpoint = new Endpoint(Object.assign({ name: resolver.name }, resolver.endpoint))
             return resolver
           })
@@ -129,13 +127,14 @@ export class Resolver {
         time: null
       })))
       .then(res => {
-        if (res.time === null) {
-          res.time = Date.now()
+        const native = lib.nativeEndpoints()
+        return {
+          time: res.time === null ? Date.now() : res.time,
+          data: Object.assign({}, res.data, {
+            endpoints: res.data.endpoints.concat(native)
+            // TODO: nativeEndpoints currently have no name, but they might have?
+          })
         }
-        res.data = Object.assign({}, res.data, {
-          endpoints: res.data.endpoints.concat(lib.nativeEndpoints())
-        })
-        return res
       })
     return this._wellknownP
   }
@@ -150,7 +149,7 @@ export class Resolver {
 
   query (q, opts) {
     const start = Date.now()
-    return loadEndpoints(this, opts).then(function (endpoints) {
+    return loadEndpoints(this, opts).then(endpoints => {
       opts = Object.assign({}, this.opts, opts)
       opts.timeout = opts.timeout - (Date.now() - start)
       return queryN(endpoints, q, opts)
@@ -256,14 +255,14 @@ export function loadEndpoints (resolver, opts) {
         return new Endpoint(endpoint)
       })
     }
-    return resolver.endpoints()
-      .then(endpointLookup =>
+    return resolver.wellknown()
+      .then(wellknown =>
         endpoints.map(endpoint => {
           if (endpoint instanceof Endpoint) {
             return endpoint
           }
           if (typeof endpoint === 'string') {
-            return endpointLookup[endpoint] || parseEndpoint(endpoint)
+            return wellknown.endpointByName[endpoint] || parseEndpoint(endpoint)
           }
           return new Endpoint(endpoint)
         })

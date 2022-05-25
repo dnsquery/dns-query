@@ -65,25 +65,76 @@ export class TimeoutError extends Error {
 }
 TimeoutError.prototype.code = 'ETIMEOUT'
 
+const v4Regex = /^((\d{1,3}\.){3,3}\d{1,3})(:(\d{2,5}))?$/
+const v6Regex = /^((::)?(((\d{1,3}\.){3}(\d{1,3}){1})?([0-9a-f]){0,4}:{0,2}){1,8}(::)?)(:(\d{2,5}))?$/i
+
+export function parseEndpoint (endpoint) {
+  const parts = /^(([^:]+?:)\/\/)?([^/]*?)(\/.*?)?(\s\[(post|get)\])?(\s\[pk=(.*)\])?$/i.exec(endpoint)
+  const protocol = parts[2] || 'https:'
+  let family = 1
+  let host
+  let port
+  const ipv6Parts = v6Regex.exec(parts[3])
+  if (ipv6Parts) {
+    const ipv4Parts = v4Regex.exec(parts[3])
+    if (ipv4Parts) {
+      host = ipv4Parts[1]
+      if (ipv4Parts[4]) {
+        port = parseInt(ipv4Parts[4])
+      }
+    } else {
+      family = 2
+      host = ipv6Parts[1]
+      if (ipv6Parts[9]) {
+        port = parseInt(ipv6Parts[10])
+      }
+    }
+  } else {
+    const portParts = /^([^:]*)(:(.*))?$/.exec(parts[3])
+    host = portParts[1]
+    if (portParts[3]) {
+      port = parseInt(portParts[3])
+    }
+  }
+  if ((protocol === 'udp:' && family === 2) || protocol === 'udp6:') {
+    return new Endpoint({ protocol: 'upd6:', ipv6: host, pk: parts[8], port })
+  }
+  if ((protocol === 'udp:' && family === 1) || protocol === 'udp4:') {
+    return new Endpoint({ protocol: 'udp4:', ipv4: host, pk: parts[8], port })
+  }
+  return new Endpoint({
+    protocol,
+    host,
+    port,
+    path: parts[4],
+    method: parts[6]
+  })
+}
+
 export class Endpoint {
   constructor (opts) {
+    this.name = opts.name || null
+
     if (!opts.protocol) {
       this.protocol = 'https:'
     } else if (!['http:', 'https:', 'udp4:', 'udp6:'].includes(opts.protocol)) {
-      throw new Error(`Invalid Endpoint: unsupported protocol "${opts.protocol}" for endpoint: ${JSON.stringify(opts)}`);
+      throw new Error(`Invalid Endpoint: unsupported protocol "${opts.protocol}" for endpoint: ${JSON.stringify(opts)}`)
     } else {
       this.protocol = opts.protocol
     }
 
-    const port = typeof opts.port === 'string' ? opts.port = parseInt(opts.port, 10) : opts.port
-
     const isHTTP = this.protocol === 'https:' || this.protocol === 'http:'
+    const port = typeof opts.port === 'string' ? opts.port = parseInt(opts.port, 10) : opts.port
+    if (port === undefined || port === null) {
+      this.port = isHTTP
+        ? (this.protocol === 'https:' ? 443 : 80)
+        : (this.pk ? 443 : 53)
+    } else if (typeof port !== 'number' && !isNaN(port)) {
+      throw new Error(`Invalid Endpoint: port "${opts.port}" needs to be a number: ${JSON.stringify(opts)}`)
+    } else {
+      this.port = port
+    }
     if (isHTTP) {
-      if (port === undefined || port === null) {
-        this.port = this.protocol === 'https:' ? 443 : 80
-      } else if (typeof port !== 'number' && !isNaN(port)) {
-        throw new Error(`Invalid Endpoint: port "${opts.port}" needs to be a number: ${JSON.stringify(opts)}`)
-      }
       if (!opts.host || typeof opts.host !== 'string') {
         throw new Error(`Invalid Endpoint: host "${opts.path}" needs to be set: ${JSON.stringify(opts)}`)
       }
@@ -93,16 +144,9 @@ export class Endpoint {
       this.method = /^post$/i.test(opts.method) ? 'POST' : 'GET'
       this.ipv4 = opts.ipv4
       this.ipv6 = opts.ipv6
-      this.url = new URL(`${this.protocol}//${this.host}:${this.port}${this.path}`)
+      const urlHost = v6Regex.test(this.host) && !v4Regex.test(this.host) ? `[${this.host}]` : this.host
+      this.url = new URL(`${this.protocol}//${urlHost}:${this.port}${this.path}`)
     } else {
-      if (port === undefined || port === null) {
-        // DNSCrypt uses port 443, publicKey indicates DNSCrypt
-        this.port = opts.pk ? 443 : 53
-      } else if (typeof port !== 'number' && !isNaN(port)) {
-        throw new Error(`Invalid Endpoint: port "${opts.port}" needs to be a number: ${JSON.stringify(opts)}`)
-      } else {
-        this.port = port
-      }
       if (opts.pk) {
         this.pk = opts.pk
       }
@@ -118,6 +162,19 @@ export class Endpoint {
         }
         this.ipv6 = opts.ipv6
       }
+    }
+  }
+
+  toString () {
+    if (this.protocol === 'udp4:' || this.protocol === 'udp6:') {
+      const port = this.port !== (this.pk ? 443 : 53) ? `:${this.port}` : ''
+      const pk = this.pk ? ` [pk=${this.pk}]` : ''
+      return `udp://${this.ipv4 || this.ipv6}${port}${pk}`
+    } else {
+      const port = this.port !== (this.protocol === 'https:' ? 443 : 80) ? `:${this.port}` : ''
+      const method = this.method !== 'GET' ? ' [post]' : ''
+      const path = this.path === '/dns-query' ? '' : this.path
+      return `${this.protocol}//${this.host}${port}${path}${method}`
     }
   }
 }

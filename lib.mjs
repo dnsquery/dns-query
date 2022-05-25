@@ -117,15 +117,18 @@ function requestRaw (url, method, body, timeout, abortSignal, headers) {
         })
       }
     }
-    const pth = `${url.pathname}${method === 'GET' && body ? '?dns=' + toRFC8484(body) : ''}`
-    const uri = `${url.protocol}//${url.host}:${url.port}${pth}`
-    const req = client.request({
-      host: url.host,
-      port: url.port,
-      path: pth,
-      method,
-      headers
-    }, onresponse)
+    const target = new URL(url)
+    if (method === 'GET' && body) {
+      target.search = '?dns=' + toRFC8484(body)
+    }
+    const req = client.request(
+      target,
+      {
+        method,
+        headers
+      },
+      onresponse
+    )
     if (abortSignal) {
       abortSignal.addEventListener('abort', onabort)
     }
@@ -143,7 +146,7 @@ function requestRaw (url, method, body, timeout, abortSignal, headers) {
 
     function onresponse (res) {
       if (res.statusCode !== 200) {
-        const error = new HTTPStatusError(uri, res.statusCode, method)
+        const error = new HTTPStatusError(target.toString(), res.statusCode, method)
         finish(error, null, res)
         res.destroy(error)
         return
@@ -185,7 +188,7 @@ function requestRaw (url, method, body, timeout, abortSignal, headers) {
   })
 }
 
-export async function request (url, method, packet, timeout, abortSignal) {
+export function request (url, method, packet, timeout, abortSignal) {
   const headers = {
     Accept: contentType
   }
@@ -193,40 +196,58 @@ export async function request (url, method, packet, timeout, abortSignal) {
     headers['Content-Type'] = contentType
     headers['Content-Length'] = packet.byteLength
   }
-  return await requestRaw(url, method, packet, timeout, abortSignal, headers)
+  return requestRaw(url, method, packet, timeout, abortSignal, headers)
 }
 
-export async function loadJSON (url, cache, timeout, abortSignal) {
+function loadCache (cache, cachePath) {
+  if (!cachePath) {
+    return Promise.resolve()
+  }
+  return stat(cachePath).then(function (stats) {
+    const time = stats.mtime.getTime()
+    if (stats.isFile && time > cache.maxTime) {
+      return readFile(cachePath).then(function (data) {
+        return { time, data: JSON.parse(data) }
+      })
+    }
+  }).catch(noop)
+}
+
+function storeCache (folder, cachePath, data) {
+  if (!cachePath) {
+    return Promise.resolve(null)
+  }
+  return mkdir(folder).then(function () {
+    const before = Date.now()
+    return writeFile(cachePath, data).then(function () {
+      return before + (Date.now() - before) / 2
+    })
+  }).catch(function () {
+    return null
+  })
+}
+
+function noop () {}
+
+export function loadJSON (url, cache, timeout, abortSignal) {
   const folder = join(filename, '..', '.cache')
   const cachePath = cache ? join(folder, cache.name) : null
-  if (cachePath) {
-    try {
-      const stats = await stat(cachePath)
-      const time = stats.mtime.getTime()
-      if (stats.isFile && time > cache.maxTime) {
+  return loadCache(cache, cachePath)
+    .then(function (cached) {
+      if (cached) {
+        return cached
+      }
+      return requestRaw(url, 'GET', null, timeout, abortSignal)
+    })
+    .then(function (response) {
+      const data = response.data
+      return storeCache(folder, cachePath, data).then(function (time) {
         return {
           time,
-          data: JSON.parse(await readFile(cachePath))
+          data: JSON.parse(data)
         }
-      }
-    } catch (err) {}
-  }
-  const { data } = await requestRaw(url, 'GET', null, timeout, abortSignal)
-  let time = null
-  if (cachePath) {
-    try {
-      await mkdir(folder)
-    } catch (err) {}
-    try {
-      const before = Date.now()
-      await writeFile(cachePath, data)
-      time = before + (Date.now() - before) / 2
-    } catch (err) {}
-  }
-  return {
-    time,
-    data: JSON.parse(data)
-  }
+      })
+    })
 }
 
 export function nativeEndpoints () {

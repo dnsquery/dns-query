@@ -1,4 +1,4 @@
-/* global XMLHttpRequest */
+/* global XMLHttpRequest, localStorage */
 import { Buffer } from 'buffer'
 import {
   AbortError,
@@ -21,9 +21,35 @@ export function queryDns () {
   throw new Error('Only "doh" endpoints are supported in the browser')
 }
 
-export function request (protocol, host, port, path, method, packet, timeout, abortSignal) {
+export async function loadJSON (url, cache, timeout, abortSignal) {
+  const cacheKey = cache ? cache.localStoragePrefix + cache.name : null
+  if (cacheKey) {
+    try {
+      const cached = localStorage.getItem(cacheKey)
+      if (cached && cached.time > cache.maxTime) {
+        return cached
+      }
+    } catch (err) {}
+  }
+  const { data } = await requestRaw(url, 'GET', null, timeout, abortSignal)
+  const result = {
+    time: null,
+    data: JSON.parse(data.toString())
+  }
+  if (cacheKey) {
+    try {
+      result.time = Date.now()
+      localStorage.setItem(cacheKey, result)
+    } catch (err) {
+      result.time = null
+    }
+  }
+  return result
+}
+
+function requestRaw (url, method, data, timeout, abortSignal) {
   return new Promise((resolve, reject) => {
-    const uri = protocol + '//' + host + ':' + port + path + (method === 'GET' ? '?dns=' + toRFC8484(packet) : '')
+    const uri = url.protocol + '//' + url.host + ':' + url.port + url.path + (method === 'GET' && data ? '?dns=' + toRFC8484(data) : '')
     const xhr = new XMLHttpRequest()
     xhr.open(method, uri, true)
     xhr.setRequestHeader('Accept', contentType)
@@ -36,10 +62,10 @@ export function request (protocol, host, port, path, method, packet, timeout, ab
     xhr.onreadystatechange = onreadystatechange
     xhr.onerror = onerror
     xhr.onload = onload
-    if (method === 'GET') {
-      xhr.send()
+    if (method === 'POST') {
+      xhr.send(data)
     } else {
-      xhr.send(packet)
+      xhr.send()
     }
 
     if (abortSignal) {
@@ -96,6 +122,10 @@ export function request (protocol, host, port, path, method, packet, timeout, ab
       } catch (e) { }
     }
   })
+}
+
+export function request (url, method, packet, timeout, abortSignal) {
+  return requestRaw(url, method, packet, timeout, abortSignal)
 }
 
 export function nativeEndpoints () {

@@ -3,19 +3,18 @@ import * as lib from 'dns-query/lib.js'
 import {
   AbortError,
   ResponseError,
-  Endpoint
+  Endpoint,
+  parseEndpoint
 } from 'dns-query/common.js'
 
 export {
+  TimeoutError,
+  HTTPStatusError,
   AbortError,
   ResponseError,
   Endpoint,
-  TimeoutError,
-  HTTPStatusError
+  parseEndpoint
 } from 'dns-query/common.js'
-
-const v4Regex = /^((\d{1,3}\.){3,3}\d{1,3})(:(\d{2,5}))?$/
-const v6Regex = /^((::)?(((\d{1,3}\.){3}(\d{1,3}){1})?([0-9a-f]){0,4}:{0,2}){1,8}(::)?)(:(\d{2,5}))?$/i
 
 function queryOne (endpoint, query, timeout, abortSignal) {
   if (abortSignal && abortSignal.aborted) {
@@ -63,18 +62,114 @@ function queryDoh (endpoint, query, timeout, abortSignal) {
   })
 }
 
-export function query (q, opts) {
-  opts = Object.assign({
-    retries: 5,
-    timeout: 30000
-  }, opts)
-  let endpoints
-  try {
-    endpoints = parseEndpoints(opts.endpoints)
-  } catch (error) {
-    return Promise.reject(error)
+const UPDATE_URL = new URL('https://martinheidegger.github.io/dns-query/resolvers.json')
+
+export class Resolver {
+  constructor (opts) {
+    this.opts = Object.assign({
+      retries: 5,
+      timeout: 30000, // 30 seconds
+      update: true,
+      updateURL: UPDATE_URL,
+      persist: false,
+      maxAge: 300000 // 5 minutes
+    }, opts)
+    this._wellknownP = null
   }
-  return queryN(endpoints, q, opts)
+
+  _wellknown (force) {
+    if (!force && this._wellknownP !== null) {
+      return this._wellknownP.then(res => {
+        if (res.time < Date.now() - this.opts.maxAge) {
+          return this._wellknown(true)
+        }
+        return res
+      })
+    }
+    this._wellknownP = (this.opts.update
+      ? lib.loadJSON(
+        this.opts.updateURL,
+        this.opts.persist
+          ? {
+              name: 'resolvers.json',
+              maxTime: Date.now() - this.opts.maxAge
+            }
+          : null,
+        this.opts.timeout
+      )
+        .then(res => {
+          console.log(res.data.resolvers.length)
+          const resolvers = res.data.resolvers.map(resolver => {
+            console.log(resolver.name)
+            resolver.endpoint = new Endpoint(Object.assign({ name: resolver.name }, resolver.endpoint))
+            return resolver
+          })
+          const endpoints = resolvers.map(resolver => resolver.endpoint)
+          return {
+            data: {
+              resolvers,
+              resolverByName: resolvers.reduce((byName, resolver) => {
+                byName[resolver.name] = resolver
+                return byName
+              }, {}),
+              endpoints,
+              endpointByName: endpoints.reduce((byName, endpoint) => {
+                byName[endpoint.name] = endpoint
+                return byName
+              }, {})
+            },
+            time: res.time
+          }
+        })
+        .catch(() => null)
+      : Promise.resolve(null)
+    )
+      .then(res => res || import('dns-query/resolvers.js').then(data => ({
+        data,
+        time: null
+      })))
+      .then(res => {
+        if (res.time === null) {
+          res.time = Date.now()
+        }
+        res.data = Object.assign({}, res.data, {
+          endpoints: res.data.endpoints.concat(lib.nativeEndpoints())
+        })
+        return res
+      })
+    return this._wellknownP
+  }
+
+  wellknown () {
+    return this._wellknown(false).then(data => data.data)
+  }
+
+  endpoints () {
+    return this.wellknown().then(data => data.endpoints)
+  }
+
+  query (q, opts) {
+    const start = Date.now()
+    return loadEndpoints(this, opts).then(function (endpoints) {
+      opts = Object.assign({}, this.opts, opts)
+      opts.timeout = opts.timeout - (Date.now() - start)
+      return queryN(endpoints, q, opts)
+    })
+  }
+}
+
+const defaultResolver = new Resolver()
+
+export function query (q, opts) {
+  return defaultResolver.query(q, opts)
+}
+
+export function endpoints () {
+  return defaultResolver.endpoints()
+}
+
+export function wellknown () {
+  return defaultResolver.wellknown()
 }
 
 function queryN (endpoints, q, opts) {
@@ -100,85 +195,78 @@ function queryN (endpoints, q, opts) {
     )
 }
 
-export function parseEndpoints (input) {
-  if (!input) {
-    return
+function filterEndpoints (fn) {
+  return function (endpoints) {
+    return Object.values(endpoints).filter(fn)
   }
-  if (typeof input[Symbol.iterator] !== 'function' || typeof input === 'string') {
-    throw new Error('Endpoints needs to be iterable.')
+}
+
+const filterDoh = filterEndpoints(function filterDoh (endpoint) {
+  return endpoint.protocol === 'https:' || endpoint.protocol === 'http:'
+})
+
+const filterDns = filterEndpoints(function filterDns (endpoint) {
+  return endpoint.protocol === 'udp4:' || endpoint.protocol === 'udp6:'
+})
+
+function isPromise (input) {
+  if (input === null) {
+    return false
   }
-  const result = []
-  for (let endpoint of input) {
-    if (typeof endpoint === 'object') {
-      if (!(endpoint instanceof Endpoint)) {
-        endpoint = new Endpoint(endpoint)
-      }
-      result.push(endpoint)
-    } else if (typeof endpoint === 'string') {
-      result.push(parseEndpoint(endpoint))
+  if (typeof input !== 'object') {
+    return false
+  }
+  return typeof input.then === 'function'
+}
+
+function isString (entry) {
+  return typeof entry === 'string'
+}
+
+export function loadEndpoints (resolver, opts) {
+  const p = isPromise(opts.endpoints) ? opts.endpoints : Promise.resolve(opts.endpoints)
+  return p.then(function (endpoints) {
+    if (endpoints === 'doh') {
+      return resolver.endpoints().then(filterDoh)
     }
-  }
-  return result
-}
-
-const UPDATE_URL = new URL('https://martinheidegger.github.io/dns-query/resolvers.json')
-
-async function loadResolvers () {
-  return await lib.loadJSON(UPDATE_URL, {
-    name: 'resolvers.json',
-    maxAge: 1000 * 60 * 5
-  }, 5000)
-}
-
-let resolversP = null
-export async function getResolvers () {
-  if (resolversP === null) {
-    resolversP = loadResolvers()
-  }
-  const result = await resolversP
-  resolversP = null
-  return result
-}
-
-function parseEndpoint (endpoint) {
-  const parts = /^(([^:]+?:)\/\/)?([^/]*?)(\/.*?)?(\s\[(post|get)\])?(\s\[pk=(.*)\])?$/i.exec(endpoint)
-  const protocol = parts[2] || 'https:'
-  let family = 1
-  let host
-  let port
-  const ipv6Parts = v6Regex.exec(parts[3])
-  if (ipv6Parts) {
-    const ipv4Parts = v4Regex.exec(parts[3])
-    if (ipv4Parts) {
-      host = ipv4Parts[1]
-      if (ipv4Parts[4]) {
-        port = parseInt(ipv4Parts[4])
-      }
+    if (endpoints === 'dns') {
+      return resolver.endpoints().then(filterDns)
+    }
+    if (endpoints === null || endpoints === undefined) {
+      endpoints = []
     } else {
-      family = 2
-      host = ipv6Parts[1]
-      if (ipv6Parts[9]) {
-        port = parseInt(ipv6Parts[10])
+      const type = typeof endpoints
+      if (type === 'function') {
+        return resolver.endpoints().then(filterEndpoints(endpoints))
+      } else if (type === 'string' || type === 'number' || type === 'boolean1') {
+        endpoints = [endpoints]
+      } else if (!Array.isArray(endpoints)) {
+        endpoints = Array.from(endpoints)
       }
     }
-  } else {
-    const portParts = /^([^:]*)(:(.*))?$/.exec(parts[3])
-    host = portParts[1]
-    if (portParts[3]) {
-      port = parseInt(portParts[3])
+    endpoints = endpoints.filter(Boolean)
+    if (endpoints.length === 0) {
+      throw new Error('No endpoints defined.')
     }
-  }
-  if ((protocol === 'udp:' && family === 2) || protocol === 'udp6:') {
-    return new Endpoint({ protocol: 'upd6:', ipv6: host, pk: parts[8], port })
-  }
-  if ((protocol === 'udp:' && family === 1) || protocol === 'udp4:') {
-    return new Endpoint({ protocol: 'udp4:', ipv4: host, pk: parts[8], port })
-  }
-  return new Endpoint({
-    protocol,
-    host,
-    port,
-    path: parts[4],
-    method: parts[6]
+    if (endpoints.findIndex(isString) === -1) {
+      return endpoints.map(endpoint => {
+        if (endpoint instanceof Endpoint) {
+          return endpoint
+        }
+        return new Endpoint(endpoint)
+      })
+    }
+    return resolver.endpoints()
+      .then(endpointLookup =>
+        endpoints.map(endpoint => {
+          if (endpoint instanceof Endpoint) {
+            return endpoint
+          }
+          if (typeof endpoint === 'string') {
+            return endpointLookup[endpoint] || parseEndpoint(endpoint)
+          }
+          return new Endpoint(endpoint)
+        })
+      )
   })
 }

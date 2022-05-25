@@ -5,7 +5,8 @@ import * as codec from '@leichtgewicht/ip-codec'
 import https from 'https'
 import http from 'http'
 import {
-  AbortError, HTTPStatusError, TimeoutError, Endpoint
+  AbortError, HTTPStatusError, TimeoutError, Endpoint,
+  URL
 } from 'dns-query/common.js'
 import fs from 'fs'
 import { join } from 'path'

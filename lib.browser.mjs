@@ -3,7 +3,8 @@ import { Buffer } from 'buffer'
 import {
   AbortError,
   HTTPStatusError,
-  TimeoutError
+  TimeoutError,
+  URL
 } from 'dns-query/common.js'
 const contentType = 'application/dns-message'
 

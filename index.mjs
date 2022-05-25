@@ -5,7 +5,8 @@ import {
   AbortError,
   ResponseError,
   Endpoint,
-  parseEndpoint
+  parseEndpoint,
+  URL
 } from 'dns-query/common.js'
 
 export {

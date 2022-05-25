@@ -10,7 +10,9 @@ if (!AbortError) {
 AbortError.prototype.name = 'AbortError'
 AbortError.prototype.code = 'ABORT_ERR'
 
-export { AbortError }
+const URL = global.URL || require('url').URL
+
+export { AbortError, URL }
 
 export class HTTPStatusError extends Error {
   constructor (uri, code, method) {

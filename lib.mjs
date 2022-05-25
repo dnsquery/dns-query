@@ -4,12 +4,10 @@ import { DNSSocket } from '@leichtgewicht/dns-socket'
 import * as codec from '@leichtgewicht/ip-codec'
 import https from 'https'
 import http from 'http'
-import {
-  AbortError, HTTPStatusError, TimeoutError, Endpoint,
-  URL
-} from 'dns-query/common.js'
+import * as common from 'dns-query/common.js'
 import fs from 'fs'
 import { join } from 'path'
+const { AbortError, HTTPStatusError, TimeoutError, Endpoint, URL } = common
 
 // Node 6 support
 const writeFile = (path, data) => new Promise(

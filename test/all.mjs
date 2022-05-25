@@ -347,14 +347,14 @@ test('dns query using the default servers', {
 }, function (t) {
   return query({ questions: [{ type: 'A', name: 'google.com' }] }, { endpoints: 'dns' })
     .then(data => {
-      t.deepEquals(data.answers, [{
+      t.deepEquals(data.answers[0], {
         name: 'google.com',
         type: 'A',
         ttl: data.answers[0].ttl,
         class: 'IN',
         flush: false,
         data: data.answers[0].data
-      }])
+      })
     })
 })
 

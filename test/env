@@ -2,7 +2,6 @@
 const http = require('http')
 const spawn = require('child_process').spawn
 const dnspacket = require('@leichtgewicht/dns-packet')
-const ngrok = require('ngrok')
 const os = require('os')
 const responseA = dnspacket.encode({
   type: 'response',
@@ -37,6 +36,7 @@ function onListen () {
 
 function connectNgrok (port) {
   console.log('# Connecting to ngrok')
+  const ngrok = require('ngrok')
   ngrok.connect(port).then(onSpawn, onError)
 
   function onSpawn (url) {

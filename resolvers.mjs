@@ -464,6 +464,19 @@ const resolvers = [
     filter: true
   },
   {
+    name: 'dnscrypt.uk-doh-ipv4',
+    endpoint: {
+      protocol: 'https:',
+      host: 'doh.dnscrypt.uk'
+    },
+    description: 'DoH, no logs, uncensored, DNSSEC. Hosted in London UK on Digital Ocean\nhttps://www.dnscrypt.uk',
+    country: 'United Kingdom',
+    location: {
+      lat: 51.5177,
+      long: -0.6215
+    }
+  },
+  {
     name: 'dnsforfamily-doh',
     endpoint: {
       protocol: 'https:',
@@ -507,6 +520,14 @@ const resolvers = [
     filter: true
   },
   {
+    name: 'dnshome-doh',
+    endpoint: {
+      protocol: 'https:',
+      host: 'dns.dnshome.de'
+    },
+    description: 'https://www.dnshome.de/ public resolver in Germany'
+  },
+  {
     name: 'dnspod-doh',
     endpoint: {
       protocol: 'https:',
@@ -516,6 +537,21 @@ const resolvers = [
     description: 'A public DNS resolver in mainland China provided by DNSPod (Tencent Cloud).\nhttps://www.dnspod.cn/Products/Public.DNS?lang=en',
     filter: true,
     log: true
+  },
+  {
+    name: 'dnswarden-asia-adblock-dohv4',
+    endpoint: {
+      protocol: 'https:',
+      host: 'doh.asia.dnswarden.com',
+      path: '/adblock'
+    },
+    description: 'Hosted in Singapore. For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com).',
+    country: 'Singapore',
+    location: {
+      lat: 1.2929,
+      long: 103.8547
+    },
+    filter: true
   },
   {
     name: 'dnswarden-asia-adultfilter-dohv4',
@@ -621,6 +657,34 @@ const resolvers = [
     },
     description: 'Block access to phishing, malware and malicious domains. It does not block adult content.\nBy https://cleanbrowsing.org/',
     filter: true
+  },
+  {
+    name: 'doh-crypto-sx',
+    endpoint: {
+      protocol: 'https:',
+      host: 'doh.crypto.sx',
+      cors: true
+    },
+    description: 'DNS-over-HTTPS server. Anycast, no logs, no censorship, DNSSEC.\nBackend hosted by Scaleway, globally cached via Cloudflare.\nMaintained by Frank Denis.',
+    country: 'United States',
+    location: {
+      lat: 37.751,
+      long: -97.822
+    }
+  },
+  {
+    name: 'doh-crypto-sx-ipv6',
+    endpoint: {
+      protocol: 'https:',
+      host: 'doh-ipv6.crypto.sx',
+      cors: true
+    },
+    description: 'DNS-over-HTTPS server accessible over IPv6. Anycast, no logs, no censorship, DNSSEC.\nBackend hosted by Scaleway, globally cached via Cloudflare.\nMaintained by Frank Denis.',
+    country: 'United States',
+    location: {
+      lat: 37.751,
+      long: -97.822
+    }
   },
   {
     name: 'doh-de-blahdns',
@@ -869,6 +933,15 @@ const resolvers = [
     description: 'Cloudflare ODoH server.\nhttps://cloudflare.com'
   },
   {
+    name: 'odoh-crypto-sx',
+    endpoint: {
+      protocol: 'https:',
+      host: 'odoh.crypto.sx',
+      cors: true
+    },
+    description: 'ODoH target server. Anycast, no logs.\nBackend hosted by Scaleway. Maintained by Frank Denis.'
+  },
+  {
     name: 'odoh-id-gmail',
     endpoint: {
       protocol: 'https:',
@@ -960,6 +1033,19 @@ const resolvers = [
     },
     description: 'ODoH target server via Cloudflare, no logs.\nFilter ads, trackers and malware.',
     filter: true
+  },
+  {
+    name: 'opennic-R4SAS-doh-ipv6',
+    endpoint: {
+      protocol: 'https:',
+      host: 'opennic.i2pd.xyz'
+    },
+    description: 'DOH • DNSSEC • OpenNIC • Non-logging • Uncensored - hosted on OVH - https://opennic.i2pd.xyz/\nLocation: Paris, France\nMaintained by R4SAS - https://github.com/r4sas',
+    country: 'Russia',
+    location: {
+      lat: 51.5626,
+      long: 46.0271
+    }
   },
   {
     name: 'publicarray-au2-doh',

@@ -37,7 +37,7 @@ jobs:
       with:
         node-version: ${{ matrix.node }}
     - run: npm rebuild --ignore-scripts
-    - run: npm run test
+    - run: npm run test-cjs
 
   strict:
     runs-on: ubuntu-latest

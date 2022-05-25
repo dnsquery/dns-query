@@ -13,6 +13,7 @@
     "update-resolvers": "node bin/update-resolvers && standard --fix resolvers.mjs && esm2umd",
     "prepare": "esm2umd",
     "test": "node test/env npm run test-impl",
+    "test-cjs": "node test/env fresh-tape test/all.cjs",
     "test-impl": "fresh-tape test/all.mjs",
     "test-cov": "node test/env c8 -r lcov -r html npm run test-impl",
     "browser-test": "env TEST_ENV=browser node test/env npm run browser-test-impl -s",

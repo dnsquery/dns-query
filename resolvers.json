@@ -230,6 +230,51 @@
       }
     },
     {
+      "name": "brahma-world",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.brahma.world"
+      },
+      "description": "DNS-over-HTTPS server. Non Logging, filters ads, trackers and malware. DNSSEC ready, QNAME Minimization, No EDNS Client-Subnet.\nHosted in Stockholm, Sweden. (https://dns.brahma.world)",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      },
+      "filter": true
+    },
+    {
+      "name": "cisco-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "doh.opendns.com",
+        "ipv4": "146.112.41.2"
+      },
+      "description": "Remove your DNS blind spot (DoH protocol)\nWarning: modifies your queries to include a copy of your network\naddress when forwarding them to a selection of companies and organizations.",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      },
+      "filter": true,
+      "log": true
+    },
+    {
+      "name": "cloudflare",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.cloudflare.com",
+        "ipv4": "1.0.0.1",
+        "cors": true
+      },
+      "description": "Cloudflare DNS (anycast) - aka 1.1.1.1 / 1.0.0.1",
+      "country": "Australia",
+      "location": {
+        "lat": -33.494,
+        "long": 143.2104
+      }
+    },
+    {
       "name": "cloudflare-family",
       "endpoint": {
         "protocol": "https:",
@@ -993,7 +1038,8 @@
       "name": "opennic-R4SAS-doh-ipv6",
       "endpoint": {
         "protocol": "https:",
-        "host": "opennic.i2pd.xyz"
+        "host": "opennic.i2pd.xyz",
+        "method": "POST"
       },
       "description": "DOH • DNSSEC • OpenNIC • Non-logging • Uncensored - hosted on OVH - https://opennic.i2pd.xyz/\nLocation: Paris, France\nMaintained by R4SAS - https://github.com/r4sas",
       "country": "Russia",

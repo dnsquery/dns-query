@@ -102,12 +102,12 @@ export function parseEndpoint (endpoint) {
     }
   }
   if ((protocol === 'udp:' && family === 2) || protocol === 'udp6:') {
-    return new Endpoint({ protocol: 'udp6:', ipv6: host, pk: parts[8], port })
+    return toEndpoint({ protocol: 'udp6:', ipv6: host, pk: parts[8], port })
   }
   if ((protocol === 'udp:' && family === 1) || protocol === 'udp4:') {
-    return new Endpoint({ protocol: 'udp4:', ipv4: host, pk: parts[8], port })
+    return toEndpoint({ protocol: 'udp4:', ipv4: host, pk: parts[8], port })
   }
-  return new Endpoint({
+  return toEndpoint({
     protocol,
     host,
     port,
@@ -117,70 +117,93 @@ export function parseEndpoint (endpoint) {
 }
 
 export const supportedProtocols = ['http:', 'https:', 'udp4:', 'udp6:']
+
 export class Endpoint {
-  constructor (opts) {
+  constructor (opts, isHTTP) {
     this.name = opts.name || null
-
-    if (!opts.protocol) {
-      this.protocol = 'https:'
-    } else if (!supportedProtocols.includes(opts.protocol)) {
-      throw new Error(`Invalid Endpoint: unsupported protocol "${opts.protocol}" for endpoint: ${JSON.stringify(opts)}, supported protocols: ${supportedProtocols.join(', ')}`)
-    } else {
-      this.protocol = opts.protocol
-    }
-
-    const isHTTP = this.protocol === 'https:' || this.protocol === 'http:'
+    this.protocol = opts.protocol
     const port = typeof opts.port === 'string' ? opts.port = parseInt(opts.port, 10) : opts.port
     if (port === undefined || port === null) {
       this.port = isHTTP
         ? (this.protocol === 'https:' ? 443 : 80)
-        : (this.pk ? 443 : 53)
+        : (opts.pk ? 443 : 53)
     } else if (typeof port !== 'number' && !isNaN(port)) {
       throw new Error(`Invalid Endpoint: port "${opts.port}" needs to be a number: ${JSON.stringify(opts)}`)
     } else {
       this.port = port
     }
-    if (isHTTP) {
-      if (!opts.host || typeof opts.host !== 'string') {
-        throw new Error(`Invalid Endpoint: host "${opts.path}" needs to be set: ${JSON.stringify(opts)}`)
-      }
-      this.host = opts.host
-      this.cors = !!opts.cors
-      this.path = opts.path || '/dns-query'
-      this.method = /^post$/i.test(opts.method) ? 'POST' : 'GET'
-      this.ipv4 = opts.ipv4
-      this.ipv6 = opts.ipv6
-      const urlHost = v6Regex.test(this.host) && !v4Regex.test(this.host) ? `[${this.host}]` : this.host
-      this.url = new URL(`${this.protocol}//${urlHost}:${this.port}${this.path}`)
-    } else {
-      if (opts.pk) {
-        this.pk = opts.pk
-      }
-      if (this.protocol === 'udp4:') {
-        if (!opts.ipv4 || typeof opts.ipv4 !== 'string') {
-          throw new Error(`Invalid Endpoint: ipv4 "${opts.ipv4}" needs to be set: ${JSON.stringify(opts)}`)
-        }
-        this.ipv4 = opts.ipv4
-      }
-      if (this.protocol === 'udp6:') {
-        if (!opts.ipv6 || typeof opts.ipv6 !== 'string') {
-          throw new Error(`Invalid Endpoint: ipv6 "${opts.ipv6}" needs to be set: ${JSON.stringify(opts)}`)
-        }
-        this.ipv6 = opts.ipv6
-      }
-    }
+  }
+}
+
+export class UDPEndpoint extends Endpoint {
+  constructor (opts) {
+    super(opts, false)
+    this.pk = opts.pk || null
   }
 
   toString () {
-    if (this.protocol === 'udp4:' || this.protocol === 'udp6:') {
-      const port = this.port !== (this.pk ? 443 : 53) ? `:${this.port}` : ''
-      const pk = this.pk ? ` [pk=${this.pk}]` : ''
-      return `udp://${this.ipv4 || this.ipv6}${port}${pk}`
-    } else {
-      const port = this.port !== (this.protocol === 'https:' ? 443 : 80) ? `:${this.port}` : ''
-      const method = this.method !== 'GET' ? ' [post]' : ''
-      const path = this.path === '/dns-query' ? '' : this.path
-      return `${this.protocol}//${this.host}${port}${path}${method}`
+    const port = this.port !== (this.pk ? 443 : 53) ? `:${this.port}` : ''
+    const pk = this.pk ? ` [pk=${this.pk}]` : ''
+    return `udp://${this.ipv4 || this.ipv6}${port}${pk}`
+  }
+}
+
+export class UDP4Endpoint extends Endpoint {
+  constructor (opts) {
+    super(opts)
+    if (!opts.ipv4 || typeof opts.ipv4 !== 'string') {
+      throw new Error(`Invalid Endpoint: ipv4 "${opts.ipv4}" needs to be set: ${JSON.stringify(opts)}`)
+    }
+    this.ipv4 = opts.ipv4
+  }
+}
+
+export class UDP6Endpoint extends Endpoint {
+  constructor (opts) {
+    super(opts)
+    if (!opts.ipv6 || typeof opts.ipv6 !== 'string') {
+      throw new Error(`Invalid Endpoint: ipv6 "${opts.ipv6}" needs to be set: ${JSON.stringify(opts)}`)
     }
   }
+}
+
+export class HTTPEndpoint extends Endpoint {
+  constructor (opts) {
+    super(opts, true)
+    if (!opts.host || typeof opts.host !== 'string') {
+      throw new Error(`Invalid Endpoint: host "${opts.path}" needs to be set: ${JSON.stringify(opts)}`)
+    }
+    this.host = opts.host
+    this.cors = !!opts.cors
+    this.path = opts.path || '/dns-query'
+    this.method = /^post$/i.test(opts.method) ? 'POST' : 'GET'
+    this.ipv4 = opts.ipv4
+    this.ipv6 = opts.ipv6
+    const urlHost = v6Regex.test(this.host) && !v4Regex.test(this.host) ? `[${this.host}]` : this.host
+    this.url = new URL(`${this.protocol}//${urlHost}:${this.port}${this.path}`)
+  }
+
+  toString () {
+    const port = this.port !== (this.protocol === 'https:' ? 443 : 80) ? `:${this.port}` : ''
+    const method = this.method !== 'GET' ? ' [post]' : ''
+    const path = this.path === '/dns-query' ? '' : this.path
+    return `${this.protocol}//${this.host}${port}${path}${method}`
+  }
+}
+
+export function toEndpoint (opts) {
+  if (opts.protocol === null || opts.protocol === undefined) {
+    opts.protocol = 'https:'
+  }
+  const protocol = opts.protocol
+  if (protocol === 'udp4:') {
+    return new UDP4Endpoint(opts)
+  }
+  if (protocol === 'udp6:') {
+    return new UDP6Endpoint(opts)
+  }
+  if (protocol === 'https:' || protocol === 'http:') {
+    return new HTTPEndpoint(opts)
+  }
+  throw new Error(`Invalid Endpoint: unsupported protocol "${opts.protocol}" for endpoint: ${JSON.stringify(opts)}, supported protocols: ${supportedProtocols.join(', ')}`)
 }

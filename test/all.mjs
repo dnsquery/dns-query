@@ -4,7 +4,7 @@ import * as dohQuery from 'dns-query'
 import { TimeoutError } from 'dns-query/common.js'
 import XHR from 'xhr2'
 const query = dohQuery.query
-const Endpoint = dohQuery.Endpoint
+const toEndpoint = dohQuery.toEndpoint
 const isBrowser = typeof window !== 'undefined'
 
 const LOCAL_ENDPOINT = {
@@ -52,7 +52,7 @@ test('local /text causes ResponseError, with retries=0, once!', function (t) {
       t.equals(err.message, 'Invalid packet (cause=Header must be 12 bytes)')
       t.notEqual(err.cause, undefined)
       t.notEqual(err.cause, null)
-      t.deepEqual(err.endpoint, new Endpoint(Object.assign({}, LOCAL_ENDPOINT, { path: '/text' })))
+      t.deepEqual(err.endpoint, toEndpoint(Object.assign({}, LOCAL_ENDPOINT, { path: '/text' })))
       t.notEqual(err.response, undefined)
       return getLog().then(
         function (data) {
@@ -73,7 +73,7 @@ test('local /text causes ResponseError, with retries=3, several times', function
     failSuccess(t),
     function (err) {
       t.equals(err.name, 'ResponseError')
-      t.deepEqual(err.endpoint, new Endpoint(Object.assign({}, LOCAL_ENDPOINT, { path: '/text' })))
+      t.deepEqual(err.endpoint, toEndpoint(Object.assign({}, LOCAL_ENDPOINT, { path: '/text' })))
       t.notEquals(err.response, undefined)
       return getLog().then(
         function (data) {
@@ -122,7 +122,7 @@ test('local /404 causes StatusError', function (t) {
   return localQuery('/404').then(
     failSuccess(t),
     function (err) {
-      t.deepEqual(err.endpoint, new Endpoint(Object.assign({}, LOCAL_ENDPOINT, { path: '/404' })))
+      t.deepEqual(err.endpoint, toEndpoint(Object.assign({}, LOCAL_ENDPOINT, { path: '/404' })))
       t.notEqual(err.response, undefined)
       t.equals(err.code, 'HTTP_STATUS')
     }
@@ -260,19 +260,19 @@ test('parsing of endpoints', function (t) {
         const fixtures = [
           { input: [endpoints.google], expected: [endpoints.google] },
           { input: ['google', 'cloudflare'], expected: [endpoints.google, endpoints.cloudflare] },
-          { input: [{ protocol: 'https:', host: 'abcd.com' }], expected: [new Endpoint({ protocol: 'https:', host: 'abcd.com' })] },
-          { input: ['https://abcd.com'], expected: [new Endpoint({ protocol: 'https:', host: 'abcd.com' })] },
-          { input: ['https://abcd.com:8443/'], expected: [new Endpoint({ protocol: 'https:', host: 'abcd.com', port: 8443, path: '/' })] },
-          { input: ['http://foo.com:123/ygga [post]'], expected: [new Endpoint({ protocol: 'http:', host: 'foo.com', port: 123, path: '/ygga', method: 'post' })] },
-          { input: ['http://foo.com/ygga/fuga [get]'], expected: [new Endpoint({ protocol: 'http:', host: 'foo.com', path: '/ygga/fuga', method: 'get' })] },
-          { input: ['foo.com:8443/ygga/fuga [get]'], expected: [new Endpoint({ protocol: 'https:', host: 'foo.com', port: 8443, path: '/ygga/fuga', method: 'get' })] },
-          { input: ['1.1.1.1'], expected: [new Endpoint({ protocol: 'https:', host: '1.1.1.1' })] },
-          { input: ['::ffff:ff00'], expected: [new Endpoint({ protocol: 'https:', host: '::ffff:ff00' })] },
-          { input: ['ffff:ff00:0000:00ff:f000:000f:f0f0:0f0f:53'], expected: [new Endpoint({ protocol: 'https:', host: 'ffff:ff00:0000:00ff:f000:000f:f0f0:0f0f', port: 53 })] },
-          { input: ['udp://1.1.1.1'], expected: [new Endpoint({ protocol: 'udp4:', ipv4: '1.1.1.1' })] },
-          { input: ['udp4://1.1.1.1'], expected: [new Endpoint({ protocol: 'udp4:', ipv4: '1.1.1.1' })] },
-          { input: ['udp://1.1.1.1:53'], expected: [new Endpoint({ protocol: 'udp4:', ipv4: '1.1.1.1', port: 53 })] },
-          { input: ['udp://ffff:ff00:0000:00ff:f000:000f:f0f0:0f0f:53'], expected: [new Endpoint({ protocol: 'udp6:', ipv6: 'ffff:ff00:0000:00ff:f000:000f:f0f0:0f0f', port: 53 })] },
+          { input: [{ protocol: 'https:', host: 'abcd.com' }], expected: [toEndpoint({ protocol: 'https:', host: 'abcd.com' })] },
+          { input: ['https://abcd.com'], expected: [toEndpoint({ protocol: 'https:', host: 'abcd.com' })] },
+          { input: ['https://abcd.com:8443/'], expected: [toEndpoint({ protocol: 'https:', host: 'abcd.com', port: 8443, path: '/' })] },
+          { input: ['http://foo.com:123/ygga [post]'], expected: [toEndpoint({ protocol: 'http:', host: 'foo.com', port: 123, path: '/ygga', method: 'post' })] },
+          { input: ['http://foo.com/ygga/fuga [get]'], expected: [toEndpoint({ protocol: 'http:', host: 'foo.com', path: '/ygga/fuga', method: 'get' })] },
+          { input: ['foo.com:8443/ygga/fuga [get]'], expected: [toEndpoint({ protocol: 'https:', host: 'foo.com', port: 8443, path: '/ygga/fuga', method: 'get' })] },
+          { input: ['1.1.1.1'], expected: [toEndpoint({ protocol: 'https:', host: '1.1.1.1' })] },
+          { input: ['::ffff:ff00'], expected: [toEndpoint({ protocol: 'https:', host: '::ffff:ff00' })] },
+          { input: ['ffff:ff00:0000:00ff:f000:000f:f0f0:0f0f:53'], expected: [toEndpoint({ protocol: 'https:', host: 'ffff:ff00:0000:00ff:f000:000f:f0f0:0f0f', port: 53 })] },
+          { input: ['udp://1.1.1.1'], expected: [toEndpoint({ protocol: 'udp4:', ipv4: '1.1.1.1' })] },
+          { input: ['udp4://1.1.1.1'], expected: [toEndpoint({ protocol: 'udp4:', ipv4: '1.1.1.1' })] },
+          { input: ['udp://1.1.1.1:53'], expected: [toEndpoint({ protocol: 'udp4:', ipv4: '1.1.1.1', port: 53 })] },
+          { input: ['udp://ffff:ff00:0000:00ff:f000:000f:f0f0:0f0f:53'], expected: [toEndpoint({ protocol: 'udp6:', ipv6: 'ffff:ff00:0000:00ff:f000:000f:f0f0:0f0f', port: 53 })] },
           {
             input: (function * () {
               yield 'google'

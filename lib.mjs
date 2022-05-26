@@ -7,7 +7,7 @@ import http from 'http'
 import * as common from 'dns-query/common.js'
 import fs from 'fs'
 import { join } from 'path'
-const { AbortError, HTTPStatusError, TimeoutError, Endpoint, URL } = common
+const { AbortError, HTTPStatusError, TimeoutError, UDP4Endpoint, UDP6Endpoint, URL } = common
 
 // Node 6 support
 const writeFile = (path, data) => new Promise(
@@ -260,9 +260,8 @@ export function loadJSON (url, cache, timeout, abortSignal) {
 
 export function nativeEndpoints () {
   return dns.getServers().map(host =>
-    new Endpoint(codec.familyOf(host) === 1
-      ? { protocol: 'udp4:', ipv4: host }
-      : { protocol: 'udp6:', ipv6: host }
-    )
+    codec.familyOf(host) === 1
+      ? new UDP4Endpoint({ protocol: 'udp4:', ipv4: host })
+      : new UDP6Endpoint({ protocol: 'udp6:', ipv6: host })
   )
 }

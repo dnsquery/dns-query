@@ -1,4 +1,4 @@
-import { Endpoint } from 'dns-query/common.js'
+import { toEndpoint } from 'dns-query/common.js'
 
 export const resolvers = [
   {
@@ -1243,7 +1243,7 @@ export const resolvers = [
     }
   }
 ].map(function (resolver) {
-  resolver.endpoint = new Endpoint(Object.assign({ name: resolver.name }, resolver.endpoint))
+  resolver.endpoint = toEndpoint(Object.assign({ name: resolver.name }, resolver.endpoint))
   return resolver
 })
 export const resolverByName = resolvers.reduce((byName, resolver) => {

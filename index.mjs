@@ -6,7 +6,8 @@ import {
   ResponseError,
   Endpoint,
   parseEndpoint,
-  URL
+  URL,
+  toEndpoint
 } from 'dns-query/common.js'
 
 export {
@@ -15,7 +16,11 @@ export {
   AbortError,
   ResponseError,
   Endpoint,
-  parseEndpoint
+  HTTPEndpoint,
+  UDP4Endpoint,
+  UDP6Endpoint,
+  parseEndpoint,
+  toEndpoint
 } from 'dns-query/common.js'
 
 function queryOne (endpoint, query, timeout, abortSignal) {
@@ -102,7 +107,7 @@ export class Resolver {
       )
         .then(res => {
           const resolvers = res.data.resolvers.map(resolver => {
-            resolver.endpoint = new Endpoint(Object.assign({ name: resolver.name }, resolver.endpoint))
+            resolver.endpoint = toEndpoint(Object.assign({ name: resolver.name }, resolver.endpoint))
             return resolver
           })
           const endpoints = resolvers.map(resolver => resolver.endpoint)
@@ -254,7 +259,7 @@ export function loadEndpoints (resolver, input) {
         if (endpoint instanceof Endpoint) {
           return endpoint
         }
-        return new Endpoint(endpoint)
+        return toEndpoint(endpoint)
       })
     }
     return resolver.wellknown()
@@ -266,7 +271,7 @@ export function loadEndpoints (resolver, input) {
           if (typeof endpoint === 'string') {
             return wellknown.endpointByName[endpoint] || parseEndpoint(endpoint)
           }
-          return new Endpoint(endpoint)
+          return toEndpoint(endpoint)
         })
       )
   })

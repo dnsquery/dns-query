@@ -54,6 +54,8 @@ endpoints = [cloudflare, google, opendns] // Use predefined, well-known endpoint
 endpoints = ['cloudflare', 'google', 'opendns'] // Use predefined, well-known endpoints by their name
 endpoints = ['https://cloudflare-dns.com/dns-query'] // Use a custom endpoint
 endpoints = [{ host: 'cloudflare-dns.com' }] // Specify using properties
+endpoints = (endpoint) => endpoint.protocol === 'https:' // Use a filter against the well-known endpoints
+endpoints = Promise.resolve('doh') // The endpoints can also be a promise
 try {
   const { answers } = await query({
     question: {type: 'A', name: 'google.com'}
@@ -129,27 +131,39 @@ OPTIONS:
 For an endpoint to work, it needs to satisfy this interface:
 
 ```typescript
-interface EndpointProps {
-  /* https is the default for DoH endpoints, udp4:/udp6: for regular dns endpoints and http for debug only! defaults to https: */
-  protocol?: 'http:' | 'https:' | 'udp4:' | 'udp6:';
+type EndpointProps = {
+  /* https is the default for DoH endpoints and http for debug only! If you don't specify a protocol, https is assumed */
+  protocol: 'https:' | 'http:'
+  /* https port, defaults to 443 for https, 80 for http */
+  port?: number | string | null
   /* Host to look up */
-  host: string;
-  /* Path, prefixed with /, defaults to /dns-query for the http/https protocol, ignored for udp */
-  path?: string;
-  /* https port, defaults to 443 for https, 80 for http and 53 for udp*/
-  port?: number;
-  /* true, if endpoint is known to log requests, defaults to false */
-  log?: boolean;
+  host: string
+  /* Known IPV4 address that can be used for the lookup */
+  ipv4?: string
+  /* Known IPV6 address that can be used for the lookup */
+  ipv6?: string
   /* true, if endpoint supports http/https CORS headers, defaults to false */
-  cors?: boolean;
-  /* true, if endpoint is known to filters/redirects DNS packets, defaults to false */
-  filter?: boolean;
-  /* link to documentation, if available */
-  docs?: string;
-  /* Known geographical location */
-  location?: string;
+  cors?: boolean
+  /* Path, prefixed with /, defaults to /dns-query for the http/https protocol */
+  path?: string
   /* Method to request in case of http/https, defaults to GET */
-  method?: 'post' | 'Post' | 'POST' | 'get' | 'Get' | 'GET';
+  method?: 'POST' | 'GET'
+} | {
+  protocol: 'udp4:'
+  /* ipv4 endpoint to connect-to */
+  ipv4: string
+  /* https port, defaults to 53; 443 if pk is present */
+  port?: number | string | null
+  /* dnscrypt public key */
+  pk?: string | null
+} | {
+  protocol: 'udp6:'
+  /* ipv4 endpoint to connect-to */
+  ipv6: string
+  /* https port, defaults to 53; 443 if pk is present */
+  port?: number | string | null
+  /* dnscrypt public key */
+  pk?: string | null
 }
 ```
 

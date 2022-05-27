@@ -37,9 +37,8 @@ function queryDoh (endpoint, query, timeout, abortSignal) {
   return lib.request(
     endpoint.url,
     endpoint.method,
-    packet.encode(Object.assign({
-      flags: packet.RECURSION_DESIRED,
-      type: 'query'
+    packet.query.encode(Object.assign({
+      flags: packet.RECURSION_DESIRED
     }, query)),
     timeout,
     abortSignal
@@ -53,7 +52,7 @@ function queryDoh (endpoint, query, timeout, abortSignal) {
           error = new ResponseError('Empty.')
         } else {
           try {
-            const decoded = packet.decode(data)
+            const decoded = packet.response.decode(data)
             decoded.endpoint = endpoint
             decoded.response = response
             return decoded

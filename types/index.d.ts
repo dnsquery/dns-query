@@ -1,4 +1,4 @@
-import { Packet } from '@leichtgewicht/dns-packet';
+import { SingleQuestionPacket } from '@leichtgewicht/dns-packet';
 import {
   Endpoint, EndpointOpts
 } from '../common.js';
@@ -60,10 +60,10 @@ export class Session {
 
   wellknown(): Promise<ResolverLookup>;
   endpoints(): Promise<Endpoint[]>;
-  query(query: Packet, opts: QueryOpts): Promise<Packet>;
+  query(query: SingleQuestionPacket, opts: QueryOpts): Promise<SingleQuestionPacket>;
 }
 
-export function query(query: Packet, opts: QueryOpts): Promise<Packet>;
+export function query(query: SingleQuestionPacket, opts: QueryOpts): Promise<SingleQuestionPacket>;
 export function wellknown(): Promise<ResolverLookup>;
 export function endpoints(): Promise<Endpoint[]>;
 export function loadEndpoints(session: Session, input: EndpointInput): Promise<Endpoint[]>;

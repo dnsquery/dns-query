@@ -58,10 +58,7 @@ endpoints = (endpoint) => endpoint.protocol === 'https:' // Use a filter against
 endpoints = Promise.resolve('doh') // The endpoints can also be a promise
 try {
   const { answers } = await query({
-    questions: [
-      {type: 'A', name: 'google.com'},
-      {type: 'A', name: 'twitter.com'}
-    ]
+    question: {type: 'A', name: 'google.com'}
   }, {
     /* Options (optional) */
     endpoints: endpoints,
@@ -92,9 +89,14 @@ Execute a dns query over https.
 Examples:
 
   $ dns-query --json -e google \
-      '{ "questions": [{ "type": "A", "name": "google.com" }] }'
+      '{ "question": { "type": "A", "name": "google.com" } }'
 
-  $ echo '{ "questions": [{ "type": "A", "name": "google.com" }] }' \
+  # Fetch TXT entries for ipfs.io through regular dns
+  $ dns-query --json --dns \
+      '{ ["question": { "type": "TXT", "name": "ipfs.io" } }]'
+
+  # Pass the query through stdin
+  $ echo '{ "question": { "type": "A", "name": "google.com" } }' \
       | dns-query --stdin --endpoint cloudflare
 
 --help, -h ....... Show this help

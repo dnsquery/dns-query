@@ -10,7 +10,7 @@ const c = new AbortController();
   const lookup: ResolverLookup = await wellknown();
 
   try {
-    let p: Packet = await query({ id: 1 }, {
+    let p: Packet = await query({ id: 1, question: { type: 'A', name: 'google.com' } }, {
       endpoints: [
         {
           protocol: 'https:',
@@ -38,7 +38,8 @@ const c = new AbortController();
     };
     const session = new Session(sessionOpts);
     p = await session.query({
-      id: 2
+      id: 2,
+      question: { type: 'A', name: 'google.com' }
     }, {});
   } catch (error) {
     if (

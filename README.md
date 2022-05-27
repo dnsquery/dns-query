@@ -35,10 +35,7 @@ endpoints = ['https://cloudflare-dns.com/dns-query'] // Use a custom endpoint
 endpoints = [{ host: 'cloudflare-dns.com' }] // Specify using properties
 try {
   const { answers } = await query({
-    questions: [
-      {type: 'A', name: 'google.com'},
-      {type: 'A', name: 'twitter.com'}
-    ]
+    question: {type: 'A', name: 'google.com'}
   }, {
     /* Options (optional) */
     endpoints: endpoints,
@@ -74,14 +71,14 @@ EXAMPLES:
 
   # Fetch from the google dns-over-https endpoint the A-name of google.com
   $ dns-query --json -e google \
-      '{ "questions": [{ "type": "A", "name": "google.com" }] }'
+      '{ "question": { "type": "A", "name": "google.com" } }'
 
   # Fetch TXT entries for ipfs.io through regular dns
   $ dns-query --json --dns \
-      '{ ["questions": [{ "type": "TXT", "name": "ipfs.io" }] }]'
+      '{ ["question": { "type": "TXT", "name": "ipfs.io" } }]'
 
   # Pass the query through stdin
-  $ echo '{ "questions": [{ "type": "A", "name": "google.com" }] }' \
+  $ echo '{ "question": { "type": "A", "name": "google.com" } }' \
       | dns-query --stdin --endpoint cloudflare
 
 OPTIONS:

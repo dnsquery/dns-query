@@ -108,13 +108,24 @@ async function run (args, signal) {
   return dns.encode(result)
 }
 
-function bufferPropsToString (result) {
+function bufferPropsToString (result, stack) {
+  if (!stack) {
+    stack = new Set([result])
+  } else if (stack.has(result)) {
+    return result
+  } else {
+    stack.add(result)
+  }
   for (const key in result) {
     const value = result[key]
     if (Buffer.isBuffer(value)) {
       result[key] = value.toString()
     } else if (typeof value === 'object' && value !== null) {
-      bufferPropsToString(value)
+      if (stack.has(value)) {
+        result[key] = '[Circular]'
+      } else {
+        bufferPropsToString(value, stack)
+      }
     }
   }
   return result

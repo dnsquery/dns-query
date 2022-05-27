@@ -901,15 +901,6 @@
       }
     },
     {
-      "name": "odoh-koki-es",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "odoh-target-es.alekberg.net",
-        "cors": true
-      },
-      "description": "Oblivious DoH target server in Spain. No logs, No filter, DNSSEC."
-    },
-    {
       "name": "odoh-koki-noads-ams",
       "endpoint": {
         "protocol": "https:",
@@ -928,15 +919,6 @@
       },
       "description": "Oblivious DoH target server in Sweden. No logs, filter ads and malware, DNSSEC.",
       "filter": true
-    },
-    {
-      "name": "odoh-koki-se",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "odoh-target-se.alekberg.net",
-        "cors": true
-      },
-      "description": "Oblivious DoH target server in Sweden. No logs, No filter, DNSSEC."
     },
     {
       "name": "odoh-resolver4.dns.openinternet.io",

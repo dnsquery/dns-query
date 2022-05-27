@@ -75,7 +75,6 @@
   },
   "devDependencies": {
     "@definitelytyped/dtslint": "0.0.112",
-    "@leichtgewicht/dnsstamp": "^1.1.4",
     "@leichtgewicht/esm2umd": "^0.2.0",
     "abort-controller": "^3.0.0",
     "browserify": "^17.0.0",

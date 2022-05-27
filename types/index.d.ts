@@ -12,6 +12,8 @@ export {
   HTTPStatusError,
   AbortError,
   ResponseError,
+  BaseEndpoint,
+  BaseEndpointOpts,
   Endpoint,
   EndpointOpts,
   HTTPEndpoint,

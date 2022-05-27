@@ -250,10 +250,10 @@ test('timeout on udp6 sockets', {
 })
 
 test('parsing of endpoints', function (t) {
-  const r = new dohQuery.Resolver({
+  const session = new dohQuery.Session({
     update: false
   })
-  return r.wellknown().then(function (wellknown) {
+  return session.wellknown().then(function (wellknown) {
     const endpoints = wellknown.endpointByName
     return Promise.resolve(null)
       .then(function () {
@@ -303,7 +303,7 @@ test('parsing of endpoints', function (t) {
           { input: [], expected: [] }
         ]
         return Promise.all(fixtures.map(function (fixture, index) {
-          return dohQuery.loadEndpoints(r, fixture.input).catch(err => {
+          return dohQuery.loadEndpoints(session, fixture.input).catch(err => {
             return Object.assign(err, { fixture, index })
           })
         })).then(function (results) {
@@ -327,7 +327,7 @@ test('parsing of endpoints', function (t) {
           { input: [{ protocol: 'https:', host: 'hi', port: false }], expected: /needs to be a number/ }
         ]
         return Promise.all(fixtures.map(function (fixture) {
-          return dohQuery.loadEndpoints(r, fixture.input).then(
+          return dohQuery.loadEndpoints(session, fixture.input).then(
             failSuccess(t),
             err => Promise.resolve(err)
           )

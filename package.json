@@ -15,7 +15,7 @@
     "test": "node test/env npm run test-impl",
     "test-cjs": "node test/env fresh-tape test/all.cjs",
     "test-impl": "fresh-tape test/all.mjs",
-    "test-cov": "node test/env c8 -r lcov -r html npm run test-impl",
+    "test-cov": "node test/env c8 -r lcov -r html -r text npm run test-impl",
     "browser-test": "env TEST_ENV=browser node test/env npm run browser-test-impl -s",
     "browser-test-impl": "browserify -t envify --debug test/all.cjs | tape-run",
     "browser-test-cov": "env TEST_ENV=browser node test/env npm run browser-test-cov-impl -s",

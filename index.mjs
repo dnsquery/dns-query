@@ -1,10 +1,10 @@
 import * as packet from '@leichtgewicht/dns-packet'
 import * as lib from 'dns-query/lib.js'
-import * as backup from 'dns-query/resolvers.js'
+import backup from 'dns-query/resolvers.js'
 import {
   AbortError,
   ResponseError,
-  Endpoint,
+  BaseEndpoint,
   parseEndpoint,
   URL,
   toEndpoint
@@ -15,7 +15,7 @@ export {
   HTTPStatusError,
   AbortError,
   ResponseError,
-  Endpoint,
+  BaseEndpoint,
   HTTPEndpoint,
   UDP4Endpoint,
   UDP6Endpoint,
@@ -136,6 +136,7 @@ export class Session {
       })
       .then(res => {
         const native = lib.nativeEndpoints()
+        console.log(res)
         return {
           time: res.time === null ? Date.now() : res.time,
           data: Object.assign({}, res.data, {
@@ -256,7 +257,7 @@ export function loadEndpoints (session, input) {
     endpoints = Array.from(endpoints).filter(Boolean)
     if (endpoints.findIndex(isString) === -1) {
       return endpoints.map(endpoint => {
-        if (endpoint instanceof Endpoint) {
+        if (endpoint instanceof BaseEndpoint) {
           return endpoint
         }
         return toEndpoint(endpoint)
@@ -265,7 +266,7 @@ export function loadEndpoints (session, input) {
     return session.wellknown()
       .then(wellknown =>
         endpoints.map(endpoint => {
-          if (endpoint instanceof Endpoint) {
+          if (endpoint instanceof BaseEndpoint) {
             return endpoint
           }
           if (typeof endpoint === 'string') {

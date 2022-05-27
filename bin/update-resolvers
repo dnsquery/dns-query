@@ -273,7 +273,7 @@ const resolvers = ${JSON.stringify(resolvers, null, 2)}.map(function (resolver) 
   return resolver
 })
 const endpoints = resolvers.map(resolver => resolver.endpoint)
-const lookup = {
+export const lookup = {
   resolvers,
   resolverByName: resolvers.reduce((byName, resolver) => {
     byName[resolver.name] = resolver
@@ -285,7 +285,6 @@ const lookup = {
     return byName
   }, {})
 }
-export default lookup
 `
     )
   ])

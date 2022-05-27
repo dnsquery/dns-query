@@ -26,5 +26,4 @@ export interface ResolverLookup {
   endpointByName: { [name: string]: Endpoint }
 }
 
-declare const lookup: ResolverLookup
-export default lookup
+export const lookup: ResolverLookup

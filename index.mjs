@@ -1,6 +1,6 @@
 import * as packet from '@leichtgewicht/dns-packet'
 import * as lib from 'dns-query/lib.js'
-import backup from 'dns-query/resolvers.js'
+import { lookup as backup } from 'dns-query/resolvers.js'
 import {
   AbortError,
   ResponseError,
@@ -136,7 +136,6 @@ export class Session {
       })
       .then(res => {
         const native = lib.nativeEndpoints()
-        console.log(res)
         return {
           time: res.time === null ? Date.now() : res.time,
           data: Object.assign({}, res.data, {

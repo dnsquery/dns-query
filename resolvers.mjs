@@ -1064,6 +1064,15 @@ const resolvers = [
     }
   },
   {
+    name: 'quad101',
+    endpoint: {
+      protocol: 'https:',
+      host: 'dns.twnic.tw',
+      cors: true
+    },
+    description: 'DNSSEC-aware public resolver by the Taiwan Network Information Center (TWNIC)\nhttps://101.101.101.101/index_en.html'
+  },
+  {
     name: 'quad9-doh-ip4-port443-filter-ecs-pri',
     endpoint: {
       protocol: 'https:',
@@ -1226,7 +1235,7 @@ const resolvers = [
   return resolver
 })
 const endpoints = resolvers.map(resolver => resolver.endpoint)
-const lookup = {
+export const lookup = {
   resolvers,
   resolverByName: resolvers.reduce((byName, resolver) => {
     byName[resolver.name] = resolver
@@ -1238,4 +1247,3 @@ const lookup = {
     return byName
   }, {})
 }
-export default lookup

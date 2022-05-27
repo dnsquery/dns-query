@@ -18,7 +18,7 @@ test('Abort before start (doh)', function (t) {
   const c = new AbortController()
   c.abort()
   return query(
-    { questions: [{ type: 'A', name: 'google.com' }] },
+    { question: { type: 'A', name: 'google.com' } },
     { signal: c.signal, endpoints: 'doh' }
   ).then(
     failSuccess(t),
@@ -34,7 +34,7 @@ test('Abort before start (dns)', {
   const c = new AbortController()
   c.abort()
   return query(
-    { questions: [{ type: 'A', name: 'google.com' }] },
+    { question: { type: 'A', name: 'google.com' } },
     { signal: c.signal, endpoints: 'dns' }
   ).then(
     failSuccess(t),
@@ -161,7 +161,7 @@ test('aborting requests while running (dns)', {
   skip: isBrowser
 }, function (t) {
   const c = new AbortController()
-  const p = query({ questions: [{ type: 'A', name: 'google.com' }] }, { signal: c.signal, endpoints: 'dns' })
+  const p = query({ question: { type: 'A', name: 'google.com' } }, { signal: c.signal, endpoints: 'dns' })
   setImmediate(() => { c.abort() })
   return p.then(
     failSuccess(t),
@@ -241,7 +241,7 @@ test('infinite retries', function (t) {
 test('timeout on udp6 sockets', {
   skip: isBrowser
 }, function (t) {
-  return query({ questions: [] }, { timeout: 100, endpoints: ['udp6://' + LOCAL_ENDPOINT.host + ':' + LOCAL_ENDPOINT.port] }).then(
+  return query({ question: { name: 'google.com', type: 'A' } }, { timeout: 100, endpoints: ['udp6://' + LOCAL_ENDPOINT.host + ':' + LOCAL_ENDPOINT.port] }).then(
     failSuccess(t),
     function (err) {
       t.equals(err.message, (new TimeoutError(100)).message)
@@ -345,7 +345,7 @@ test('parsing of endpoints', function (t) {
 test('dns query using the default servers', {
   skip: isBrowser
 }, function (t) {
-  return query({ questions: [{ type: 'A', name: 'google.com' }] }, { endpoints: 'dns' })
+  return query({ question: { type: 'A', name: 'google.com' } }, { endpoints: 'dns' })
     .then(data => {
       t.deepEquals(data.answers[0], {
         name: 'google.com',
@@ -359,7 +359,7 @@ test('dns query using the default servers', {
 })
 
 test('query without endpoints', function (t) {
-  return query({}, { endpoints: [] })
+  return query({ question: {} }, { endpoints: [] })
     .then(
       failSuccess(t),
       function (error) {
@@ -405,7 +405,7 @@ function localQuery (paths, opts) {
     paths = [paths]
   }
   return query(
-    { questions: [{ type: 'A', name: 'google.com' }] },
+    { question: { type: 'A', name: 'google.com' } },
     Object.assign(
       {
         endpoints: paths.map(function (path) { return Object.assign({ path }, LOCAL_ENDPOINT) }),

@@ -23,12 +23,29 @@ export {
   toEndpoint
 } from 'dns-query/common.js'
 
+function toMultiQuery (singleQuery) {
+  const query = Object.assign({
+    type: 'query'
+  }, singleQuery)
+  delete query.question
+  query.questions = []
+  if (singleQuery.question) {
+    query.questions.push(singleQuery.question)
+  }
+  return query
+}
+
 function queryOne (endpoint, query, timeout, abortSignal) {
   if (abortSignal && abortSignal.aborted) {
     return Promise.reject(new AbortError())
   }
   if (endpoint.protocol === 'udp4:' || endpoint.protocol === 'udp6:') {
-    return lib.queryDns(endpoint, query, timeout, abortSignal)
+    return lib.queryDns(endpoint, toMultiQuery(query), timeout, abortSignal)
+      .then(result => {
+        result.question = result.questions[0]
+        delete result.questions
+        return result
+      })
   }
   return queryDoh(endpoint, query, timeout, abortSignal)
 }
@@ -156,6 +173,7 @@ export class Session {
 
   query (q, opts) {
     opts = Object.assign({}, this.opts, opts)
+    if (!q.question) return Promise.reject(new Error('To request data you need to specify a .question!'))
     return loadEndpoints(this, opts.endpoints)
       .then(endpoints => queryN(endpoints, q, opts))
   }
@@ -249,7 +267,10 @@ export function loadEndpoints (session, input) {
     if (type === 'function') {
       return session.endpoints().then(filterEndpoints(endpoints))
     }
-    if (endpoints === null || endpoints === undefined || type === 'string' || typeof endpoints[Symbol.iterator] !== 'function') {
+    if (endpoints === null || endpoints === undefined) {
+      return session.endpoints()
+    }
+    if (type === 'string' || typeof endpoints[Symbol.iterator] !== 'function') {
       throw new Error(`Endpoints (${endpoints}) needs to be iterable.`)
     }
     endpoints = Array.from(endpoints).filter(Boolean)

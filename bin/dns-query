@@ -14,14 +14,14 @@ EXAMPLES:
 
   # Fetch from the google dns-over-https endpoint the A-name of google.com
   $ ${cmd} --json -e google \\
-      '{ "questions": [{ "type": "A", "name": "google.com" }] }'
+      '{ "question": { "type": "A", "name": "google.com" } }'
 
   # Fetch TXT entries for ipfs.io through regular dns
   $ ${cmd} --json --dns \\
-      '{ "questions": [{ "type": "TXT", "name": "ipfs.io" }] }'
+      '{ "question": { "type": "TXT", "name": "ipfs.io" } }'
 
   # Pass the query through stdin
-  $ echo '{ "questions": [{ "type": "A", "name": "google.com" }] }' \\
+  $ echo '{ "question": { "type": "A", "name": "google.com" } }' \\
       | ${cmd} --stdin --endpoint cloudflare
 
 OPTIONS:

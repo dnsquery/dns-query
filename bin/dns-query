@@ -190,7 +190,7 @@ async function getInput (options, input) {
       throw new Error('Binary input only works in combination with --stdin')
     }
     if (!input) {
-      throw new Error('Missing input')
+      throw new Error('Missing input. You need to specify a JSON object containing the DNS query!')
     }
   }
   const packet = getPacket(input, options.type)

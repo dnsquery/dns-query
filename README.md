@@ -64,30 +64,46 @@ or by running `npx dns-query`.
 ```sh
 $ dns-query <options> <input>
 
-Execute a dns query over https.
+dns-query - Execute a dns query over https.
 
-Examples:
+USAGE:
 
+  dns-query <Options> <Input>
+
+EXAMPLES:
+
+  # Fetch from the google dns-over-https endpoint the A-name of google.com
   $ dns-query --json -e google \
       '{ "questions": [{ "type": "A", "name": "google.com" }] }'
 
+  # Fetch TXT entries for ipfs.io through regular dns
+  $ dns-query --json --dns \
+      '{ ["questions": [{ "type": "TXT", "name": "ipfs.io" }] }]'
+
+  # Pass the query through stdin
   $ echo '{ "questions": [{ "type": "A", "name": "google.com" }] }' \
       | dns-query --stdin --endpoint cloudflare
 
---help, -h ....... Show this help
---version, -v .... Show the version
---json ........... --type=json
---base64 ......... --type=base64
---binary ......... --type=binary
---type ........... Input type. Options: json, base64, binary; Default: json
---out ............ Output type. Defaults to the input --type.
---stdin .......... Get <input> from stdin instead of cli arguments
---endpoint, -e ... Use a specific endpoint. Can be either the name of a known
-    endpoint, a json object or an url. By default uses one of the known endpoints.
-    If multiple are provided, one at random will be used.
---endpoints ...... Lists all known endpoints as json.
---retry .......... Number of retries to do in case a request fails, default: 3
---timeout ........ Timeout for the request in milliseconds, default: 30000
+OPTIONS:
+
+  --help, -h ....... Show this help
+  --version, -v .... Show the version
+  --json ........... --type=json
+  --base64 ......... --type=base64
+  --binary ......... --type=binary
+  --type ........... Input type. Options: json, base64, binary; Default: json
+  --out ............ Output type. Defaults to the input --type.
+  --stdin .......... Get <input> from stdin instead of cli arguments
+  --dns ............ Use dns endpoints
+  --doh ............ Use doh endpoints
+  --endpoint, -e ... Use a specific endpoint. Can be either the name of a known
+      endpoint, a json object or an url. By default uses one of the known endpoints.
+      If multiple are provided, one at random will be used.
+  --endpoints ...... Lists all known endpoints as json.
+  --resolvers ...... List all known resolvers as json.
+  --response ....... Show the http response in the result.
+  --retries ........ Number of retries to do in case requests fails, default: 5
+  --timeout ........ Timeout for the request in milliseconds, default: 30000
 ```
 
 ## Endpoints

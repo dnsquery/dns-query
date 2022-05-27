@@ -30,27 +30,72 @@ export class TimeoutError extends Error {
   name: 'TimeoutError';
 }
 
-export class Endpoint {
-  /* https is the default for DoH endpoints, udp4:/upd6: for regular dns endpoints and http for debug only! defaults to https: */
-  protocol?: 'http:' | 'https:' | 'udp4:' | 'udp6:';
-  /* Host to look up, http/https only */
-  host: string;
-  /* IP4, IPV6 */
-  /* Path, prefixed with /, defaults to /dns-query for the http/https protocol, ignored for udp */
-  path?: string;
-  /* https port, defaults to 443 for https, 80 for http and 53 for udp*/
-  port?: number;
-  /* true, if endpoint is known to log requests, defaults to false */
-  log?: boolean;
-  /* true, if endpoint supports http/https CORS headers, defaults to false */
-  cors?: boolean;
-  /* true, if endpoint is known to filters/redirects DNS packets, defaults to false */
-  filter?: boolean;
-  /* link to documentation, if available */
-  docs?: string;
-  /* Known geographical location */
-  location?: string;
-  /* Method to request in case of http/https, defaults to GET */
-  method?: 'post' | 'Post' | 'POST' | 'get' | 'Get' | 'GET';
-  constructor(data: EndpointProps);
+export interface BaseEndpointOpts <Protocol extends string> {
+  protocol: Protocol
+  name?: string | null
+  port?: number | string | null
 }
+
+export class BaseEndpoint <Protocol extends string> {
+  protocol: Protocol
+  name: string | null
+  port: number
+
+  constructor (
+    opts: BaseEndpointOpts<Protocol>,
+    isHTTP: boolean
+  )
+}
+
+export interface UDPEndpointOpts <Protocol extends string> extends BaseEndpointOpts<Protocol> {
+  pk?: string | null
+}
+
+export class UDPEndpoint <Protocol extends string> extends BaseEndpoint<Protocol> {
+  pk: string | null
+  constructor (opts: UDPEndpoint<Protocol>)
+}
+
+export interface UDP4EndpointOpts extends UDPEndpointOpts<'udp4:'> {
+  ipv4: string
+}
+
+export class UDP4Endpoint extends UDPEndpoint<'udp4:'> {
+  ipv4: string
+  constructor (opts: UDP4EndpointOpts)
+}
+
+export interface UDP6EndpointOpts extends UDPEndpointOpts<'udp6:'> {
+  ipv6: string
+}
+
+export class UDP6Endpoint extends UDPEndpoint<'udp6:'> {
+  ipv6: string
+  constructor (opts: UDP6EndpointOpts)
+}
+
+export interface HTTPEndpointOpts extends BaseEndpointOpts<'http:' | 'https:'> {
+  host: string
+  ipv4?: string
+  ipv6?: string
+  cors?: boolean
+  path?: string
+  method?: 'POST' | 'GET'
+}
+
+export class HTTPEndpoint extends BaseEndpoint<'http:' | 'https:'> {
+  host: string
+  ipv4?: string
+  ipv6?: string
+  cors: boolean
+  path: string
+  method: 'POST' | 'GET'
+  url: URL
+  constructor (opts: HTTPEndpointOpts);
+}
+
+export type EndpointOpts = UDP4EndpointOpts | UDP6EndpointOpts | HTTPEndpointOpts;
+export type Endpoint = UDP4Endpoint | UDP6Endpoint | HTTPEndpoint;
+
+export function toEndpoint (opts: EndpointOpts): Endpoint;
+export function parseEndpoint (input: string): Endpoint;

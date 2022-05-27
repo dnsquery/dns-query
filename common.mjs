@@ -118,7 +118,7 @@ export function parseEndpoint (endpoint) {
 
 export const supportedProtocols = ['http:', 'https:', 'udp4:', 'udp6:']
 
-export class Endpoint {
+export class BaseEndpoint {
   constructor (opts, isHTTP) {
     this.name = opts.name || null
     this.protocol = opts.protocol
@@ -135,7 +135,7 @@ export class Endpoint {
   }
 }
 
-export class UDPEndpoint extends Endpoint {
+export class UDPEndpoint extends BaseEndpoint {
   constructor (opts) {
     super(opts, false)
     this.pk = opts.pk || null
@@ -148,7 +148,7 @@ export class UDPEndpoint extends Endpoint {
   }
 }
 
-export class UDP4Endpoint extends Endpoint {
+export class UDP4Endpoint extends BaseEndpoint {
   constructor (opts) {
     super(opts)
     if (!opts.ipv4 || typeof opts.ipv4 !== 'string') {
@@ -158,7 +158,7 @@ export class UDP4Endpoint extends Endpoint {
   }
 }
 
-export class UDP6Endpoint extends Endpoint {
+export class UDP6Endpoint extends BaseEndpoint {
   constructor (opts) {
     super(opts)
     if (!opts.ipv6 || typeof opts.ipv6 !== 'string') {
@@ -167,7 +167,7 @@ export class UDP6Endpoint extends Endpoint {
   }
 }
 
-export class HTTPEndpoint extends Endpoint {
+export class HTTPEndpoint extends BaseEndpoint {
   constructor (opts) {
     super(opts, true)
     if (!opts.host || typeof opts.host !== 'string') {

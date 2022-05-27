@@ -2,7 +2,7 @@
 const { DNSStamp } = require('@leichtgewicht/dnsstamp')
 const dnsPacket = require('@leichtgewicht/dns-packet')
 const { request, queryDns, loadJSON } = require('../lib.cjs')
-const { Endpoint } = require('../common.cjs')
+const { toEndpoint } = require('../common.cjs')
 const { writeFile } = require('fs/promises')
 const { join } = require('path')
 const { inspect } = require('util')
@@ -107,7 +107,7 @@ async function verifyDoHMethod (endpoint, method) {
 }
 
 async function verifyDoH (resolver) {
-  const endpoint = new Endpoint(resolver.endpoint)
+  const endpoint = toEndpoint(resolver.endpoint)
   const [get, post] = await Promise.all([
     verifyDoHMethod(endpoint, 'GET'),
     verifyDoHMethod(endpoint, 'POST')
@@ -133,7 +133,7 @@ async function verifyDoH (resolver) {
   const [ipv4, ipv6] = await Promise.all([
     resolver.endpoint.ipv4
       ? verifyDoHMethod(
-        new Endpoint({
+        toEndpoint({
           ...resolver.endpoint,
           host: resolver.endpoint.ipv4,
           port: 443
@@ -143,7 +143,7 @@ async function verifyDoH (resolver) {
       : Promise.resolve({}),
     resolver.endpoint.ipv6
       ? verifyDoHMethod(
-        new Endpoint({
+        toEndpoint({
           ...resolver.endpoint,
           host: resolver.endpoint.ipv6,
           port: 443
@@ -268,19 +268,24 @@ async function main () {
       join(__dirname, '..', 'resolvers.mjs'),
       `import { toEndpoint } from 'dns-query/common.js'
 
-export const resolvers = ${JSON.stringify(resolvers, null, 2)}.map(function (resolver) {
+const resolvers = ${JSON.stringify(resolvers, null, 2)}.map(function (resolver) {
   resolver.endpoint = toEndpoint(Object.assign({ name: resolver.name }, resolver.endpoint))
   return resolver
 })
-export const resolverByName = resolvers.reduce((byName, resolver) => {
-  byName[resolver.name] = resolver
-  return byName
-}, {})
-export const endpoints = resolvers.map(resolver => resolver.endpoint)
-export const endpointByName = endpoints.reduce((byName, endpoint) => {
-  byName[endpoint.name] = endpoint
-  return byName
-}, {})
+const endpoints = resolvers.map(resolver => resolver.endpoint)
+const lookup = {
+  resolvers,
+  resolverByName: resolvers.reduce((byName, resolver) => {
+    byName[resolver.name] = resolver
+    return byName
+  }, {}),
+  endpoints,
+  endpointByName: endpoints.reduce((byName, endpoint) => {
+    byName[endpoint.name] = endpoint
+    return byName
+  }, {})
+}
+export default lookup
 `
     )
   ])

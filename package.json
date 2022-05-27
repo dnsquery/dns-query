@@ -4,12 +4,12 @@
   "description": "Node & Browser tested, Non-JSON DNS over HTTPS fetching with minimal dependencies.",
   "main": "index.cjs",
   "module": "index.mjs",
-  "types": "types",
+  "types": "types/index.d.ts",
   "bin": {
     "dns-query": "./bin/dns-query"
   },
   "scripts": {
-    "lint": "standard '**/*.mjs' bin/*",
+    "lint": "standard '**/*.mjs' bin/* && dtslint types --localTs node_modules/typescript/lib",
     "update-resolvers": "node bin/update-resolvers && standard --fix resolvers.mjs && esm2umd",
     "prepare": "esm2umd",
     "test": "node test/env npm run test-impl",
@@ -28,14 +28,17 @@
   "exports": {
     ".": {
       "import": "./index.mjs",
+      "types": "./types/index.d.ts",
       "require": "./index.cjs"
     },
     "./common.js": {
       "import": "./common.mjs",
+      "types": "./common.d.ts",
       "require": "./common.cjs"
     },
     "./resolvers.js": {
       "import": "./resolvers.mjs",
+      "types": "./resolvers.d.ts",
       "require": "./resolvers.cjs"
     },
     "./lib.js": {
@@ -44,6 +47,7 @@
       "require": "./lib.cjs",
       "browser": {
         "import": "./lib.browser.mjs",
+        "types": "./lib.d.ts",
         "require": "./lib.browser.cjs"
       }
     }

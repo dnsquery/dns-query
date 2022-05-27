@@ -1,6 +1,6 @@
 import { toEndpoint } from 'dns-query/common.js'
 
-export const resolvers = [
+const resolvers = [
   {
     name: 'adfree.usableprivacy.net',
     endpoint: {
@@ -1035,19 +1035,6 @@ export const resolvers = [
     filter: true
   },
   {
-    name: 'opennic-R4SAS-doh-ipv6',
-    endpoint: {
-      protocol: 'https:',
-      host: 'opennic.i2pd.xyz'
-    },
-    description: 'DOH • DNSSEC • OpenNIC • Non-logging • Uncensored - hosted on OVH - https://opennic.i2pd.xyz/\nLocation: Paris, France\nMaintained by R4SAS - https://github.com/r4sas',
-    country: 'Russia',
-    location: {
-      lat: 51.5626,
-      long: 46.0271
-    }
-  },
-  {
     name: 'publicarray-au2-doh',
     endpoint: {
       protocol: 'https:',
@@ -1077,15 +1064,6 @@ export const resolvers = [
     }
   },
   {
-    name: 'quad101',
-    endpoint: {
-      protocol: 'https:',
-      host: 'dns.twnic.tw',
-      cors: true
-    },
-    description: 'DNSSEC-aware public resolver by the Taiwan Network Information Center (TWNIC)\nhttps://101.101.101.101/index_en.html'
-  },
-  {
     name: 'quad9-doh-ip4-port443-filter-ecs-pri',
     endpoint: {
       protocol: 'https:',
@@ -1104,14 +1082,14 @@ export const resolvers = [
     name: 'quad9-doh-ip4-port443-filter-pri',
     endpoint: {
       protocol: 'https:',
-      host: 'dns9.quad9.net',
-      ipv4: '9.9.9.9'
+      host: 'dns.quad9.net',
+      ipv4: '149.112.112.112'
     },
     description: 'Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112',
-    country: 'France',
+    country: 'United States',
     location: {
-      lat: 48.8582,
-      long: 2.3387
+      lat: 37.751,
+      long: -97.822
     },
     filter: true
   },
@@ -1134,7 +1112,7 @@ export const resolvers = [
     endpoint: {
       protocol: 'https:',
       host: 'dns10.quad9.net',
-      ipv4: '149.112.112.10'
+      ipv4: '9.9.9.10'
     },
     description: 'Quad9 (anycast) no-dnssec/no-log/no-filter 9.9.9.10 - 149.112.112.10',
     country: 'United States',
@@ -1144,12 +1122,13 @@ export const resolvers = [
     }
   },
   {
-    name: 'quad9-doh-ip6-port5053-filter-pri',
+    name: 'quad9-doh-ip4-port5053-filter-pri',
     endpoint: {
       protocol: 'https:',
-      host: 'dns.quad9.net'
+      host: 'dns9.quad9.net',
+      ipv4: '149.112.112.9'
     },
-    description: 'Quad9 (anycast) dnssec/no-log/filter 2620:fe::fe - 2620:fe::9 - 2620:fe::fe:9',
+    description: 'Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112',
     country: 'United States',
     location: {
       lat: 37.751,
@@ -1246,12 +1225,17 @@ export const resolvers = [
   resolver.endpoint = toEndpoint(Object.assign({ name: resolver.name }, resolver.endpoint))
   return resolver
 })
-export const resolverByName = resolvers.reduce((byName, resolver) => {
-  byName[resolver.name] = resolver
-  return byName
-}, {})
-export const endpoints = resolvers.map(resolver => resolver.endpoint)
-export const endpointByName = endpoints.reduce((byName, endpoint) => {
-  byName[endpoint.name] = endpoint
-  return byName
-}, {})
+const endpoints = resolvers.map(resolver => resolver.endpoint)
+const lookup = {
+  resolvers,
+  resolverByName: resolvers.reduce((byName, resolver) => {
+    byName[resolver.name] = resolver
+    return byName
+  }, {}),
+  endpoints,
+  endpointByName: endpoints.reduce((byName, endpoint) => {
+    byName[endpoint.name] = endpoint
+    return byName
+  }, {})
+}
+export default lookup

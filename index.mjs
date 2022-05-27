@@ -72,7 +72,7 @@ function queryDoh (endpoint, query, timeout, abortSignal) {
 
 const UPDATE_URL = new URL('https://martinheidegger.github.io/dns-query/resolvers.json')
 
-export class Resolver {
+export class Session {
   constructor (opts) {
     this.opts = Object.assign({
       retries: 5,
@@ -162,18 +162,18 @@ export class Resolver {
   }
 }
 
-const defaultResolver = new Resolver()
+const defautSession = new Session()
 
 export function query (q, opts) {
-  return defaultResolver.query(q, opts)
+  return defautSession.query(q, opts)
 }
 
 export function endpoints () {
-  return defaultResolver.endpoints()
+  return defautSession.endpoints()
 }
 
 export function wellknown () {
-  return defaultResolver.wellknown()
+  return defautSession.wellknown()
 }
 
 function queryN (endpoints, q, opts) {
@@ -237,18 +237,18 @@ function isString (entry) {
   return typeof entry === 'string'
 }
 
-export function loadEndpoints (resolver, input) {
+export function loadEndpoints (session, input) {
   const p = isPromise(input) ? input : Promise.resolve(input)
   return p.then(function (endpoints) {
     if (endpoints === 'doh') {
-      return resolver.endpoints().then(filterDoh)
+      return session.endpoints().then(filterDoh)
     }
     if (endpoints === 'dns') {
-      return resolver.endpoints().then(filterDns)
+      return session.endpoints().then(filterDns)
     }
     const type = typeof endpoints
     if (type === 'function') {
-      return resolver.endpoints().then(filterEndpoints(endpoints))
+      return session.endpoints().then(filterEndpoints(endpoints))
     }
     if (endpoints === null || endpoints === undefined || type === 'string' || typeof endpoints[Symbol.iterator] !== 'function') {
       throw new Error(`Endpoints (${endpoints}) needs to be iterable.`)
@@ -262,7 +262,7 @@ export function loadEndpoints (resolver, input) {
         return toEndpoint(endpoint)
       })
     }
-    return resolver.wellknown()
+    return session.wellknown()
       .then(wellknown =>
         endpoints.map(endpoint => {
           if (endpoint instanceof Endpoint) {

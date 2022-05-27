@@ -26,7 +26,7 @@ jobs:
             os: ubuntu-latest
             node: 16
     runs-on: ${{ matrix.os }}
-    needs: strict
+    needs: [strict, browser]
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-node@v3
@@ -38,6 +38,18 @@ jobs:
         node-version: ${{ matrix.node }}
     - run: npm rebuild --ignore-scripts
     - run: npm run test-cjs
+
+  browser:
+    runs-on: ubuntu-latest
+    needs: strict
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 18
+    - run: sudo apt-get install xvfb
+    - run: npm i
+    - run: xvfb-run --auto-servernum npm run browser-test
 
   strict:
     runs-on: ubuntu-latest

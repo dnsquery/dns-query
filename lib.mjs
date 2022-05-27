@@ -70,7 +70,6 @@ export function queryDns (endpoint, query, timeout, signal) {
       // TODO: add dnscrypt support to @leichtgewicht/dns-socket
       return reject(new Error('dnscrypt servers currently not supported'))
     }
-    const t = setTimeout(onTimeout, timeout)
     const done = (err, res) => {
       if (signal) {
         signal.removeEventListener('abort', onAbort)
@@ -81,6 +80,7 @@ export function queryDns (endpoint, query, timeout, signal) {
       resolve(res)
     }
     const requestId = socket.query(query, endpoint.port, endpoint.ipv4 || endpoint.ipv6, done)
+    const t = setTimeout(onTimeout, timeout)
     if (signal) {
       signal.addEventListener('abort', onAbort)
     }

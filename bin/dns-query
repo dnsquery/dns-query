@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 const dns = require('@leichtgewicht/dns-packet')
-const { query, endpoints: allEndpoints } = require('..')
+const { query, endpoints: allEndpoints, wellknown } = require('..')
 const { version } = require('../package.json')
 const cmd = 'dns-query'
 
@@ -40,6 +40,7 @@ OPTIONS:
       endpoint, a json object or an url. By default uses one of the known endpoints.
       If multiple are provided, one at random will be used.
   --endpoints ...... Lists all known endpoints as json.
+  --resolvers ...... List all known resolvers as json.
   --retries ........ Number of retries to do in case requests fails, default: 5
   --timeout ........ Timeout for the request in milliseconds, default: 30000
 
@@ -53,6 +54,9 @@ async function run (args, signal) {
   }
   if (rawOpts.v || rawOpts.version) {
     return `v${version}\n`
+  }
+  if (rawOpts.resolvers) {
+    return JSON.stringify((await wellknown()).resolvers, null, 2)
   }
   if (rawOpts.endpoints) {
     return JSON.stringify(await allEndpoints(), null, 2)

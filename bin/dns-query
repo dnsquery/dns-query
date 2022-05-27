@@ -104,34 +104,34 @@ async function run (args, signal) {
     return dns.encode(result).toString('base64')
   }
   if (options.out === 'json') {
-    if (!options.response) {
-      delete result.response
-    }
-    return JSON.stringify(bufferPropsToString(result), null, 2)
+    return JSON.stringify(result, function (key, value) { return sanitize(options, value, [], []) }, 2)
   }
   return dns.encode(result)
 }
 
-function bufferPropsToString (result, stack) {
-  if (!stack) {
-    stack = new Set([result])
-  } else if (stack.has(result)) {
-    return result
-  } else {
-    stack.add(result)
+function sanitize (options, value, path, stack) {
+  if (typeof value !== 'object' || value === null) {
+    return value
   }
-  for (const key in result) {
-    const value = result[key]
-    if (Buffer.isBuffer(value)) {
-      result[key] = value.toString()
-    } else if (typeof value === 'object' && value !== null) {
-      if (stack.has(value)) {
-        result[key] = '[Circular]'
-      } else {
-        bufferPropsToString(value, stack)
-      }
+  if (Buffer.isBuffer(value)) {
+    return value.toString()
+  }
+  const circular = stack.indexOf(value)
+  if (circular !== -1) {
+    return `[Circular=${path.slice(0, circular).join('.')}]`
+  }
+  const json = typeof value.toJSON === 'function' ? value.toJSON() : value
+  const result = {}
+  stack.push(value)
+  for (const child in json) {
+    if (child === 'response' && path.length === 0 && !options.response) {
+      continue
     }
+    path.push(child)
+    result[child] = sanitize(options, value[child], path, stack)
+    path.pop()
   }
+  stack.pop()
   return result
 }
 
@@ -198,7 +198,7 @@ async function getInput (options, input) {
 }
 
 function getArgs (argv) {
-  const boolProps = ['help', 'h', 'json', 'base64', 'binary', 'stdin', 'endpoints', 'v', 'version', 'dns', 'doh', 'resolvers']
+  const boolProps = ['help', 'h', 'json', 'base64', 'binary', 'stdin', 'endpoints', 'v', 'version', 'dns', 'doh', 'response', 'resolvers']
   const inputProp = ['input', 'packet']
   const otherProp = ['type', 'out', 'timeout', 'retries']
   const arrayProp = ['endpoint', 'e']

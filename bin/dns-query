@@ -41,6 +41,7 @@ OPTIONS:
       If multiple are provided, one at random will be used.
   --endpoints ...... Lists all known endpoints as json.
   --resolvers ...... List all known resolvers as json.
+  --response ....... Show the http response in the result.
   --retries ........ Number of retries to do in case requests fails, default: 5
   --timeout ........ Timeout for the request in milliseconds, default: 30000
 
@@ -103,6 +104,9 @@ async function run (args, signal) {
     return dns.encode(result).toString('base64')
   }
   if (options.out === 'json') {
+    if (!options.response) {
+      delete result.response
+    }
     return JSON.stringify(bufferPropsToString(result), null, 2)
   }
   return dns.encode(result)
@@ -194,7 +198,7 @@ async function getInput (options, input) {
 }
 
 function getArgs (argv) {
-  const boolProps = ['help', 'h', 'json', 'base64', 'binary', 'stdin', 'endpoints', 'v', 'version', 'dns', 'doh']
+  const boolProps = ['help', 'h', 'json', 'base64', 'binary', 'stdin', 'endpoints', 'v', 'version', 'dns', 'doh', 'resolvers']
   const inputProp = ['input', 'packet']
   const otherProp = ['type', 'out', 'timeout', 'retries']
   const arrayProp = ['endpoint', 'e']

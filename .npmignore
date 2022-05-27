@@ -2,6 +2,7 @@ test/*
 *.tgz
 coverage/*
 .github/*
+.vscode/*
 types/test.ts
 types/tsconfig.json
 *.bak

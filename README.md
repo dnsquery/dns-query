@@ -12,8 +12,29 @@ This package provides simple function to make DoH queries both in node and the b
 ## Important Note before getting started
 
 By default `dns-query` uses well-known public dns-over-https servers to execute
-queries! These servers come with caveats, please look at [`./endpoints.md`](./endpoints.md)
-for more information.
+queries [automatically compiled][] by the data from the [DNSCrypt][] project.
+
+[automatically compiled]: https://github.com/martinheidegger/dns-query/actions/workflows/update.yml
+[DNSCrypt]: https://dnscrypt.info/
+
+The npm package comes with the list that was/is current on the time of the publication.
+It will will try to automatically download the list from [the dns-query website][] unless
+you set the `.update` property on a `Session` object.
+
+[the dns-query website]: https://martinheidegger.github.io/dns-query/resolvers.json
+
+These servers come with caveats that you should be aware of:
+
+- A server may filter, log or limit the requests it receives!
+- Filtering can be useful in case you want to avoid malware/ads/adult-content.
+- Logging may be required in some countries and limiting may be part of a business model.
+- Furthermore the different endpoints may or may not be distributed around the globe,
+    making requests slower/faster depending on the client's location.
+- Not all endpoints supply CORS headers which means that the list is severly reduced if you use this
+    library in the browser.
+
+If you are presenting this library to an end-user, you may want to allow them to decide what endpoint
+they want to use as it has privacy and usage implications!
 
 ## DNS support
 
@@ -135,8 +156,9 @@ interface EndpointProps {
 ### String endpoints
 
 Instead of passing an object you can also pass a string. If the string matches the name
-of one of the [endpoints](./endpoints.md), that endpoint will be used, else it needs
-to be a url, with a possible `[post]` or `[get]` suffix to indicate the method.
+of one of the endpoints, that endpoint will be used. If it doesnt match any endpoint,
+then it will be parsed using the `parseEndpoint` method understands an URL like structure
+with additional properties defined like flags (`[<name>]`).
 
 _Examples:_
 

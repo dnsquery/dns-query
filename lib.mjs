@@ -4,7 +4,7 @@ import { DNSSocket } from '@leichtgewicht/dns-socket'
 import * as codec from '@leichtgewicht/ip-codec'
 import https from 'https'
 import http from 'http'
-import * as common from 'dns-query/common.js'
+import * as common from './common.mjs'
 import fs from 'fs'
 import { join } from 'path'
 const { AbortError, HTTPStatusError, TimeoutError, UDP4Endpoint, UDP6Endpoint, URL } = common

@@ -1,7 +1,7 @@
 import test from 'fresh-tape'
 import AbortController from 'abort-controller'
-import * as dohQuery from 'dns-query'
-import { TimeoutError } from 'dns-query/common.js'
+import * as dohQuery from '../index.mjs'
+import { TimeoutError } from '../common.mjs'
 import XHR from 'xhr2'
 const query = dohQuery.query
 const toEndpoint = dohQuery.toEndpoint

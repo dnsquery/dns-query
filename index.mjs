@@ -1,6 +1,6 @@
 import * as packet from '@leichtgewicht/dns-packet'
-import * as lib from 'dns-query/lib.js'
-import { lookup as backup } from 'dns-query/resolvers.js'
+import * as lib from './lib.mjs'
+import { resolvers as backupResolvers } from './resolvers.mjs'
 import {
   AbortError,
   ResponseError,
@@ -8,7 +8,7 @@ import {
   parseEndpoint,
   URL,
   toEndpoint
-} from 'dns-query/common.js'
+} from './common.mjs'
 
 export {
   TimeoutError,
@@ -21,7 +21,7 @@ export {
   UDP6Endpoint,
   parseEndpoint,
   toEndpoint
-} from 'dns-query/common.js'
+} from './common.mjs'
 
 function toMultiQuery (singleQuery) {
   const query = Object.assign({

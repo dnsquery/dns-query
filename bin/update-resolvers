@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 const { DNSStamp } = require('@leichtgewicht/dnsstamp')
 const dnsPacket = require('@leichtgewicht/dns-packet')
-const { request, queryDns, loadJSON } = require('../lib.cjs')
-const { toEndpoint } = require('../common.cjs')
+const { request, queryDns, loadJSON } = require('../lib.js')
+const { toEndpoint } = require('../common.js')
 const { writeFile } = require('fs/promises')
 const { join } = require('path')
 const { inspect } = require('util')

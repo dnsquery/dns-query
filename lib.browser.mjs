@@ -5,16 +5,8 @@ import {
   HTTPStatusError,
   TimeoutError,
   URL
-} from 'dns-query/common.js'
+} from './common.mjs'
 const contentType = 'application/dns-message'
-
-// https://tools.ietf.org/html/rfc8484
-function toRFC8484 (buffer) {
-  return buffer.toString('base64')
-    .replace(/=/g, '')
-    .replace(/\+/g, '-')
-    .replace(/\//g, '_')
-}
 
 function noop () { }
 

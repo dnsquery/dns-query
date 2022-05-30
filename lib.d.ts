@@ -1,4 +1,4 @@
-import { AnyEndpoint } from 'dns-query/common.js'
+import { AnyEndpoint } from './common.mjs'
 import { Packet } from '@leichtgewicht/dns-packet'
 import { IncomingMessage } from 'http';
 export type Response = undefined | XMLHttpRequest | IncomingMessage;

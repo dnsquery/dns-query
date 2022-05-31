@@ -1,4 +1,4 @@
-import { query, AbortError, HTTPStatusError, ResponseError, TimeoutError, wellknown, Endpoint, EndpointOpts, ResolverLookup, SessionOpts, Session } from 'index';
+import { query, AbortError, HTTPStatusError, ResponseError, TimeoutError, wellknown, Endpoint, EndpointOpts, Wellknown, SessionOpts, Session } from 'index';
 import { Packet } from '@leichtgewicht/dns-packet';
 
 // $ExpectError
@@ -7,7 +7,7 @@ query('');
 const c = new AbortController();
 
 (async () => {
-  const lookup: ResolverLookup = await wellknown();
+  const lookup: Wellknown = await wellknown();
 
   try {
     let p: Packet = await query({ id: 1, question: { type: 'A', name: 'google.com' } }, {

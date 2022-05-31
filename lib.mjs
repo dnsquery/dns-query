@@ -251,10 +251,16 @@ export function loadJSON (url, cache, timeout, abortSignal) {
     })
 }
 
-export function nativeEndpoints () {
-  return dns.getServers().map(host =>
+export function processWellknown (wellknown) {
+  const native = dns.getServers().map(host =>
     codec.familyOf(host) === 1
       ? new UDP4Endpoint({ protocol: 'udp4:', ipv4: host })
       : new UDP6Endpoint({ protocol: 'udp6:', ipv6: host })
   )
+  return {
+    time: wellknown.time,
+    data: Object.assign({}, wellknown.data, {
+      endpoints: wellknown.data.endpoints.concat(native)
+    })
+  }
 }

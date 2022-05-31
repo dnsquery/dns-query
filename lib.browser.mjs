@@ -81,7 +81,17 @@ function requestRaw (url, method, data, timeout, abortSignal) {
       if (xhr.status !== 200) {
         finish(new HTTPStatusError(uri, xhr.status, method))
       } else {
-        finish(null, Buffer.from(xhr.response))
+        let buf
+        if (typeof xhr.response === 'string') {
+          buf = utf8Codec.encode(xhr.response)
+        } else if (xhr.response instanceof Uint8Array) {
+          buf = xhr.response
+        } else if (Array.isArray(xhr.response) || xhr.response instanceof ArrayBuffer) {
+          buf = new Uint8Array(xhr.response)
+        } else {
+          throw new Error('Unprocessable response ' + xhr.response)
+        }
+        finish(null, buf)
       }
     }
 
@@ -129,6 +139,11 @@ export function request (url, method, packet, timeout, abortSignal) {
   return requestRaw(url, method, packet, timeout, abortSignal)
 }
 
-export function nativeEndpoints () {
-  return []
+export function processWellknown (wellknown) {
+  return {
+    time: wellknown.time,
+    data: Object.assign({}, wellknown.data, {
+      endpoints: wellknown.data.endpoints.filter(ep => ep.cors)
+    })
+  }
 }

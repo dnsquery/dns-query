@@ -5,6 +5,7 @@ coverage/*
 .vscode/*
 types/test.ts
 types/tsconfig.json
+.cache
 *.bak
 bin/update-resolvers
 data

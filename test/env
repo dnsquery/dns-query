@@ -121,7 +121,7 @@ function handleRequest (req, res) {
     }
     const match = /^\/get-dns-packet\?dns=(.*)/.exec(req.url)
     if (match) {
-      return res.end(base64URL.encode(match[1]))
+      return res.end(Buffer.from(base64URL.encode(match[1])))
     }
   }
   if (req.method !== 'POST' && req.method !== 'OPTIONS') {

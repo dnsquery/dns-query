@@ -717,6 +717,14 @@
       "filter": true
     },
     {
+      "name": "doh-ibksturm",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "ibksturm.synology.me"
+      },
+      "description": "DoH & DoT Server, No Logging, No Filters, DNSSEC\nRunning privately by ibksturm in Thurgau, Switzerland"
+    },
+    {
       "name": "doh-jp-blahdns",
       "endpoint": {
         "protocol": "https:",
@@ -1000,6 +1008,15 @@
         "lat": 37.751,
         "long": -97.822
       }
+    },
+    {
+      "name": "quad101",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.twnic.tw",
+        "cors": true
+      },
+      "description": "DNSSEC-aware public resolver by the Taiwan Network Information Center (TWNIC)\nhttps://101.101.101.101/index_en.html"
     },
     {
       "name": "quad9-doh-ip4-port443-filter-ecs-pri",

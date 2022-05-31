@@ -580,7 +580,7 @@ test('persisting to the localStorage', { skip: !isBrowser }, function (t) {
     })
 })
 
-test('internal reduceError helper', function (t) {
+test('internal reduceError helper', { skip: typeof BigInt === 'undefined' }, function (t) {
   t.deepEqual(reduceError('hello'), { message: 'hello' })
   t.deepEqual(reduceError({ hello: 'world' }), { hello: 'world' })
   t.deepEqual(reduceError({ foo: 'hello', code: BigInt(123) }), { message: '[object Object]', code: '123' })

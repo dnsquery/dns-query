@@ -936,16 +936,6 @@
       "description": "ODoH target server. Anycast, no logs.\nBackend hosted by Scaleway. Maintained by Frank Denis."
     },
     {
-      "name": "odoh-id-gmail",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh.tiar.app",
-        "path": "/odoh"
-      },
-      "description": "ODoH target server. Based in Singapore, no logs.\nFilter ads, trackers and malware.",
-      "filter": true
-    },
-    {
       "name": "odoh-jp.tiar.app",
       "endpoint": {
         "protocol": "https:",

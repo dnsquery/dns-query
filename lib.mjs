@@ -71,7 +71,7 @@ export function queryDns (endpoint, query, timeout, signal) {
       clearSocketMaybe(socket)
       clearTimeout(t)
       if (err) return reject(err)
-      resolve(res)
+      setImmediate(() => resolve(res))
     }
     const requestId = socket.query(query, endpoint.port, endpoint.ipv4 || endpoint.ipv6, done)
     const t = setTimeout(onTimeout, timeout)

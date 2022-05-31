@@ -192,6 +192,36 @@ To specify DNS endpoints you need to prefix them using `udp:` (or `udp4:`, `udp6
 `udp://1.1.1.1` → `{ host: '1.1.1.1', protocol: 'udp4' }`
 
 
+### Persisting Resolvers
+
+Loading the latest list of resolvers from the servers will increase both the load
+on the server hosting the list and your application's responsiveness. `dns-query` comes
+with support for persisting the resolvers in order to ease the load.
+
+While the CLI does that by default, you need to enable it when using the JavaScript
+API.
+
+```js
+query(..., {
+  persist: true
+})
+```
+
+In node.js this will try to persist the list of resolvers to the `node_modules`
+directory.
+
+In the browser it will use `localStorage` to store the copy of resolvers. By default
+it will use the `localStoragePrefix = 'dnsquery_'` option. You will be able to find
+the persisted resolvers under `localStorage.getItem('dnsquery_resolvers.json')`.
+
+You can change the prefix in the options.
+
+```js
+query(..., {
+  localStoragePrefix: 'my_custom_prefix'
+})
+```
+
 ## See Also
 
 - [dns-packet](https://github.com/mafintosh/dns-packet)

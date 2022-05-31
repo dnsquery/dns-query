@@ -253,6 +253,9 @@ export function loadJSON (url, cache, timeout, abortSignal) {
       }
       return requestRaw(url, 'GET', null, timeout, abortSignal)
         .then(function (response) {
+          if (response.error) {
+            return Promise.reject(response.error)
+          }
           const data = response.data
           return storeCache(folder, cachePath, data).then(function (time) {
             return {

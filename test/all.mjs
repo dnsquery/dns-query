@@ -1,12 +1,13 @@
 import test from 'fresh-tape'
 import AbortController from 'abort-controller'
 import * as dohQuery from '../index.mjs'
-import { TimeoutError } from '../common.mjs'
+import { TimeoutError, reduceError, parseEndpoint } from '../common.mjs'
 import XHR from 'xhr2'
 import path from 'path'
 import fs from 'fs'
 const query = dohQuery.query
 const toEndpoint = dohQuery.toEndpoint
+const Session = dohQuery.Session
 const isBrowser = typeof window !== 'undefined'
 
 const LOCAL_ENDPOINT = {
@@ -15,6 +16,16 @@ const LOCAL_ENDPOINT = {
   port: parseInt(process.env.TEST_PORT, 10),
   method: 'POST'
 }
+const LOCAL_ENDPOINT_URI = `${LOCAL_ENDPOINT.https ? 'https' : 'http'}://${LOCAL_ENDPOINT.host}:${LOCAL_ENDPOINT.port}`
+
+test('Error without query', function (t) {
+  return query({}).then(
+    failSuccess(t),
+    function (err) {
+      t.match(err.message, /To request data you need to specify a .question!/)
+    }
+  )
+})
 
 test('Abort before start (doh)', function (t) {
   const c = new AbortController()
@@ -56,10 +67,15 @@ test('local /text causes ResponseError, with retries=0, once!', function (t) {
       t.notEqual(err.cause, null)
       t.deepEqual(err.endpoint, toEndpoint(Object.assign({}, LOCAL_ENDPOINT, { path: '/text' })))
       t.notEqual(err.response, undefined)
-      return getLog().then(
+      t.deepEqual(err.toJSON(), {
+        cause: { message: 'Header must be 12 bytes' },
+        code: 'RESPONSE_ERR',
+        message: err.message
+      })
+      return getLog(true).then(
         function (data) {
           t.deepEquals(
-            data.filter(function (req) { return req.method !== 'OPTIONS' }),
+            data,
             [
               { method: 'POST', url: '/text' }
             ]
@@ -77,15 +93,34 @@ test('local /text causes ResponseError, with retries=3, several times', function
       t.equals(err.name, 'ResponseError')
       t.deepEqual(err.endpoint, toEndpoint(Object.assign({}, LOCAL_ENDPOINT, { path: '/text' })))
       t.notEquals(err.response, undefined)
-      return getLog().then(
+      return getLog(true).then(
         function (data) {
           t.deepEquals(
-            data.filter(function (req) { return req.method !== 'OPTIONS' }),
+            data,
             [
               { method: 'POST', url: '/text' },
               { method: 'POST', url: '/text' },
               { method: 'POST', url: '/text' },
               { method: 'POST', url: '/text' }
+            ]
+          )
+        }
+      )
+    }
+  )
+})
+
+test('local /get-dns-packet endpoint', function (t) {
+  return getLog().then(localQuery.bind(null, '/get-dns-packet', {}, { method: 'GET' })).then(
+    function (data) {
+      t.equals(data.type, 'query')
+      t.deepEquals(data.question, { name: 'google.com', type: 'A', class: 'IN' })
+      return getLog(true).then(
+        function (data) {
+          t.deepEquals(
+            data,
+            [
+              { method: 'GET', url: '/get-dns-packet?dns=AAABAAABAAAAAAAABmdvb2dsZQNjb20AAAEAAQ' }
             ]
           )
         }
@@ -106,10 +141,10 @@ test('local /dns-packet endpoint', function (t) {
         flush: false,
         data: '0.0.0.0'
       }])
-      return getLog().then(
+      return getLog(true).then(
         function (data) {
           t.deepEquals(
-            data.filter(function (req) { return req.method !== 'OPTIONS' }),
+            data,
             [
               { method: 'POST', url: '/dns-packet' }
             ]
@@ -127,6 +162,12 @@ test('local /404 causes StatusError', function (t) {
       t.deepEqual(err.endpoint, toEndpoint(Object.assign({}, LOCAL_ENDPOINT, { path: '/404' })))
       t.notEqual(err.response, undefined)
       t.equals(err.code, 'HTTP_STATUS')
+      t.deepEqual(err.toJSON(), {
+        uri: `${LOCAL_ENDPOINT_URI}/404`,
+        code: 'HTTP_STATUS',
+        status: isBrowser ? 0 : 404,
+        method: 'POST'
+      })
     }
   )
 })
@@ -193,6 +234,10 @@ test('processing timeout', { timeout: 2000 }, function (t) {
     function (error) {
       t.equals(error.timeout, timeout)
       t.equals(error.name, 'TimeoutError')
+      t.deepEquals(error.toJSON(), {
+        code: 'ETIMEOUT',
+        timeout
+      })
     }
   )
 })
@@ -232,8 +277,8 @@ test('infinite retries', function (t) {
   return getLog().then(localQuery.bind(null, '/500', { retries: -1, signal: c.signal })).then(
     failSuccess(t),
     function (err) {
-      t.equals(err.name, 'AbortError')
-      return getLog()
+      t.equals(err.name, 'AbortError', 'Abort Error called')
+      return getLog(false)
     }
   ).then(function (data) {
     t.ok(data.length > 2, data.length + ' requests') // There should be at least ~400 requests, using 2 to account for slow computers/connections
@@ -252,7 +297,7 @@ test('timeout on udp6 sockets', {
 })
 
 test('parsing of endpoints', function (t) {
-  const session = new dohQuery.Session({
+  const session = new Session({
     update: false
   })
   return session.wellknown().then(function (wellknown) {
@@ -263,6 +308,8 @@ test('parsing of endpoints', function (t) {
           { input: [endpoints.google], expected: [endpoints.google] },
           { input: ['google', 'cloudflare'], expected: [endpoints.google, endpoints.cloudflare] },
           { input: [{ protocol: 'https:', host: 'abcd.com' }], expected: [toEndpoint({ protocol: 'https:', host: 'abcd.com' })] },
+          { input: [{ host: 'abcd.com' }], expected: [toEndpoint({ protocol: 'https:', host: 'abcd.com' })] },
+          { input: ['google', endpoints.cloudflare, { host: 'abcd.com' }], expected: [endpoints.google, endpoints.cloudflare, toEndpoint({ host: 'abcd.com' })] },
           { input: ['https://abcd.com'], expected: [toEndpoint({ protocol: 'https:', host: 'abcd.com' })] },
           { input: ['https://abcd.com:8443/'], expected: [toEndpoint({ protocol: 'https:', host: 'abcd.com', port: 8443, path: '/' })] },
           { input: ['http://foo.com:123/ygga [post]'], expected: [toEndpoint({ protocol: 'http:', host: 'foo.com', port: 123, path: '/ygga', method: 'post' })] },
@@ -300,6 +347,10 @@ test('parsing of endpoints', function (t) {
               return endpoint.protocol === 'http:' || endpoint.protocol === 'https:'
             })
           },
+          {
+            input: null,
+            expected: wellknown.endpoints
+          },
           { input: Promise.resolve(['google']), expected: [endpoints.google] },
           { input: ['google'], expected: [endpoints.google] },
           { input: [], expected: [] }
@@ -326,7 +377,9 @@ test('parsing of endpoints', function (t) {
           { input: {}, expected: /needs to be iterable/i },
           { input: ['xx://funny'], expected: /unsupported protocol/ },
           { input: [{ protocol: 'https:' }], expected: /host "undefined"/ },
-          { input: [{ protocol: 'https:', host: 'hi', port: false }], expected: /needs to be a number/ }
+          { input: [{ protocol: 'https:', host: 'hi', port: false }], expected: /needs to be a number/ },
+          { input: [{ protocol: 'udp4:' }], expected: /Invalid Endpoint: .ipv4 "undefined" needs to be set/ },
+          { input: [{ protocol: 'udp6:' }], expected: /Invalid Endpoint: .ipv6 "undefined" needs to be set/ }
         ]
         return Promise.all(fixtures.map(function (fixture) {
           return dohQuery.loadEndpoints(session, fixture.input).then(
@@ -360,6 +413,79 @@ test('dns query using the default servers', {
     })
 })
 
+test('default endpoint/wellknown apis', function (t) {
+  function firstWithName (list) {
+    return list.find(entry => entry.name)
+  }
+  return Promise.all([
+    dohQuery.wellknown(),
+    dohQuery.endpoints()
+  ]).then(function (parts) {
+    const [wellknown, endpoints] = parts
+    const endpoint = firstWithName(endpoints)
+    const resolver = firstWithName(wellknown.resolvers)
+    t.equals(wellknown.endpoints, endpoints, 'wellknown.endpoints === endpoints')
+    t.equals(wellknown.endpointByName[endpoint.name], endpoint, 'first endpoint is in the lookup')
+    t.equals(wellknown.resolverByName[resolver.name], resolver, 'first resolver is in the lookup')
+    t.equals(resolver.endpoint, wellknown.endpointByName[resolver.endpoint.name], 'wellknown.endpoint is in endpoint lookup')
+    t.ok(Array.isArray(endpoints), 'endpoints is array')
+    endpoints.forEach((ep, index) => {
+      t.ok(ep instanceof dohQuery.BaseEndpoint, `Endpoint#${index} is a BaseEndpoint`)
+    })
+  })
+})
+
+test('custom resolver URL', { skip: typeof URL === 'undefined' }, function (t) {
+  const session = new Session({
+    maxAge: Number.MAX_VALUE,
+    updateURL: new URL('/resolvers', LOCAL_ENDPOINT_URI)
+  })
+  return getLog().then(function () {
+    return session.endpoints()
+      .then(endpoints => {
+        t.deepEqual(endpoints[0], parseEndpoint('some.domain [cors] [name=some-name]'))
+        // repeat lookup, shouldn't trigger load
+        return getLog()
+          .then(data => {
+            t.deepEqual(data, [{ method: 'GET', url: '/resolvers' }])
+            return session.endpoints()
+          })
+          .then(repeatEndpoints => {
+            t.equals(repeatEndpoints, endpoints, 'same endpoints, since maxAge is active')
+            return getLog(true)
+          })
+          .then(data => {
+            t.deepEqual(data, [], 'no server requested with update')
+            // undocumented API, will force a request
+            session._wellknown(true)
+            return session.endpoints()
+          })
+          .then(onceMore => {
+            t.notEquals(onceMore, endpoints, 'now the endpoints should have been updated')
+            return getLog(true)
+          })
+          .then(log => {
+            t.deepEqual(log, [{ method: 'GET', url: '/resolvers' }], 'only after force, another request should be run')
+          })
+      })
+  })
+})
+
+test('resolvers error', { skip: typeof URL === 'undefined' }, function (t) {
+  const session = new Session({
+    updateURL: new URL('/broken-resolvers', LOCAL_ENDPOINT_URI)
+  })
+  return getLog()
+    .then(() => session.endpoints())
+    .then(endpoints => {
+      t.notEqual(endpoints.length, 0)
+      return getLog(true)
+    })
+    .then(log => {
+      t.deepEqual(log, [{ method: 'GET', url: '/broken-resolvers' }])
+    })
+})
+
 test('query without endpoints', function (t) {
   return query({ question: {} }, { endpoints: [] })
     .then(
@@ -386,7 +512,7 @@ test('persisting to the filesystem', { skip: isBrowser }, function (t) {
 
   t.test('cache is used', function (t) {
     clearCache()
-    const session = new dohQuery.Session({
+    const session = new Session({
       persist: true
     })
     t.equals(fs.existsSync(resolversFile), false, 'cache file doesnt exist before running')
@@ -398,7 +524,7 @@ test('persisting to the filesystem', { skip: isBrowser }, function (t) {
         const [wellknown, backup] = results
         t.equals(fs.existsSync(resolversFile), true, 'cache file created')
         t.notEqual(wellknown.time, backup.time, 'not serving the backup')
-        const session2 = new dohQuery.Session({
+        const session2 = new Session({
           persist: true
         })
         return session2._wellknown().then(function (wellknown2) {
@@ -408,7 +534,7 @@ test('persisting to the filesystem', { skip: isBrowser }, function (t) {
       })
       .then(function (results) {
         const [wellknown] = results
-        const session3 = new dohQuery.Session({
+        const session3 = new Session({
           maxAge: 1,
           persist: true
         })
@@ -422,7 +548,7 @@ test('persisting to the filesystem', { skip: isBrowser }, function (t) {
 test('persisting to the localStorage', { skip: !isBrowser }, function (t) {
   const key = 'dnsquery_resolvers.json'
   globalThis.localStorage.removeItem(key)
-  const session = new dohQuery.Session({
+  const session = new Session({
     persist: true
   })
   return Promise.all([
@@ -433,7 +559,7 @@ test('persisting to the localStorage', { skip: !isBrowser }, function (t) {
       const [wellknown, backup] = parts
       t.notEqual(globalThis.localStorage.getItem(key), null, 'something has been stored')
       t.notEqual(wellknown.time, backup.time, 'the backup is not used')
-      const session2 = new dohQuery.Session({
+      const session2 = new Session({
         persist: true
       })
       return session2._wellknown().then(function (wellknown2) {
@@ -454,14 +580,26 @@ test('persisting to the localStorage', { skip: !isBrowser }, function (t) {
     })
 })
 
-function getLog () {
-  return req('/log', 'GET', 'json')
+test('internal reduceError helper', function (t) {
+  t.deepEqual(reduceError('hello'), { message: 'hello' })
+  t.deepEqual(reduceError({ hello: 'world' }), { hello: 'world' })
+  t.deepEqual(reduceError({ foo: 'hello', code: BigInt(123) }), { message: '[object Object]', code: '123' })
+  t.deepEqual(reduceError({ message: BigInt(123), code: 123 }), { message: '123', code: '123' })
+  t.end()
+})
+
+function getLog (filter) {
+  const reqs = req('/log', 'GET', 'json')
+  if (filter) {
+    return reqs.then(log => log.filter(function (req) { return req.method !== 'OPTIONS' }))
+  }
+  return reqs
 }
 
 function req (path, method, responseType, data) {
   return new Promise(function (resolve, reject) {
     const xhr = new XHR()
-    const uri = `${LOCAL_ENDPOINT.https ? 'https' : 'http'}://${LOCAL_ENDPOINT.host}:${LOCAL_ENDPOINT.port}${path}`
+    const uri = `${LOCAL_ENDPOINT_URI}${path}`
     if (!method) {
       method = 'POST'
     }
@@ -486,7 +624,7 @@ function failSuccess (t) {
   return function () { t.fail('Unexpected success') }
 }
 
-function localQuery (paths, opts) {
+function localQuery (paths, opts, endpointOpts) {
   if (!Array.isArray(paths)) {
     paths = [paths]
   }
@@ -494,7 +632,7 @@ function localQuery (paths, opts) {
     { question: { type: 'A', name: 'google.com' } },
     Object.assign(
       {
-        endpoints: paths.map(function (path) { return Object.assign({ path }, LOCAL_ENDPOINT) }),
+        endpoints: paths.map(function (path) { return Object.assign({ path }, LOCAL_ENDPOINT, endpointOpts) }),
         retries: 0
       },
       opts

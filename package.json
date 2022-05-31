@@ -9,7 +9,7 @@
     "dns-query": "./bin/dns-query"
   },
   "scripts": {
-    "lint": "standard '**/*.mjs' bin/* && dtslint types --localTs node_modules/typescript/lib",
+    "lint": "standard '**/*.mjs' bin/* test/env && dtslint types --localTs node_modules/typescript/lib",
     "update-resolvers": "node bin/update-resolvers && standard --fix resolvers.mjs && esm2umd",
     "prepare": "esm2umd",
     "test": "node test/env npm run test-impl",
@@ -17,9 +17,7 @@
     "test-impl": "fresh-tape test/all.mjs",
     "test-cov": "node test/env c8 -r lcov -r html -r text npm run test-impl",
     "browser-test": "env TEST_ENV=browser node test/env npm run browser-test-impl -s",
-    "browser-test-impl": "browserify -t envify --debug test/all.js | tape-run",
-    "browser-test-cov": "env TEST_ENV=browser node test/env npm run browser-test-cov-impl -s",
-    "browser-test-cov-impl": "browserify -t envify -t coverify --debug test/all.js | tape-run | coverify"
+    "browser-test-impl": "browserify -t envify --debug test/all.js | tape-run"
   },
   "browser": {
     "./lib.js": "./lib.browser.js",
@@ -82,7 +80,6 @@
     "abort-controller": "^3.0.0",
     "browserify": "^17.0.0",
     "c8": "^7.11.3",
-    "coverify": "^1.5.1",
     "envify": "^4.1.0",
     "fresh-tape": "^5.5.3",
     "markdown-it": "^13.0.1",

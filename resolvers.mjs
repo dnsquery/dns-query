@@ -716,14 +716,6 @@ export const resolvers = {
       filter: true
     },
     {
-      name: 'doh-ibksturm',
-      endpoint: {
-        protocol: 'https:',
-        host: 'ibksturm.synology.me'
-      },
-      description: 'DoH & DoT Server, No Logging, No Filters, DNSSEC\nRunning privately by ibksturm in Thurgau, Switzerland'
-    },
-    {
       name: 'doh-jp-blahdns',
       endpoint: {
         protocol: 'https:',
@@ -1022,7 +1014,7 @@ export const resolvers = {
       endpoint: {
         protocol: 'https:',
         host: 'dns11.quad9.net',
-        ipv4: '9.9.9.11'
+        ipv4: '149.112.112.11'
       },
       description: 'Quad9 (anycast) dnssec/no-log/filter/ecs 9.9.9.11 - 149.112.112.11',
       country: 'United States',
@@ -1037,13 +1029,13 @@ export const resolvers = {
       endpoint: {
         protocol: 'https:',
         host: 'dns9.quad9.net',
-        ipv4: '9.9.9.9'
+        ipv4: '149.112.112.9'
       },
       description: 'Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112',
-      country: 'France',
+      country: 'United States',
       location: {
-        lat: 48.8582,
-        long: 2.3387
+        lat: 37.751,
+        long: -97.822
       },
       filter: true
     },
@@ -1066,7 +1058,7 @@ export const resolvers = {
       endpoint: {
         protocol: 'https:',
         host: 'dns10.quad9.net',
-        ipv4: '149.112.112.10'
+        ipv4: '9.9.9.10'
       },
       description: 'Quad9 (anycast) no-dnssec/no-log/no-filter 9.9.9.10 - 149.112.112.10',
       country: 'United States',
@@ -1076,13 +1068,12 @@ export const resolvers = {
       }
     },
     {
-      name: 'quad9-doh-ip4-port5053-filter-pri',
+      name: 'quad9-doh-ip6-port5053-filter-pri',
       endpoint: {
         protocol: 'https:',
-        host: 'dns.quad9.net',
-        ipv4: '149.112.112.112'
+        host: 'dns.quad9.net'
       },
-      description: 'Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112',
+      description: 'Quad9 (anycast) dnssec/no-log/filter 2620:fe::fe - 2620:fe::9 - 2620:fe::fe:9',
       country: 'United States',
       location: {
         lat: 37.751,
@@ -1176,5 +1167,5 @@ export const resolvers = {
       }
     }
   ],
-  time: 1653935488106
+  time: 1653983426803
 }

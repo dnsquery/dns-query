@@ -148,13 +148,12 @@ export class Session {
             }
           : null,
         this.opts.timeout
-      ).then(
-        res => resolversToWellknown({
+      )
+        .then(res => resolversToWellknown({
           data: res.data.resolvers,
           time: res.time
-        }),
-        () => backup
-      )
+        }))
+        .catch(() => backup)
     )
     return this._wellknownP
   }

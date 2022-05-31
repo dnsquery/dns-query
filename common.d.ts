@@ -99,3 +99,4 @@ export type Endpoint = UDP4Endpoint | UDP6Endpoint | HTTPEndpoint;
 
 export function toEndpoint (opts: EndpointOpts): Endpoint;
 export function parseEndpoint (input: string): Endpoint;
+export function reduceError (input: any): any;

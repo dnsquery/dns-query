@@ -482,7 +482,7 @@
         "protocol": "https:",
         "host": "dns-doh.dnsforfamily.com"
       },
-      "description": "(DoH Protocol) Block adult websites, gambling websites, malwares and advertisements.\nIt also enforces safe search in: Google, YouTube, Bing, DuckDuckGo and Yandex.\nSocial websites like Facebook and Instagram are not blocked. No DNS queries are logged.\nAs of December 2020 2.7 million websites are blocked and new websites are added to blacklist daily.\nCompletely free, no ads or any commercial motive. Operating for 3 years now.\nProvided by: https://dnsforfamily.com",
+      "description": "(DoH Protocol) (Now supports DNSSEC). Block adult websites, gambling websites, malwares and advertisements.\nIt also enforces safe search in: Google, YouTube, Bing, DuckDuckGo and Yandex.\nSocial websites like Facebook and Instagram are not blocked. No DNS queries are logged.\nAs of 26-May-2022 5.9 million websites are blocked and new websites are added to blacklist daily.\nCompletely free, no ads or any commercial motive. Operating for 4 years now.\nProvided by: https://dnsforfamily.com",
       "country": "Finland",
       "location": {
         "lat": 60.1758,
@@ -496,7 +496,7 @@
         "protocol": "https:",
         "host": "dns-doh-no-safe-search.dnsforfamily.com"
       },
-      "description": "(DoH Protocol) Block adult websites, gambling websites, malwares and advertisements.\nUnlike other dnsforfamily DNSCrypt servers, this one does not enforces safe search. So Google, YouTube, Bing, DuckDuckGo and Yandex are completely accessible without any restriction.\nSocial websites like Facebook and Instagram are not blocked. No DNS queries are logged.\nAs of December 2020 2.7 million websites are blocked and new websites are added to blacklist daily.\nCompletely free, no ads or any commercial motive. Operating for 3 years now.\nWarning: This server is incompatible with anonymization.\nProvided by: https://dnsforfamily.com",
+      "description": "(DoH Protocol) (Now supports DNSSEC) Block adult websites, gambling websites, malwares and advertisements.\nUnlike other dnsforfamily servers, this one does not enforces safe search. So Google, YouTube, Bing, DuckDuckGo and Yandex are completely accessible without any restriction.\nSocial websites like Facebook and Instagram are not blocked. No DNS queries are logged.\nAs of 26-May-2022 5.9 million websites are blocked and new websites are added to blacklist daily.\nCompletely free, no ads or any commercial motive. Operating for 4 years now.\nWarning: This server is incompatible with anonymization.\nProvided by: https://dnsforfamily.com",
       "country": "Finland",
       "location": {
         "lat": 60.1758,
@@ -839,6 +839,15 @@
       "log": true
     },
     {
+      "name": "iqdns-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "a.passcloud.xyz"
+      },
+      "description": "Non-logging DoH service runned by V2EX.com user johnsonwil.\nReturns \"no such domain\" for anti-Chinese government websites. Supports DNSSEC.\nFor more information: https://www.v2ex.com/t/785666",
+      "filter": true
+    },
+    {
       "name": "jp.tiar.app-doh",
       "endpoint": {
         "protocol": "https:",
@@ -873,21 +882,6 @@
       }
     },
     {
-      "name": "meganerd-doh-ipv4",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "chewbacca.meganerd.nl",
-        "path": "/doh",
-        "cors": true
-      },
-      "description": "DoH server by MegaNerd.nl (IPv4) - https://meganerd.nl/encrypted-dns-server\nHosted in Amsterdam (AMS1), The Netherlands.\nNon-logging, non-filtering, supports DNSSEC.",
-      "country": "Netherlands",
-      "location": {
-        "lat": 52.3891,
-        "long": 4.6563
-      }
-    },
-    {
       "name": "nextdns",
       "endpoint": {
         "protocol": "https:",
@@ -901,24 +895,73 @@
       }
     },
     {
-      "name": "odoh-koki-noads-ams",
+      "name": "nextdns-ultralow",
       "endpoint": {
         "protocol": "https:",
-        "host": "odoh-target-noads.alekberg.net",
+        "host": "dns.nextdns.io",
+        "path": "/dnscrypt-proxy"
+      },
+      "description": "NextDNS is a cloud-based private DNS service that gives you full control\nover what is allowed and what is blocked on the Internet.\nhttps://www.nextdns.io/\nTo select the server location, the \"-ultralow\" variant relies on bootstrap servers\ninstead of anycast."
+    },
+    {
+      "name": "njalla-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.njal.la",
         "cors": true
       },
-      "description": "Oblivious DoH target server in The Netherlands. No logs, filter ads and malware, DNSSEC.",
+      "description": "Non-logging DoH server in Sweden operated by Njalla.\nhttps://dns.njal.la/",
+      "country": "Sweden",
+      "location": {
+        "lat": 59.3247,
+        "long": 18.056
+      }
+    },
+    {
+      "name": "odoh-cloudflare",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "odoh.cloudflare-dns.com",
+        "cors": true
+      },
+      "description": "Cloudflare ODoH server.\nhttps://cloudflare.com"
+    },
+    {
+      "name": "odoh-crypto-sx",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "odoh.crypto.sx",
+        "cors": true
+      },
+      "description": "ODoH target server. Anycast, no logs.\nBackend hosted by Scaleway. Maintained by Frank Denis."
+    },
+    {
+      "name": "odoh-id-gmail",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "doh.tiar.app",
+        "path": "/odoh"
+      },
+      "description": "ODoH target server. Based in Singapore, no logs.\nFilter ads, trackers and malware.",
       "filter": true
     },
     {
-      "name": "odoh-koki-noads-se",
+      "name": "odoh-jp.tiar.app",
       "endpoint": {
         "protocol": "https:",
-        "host": "odoh-target-noads-se.alekberg.net",
-        "cors": true
+        "host": "jp.tiar.app",
+        "path": "/odoh"
       },
-      "description": "Oblivious DoH target server in Sweden. No logs, filter ads and malware, DNSSEC.",
-      "filter": true
+      "description": "ODoH target server. no logs."
+    },
+    {
+      "name": "odoh-jp.tiarap.org",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "jp.tiarap.org",
+        "path": "/odoh"
+      },
+      "description": "ODoH target server via Cloudflare, no logs."
     },
     {
       "name": "odoh-resolver4.dns.openinternet.io",
@@ -957,8 +1000,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "puredns.org",
-        "ipv4": "146.190.6.13",
-        "cors": true
+        "ipv4": "146.190.6.13"
       },
       "description": "Public uncensored DNS resolver in Singapore - https://puredns.org\n** Only available in Indonesia and Singapore **",
       "country": "United States",
@@ -981,7 +1023,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns11.quad9.net",
-        "ipv4": "9.9.9.11"
+        "ipv4": "149.112.112.11"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter/ecs 9.9.9.11 - 149.112.112.11",
       "country": "United States",
@@ -995,8 +1037,8 @@
       "name": "quad9-doh-ip4-port443-filter-pri",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns.quad9.net",
-        "ipv4": "149.112.112.112"
+        "host": "dns9.quad9.net",
+        "ipv4": "149.112.112.9"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
       "country": "United States",
@@ -1035,13 +1077,12 @@
       }
     },
     {
-      "name": "quad9-doh-ip4-port5053-filter-pri",
+      "name": "quad9-doh-ip6-port5053-filter-pri",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns9.quad9.net",
-        "ipv4": "149.112.112.9"
+        "host": "dns.quad9.net"
       },
-      "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
+      "description": "Quad9 (anycast) dnssec/no-log/filter 2620:fe::fe - 2620:fe::9 - 2620:fe::fe:9",
       "country": "United States",
       "location": {
         "lat": 37.751,

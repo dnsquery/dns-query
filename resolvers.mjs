@@ -232,7 +232,8 @@ export const resolvers = {
       name: 'brahma-world',
       endpoint: {
         protocol: 'https:',
-        host: 'dns.brahma.world'
+        host: 'dns.brahma.world',
+        method: 'POST'
       },
       description: 'DNS-over-HTTPS server. Non Logging, filters ads, trackers and malware. DNSSEC ready, QNAME Minimization, No EDNS Client-Subnet.\nHosted in Stockholm, Sweden. (https://dns.brahma.world)',
       country: 'United States',
@@ -479,7 +480,8 @@ export const resolvers = {
       name: 'dnsforfamily-doh',
       endpoint: {
         protocol: 'https:',
-        host: 'dns-doh.dnsforfamily.com'
+        host: 'dns-doh.dnsforfamily.com',
+        method: 'POST'
       },
       description: '(DoH Protocol) (Now supports DNSSEC). Block adult websites, gambling websites, malwares and advertisements.\nIt also enforces safe search in: Google, YouTube, Bing, DuckDuckGo and Yandex.\nSocial websites like Facebook and Instagram are not blocked. No DNS queries are logged.\nAs of 26-May-2022 5.9 million websites are blocked and new websites are added to blacklist daily.\nCompletely free, no ads or any commercial motive. Operating for 4 years now.\nProvided by: https://dnsforfamily.com',
       country: 'Finland',
@@ -716,6 +718,14 @@ export const resolvers = {
       filter: true
     },
     {
+      name: 'doh-ibksturm',
+      endpoint: {
+        protocol: 'https:',
+        host: 'ibksturm.synology.me'
+      },
+      description: 'DoH & DoT Server, No Logging, No Filters, DNSSEC\nRunning privately by ibksturm in Thurgau, Switzerland'
+    },
+    {
       name: 'doh-jp-blahdns',
       endpoint: {
         protocol: 'https:',
@@ -935,15 +945,6 @@ export const resolvers = {
       },
       description: 'ODoH target server. Based in Singapore, no logs.\nFilter ads, trackers and malware.',
       filter: true
-    },
-    {
-      name: 'odoh-jp.tiar.app',
-      endpoint: {
-        protocol: 'https:',
-        host: 'jp.tiar.app',
-        path: '/odoh'
-      },
-      description: 'ODoH target server. no logs.'
     },
     {
       name: 'odoh-jp.tiarap.org',
@@ -1167,5 +1168,5 @@ export const resolvers = {
       }
     }
   ],
-  time: 1653983426803
+  time: 1654007455771
 }

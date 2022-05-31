@@ -266,24 +266,9 @@ async function main () {
     ),
     writeFile(
       join(__dirname, '..', 'resolvers.mjs'),
-      `import { toEndpoint } from 'dns-query/common.js'
-
-const resolvers = ${JSON.stringify(resolvers, null, 2)}.map(function (resolver) {
-  resolver.endpoint = toEndpoint(Object.assign({ name: resolver.name }, resolver.endpoint))
-  return resolver
-})
-const endpoints = resolvers.map(resolver => resolver.endpoint)
-export const lookup = {
-  resolvers,
-  resolverByName: resolvers.reduce((byName, resolver) => {
-    byName[resolver.name] = resolver
-    return byName
-  }, {}),
-  endpoints,
-  endpointByName: endpoints.reduce((byName, endpoint) => {
-    byName[endpoint.name] = endpoint
-    return byName
-  }, {})
+      `export const resolvers = {
+  data: ${JSON.stringify(resolvers, null, 2)},
+  time: ${Date.now()}
 }
 `
     )

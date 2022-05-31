@@ -4,7 +4,7 @@ import {
 } from '../common.js';
 
 import {
-  ResolverLookup
+  RawResolver
 } from '../resolvers.js';
 
 export {
@@ -27,9 +27,17 @@ export {
 } from '../common.js';
 
 export {
-  ResolverLookup,
-  Resolver
+  RawResolver
 } from '../resolvers.js';
+
+export type Resolver = RawResolver<Endpoint>;
+
+export interface Wellknown {
+  resolvers: Resolver[];
+  resolverByName: { [name: string]: Resolver };
+  endpoints: Endpoint[];
+  endpointByName: { [name: string]: Endpoint };
+}
 
 export type OrPromise <T> = Promise<T> | T;
 export type EndpointInput = OrPromise<'doh' | 'dns' | ((endpoint: Endpoint) => boolean) | Iterable<Endpoint | EndpointOpts | string>>;
@@ -58,12 +66,12 @@ export class Session {
   opts: SessionOpts;
   constructor(opts: SessionOpts);
 
-  wellknown(): Promise<ResolverLookup>;
+  wellknown(): Promise<Wellknown>;
   endpoints(): Promise<Endpoint[]>;
   query(query: SingleQuestionPacket, opts: QueryOpts): Promise<SingleQuestionPacket>;
 }
 
 export function query(query: SingleQuestionPacket, opts: QueryOpts): Promise<SingleQuestionPacket>;
-export function wellknown(): Promise<ResolverLookup>;
+export function wellknown(): Promise<Wellknown>;
 export function endpoints(): Promise<Endpoint[]>;
 export function loadEndpoints(session: Session, input: EndpointInput): Promise<Endpoint[]>;

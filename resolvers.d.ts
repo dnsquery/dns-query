@@ -1,6 +1,6 @@
-import { Endpoint } from './common.js'
+import { EndpointOpts } from './common.js'
 
-export interface Resolver {
+export interface RawResolver <Endpoint=EndpointOpts> {
   name: string
   endpoint: Endpoint
   /** Description as provided by hoster. */
@@ -19,11 +19,8 @@ export interface Resolver {
     long: number
   }
 }
-export interface ResolverLookup {
-  resolvers: Resolver[]
-  resolverByName: { [name: string]: Resolver }
-  endpoints: Endpoint[]
-  endpointByName: { [name: string]: Endpoint }
-}
 
-export const lookup: ResolverLookup
+export const resolvers: {
+  data: RawResolver[]
+  time: number
+}

@@ -23,6 +23,31 @@ export {
   toEndpoint
 } from './common.mjs'
 
+function resolversToWellknown (res) {
+  const resolvers = res.data.map(resolver => {
+    resolver.endpoint = toEndpoint(Object.assign({ name: resolver.name }, resolver.endpoint))
+    return resolver
+  })
+  const endpoints = resolvers.map(resolver => resolver.endpoint)
+  return lib.processWellknown({
+    data: {
+      resolvers,
+      resolverByName: resolvers.reduce((byName, resolver) => {
+        byName[resolver.name] = resolver
+        return byName
+      }, {}),
+      endpoints,
+      endpointByName: endpoints.reduce((byName, endpoint) => {
+        byName[endpoint.name] = endpoint
+        return byName
+      }, {})
+    },
+    time: (res.time === null || res.time === undefined) ? Date.now() : res.time
+  })
+}
+
+export const backup = resolversToWellknown(backupResolvers)
+
 function toMultiQuery (singleQuery) {
   const query = Object.assign({
     type: 'query'
@@ -110,8 +135,9 @@ export class Session {
         return res
       })
     }
-    this._wellknownP = (this.opts.update
-      ? lib.loadJSON(
+    this._wellknownP = (!this.opts.update
+      ? Promise.resolve(backup)
+      : lib.loadJSON(
         this.opts.updateURL,
         this.opts.persist
           ? {
@@ -120,46 +146,14 @@ export class Session {
             }
           : null,
         this.opts.timeout
+      ).then(
+        res => resolversToWellknown({
+          data: res.data.resolvers,
+          time: res.time
+        }),
+        () => backup
       )
-        .then(res => {
-          const resolvers = res.data.resolvers.map(resolver => {
-            resolver.endpoint = toEndpoint(Object.assign({ name: resolver.name }, resolver.endpoint))
-            return resolver
-          })
-          const endpoints = resolvers.map(resolver => resolver.endpoint)
-          return {
-            data: {
-              resolvers,
-              resolverByName: resolvers.reduce((byName, resolver) => {
-                byName[resolver.name] = resolver
-                return byName
-              }, {}),
-              endpoints,
-              endpointByName: endpoints.reduce((byName, endpoint) => {
-                byName[endpoint.name] = endpoint
-                return byName
-              }, {})
-            },
-            time: res.time
-          }
-        })
-        .catch(() => null)
-      : Promise.resolve(null)
     )
-      .then(res => res || {
-        data: backup,
-        time: null
-      })
-      .then(res => {
-        const native = lib.nativeEndpoints()
-        return {
-          time: res.time === null ? Date.now() : res.time,
-          data: Object.assign({}, res.data, {
-            endpoints: res.data.endpoints.concat(native)
-            // TODO: nativeEndpoints currently have no name, but they might have?
-          })
-        }
-      })
     return this._wellknownP
   }
 

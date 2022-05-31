@@ -1,6 +1,6 @@
 {
   "name": "dns-query",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "Node & Browser tested, Non-JSON DNS over HTTPS fetching with minimal dependencies.",
   "main": "index.js",
   "module": "index.mjs",

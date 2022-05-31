@@ -720,8 +720,7 @@
       "name": "doh-ibksturm",
       "endpoint": {
         "protocol": "https:",
-        "host": "ibksturm.synology.me",
-        "method": "POST"
+        "host": "ibksturm.synology.me"
       },
       "description": "DoH & DoT Server, No Logging, No Filters, DNSSEC\nRunning privately by ibksturm in Thurgau, Switzerland"
     },

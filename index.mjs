@@ -121,6 +121,7 @@ export class Session {
       update: true,
       updateURL: UPDATE_URL,
       persist: false,
+      localStoragePrefix: 'dnsquery_',
       maxAge: 300000 // 5 minutes
     }, opts)
     this._wellknownP = null
@@ -142,6 +143,7 @@ export class Session {
         this.opts.persist
           ? {
               name: 'resolvers.json',
+              localStoragePrefix: this.opts.localStoragePrefix,
               maxTime: Date.now() - this.opts.maxAge
             }
           : null,

@@ -7,7 +7,7 @@ import https from 'https'
 import http from 'http'
 import * as common from './common.mjs'
 import fs from 'fs'
-import { join } from 'path'
+import * as path from 'path'
 const { AbortError, HTTPStatusError, TimeoutError, UDP4Endpoint, UDP6Endpoint, URL } = common
 
 // Node 6 support
@@ -24,7 +24,7 @@ const stat = path => new Promise(
   (resolve, reject) => fs.stat(path, (err, stats) => { err ? reject(err) : resolve(stats) })
 )
 
-const filename = new URL(import.meta.url).pathname
+const filename = decodeURI(import.meta.url).replace(/^file:\/\/(\/(\w+:))?/, '$2').replace(/\//g, path.sep)
 const contentType = 'application/dns-message'
 
 let socket4
@@ -207,8 +207,9 @@ function loadCache (cache, cachePath) {
   return stat(cachePath).then(function (stats) {
     const time = stats.mtime.getTime()
     if (stats.isFile && time > cache.maxTime) {
-      return readFile(cachePath).then(function (data) {
-        return { time, data: JSON.parse(data) }
+      return readFile(cachePath, 'utf8').then(function (raw) {
+        const data = JSON.parse(raw)
+        return { time, data }
       })
     }
   }).catch(noop)
@@ -218,36 +219,44 @@ function storeCache (folder, cachePath, data) {
   if (!cachePath) {
     return Promise.resolve(null)
   }
-  return mkdir(folder).then(function () {
-    const before = Date.now()
-    return writeFile(cachePath, data).then(function () {
-      return before + (Date.now() - before) / 2
+  return mkdir(folder)
+    .catch(function () {}) // mkdir is okay to fail!
+    .then(function () {
+      return writeFile(cachePath, data)
     })
-  }).catch(function () {
-    return null
-  })
+    .then(function () {
+      return stat(cachePath)
+    })
+    .then(
+      function (stat) {
+        return stat.mtime.getTime()
+      },
+      function () {
+        return null
+      }
+    )
 }
 
 function noop () {}
 
 export function loadJSON (url, cache, timeout, abortSignal) {
-  const folder = join(filename, '..', '.cache')
-  const cachePath = cache ? join(folder, cache.name) : null
+  const folder = path.join(filename, '..', '.cache')
+  const cachePath = cache ? path.join(folder, cache.name) : null
   return loadCache(cache, cachePath)
     .then(function (cached) {
       if (cached) {
         return cached
       }
       return requestRaw(url, 'GET', null, timeout, abortSignal)
-    })
-    .then(function (response) {
-      const data = response.data
-      return storeCache(folder, cachePath, data).then(function (time) {
-        return {
-          time,
-          data: JSON.parse(data)
-        }
-      })
+        .then(function (response) {
+          const data = response.data
+          return storeCache(folder, cachePath, data).then(function (time) {
+            return {
+              time,
+              data: JSON.parse(data.toString())
+            }
+          })
+        })
     })
 }
 

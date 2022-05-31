@@ -43,7 +43,10 @@ OPTIONS:
   --resolvers ...... List all known resolvers as json.
   --response ....... Show the http response in the result.
   --retries ........ Number of retries to do in case requests fails, default: 5
-  --timeout ........ Timeout for the request in milliseconds, default: 30000
+  --timeout ........ Timeout for the request in milliseconds, default: 30000 (5 sec)
+  --max-age ........ Max age of the persisted data, default: 300000 (5 min)
+  --no-persist ..... Don't persist the the latest resolvers
+  --offline ........ Do not update the resolver list
 
 dns-query@${version}
 `
@@ -62,20 +65,9 @@ async function run (args, signal) {
   if (rawOpts.endpoints) {
     return JSON.stringify(await allEndpoints(), null, 2)
   }
-  let retries = 5
-  if (rawOpts.retries) {
-    retries = parseInt(rawOpts.retries, 10)
-    if (isNaN(retries)) {
-      throw new Error(`Unexpected value --retries=${rawOpts.retries}, expected integer`)
-    }
-  }
-  let timeout = 30000
-  if (rawOpts.timeout) {
-    timeout = parseInt(rawOpts.timeout, 10)
-    if (isNaN(timeout)) {
-      throw new Error(`Unexpected value --timeout=${rawOpts.timeout}, expected integer`)
-    }
-  }
+  const retries = rawOpts.retries === undefined ? 5 : rawOpts.retries
+  const timeout = rawOpts.timeout === undefined ? 30000 : rawOpts.timeout
+  const maxAge = rawOpts['max-age'] === undefined ? 300000 : rawOpts['max-age']
   let endpoints
   if (rawOpts.dns) {
     if (rawOpts.doh) {
@@ -99,7 +91,7 @@ async function run (args, signal) {
     })
   }
   const { packet, options } = await getInput(rawOpts, input)
-  const result = await query(packet, { endpoints, signal, timeout, retries })
+  const result = await query(packet, { endpoints, signal, timeout, retries, persist: !rawOpts['no-persist'], update: !rawOpts.offline, maxAge })
   if (options.out === 'base64') {
     return dns.encode(result).toString('base64')
   }
@@ -198,9 +190,10 @@ async function getInput (options, input) {
 }
 
 function getArgs (argv) {
-  const boolProps = ['help', 'h', 'json', 'base64', 'binary', 'stdin', 'endpoints', 'v', 'version', 'dns', 'doh', 'response', 'resolvers']
+  const boolProps = ['help', 'h', 'json', 'base64', 'binary', 'stdin', 'endpoints', 'v', 'version', 'dns', 'doh', 'response', 'resolvers', 'no-persist', 'offline']
   const inputProp = ['input', 'packet']
-  const otherProp = ['type', 'out', 'timeout', 'retries']
+  const intProp = ['timeout', 'retries', 'max-age']
+  const otherProp = ['type', 'out']
   const arrayProp = ['endpoint', 'e']
   let input
   let prop
@@ -222,7 +215,7 @@ function getArgs (argv) {
       if (boolProps.includes(prop)) {
         options[prop] = true
         prop = null
-      } else if (!inputProp.includes(prop) && !otherProp.includes(prop) && !arrayProp.includes(prop)) {
+      } else if (!inputProp.includes(prop) && !otherProp.includes(prop) && !arrayProp.includes(prop) && !intProp.includes(prop)) {
         throw new Error(`Unknown option ${prop}`)
       } else if (parts[2]) {
         useProp(parts[2])
@@ -241,6 +234,12 @@ function getArgs (argv) {
     } else {
       if (options[prop] !== undefined) {
         throw new Error(`Can not set --${prop} more than once`)
+      }
+      if (intProp.includes(prop)) {
+        arg = parseInt(arg, 10)
+        if (isNaN(arg)) {
+          throw new Error(`Unexpected value --${prop}=${arg}, expected integer`)
+        }
       }
       options[prop] = arg
     }

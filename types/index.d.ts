@@ -63,6 +63,7 @@ export type SessionOpts = Partial<{
   update: boolean
   updateURL: URL
   persist: boolean
+  localStoragePrefix: string
   maxAge: number
 }>;
 

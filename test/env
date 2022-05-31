@@ -75,7 +75,7 @@ function onError (error) {
 
 function onExit (code) {
   console.log({ onExit: code })
-  exitCode = code
+  exitCode = Math.max(code, exitCode)
   server.close()
 }
 

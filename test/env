@@ -4,6 +4,7 @@ const spawn = require('child_process').spawn
 const dnspacket = require('@leichtgewicht/dns-packet')
 const os = require('os')
 const { Buffer } = require('buffer')
+const { base64URL } = require('@leichtgewicht/base64-codec')
 const responseA = Buffer.from(dnspacket.encode({
   type: 'response',
   answers: [{

@@ -2,7 +2,7 @@
 const { DNSStamp } = require('@leichtgewicht/dnsstamp')
 const dnsPacket = require('@leichtgewicht/dns-packet')
 const { request, queryDns, loadJSON } = require('../lib.js')
-const { toEndpoint } = require('../common.js')
+const { toEndpoint, reduceError } = require('../common.js')
 const { writeFile } = require('fs/promises')
 const { join } = require('path')
 const { inspect } = require('util')
@@ -170,27 +170,6 @@ async function verifyDns (resolver) {
     TIMEOUT
   )
   return data
-}
-
-function reduceError (err) {
-  if (typeof err === 'string') {
-    return {
-      message: err
-    }
-  }
-  try {
-    const json = JSON.stringify(err)
-    if (json !== '{}') {
-      return JSON.parse(json)
-    }
-  } catch (e) {}
-  const error = {
-    message: err.message || String(err)
-  }
-  if (err.code) {
-    error.code = err.code
-  }
-  return error
 }
 
 async function verifyResover (resolver) {

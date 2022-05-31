@@ -98,7 +98,7 @@ EXAMPLES:
 
   # Fetch TXT entries for ipfs.io through regular dns
   $ dns-query --json --dns \
-      '{ ["question": { "type": "TXT", "name": "ipfs.io" } }]'
+      '{ "question": { "type": "TXT", "name": "ipfs.io" } }'
 
   # Pass the query through stdin
   $ echo '{ "question": { "type": "A", "name": "google.com" } }' \
@@ -123,7 +123,10 @@ OPTIONS:
   --resolvers ...... List all known resolvers as json.
   --response ....... Show the http response in the result.
   --retries ........ Number of retries to do in case requests fails, default: 5
-  --timeout ........ Timeout for the request in milliseconds, default: 30000
+  --timeout ........ Timeout for the request in milliseconds, default: 30000 (5 sec)
+  --max-age ........ Max age of the persisted data, default: 300000 (5 min)
+  --no-persist ..... Dont persist the the latest resolvers
+  --offline ........ Do not update the resolver list
 ```
 
 ## Endpoints

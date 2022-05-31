@@ -2,6 +2,7 @@ import dns from 'dns'
 import dgram from 'dgram'
 import { DNSSocket } from '@leichtgewicht/dns-socket'
 import * as codec from '@leichtgewicht/ip-codec'
+import { base64URL } from '@leichtgewicht/base64-codec'
 import https from 'https'
 import http from 'http'
 import * as common from './common.mjs'
@@ -25,14 +26,6 @@ const stat = path => new Promise(
 
 const filename = new URL(import.meta.url).pathname
 const contentType = 'application/dns-message'
-
-// https://tools.ietf.org/html/rfc8484
-function toRFC8484 (buffer) {
-  return buffer.toString('base64')
-    .replace(/=/g, '')
-    .replace(/\+/g, '-')
-    .replace(/\//g, '_')
-}
 
 let socket4
 let socket6
@@ -125,7 +118,7 @@ function requestRaw (url, method, body, timeout, abortSignal, headers) {
     }
     const target = new URL(url)
     if (method === 'GET' && body) {
-      target.search = '?dns=' + toRFC8484(body)
+      target.search = '?dns=' + base64URL.decode(body)
     }
     const req = client.request(
       {

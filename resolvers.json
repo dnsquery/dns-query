@@ -75,21 +75,6 @@
       "filter": true
     },
     {
-      "name": "ahadns-doh-in",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh.in.ahadns.net",
-        "cors": true
-      },
-      "description": "A zero logging DNS with support for DNS-over-HTTPS (DoH) & DNS-over-TLS (DoT). Blocks ads, malware, trackers, viruses, ransomware, telemetry and more. No persistent logs. DNSSEC. Hosted in Mumbai, India. By https://ahadns.com/\nServer statistics can be seen at: https://statistics.ahadns.com/?server=in",
-      "country": "India",
-      "location": {
-        "lat": 19.0748,
-        "long": 72.8856
-      },
-      "filter": true
-    },
-    {
       "name": "ahadns-doh-la",
       "endpoint": {
         "protocol": "https:",
@@ -713,29 +698,6 @@
       "location": {
         "lat": 60.1758,
         "long": 24.9349
-      },
-      "filter": true
-    },
-    {
-      "name": "doh-ibksturm",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "ibksturm.synology.me"
-      },
-      "description": "DoH & DoT Server, No Logging, No Filters, DNSSEC\nRunning privately by ibksturm in Thurgau, Switzerland"
-    },
-    {
-      "name": "doh-jp-blahdns",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh-jp.blahdns.com",
-        "cors": true
-      },
-      "description": "Blocks ad and Tracking, no Logging, DNSSEC, Hosted in Japan. By https://blahdns.com/",
-      "country": "Japan",
-      "location": {
-        "lat": 35.6882,
-        "long": 139.7532
       },
       "filter": true
     },

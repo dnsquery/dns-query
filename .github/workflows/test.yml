@@ -51,7 +51,6 @@ jobs:
       with:
         node-version: ${{ matrix.node }}
     - run: npm i
-    - run: npm rebuild --ignore-scripts
     - run: npm run test
     - run: npm run test-cjs
 

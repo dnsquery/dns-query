@@ -3,7 +3,8 @@ const http = require('http')
 const spawn = require('child_process').spawn
 const dnspacket = require('@leichtgewicht/dns-packet')
 const os = require('os')
-const responseA = dnspacket.encode({
+const { Buffer } = require('buffer')
+const responseA = Buffer.from(dnspacket.encode({
   type: 'response',
   answers: [{
     type: 'A',
@@ -12,7 +13,7 @@ const responseA = dnspacket.encode({
     ttl: 432,
     data: '0.0.0.0'
   }]
-})
+}))
 
 let url
 let exitCode = -1

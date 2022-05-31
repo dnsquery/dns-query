@@ -20,6 +20,7 @@ let exitCode = -1
 const server = http.createServer(handleRequest)
 server.listen(onListen)
 server.on('close', function () {
+  console.log({ serverClosed: exitCode })
   process.exit(exitCode)
 })
 
@@ -72,6 +73,7 @@ function onError (error) {
 }
 
 function onExit (code) {
+  console.log({ onExit: code })
   exitCode = code
   server.close()
 }

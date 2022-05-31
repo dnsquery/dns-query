@@ -3,7 +3,7 @@ name: Tests
 on: ['push', 'pull_request']
 
 jobs:
-  test:
+  test_cjs:
     strategy:
       matrix:
         include:
@@ -16,6 +16,24 @@ jobs:
           - id: ubuntu:10
             os: ubuntu-latest
             node: 10
+    runs-on: ${{ matrix.os }}
+    needs: [strict, browser, test_mjs]
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 18
+    - run: npm i
+    - uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node }}
+    - run: npm rebuild --ignore-scripts
+    - run: npm run test-cjs
+
+  test_mjs:
+    strategy:
+      matrix:
+        include:
           - id: windows:12
             os: windows-latest
             node: 12
@@ -31,12 +49,10 @@ jobs:
     - uses: actions/checkout@v3
     - uses: actions/setup-node@v3
       with:
-        node-version: 18
-    - run: npm i
-    - uses: actions/setup-node@v3
-      with:
         node-version: ${{ matrix.node }}
+    - run: npm i
     - run: npm rebuild --ignore-scripts
+    - run: npm run test
     - run: npm run test-cjs
 
   browser:

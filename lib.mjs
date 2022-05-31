@@ -8,6 +8,7 @@ import http from 'http'
 import * as common from './common.mjs'
 import fs from 'fs'
 import * as path from 'path'
+import { Buffer } from 'buffer'
 const { AbortError, HTTPStatusError, TimeoutError, UDP4Endpoint, UDP6Endpoint, URL } = common
 
 // Node 6 support
@@ -135,7 +136,7 @@ function requestRaw (url, method, body, timeout, abortSignal, headers) {
     }
     req.on('error', onerror)
     if (method === 'POST') {
-      req.end(body)
+      req.end(Buffer.from(body))
     } else {
       req.end()
     }

@@ -3,7 +3,6 @@ if (!AbortError) {
   AbortError = class AbortError extends Error {
     constructor (message = 'Request aborted.') {
       super(message)
-      Error.captureStackTrace(this, AbortError)
     }
   }
 }
@@ -17,7 +16,6 @@ export { AbortError, URL }
 export class HTTPStatusError extends Error {
   constructor (uri, code, method) {
     super('status=' + code + ' while requesting ' + uri + ' [' + method + ']')
-    Error.captureStackTrace(this, HTTPStatusError)
     this.uri = uri
     this.status = code
     this.method = method
@@ -38,7 +36,6 @@ HTTPStatusError.prototype.code = 'HTTP_STATUS'
 export class ResponseError extends Error {
   constructor (message, cause) {
     super(message)
-    Error.captureStackTrace(this, ResponseError)
     this.cause = cause
   }
 
@@ -56,7 +53,6 @@ ResponseError.prototype.code = 'RESPONSE_ERR'
 export class TimeoutError extends Error {
   constructor (timeout) {
     super('Timeout (t=' + timeout + ').')
-    Error.captureStackTrace(this, TimeoutError)
     this.timeout = timeout
   }
 

@@ -18,6 +18,26 @@ const responseA = Buffer.from(dnspacket.encode({
 
 let url
 let exitCode = -1
+const resolvers = JSON.stringify({
+  $schema: 'https://martinheidegger.github.io/dns-query/resolvers.schema.json',
+  resolvers: [
+    {
+      name: 'some-name',
+      endpoint: {
+        protocol: 'https:',
+        host: 'some.domain',
+        cors: true
+      },
+      description: 'a descrition',
+      country: 'Germany',
+      location: {
+        lat: 1,
+        long: 2
+      },
+      filter: true
+    }
+  ]
+})
 
 const server = http.createServer(handleRequest)
 server.listen(onListen)
@@ -94,26 +114,16 @@ function handleRequest (req, res) {
   if (req.method === 'GET') {
     if (req.url === '/resolvers') {
       res.writeHead(200)
-      return res.end(JSON.stringify({
-        $schema: 'https://martinheidegger.github.io/dns-query/resolvers.schema.json',
-        resolvers: [
-          {
-            name: 'some-name',
-            endpoint: {
-              protocol: 'https:',
-              host: 'some.domain',
-              cors: true
-            },
-            description: 'a descrition',
-            country: 'Germany',
-            location: {
-              lat: 1,
-              long: 2
-            },
-            filter: true
-          }
-        ]
-      }))
+      return res.end(resolvers)
+    }
+    if (req.url === '/one-time-resolvers') {
+      if (log.filter(entry => entry.url === req.url).length === 1) {
+        res.writeHead(200)
+        return res.end(resolvers)
+      } else {
+        res.writeHead(500)
+        return res.end('call this only once!')
+      }
     }
     if (req.url === '/broken-resolvers') {
       res.writeHead(500)

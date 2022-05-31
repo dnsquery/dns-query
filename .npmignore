@@ -1,8 +1,10 @@
-endpoints-json.js
 test/*
 *.tgz
 coverage/*
 .github/*
+.vscode/*
 types/test.ts
 types/tsconfig.json
 *.bak
+bin/update-resolvers
+data

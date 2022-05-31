@@ -69,9 +69,11 @@
   "author": "Martin Heidegger <martin.heidegger@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@leichtgewicht/dns-packet": "^5.4.1",
-    "@leichtgewicht/dns-socket": "^4.2.3",
-    "@leichtgewicht/ip-codec": "^2.0.4"
+    "@leichtgewicht/base64-codec": "^1.0.0",
+    "@leichtgewicht/dns-packet": "^6.0.0",
+    "@leichtgewicht/dns-socket": "^5.0.0",
+    "@leichtgewicht/ip-codec": "^2.0.4",
+    "utf8-codec": "^1.0.0"
   },
   "devDependencies": {
     "@definitelytyped/dtslint": "0.0.112",

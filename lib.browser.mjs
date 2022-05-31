@@ -19,7 +19,7 @@ export async function loadJSON (url, cache, timeout, abortSignal) {
   const cacheKey = cache ? cache.localStoragePrefix + cache.name : null
   if (cacheKey) {
     try {
-      const cached = localStorage.getItem(cacheKey)
+      const cached = JSON.parse(localStorage.getItem(cacheKey))
       if (cached && cached.time > cache.maxTime) {
         return cached
       }
@@ -27,13 +27,12 @@ export async function loadJSON (url, cache, timeout, abortSignal) {
   }
   const { data } = await requestRaw(url, 'GET', null, timeout, abortSignal)
   const result = {
-    time: null,
-    data: JSON.parse(data.toString())
+    time: Date.now(),
+    data: JSON.parse(utf8Codec.decode(data))
   }
   if (cacheKey) {
     try {
-      result.time = Date.now()
-      localStorage.setItem(cacheKey, result)
+      localStorage.setItem(cacheKey, JSON.stringify(result))
     } catch (err) {
       result.time = null
     }

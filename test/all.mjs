@@ -3,6 +3,8 @@ import AbortController from 'abort-controller'
 import * as dohQuery from '../index.mjs'
 import { TimeoutError } from '../common.mjs'
 import XHR from 'xhr2'
+import path from 'path'
+import fs from 'fs'
 const query = dohQuery.query
 const toEndpoint = dohQuery.toEndpoint
 const isBrowser = typeof window !== 'undefined'
@@ -366,6 +368,90 @@ test('query without endpoints', function (t) {
         t.match(error.message, /no endpoints/i)
       }
     )
+})
+
+test('persisting to the filesystem', { skip: isBrowser }, function (t) {
+  const filename = decodeURI(import.meta.url).replace(/^file:\/\/(\/(\w+:))?/, '$2').replace(/\//g, path.sep)
+  const cacheFolder = path.join(filename, '..', '..', '.cache')
+  const resolversFile = path.join(cacheFolder, 'resolvers.json')
+
+  function clearCache () {
+    try {
+      fs.unlinkSync(resolversFile)
+      fs.rmdirSync(cacheFolder)
+    } catch (err) {
+      // not so important
+    }
+  }
+
+  t.test('cache is used', function (t) {
+    clearCache()
+    const session = new dohQuery.Session({
+      persist: true
+    })
+    t.equals(fs.existsSync(resolversFile), false, 'cache file doesnt exist before running')
+    return Promise.all([
+      session._wellknown(),
+      dohQuery.backup
+    ])
+      .then(function (results) {
+        const [wellknown, backup] = results
+        t.equals(fs.existsSync(resolversFile), true, 'cache file created')
+        t.notEqual(wellknown.time, backup.time, 'not serving the backup')
+        const session2 = new dohQuery.Session({
+          persist: true
+        })
+        return session2._wellknown().then(function (wellknown2) {
+          t.equals(wellknown2.time, wellknown.time, 'The filesystem cache is used if available')
+          return results
+        })
+      })
+      .then(function (results) {
+        const [wellknown] = results
+        const session3 = new dohQuery.Session({
+          maxAge: 1,
+          persist: true
+        })
+        return session3._wellknown().then(function (wellknown3) {
+          t.ok(wellknown3.time > wellknown.time, `The filesystem cache is skipped if old (${wellknown3.time} > ${wellknown.time} (${wellknown3.time - wellknown.time}))`)
+        })
+      })
+  })
+})
+
+test('persisting to the localStorage', { skip: !isBrowser }, function (t) {
+  const key = 'dnsquery_resolvers.json'
+  globalThis.localStorage.removeItem(key)
+  const session = new dohQuery.Session({
+    persist: true
+  })
+  return Promise.all([
+    session._wellknown(),
+    dohQuery.backup
+  ])
+    .then(function (parts) {
+      const [wellknown, backup] = parts
+      t.notEqual(globalThis.localStorage.getItem(key), null, 'something has been stored')
+      t.notEqual(wellknown.time, backup.time, 'the backup is not used')
+      const session2 = new dohQuery.Session({
+        persist: true
+      })
+      return session2._wellknown().then(function (wellknown2) {
+        t.equal(wellknown2.time, wellknown.time)
+        return parts
+      })
+    })
+    .then(function (parts) {
+      const [wellknown] = parts
+      const session3 = new dohQuery.Session({
+        maxAge: 1,
+        persist: true
+      })
+      return session3._wellknown().then(function (wellknown3) {
+        t.ok(wellknown3.time > wellknown.time, `The localStorage cache is skipped if old (${wellknown3.time} > ${wellknown.time} (${wellknown3.time - wellknown.time})`)
+        return parts
+      })
+    })
 })
 
 function getLog () {

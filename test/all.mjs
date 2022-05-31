@@ -508,6 +508,7 @@ function persistHelperBrowser () {
     }
   }
 }
+
 function persistHelperNode () {
   const filename = decodeURI(import.meta.url).replace(/^file:\/\/(\/(\w+:))?/, '$2').replace(/\//g, path.sep)
   const cacheFolder = path.join(filename, '..', '..', '.cache')
@@ -560,6 +561,31 @@ test('persisting resolvers', function (t) {
       return session3._wellknown().then(function (wellknown3) {
         t.ok(wellknown3.time > wellknown.time, `The filesystem cache is skipped if old (${wellknown3.time} > ${wellknown.time} (${wellknown3.time - wellknown.time}))`)
       })
+    })
+})
+
+test('use persisted resolvers in case of error', { skip: typeof URL === 'undefined' }, function (t) {
+  persistHelpers.clear(t)
+  const session = new Session({
+    persist: true,
+    maxAge: -Number.MAX_SAFE_INTEGER,
+    updateURL: new URL('/one-time-resolvers', LOCAL_ENDPOINT_URI)
+  })
+  return getLog()
+    .then(() => session.endpoints())
+    .then((endpoints) => {
+      return session.endpoints()
+        .then((endpoints2) => {
+          t.equal(endpoints[0].name, 'some-name')
+          t.equal(endpoints, endpoints2, 'same endpoints get returned')
+        })
+        .then(() => getLog(true))
+        .then(log => {
+          t.deepEqual(log, [
+            { method: 'GET', url: '/one-time-resolvers' },
+            { method: 'GET', url: '/one-time-resolvers' }
+          ], 'two requests to /one-time-resolvers, second one is to trigger the error')
+        })
     })
 })
 

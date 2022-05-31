@@ -127,11 +127,11 @@ export class Session {
     this._wellknownP = null
   }
 
-  _wellknown (force) {
+  _wellknown (force, outdated) {
     if (!force && this._wellknownP !== null) {
       return this._wellknownP.then(res => {
         if (res.time < Date.now() - this.opts.maxAge) {
-          return this._wellknown(true)
+          return this._wellknown(true, res)
         }
         return res
       })
@@ -153,7 +153,7 @@ export class Session {
           data: res.data.resolvers,
           time: res.time
         }))
-        .catch(() => backup)
+        .catch(() => outdated || backup)
     )
     return this._wellknownP
   }

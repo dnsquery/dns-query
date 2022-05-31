@@ -3,7 +3,8 @@ const http = require('http')
 const spawn = require('child_process').spawn
 const dnspacket = require('@leichtgewicht/dns-packet')
 const os = require('os')
-const responseA = dnspacket.encode({
+const { Buffer } = require('buffer')
+const responseA = Buffer.from(dnspacket.encode({
   type: 'response',
   answers: [{
     type: 'A',
@@ -12,7 +13,7 @@ const responseA = dnspacket.encode({
     ttl: 432,
     data: '0.0.0.0'
   }]
-})
+}))
 
 let url
 let exitCode = -1
@@ -20,6 +21,7 @@ let exitCode = -1
 const server = http.createServer(handleRequest)
 server.listen(onListen)
 server.on('close', function () {
+  console.log({ serverClosed: exitCode })
   process.exit(exitCode)
 })
 
@@ -72,6 +74,7 @@ function onError (error) {
 }
 
 function onExit (code) {
+  console.log({ onExit: code })
   exitCode = code
   server.close()
 }
@@ -87,6 +90,39 @@ function handleRequest (req, res) {
     return
   }
   log.push({ method: req.method, url: req.url })
+  if (req.method === 'GET') {
+    if (req.url === '/resolvers') {
+      res.writeHead(200)
+      return res.end(JSON.stringify({
+        $schema: 'https://martinheidegger.github.io/dns-query/resolvers.schema.json',
+        resolvers: [
+          {
+            name: 'some-name',
+            endpoint: {
+              protocol: 'https:',
+              host: 'some.domain',
+              cors: true
+            },
+            description: 'a descrition',
+            country: 'Germany',
+            location: {
+              lat: 1,
+              long: 2
+            },
+            filter: true
+          }
+        ]
+      }))
+    }
+    if (req.url === '/broken-resolvers') {
+      res.writeHead(500)
+      return res.end('broken')
+    }
+    const match = /^\/get-dns-packet\?dns=(.*)/.exec(req.url)
+    if (match) {
+      return res.end(Buffer.from(base64URL.encode(match[1])))
+    }
+  }
   if (req.method !== 'POST' && req.method !== 'OPTIONS') {
     res.writeHead(405)
     return res.end('Wrong Method.')

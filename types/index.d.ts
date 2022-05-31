@@ -31,6 +31,10 @@ export {
 } from '../resolvers.js';
 
 export type Resolver = RawResolver<Endpoint>;
+export const backup: {
+  data: Resolver
+  time: number
+};
 
 export interface Wellknown {
   resolvers: Resolver[];

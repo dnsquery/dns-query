@@ -61,7 +61,7 @@ export type DNSErrorCodeName = 'FormErr' | 'ServFail' | 'NXDomain' | 'NotImp' | 
 export const DNS_RCODE_ERROR: { [key: number]: DNSErrorCodeName };
 export const DNS_RCODE_MESSAGE: { [key: number]: string };
 
-export class DNSRCodeError extends Error {
+export class DNSRcodeError extends Error {
   code: string;
   rcode: RecordClass;
   error: string;

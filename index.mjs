@@ -166,7 +166,12 @@ export class Session {
     opts = Object.assign({}, this.opts, opts)
     if (!q.question) return Promise.reject(new Error('To request data you need to specify a .question!'))
     return loadEndpoints(this, opts.endpoints)
-      .then(endpoints => queryN(endpoints, q, opts))
+      .then(endpoints => {
+        if (endpoints.length === 0) {
+          throw new Error('No endpoints defined.')
+        }
+        return queryN(endpoints, q, opts)
+      })
   }
 }
 
@@ -185,9 +190,6 @@ export function wellknown () {
 }
 
 function queryN (endpoints, q, opts) {
-  if (endpoints.length === 0) {
-    throw new Error('No endpoints defined.')
-  }
   const endpoint = endpoints.length === 1
     ? endpoints[0]
     : endpoints[Math.floor(Math.random() * endpoints.length) % endpoints.length]
@@ -206,7 +208,7 @@ function queryN (endpoints, q, opts) {
         if (opts.retries > 0) {
           opts.retries -= 1
         }
-        return query(q, opts)
+        return queryN(endpoints, q, opts)
       }
     )
 }

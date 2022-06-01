@@ -9,6 +9,20 @@ Node & Browser tested, Non-JSON DNS over HTTPS (and DNS) fetching with minimal d
 
 This package provides simple function to make DoH queries both in node and the browser.
 
+## Contents
+
+- [Important Note](#important-note-before-getting-started)
+- [DNS support](#dns-support)
+- [JavaScript API](#javascript-api)
+    - [Error Responses](#error-responses)
+    - [Session API](#session-api)
+    - [Txt Helper](#txt-helper)
+- [CLI](#cli)
+- [Endpoints](#endpoints)
+    - [String Endpoints](#string-endpoints)
+- [See also](#see-also)
+- [License](#license)
+
 ## Important Note before getting started
 
 By default `dns-query` uses well-known public dns-over-https servers to execute
@@ -38,13 +52,16 @@ they want to use as it has privacy and usage implications!
 
 ## DNS support
 
-Node.js's dns support is limited, primary example being: `lookupTXT` does not support `ttl`
-results. For that reason, when using `dns-query` in node you can also specify `dns` endpoints.
+Node.js's dns support is limited, primary example being: [`resolveTxt`][node-resolveTxt] does not support `ttl`
+results. For that reason, when using `dns-query` in node you can also specify `dns` endpoints that
+should be helpful in the node environment.
+
+[node-resolveTxt]: https://nodejs.org/api/dns.html#dnsresolvetxthostname-callback
 
 ## JavaScript API
 
 ```js
-const { query, endpoints: defaultEndpoints } = require('dns-query')
+import { query, endpoints as defaultEndpoints } from 'dns-query'
 const { cloudflare, google, opendns } = defaultEndpoints
 
 let endpoints // If undefined endpoints will be assumed to use one of the dns or doh endpoints!
@@ -74,6 +91,94 @@ try {
     default: // Unexpected error
   }
 }
+```
+
+### Error Responses
+
+By default `query` will return the packet as received by the endpoints, even if
+that package was flagged as an error. The `validateResponse` helper will give a
+well readable error message.
+
+```js
+import { validateResponse, query } from 'dns-query'
+
+const respone = validateResponse(await query(/* ... */))
+```
+
+### Session API
+
+Loading the latest list of resolvers from the servers will increase both the load
+on the server hosting the list and your application's responsiveness. `dns-query` comes
+with support for persisting the resolvers in order to ease the load.
+
+You can use the `Session` to define the behavior for requests.
+
+```js
+import { Session } from 'dns-query'
+
+const session = new Session({
+  update: true, // Will load latest definitions from updateURL.
+  updateURL: new URL(), // URL to load the latest definitions. (default: project URL)
+  persist: true, // True to persist the loaded definitions (nodejs: in filesystem, browser: localStorage)
+  localStoragePrefix: 'dnsquery_', // Prefix for files persisted.
+  maxAge: 300000, // Max age of persisted data to be used in ms (default: 5min)
+  // Defaults for requests
+  retries: 3,
+  timeout: 3000,
+  endpoints: 'doh'
+})
+
+await session.wellknown()
+await session.endpoints()
+await session.query({ /* ... */})
+await session.lookupTxt('google.com')
+```
+
+By default, `query` will try load the latest definitions (`update: true`) but will
+persist them only in memory. Subsequent requests will only update the list if
+it is old.
+
+`persist: true` is useful when you restart a node process or refresh a browser.
+The persisted data will then be available making subsequent requests faster still.
+
+#### Persist: Node.js
+
+In node.js this will try to persist the list of resolvers to the `node_modules`
+directory.
+
+#### Persist: Browser
+
+In the browser it will use `localStorage` to store the copy of resolvers. By default
+it will use the `localStoragePrefix = 'dnsquery_'` option. You will be able to find
+the persisted resolvers under `localStorage.getItem('dnsquery_resolvers.json')`.
+
+```js
+query(..., {
+  localStoragePrefix: 'my_custom_prefix'
+})
+```
+
+### Txt Helper
+
+The default `TXT` response of dns-queries is a list of `Uint8Array`'s. If you have a
+`TXT` response you can use the `combineTXT` API to combine the requests.
+
+```js
+import { combineTXT } from 'dns-query'
+
+const response = await query(/* ... */)
+if (response.question.type === 'TXT') {
+  const txt = response.answers.map(answer => combineTXT(answer.data))
+}
+```
+
+More convenient still is the `lookupTxt` API that allows you to simple request
+the TXT entries for a domain.
+
+```js
+import { lookupTxt } from 'dns-query'
+
+const { entries, endpoint } = await lookupTxt('google.com')
 ```
 
 ## CLI
@@ -199,37 +304,6 @@ if a path is given such as `foo.com/` it will assume that path `/`!
 To specify DNS endpoints you need to prefix them using `udp:` (or `udp4:`, `udp6`)
 
 `udp://1.1.1.1` → `{ host: '1.1.1.1', protocol: 'udp4' }`
-
-
-### Persisting Resolvers
-
-Loading the latest list of resolvers from the servers will increase both the load
-on the server hosting the list and your application's responsiveness. `dns-query` comes
-with support for persisting the resolvers in order to ease the load.
-
-While the CLI does that by default, you need to enable it when using the JavaScript
-API.
-
-```js
-query(..., {
-  persist: true
-})
-```
-
-In node.js this will try to persist the list of resolvers to the `node_modules`
-directory.
-
-In the browser it will use `localStorage` to store the copy of resolvers. By default
-it will use the `localStoragePrefix = 'dnsquery_'` option. You will be able to find
-the persisted resolvers under `localStorage.getItem('dnsquery_resolvers.json')`.
-
-You can change the prefix in the options.
-
-```js
-query(..., {
-  localStoragePrefix: 'my_custom_prefix'
-})
-```
 
 ## See Also
 

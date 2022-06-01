@@ -237,8 +237,8 @@ async function getArgs (argv) {
         prop = null
       } else if (!inputProp.includes(prop) && !otherProp.includes(prop) && !arrayProp.includes(prop) && !intProp.includes(prop)) {
         throw new Error(`Unknown option ${prop}`)
-      } else if (parts[2]) {
-        useProp(parts[2])
+      } else if (parts[3]) {
+        useProp(parts[3])
       }
       continue
     }

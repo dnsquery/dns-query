@@ -65,12 +65,7 @@ function queryOne (endpoint, query, timeout, abortSignal) {
     return Promise.reject(new AbortError())
   }
   if (endpoint.protocol === 'udp4:' || endpoint.protocol === 'udp6:') {
-    return lib.queryDns(endpoint, toMultiQuery(query), timeout, abortSignal)
-      .then(result => {
-        result.question = result.questions[0]
-        delete result.questions
-        return result
-      })
+    return lib.queryDns(endpoint, query, timeout, abortSignal)
   }
   return queryDoh(endpoint, query, timeout, abortSignal)
 }
@@ -79,7 +74,7 @@ function queryDoh (endpoint, query, timeout, abortSignal) {
   return lib.request(
     endpoint.url,
     endpoint.method,
-    packet.query.encode(Object.assign({
+    packet.encode(Object.assign({
       flags: packet.RECURSION_DESIRED
     }, query)),
     timeout,
@@ -94,7 +89,7 @@ function queryDoh (endpoint, query, timeout, abortSignal) {
           error = new ResponseError('Empty.')
         } else {
           try {
-            const decoded = packet.response.decode(data)
+            const decoded = packet.decode(data)
             decoded.response = response
             return decoded
           } catch (err) {
@@ -170,7 +165,13 @@ export class Session {
         if (endpoints.length === 0) {
           throw new Error('No endpoints defined.')
         }
-        return queryN(endpoints, q, opts)
+        return queryN(endpoints, toMultiQuery(q), opts)
+      })
+      .then(data => {
+        data.question = data.questions[0]
+        delete data.questions
+        return data
+      })
       })
   }
 }

@@ -217,6 +217,33 @@
       "filter": true
     },
     {
+      "name": "bcn-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dnses.alekberg.net"
+      },
+      "description": "Resolver in Spain. DoH protocol. Non-logging, non-filtering, DNSSEC.",
+      "country": "Spain",
+      "location": {
+        "lat": 41.3891,
+        "long": 2.1611
+      }
+    },
+    {
+      "name": "brahma-world",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.brahma.world"
+      },
+      "description": "DNS-over-HTTPS server. Non Logging, filters ads, trackers and malware. DNSSEC ready, QNAME Minimization, No EDNS Client-Subnet.\nHosted in Stockholm, Sweden. (https://dns.brahma.world)",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      },
+      "filter": true
+    },
+    {
       "name": "cisco-doh",
       "endpoint": {
         "protocol": "https:",

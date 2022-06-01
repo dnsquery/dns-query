@@ -105,23 +105,36 @@ function sanitize (options, value, path, stack) {
   if (typeof value !== 'object' || value === null) {
     return value
   }
-  if (Buffer.isBuffer(value)) {
-    return value.toString()
+  if (value instanceof Uint8Array) {
+    return base64.decode(value)
   }
   const circular = stack.indexOf(value)
   if (circular !== -1) {
     return `[Circular=${path.slice(0, circular).join('.')}]`
   }
   const json = typeof value.toJSON === 'function' ? value.toJSON() : value
-  const result = {}
+  if (typeof json !== 'object' || json === null) {
+    return json
+  }
   stack.push(value)
-  for (const child in json) {
-    if (child === 'response' && path.length === 0 && !options.response) {
-      continue
+  let result
+  if (Array.isArray(value)) {
+    result = value.map((child, index) => {
+      path.push(index)
+      const res = sanitize(options, child, path, stack)
+      path.pop()
+      return res
+    })
+  } else {
+    result = {}
+    for (const child in json) {
+      if (child === 'response' && path.length === 0 && !options.response) {
+        continue
+      }
+      path.push(child)
+      result[child] = sanitize(options, value[child], path, stack)
+      path.pop()
     }
-    path.push(child)
-    result[child] = sanitize(options, value[child], path, stack)
-    path.pop()
   }
   stack.pop()
   return result

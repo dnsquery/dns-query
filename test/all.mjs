@@ -65,11 +65,13 @@ test('local /text causes ResponseError, with retries=0, once!', function (t) {
       t.equals(err.message, 'Invalid packet (cause=Header must be 12 bytes)')
       t.notEqual(err.cause, undefined)
       t.notEqual(err.cause, null)
-      t.deepEqual(err.endpoint, toEndpoint(Object.assign({}, LOCAL_ENDPOINT, { path: '/text' })))
+      const ep = toEndpoint(Object.assign({}, LOCAL_ENDPOINT, { path: '/text' })).toString()
+      t.deepEqual(err.endpoint, ep)
       t.notEqual(err.response, undefined)
       t.deepEqual(err.toJSON(), {
         cause: { message: 'Header must be 12 bytes' },
         code: 'RESPONSE_ERR',
+        endpoint: ep,
         message: err.message
       })
       return getLog(true).then(
@@ -91,7 +93,8 @@ test('local /text causes ResponseError, with retries=3, several times', function
     failSuccess(t),
     function (err) {
       t.equals(err.name, 'ResponseError')
-      t.deepEqual(err.endpoint, toEndpoint(Object.assign({}, LOCAL_ENDPOINT, { path: '/text' })))
+      const ep = toEndpoint(Object.assign({}, LOCAL_ENDPOINT, { path: '/text' })).toString()
+      t.deepEqual(err.endpoint, ep)
       t.notEquals(err.response, undefined)
       return getLog(true).then(
         function (data) {
@@ -159,11 +162,13 @@ test('local /404 causes StatusError', function (t) {
   return localQuery('/404').then(
     failSuccess(t),
     function (err) {
-      t.deepEqual(err.endpoint, toEndpoint(Object.assign({}, LOCAL_ENDPOINT, { path: '/404' })))
+      const ep = toEndpoint(Object.assign({}, LOCAL_ENDPOINT, { path: '/404' })).toString()
+      t.deepEqual(err.endpoint, ep)
       t.notEqual(err.response, undefined)
       t.equals(err.code, 'HTTP_STATUS')
       t.deepEqual(err.toJSON(), {
         uri: `${LOCAL_ENDPOINT_URI}/404`,
+        endpoint: ep,
         code: 'HTTP_STATUS',
         status: isBrowser ? 0 : 404,
         method: 'POST'
@@ -210,6 +215,7 @@ test('aborting requests while running (dns)', {
     failSuccess(t),
     function (err) {
       if (err.name === 'AbortError') {
+        t.ok(err.endpoint, 'dns endpoint specified')
         t.pass('Aborted')
       } else {
         t.fail('Error')
@@ -338,7 +344,7 @@ test('parsing of endpoints', function (t) {
           {
             input: 'dns',
             expected: wellknown.endpoints.filter(function (endpoint) {
-              return endpoint.protocol === 'udp4:' || endpoint.protocol === 'upd6:'
+              return endpoint.protocol === 'udp4:' || endpoint.protocol === 'udp6:'
             })
           },
           {
@@ -362,7 +368,7 @@ test('parsing of endpoints', function (t) {
         })).then(function (results) {
           results.forEach(function (res, index) {
             const fixture = fixtures[index]
-            t.equals(res.length, fixture.expected.length)
+            t.equals(res.length, fixture.expected.length, `#${index}(${fixture.input}) ${res.length} == ${fixture.expected.length}`)
             res.forEach(function (resEntry, resIndex) {
               const fixtureEntry = fixture.expected[resIndex]
               t.deepEquals(resEntry, fixtureEntry, `#${index}[${resIndex}] ${resEntry} ?? ${fixtureEntry}`)

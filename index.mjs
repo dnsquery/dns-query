@@ -95,7 +95,6 @@ function queryDoh (endpoint, query, timeout, abortSignal) {
         } else {
           try {
             const decoded = packet.response.decode(data)
-            decoded.endpoint = endpoint
             decoded.response = response
             return decoded
           } catch (err) {
@@ -103,10 +102,7 @@ function queryDoh (endpoint, query, timeout, abortSignal) {
           }
         }
       }
-      throw Object.assign(error, { response, endpoint })
-    },
-    error => {
-      throw Object.assign(error, { endpoint })
+      throw Object.assign(error, { response })
     }
   )
 }
@@ -204,6 +200,7 @@ function queryN (endpoints, q, opts) {
       },
       err => {
         if (err.name === 'AbortError' || opts.retries === 0) {
+          err.endpoint = endpoint.toString()
           throw err
         }
         if (opts.retries > 0) {

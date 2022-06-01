@@ -26,7 +26,8 @@ export class HTTPStatusError extends Error {
       code: this.code,
       uri: this.uri,
       status: this.status,
-      method: this.method
+      method: this.method,
+      endpoint: this.endpoint
     }
   }
 }
@@ -42,6 +43,7 @@ export class ResponseError extends Error {
   toJSON () {
     return {
       message: this.message,
+      endpoint: this.endpoint,
       code: this.code,
       cause: reduceError(this.cause)
     }
@@ -59,6 +61,7 @@ export class TimeoutError extends Error {
   toJSON () {
     return {
       code: this.code,
+      endpoint: this.endpoint,
       timeout: this.timeout
     }
   }
@@ -151,6 +154,10 @@ export class BaseEndpoint {
     } else {
       this.port = port
     }
+  }
+
+  toJSON () {
+    return this.toString()
   }
 }
 

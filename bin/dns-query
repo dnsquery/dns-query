@@ -25,6 +25,9 @@ EXAMPLES:
   # Pass the query through stdin
   $ echo '{ "question": { "type": "A", "name": "google.com" } }' \\
       | ${cmd} --stdin --endpoint cloudflare
+  
+  # Process binary packages as base64
+  $ ${cmd} --base64 AAAAAAABAAAAAAAABGlwZnMCaW8AABAAAQ==
 
 OPTIONS:
 
@@ -47,7 +50,7 @@ OPTIONS:
   --retries ........ Number of retries to do in case requests fails, default: 5
   --timeout ........ Timeout for the request in milliseconds, default: 30000 (5 sec)
   --max-age ........ Max age of the persisted data, default: 300000 (5 min)
-  --no-persist ..... Don't persist the the latest resolvers
+  --no-persist ..... Dont persist the the latest resolvers
   --offline ........ Do not update the resolver list
 
 dns-query@${version}

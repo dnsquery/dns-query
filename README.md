@@ -103,6 +103,9 @@ EXAMPLES:
   # Pass the query through stdin
   $ echo '{ "question": { "type": "A", "name": "google.com" } }' \
       | dns-query --stdin --endpoint cloudflare
+  
+  # Process binary packages as base64
+  $ dns-query --base64 AAAAAAABAAAAAAAABGlwZnMCaW8AABAAAQ==
 
 OPTIONS:
 

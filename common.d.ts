@@ -2,6 +2,8 @@ export class AbortError extends Error {
   constructor();
   code: 'ABORT_ERR';
   name: 'AbortError';
+  response?: any;
+  endpoint?: string;
 }
 
 export class HTTPStatusError extends Error {
@@ -11,16 +13,16 @@ export class HTTPStatusError extends Error {
   method: 'POST' | 'GET';
   code: 'HTTP_STATUS';
   name: 'StatusError';
-  response: Response;
-  endpoint: Endpoint;
+  response?: any;
+  endpoint?: string;
 }
 
 export class ResponseError extends Error {
   constructor(message: string)
   code: 'RESPONSE_ERR';
   name: 'ResponseError';
-  response: Response;
-  endpoint: Endpoint;
+  response?: any;
+  endpoint?: string;
 }
 
 export class TimeoutError extends Error {
@@ -28,6 +30,8 @@ export class TimeoutError extends Error {
   timeout: number;
   code: 'ETIMEOUT';
   name: 'TimeoutError';
+  response?: any;
+  endpoint?: string;
 }
 
 export interface BaseEndpointOpts <Protocol extends string> {

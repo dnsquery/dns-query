@@ -191,6 +191,7 @@ export class UDP6Endpoint extends UDPEndpoint {
     if (!opts.ipv6 || typeof opts.ipv6 !== 'string') {
       throw new Error(`Invalid Endpoint: .ipv6 "${opts.ipv6}" needs to be set: ${JSON.stringify(opts)}`)
     }
+    this.ipv6 = opts.ipv6
   }
 }
 

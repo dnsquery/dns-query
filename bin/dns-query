@@ -1,7 +1,9 @@
 #!/usr/bin/env node
-const dns = require('@leichtgewicht/dns-packet')
-const { query, endpoints: allEndpoints, wellknown } = require('..')
+const { endpoints: allEndpoints, wellknown, lookupTxt, Session } = require('..')
+const dnsPacket = require('@leichtgewicht/dns-packet')
 const { version } = require('../package.json')
+const { base64 } = require('@leichtgewicht/base64-codec')
+const utf8 = require('utf8-codec')
 const cmd = 'dns-query'
 
 const HELP = `${cmd} - Execute a dns query over https.
@@ -52,7 +54,7 @@ dns-query@${version}
 `
 
 async function run (args, signal) {
-  const { input, options: rawOpts } = getArgs(args, signal)
+  const { input, options: rawOpts } = await getArgs(args, signal)
   if (rawOpts.h || rawOpts.help) {
     return HELP
   }
@@ -65,40 +67,25 @@ async function run (args, signal) {
   if (rawOpts.endpoints) {
     return JSON.stringify(await allEndpoints(), null, 2)
   }
-  const retries = rawOpts.retries === undefined ? 5 : rawOpts.retries
-  const timeout = rawOpts.timeout === undefined ? 30000 : rawOpts.timeout
-  const maxAge = rawOpts['max-age'] === undefined ? 300000 : rawOpts['max-age']
-  let endpoints
-  if (rawOpts.dns) {
-    if (rawOpts.doh) {
-      throw new Error('Can not use --dns and --doh option at the same time.')
-    }
-    if (rawOpts.endpoint.length > 0) {
-      throw new Error('Can not use --dns and --endpoint at the same time.')
-    }
-    endpoints = 'dns'
-  } else if (rawOpts.doh) {
-    if (rawOpts.endpoint.length > 0) {
-      throw new Error('Can not use --doh and --endpoint at the same time.')
-    }
-    endpoints = 'doh'
-  } else if (rawOpts.endpoint.length > 0) {
-    endpoints = rawOpts.endpoint.concat(rawOpts.e).map(input => {
-      try {
-        return JSON.parse(input)
-      } catch (error) {}
-      return input
-    })
+  const options = sanitizeOptions(rawOpts)
+  if (!input) {
+    throw new Error('Missing input. You need to specify a JSON object containing the DNS query!')
   }
-  const { packet, options } = await getInput(rawOpts, input)
-  const result = await query(packet, { endpoints, signal, timeout, retries, persist: !rawOpts['no-persist'], update: !rawOpts.offline, maxAge })
-  if (options.out === 'base64') {
-    return dns.encode(result).toString('base64')
-  }
+  const session = new Session(options.sessionOpts)
+  const packet = getPacket(input, options.type)
+  const result = await session.query(packet, options.queryOpts)
   if (options.out === 'json') {
-    return JSON.stringify(result, function (key, value) { return sanitize(options, value, [], []) }, 2)
+    return stringify(result, options)
   }
-  return dns.encode(result)
+  const binary = encodeResultPacket(result)
+  if (options.out === 'base64') {
+    return base64.decode(binary)
+  }
+  return binary
+}
+
+function stringify (obj, options) {
+  return JSON.stringify(obj, function (key, value) { return sanitize(options, value, [], []) }, 2)
 }
 
 function sanitize (options, value, path, stack) {
@@ -154,55 +141,75 @@ if (require.main) {
   module.exports = run
 }
 
-async function getInput (options, input) {
-  if (options.json) {
-    if (options.type && options.type !== 'json') {
-      throw new Error(`Can not specify --json and --type=${options.type} at the same time.`)
-    }
-    options.type = 'json'
+function getEnum (options, key, known, fallback) {
+  let result = options[key]
+  if (!result) {
+    return fallback || known[0]
   }
-  if (options.base64) {
-    if (options.type && options.type !== 'base64') {
-      throw new Error(`Can not specify --base64 and --type=${options.type} at the same time.`)
-    }
-    options.type = 'base64'
+  if (!known.includes(result)) {
+    throw new Error(`Unknown --${key}=${result}, accepted are ${known}`)
   }
-  if (options.binary) {
-    if (options.type && options.type !== 'binary') {
-      throw new Error(`Can not specify --binary and --type=${options.type} at the same time.`)
-    }
-    options.type = 'binary'
-  }
-  if (!options.type) {
-    options.type = 'json'
-  }
-  if (!['json', 'base64', 'binary'].includes(options.type)) {
-    throw new Error(`Unknown --type=${options.type}`)
-  }
-  if (!options.out) {
-    options.out = options.type
-  }
-  if (!['json', 'base64', 'binary'].includes(options.out)) {
-    throw new Error(`Unknown --out=${options.out}`)
-  }
-  if (options.stdin) {
-    if (input) {
-      throw new Error(`Unexpected input ${input}`)
-    }
-    input = await readStream(process.stdin)
-  } else {
-    if (options.type === 'binary') {
-      throw new Error('Binary input only works in combination with --stdin')
-    }
-    if (!input) {
-      throw new Error('Missing input. You need to specify a JSON object containing the DNS query!')
-    }
-  }
-  const packet = getPacket(input, options.type)
-  return { packet, options }
+  return result
 }
 
-function getArgs (argv) {
+function shortcut (options, long, short) {
+  if (options[short]) {
+    const longValue = options[long]
+    if (longValue && longValue !== short) {
+      throw new Error(`Can not specify --${short} and --${long}=${longValue} at the same time.`)
+    }
+    delete options[short]
+    options.type = short
+  }
+}
+
+const knownTypes = ['json', 'base64', 'binary']
+
+function sanitizeOptions (options) {
+  shortcut(options, 'type', 'json')
+  shortcut(options, 'type', 'base64')
+  shortcut(options, 'type', 'binary')
+  let endpoints
+  if (options.dns) {
+    if (options.doh) {
+      throw new Error('Can not use --dns and --doh option at the same time.')
+    }
+    if (options.endpoint.length > 0) {
+      throw new Error('Can not use --dns and --endpoint at the same time.')
+    }
+    endpoints = 'dns'
+  } else if (options.doh) {
+    if (options.endpoint.length > 0) {
+      throw new Error('Can not use --doh and --endpoint at the same time.')
+    }
+    delete options.doh
+    endpoints = 'doh'
+  } else if (options.endpoint.length > 0) {
+    endpoints = options.endpoint.concat(options.e).map(input => {
+      try {
+        return JSON.parse(input)
+      } catch (error) {}
+      return input
+    })
+  }
+  const type = getEnum(options, 'type', knownTypes)
+  return {
+    type: type,
+    out: getEnum(options, 'out', knownTypes, type),
+    sessionOpts: {
+      maxAge: options['max-age'] === undefined ? 300000 : options['max-age'],
+      persist: !options['no-persist'],
+      retries: options.retries === undefined ? 5 : options.retries,
+      timeout: options.timeout === undefined ? 30000 : options.timeout,
+      update: !options.offline
+    },
+    queryOpts: {
+      endpoints
+    }
+  }
+}
+
+async function getArgs (argv) {
   const boolProps = ['help', 'h', 'json', 'base64', 'binary', 'stdin', 'endpoints', 'v', 'version', 'dns', 'doh', 'response', 'resolvers', 'no-persist', 'offline']
   const inputProp = ['input', 'packet']
   const intProp = ['timeout', 'retries', 'max-age']
@@ -237,6 +244,16 @@ function getArgs (argv) {
     }
     useInput(arg)
   }
+  if (options.stdin) {
+    if (input) {
+      throw new Error(`Unexpected input ${input} with --stdin enabled.`)
+    }
+    input = await readStream(process.stdin)
+  } else {
+    if (options.type === 'binary') {
+      throw new Error('Binary input only works in combination with --stdin')
+    }
+  }
   return { input, options }
 
   function useProp (arg) {
@@ -267,16 +284,38 @@ function getArgs (argv) {
   }
 }
 
+function encodeResultPacket (output) {
+  output.questions = [output.question]
+  delete output.question
+  return dnsPacket.encode(output)
+}
+
+function decodeInputPacket (input) {
+  const packet = dnsPacket.decode(input)
+  if (!Array.isArray(packet.questions)) {
+    throw new Error('.questions required in package')
+  }
+  packet.question = packet.questions[0]
+  delete packet.questions
+  return packet
+}
+
 function getPacket (input, type) {
   try {
-    if (type !== 'binary') {
-      input = input.toString()
-      if (type === 'json') {
-        return JSON.parse(input)
+    if (typeof input === 'string') {
+      if (type === 'binary') {
+        throw new Error('--binary doesnt work with string input')
       }
-      input = Buffer.from(input, 'base64')
+    } else {
+      if (type === 'binary') {
+        return decodeInputPacket(input)
+      }
+      input = utf8.decode(input)
     }
-    return dns.decode(input)
+    if (type === 'base64') {
+      return decodeInputPacket(base64.encode(input))
+    }
+    return JSON.parse(input)
   } catch (error) {
     throw new Error(`Error parsing input (type=${type}): ${error.message}`)
   }

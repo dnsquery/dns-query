@@ -68,7 +68,7 @@
   "license": "MIT",
   "dependencies": {
     "@leichtgewicht/base64-codec": "^1.0.0",
-    "@leichtgewicht/dns-packet": "^6.0.1",
+    "@leichtgewicht/dns-packet": "^6.0.2",
     "@leichtgewicht/dns-socket": "^5.0.0",
     "@leichtgewicht/ip-codec": "^2.0.4",
     "utf8-codec": "^1.0.0"

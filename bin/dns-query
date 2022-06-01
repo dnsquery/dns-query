@@ -29,8 +29,14 @@ EXAMPLES:
   # Process binary packages as base64
   $ ${cmd} --base64 AAAAAAABAAAAAAAABGlwZnMCaW8AABAAAQ==
 
+  # Load the txt data for a domain
+  $ ${cmd} --mode=txt ipfs.io
+
 OPTIONS:
 
+  --mode ........... Mode consume/process data.
+    ---mode=free ... Free query input (default)
+    ---mode=txt .... TXT data loading shortcut
   --help, -h ....... Show this help
   --version, -v .... Show the version
   --json ........... --type=json
@@ -75,12 +81,23 @@ async function run (args, signal) {
     throw new Error('Missing input. You need to specify a JSON object containing the DNS query!')
   }
   const session = new Session(options.sessionOpts)
-  const packet = getPacket(input, options.type)
-  const result = await session.query(packet, options.queryOpts)
-  if (options.out === 'json') {
-    return stringify(result, options)
+  let binary
+  if (options.mode === 'free') {
+    const packet = getPacket(input, options.type)
+    const result = await session.query(packet, options.queryOpts)
+    if (options.out === 'json') {
+      return stringify(result, options)
+    }
+    binary = encodeResultPacket(result)
+  } else {
+    const domain = getFirstLine(input, options.type)
+    const result = await lookupTxt(domain, options.queryOpts)
+    const json = stringify(result, options)
+    if (options.out === 'json') {
+      return json
+    }
+    binary = utf8.encode(json)
   }
-  const binary = encodeResultPacket(result)
   if (options.out === 'base64') {
     return base64.decode(binary)
   }
@@ -145,7 +162,7 @@ if (require.main) {
 }
 
 function getEnum (options, key, known, fallback) {
-  let result = options[key]
+  const result = options[key]
   if (!result) {
     return fallback || known[0]
   }
@@ -166,6 +183,7 @@ function shortcut (options, long, short) {
   }
 }
 
+const knownModes = ['free', 'txt']
 const knownTypes = ['json', 'base64', 'binary']
 
 function sanitizeOptions (options) {
@@ -197,8 +215,9 @@ function sanitizeOptions (options) {
   }
   const type = getEnum(options, 'type', knownTypes)
   return {
-    type: type,
+    type,
     out: getEnum(options, 'out', knownTypes, type),
+    mode: getEnum(options, 'mode', knownModes),
     sessionOpts: {
       maxAge: options['max-age'] === undefined ? 300000 : options['max-age'],
       persist: !options['no-persist'],
@@ -216,7 +235,7 @@ async function getArgs (argv) {
   const boolProps = ['help', 'h', 'json', 'base64', 'binary', 'stdin', 'endpoints', 'v', 'version', 'dns', 'doh', 'response', 'resolvers', 'no-persist', 'offline']
   const inputProp = ['input', 'packet']
   const intProp = ['timeout', 'retries', 'max-age']
-  const otherProp = ['type', 'out']
+  const otherProp = ['type', 'out', 'mode']
   const arrayProp = ['endpoint', 'e']
   let input
   let prop
@@ -285,6 +304,19 @@ async function getArgs (argv) {
     }
     input = arg
   }
+}
+
+function getFirstLine (input, type) {
+  if (type === 'binary') {
+    throw new Error('--binary only works for --mode=free')
+  }
+  if (input instanceof Uint8Array) {
+    input = utf8.decode(input)
+  }
+  if (type === 'base64') {
+    input = base64.decode(input)
+  }
+  return input.split('\n')[0]
 }
 
 function encodeResultPacket (output) {

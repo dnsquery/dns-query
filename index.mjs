@@ -1,4 +1,6 @@
 import * as packet from '@leichtgewicht/dns-packet'
+import { toRcode } from '@leichtgewicht/dns-packet/rcodes.js'
+import { decode } from 'utf8-codec'
 import * as lib from './lib.mjs'
 import { resolvers as backupResolvers } from './resolvers.mjs'
 import {
@@ -22,6 +24,64 @@ export {
   parseEndpoint,
   toEndpoint
 } from './common.mjs'
+
+export const DNS_RCODE_ERROR = {
+  1: 'FormErr',
+  2: 'ServFail',
+  3: 'NXDomain',
+  4: 'NotImp',
+  5: 'Refused',
+  6: 'YXDomain',
+  7: 'YXRRSet',
+  8: 'NXRRSet',
+  9: 'NotAuth',
+  10: 'NotZone',
+  11: 'DSOTYPENI'
+}
+
+export const DNS_RCODE_MESSAGE = {
+  // https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6
+  1: 'The name server was unable to interpret the query.',
+  2: 'The name server was unable to process this query due to a problem with the name server.',
+  3: 'Non-Existent Domain.',
+  4: 'The name server does not support the requested kind of query.',
+  5: 'The name server refuses to perform the specified operation for policy reasons.',
+  6: 'Name Exists when it should not.',
+  7: 'RR Set Exists when it should not.',
+  8: 'RR Set that should exist does not.',
+  9: 'Server Not Authoritative for zone  / Not Authorized.',
+  10: 'Name not contained in zone.',
+  11: 'DSO-TYPE Not Implemented.'
+}
+
+export class DNSRcodeError extends Error {
+  constructor (rcode, question) {
+    super(`${(DNS_RCODE_MESSAGE[rcode] || 'Undefined error.')} (rcode=${rcode}${DNS_RCODE_ERROR[rcode] ? `, error=${DNS_RCODE_ERROR[rcode]}` : ''}, question=${JSON.stringify(question)})`)
+    this.rcode = rcode
+    this.code = `DNS_RCODE_${rcode}`
+    this.error = DNS_RCODE_ERROR[rcode]
+    this.question = question
+  }
+
+  toJSON () {
+    return {
+      code: this.code,
+      error: this.error,
+      question: this.question,
+      endpoint: this.endpoint
+    }
+  }
+}
+
+export function validateResponse (data, question) {
+  const rcode = toRcode(data.rcode)
+  if (rcode !== 0) {
+    const err = new DNSRcodeError(rcode, question)
+    err.endpoint = data.endpoint
+    throw err
+  }
+  return data
+}
 
 function resolversToWellknown (res) {
   const resolvers = res.data.map(resolver => {
@@ -104,6 +164,23 @@ function queryDoh (endpoint, query, timeout, abortSignal) {
 
 const UPDATE_URL = new URL('https://martinheidegger.github.io/dns-query/resolvers.json')
 
+function combineUint8 (a, b) {
+  if (!a || a.length === 0) return b
+  if (!b || b.length === 0) return a
+  const res = new Uint8Array(a.length + b.length)
+  res.set(a)
+  res.set(b, a.length)
+  return res
+}
+
+export function combineTXT (inputs) {
+  let combined = new Uint8Array(0)
+  for (const input of inputs) {
+    combined = combineUint8(combined, input)
+  }
+  return decode(combined)
+}
+
 export class Session {
   constructor (opts) {
     this.opts = Object.assign({
@@ -172,6 +249,29 @@ export class Session {
         delete data.questions
         return data
       })
+  }
+
+  lookupTxt (domain, opts) {
+    const q = Object.assign({
+      question: {
+        type: 'TXT',
+        name: domain
+      }
+    }, opts.query)
+    return this.query(q, opts)
+      .then(data => {
+        validateResponse(data, q)
+        return {
+          entries: (data.answers || []).map(answer => ({
+            data: combineTXT(answer.data),
+            ttl: answer.ttl
+          })).sort((a, b) => {
+            if (a.data > b.data) return 1
+            if (a.data < b.data) return -1
+            return 0
+          }),
+          endpoint: data.endpoint
+        }
       })
   }
 }
@@ -180,6 +280,10 @@ const defautSession = new Session()
 
 export function query (q, opts) {
   return defautSession.query(q, opts)
+}
+
+export function lookupTxt (name, opts) {
+  return defautSession.lookupTxt(name, opts)
 }
 
 export function endpoints () {
@@ -198,7 +302,7 @@ function queryN (endpoints, q, opts) {
     .then(
       data => {
         // Add the endpoint to give a chance to identify which endpoint returned the result
-        data.endpoint = endpoint
+        data.endpoint = endpoint.toString()
         return data
       },
       err => {

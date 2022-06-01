@@ -107,8 +107,14 @@ EXAMPLES:
   # Process binary packages as base64
   $ dns-query --base64 AAAAAAABAAAAAAAABGlwZnMCaW8AABAAAQ==
 
+  # Load the txt data for a domain
+  $ dns-query --mode=txt ipfs.io
+
 OPTIONS:
 
+  --mode ........... Mode consume/process data.
+    ---mode=free ... Free query input (default)
+    ---mode=txt .... TXT data loading shortcut
   --help, -h ....... Show this help
   --version, -v .... Show the version
   --json ........... --type=json

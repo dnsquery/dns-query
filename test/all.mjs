@@ -158,6 +158,40 @@ test('local /dns-packet endpoint', function (t) {
   )
 })
 
+test('local /txt lookup', function (t) {
+  return getLog()
+    .then(() => dohQuery.lookupTxt('test.domain', localOpts('/txt', {}, { method: 'GET' })))
+    .then(data => {
+      t.equal(typeof data.endpoint, 'string', 'endpoint needs to be present')
+      t.deepEquals(data.entries, [
+        {
+          data: 'a',
+          ttl: 0
+        },
+        {
+          data: 'b',
+          ttl: 100
+        },
+        {
+          data: '日本語は必死ぶりに書いています。',
+          ttl: 0
+        }
+      ])
+    })
+})
+
+test('local /txt-err lookup', function (t) {
+  return getLog()
+    .then(() => dohQuery.lookupTxt('test.domain', localOpts('/txt-err', {}, { method: 'GET' })))
+    .then(
+      failSuccess(t),
+      err => {
+        t.ok(err instanceof dohQuery.DNSRcodeError)
+        t.equal(err.rcode, 5)
+      }
+    )
+})
+
 test('local /404 causes StatusError', function (t) {
   return localQuery('/404').then(
     failSuccess(t),
@@ -242,6 +276,7 @@ test('processing timeout', { timeout: 2000 }, function (t) {
       t.equals(error.name, 'TimeoutError')
       t.deepEquals(error.toJSON(), {
         code: 'ETIMEOUT',
+        endpoint: error.endpoint,
         timeout
       })
     }
@@ -639,18 +674,22 @@ function failSuccess (t) {
   return function () { t.fail('Unexpected success') }
 }
 
-function localQuery (paths, opts, endpointOpts) {
+function localOpts (paths, opts, endpointOpts) {
   if (!Array.isArray(paths)) {
     paths = [paths]
   }
+  return Object.assign(
+    {
+      endpoints: paths.map(function (path) { return Object.assign({ path }, LOCAL_ENDPOINT, endpointOpts) }),
+      retries: 0
+    },
+    opts
+  )
+}
+
+function localQuery (paths, opts, endpointOpts) {
   return query(
     { question: { type: 'A', name: 'google.com' } },
-    Object.assign(
-      {
-        endpoints: paths.map(function (path) { return Object.assign({ path }, LOCAL_ENDPOINT, endpointOpts) }),
-        retries: 0
-      },
-      opts
-    )
+    localOpts(paths, opts, endpointOpts)
   )
 }

@@ -5,6 +5,7 @@ const dnspacket = require('@leichtgewicht/dns-packet')
 const os = require('os')
 const { Buffer } = require('buffer')
 const { base64URL } = require('@leichtgewicht/base64-codec')
+const utf8 = require('utf8-codec')
 const responseA = Buffer.from(dnspacket.encode({
   type: 'response',
   answers: [{
@@ -39,7 +40,15 @@ const resolvers = JSON.stringify({
   ]
 })
 
-const server = http.createServer(handleRequest)
+const server = http.createServer((req, res) => {
+  try {
+    return handleRequest(req, res)
+  } catch (err) {
+    console.log(err)
+    res.writeHead(500)
+    return res.end(err.message)
+  }
+})
 server.listen(onListen)
 server.on('close', function () {
   console.log({ serverClosed: exitCode })
@@ -129,9 +138,54 @@ function handleRequest (req, res) {
       res.writeHead(500)
       return res.end('broken')
     }
-    const match = /^\/get-dns-packet\?dns=(.*)/.exec(req.url)
+    const match = /(.*)\?dns=(.*)/.exec(req.url)
     if (match) {
-      return res.end(Buffer.from(base64URL.encode(match[1])))
+      const url = match[1]
+      const buf = Buffer.from(base64URL.encode(match[2]))
+      if (url === '/get-dns-packet') {
+        return res.end(buf)
+      }
+      if (url === '/txt-err') {
+        return res.end(Buffer.from(dnspacket.encode({
+          type: 'response',
+          flags: 5,
+          answers: []
+        })))
+      }
+      if (url === '/txt') {
+        const pkt = dnspacket.decode(buf)
+        const q = pkt.questions[0]
+        if (q.type === 'TXT') {
+          if (q.name === 'test.domain') {
+            const data = utf8.encode('日本語は必死ぶりに書いています。')
+            return res.end(Buffer.from(dnspacket.encode({
+              type: 'response',
+              answers: [
+                {
+                  type: 'TXT',
+                  name: 'test.domain',
+                  data: 'b',
+                  ttl: 100
+                },
+                {
+                  type: 'TXT',
+                  name: 'test.domain',
+                  data: [
+                    data.slice(0, 8),
+                    data.slice(8)
+                  ]
+                },
+                {
+                  type: 'TXT',
+                  name: 'test.domain',
+                  data: 'a'
+                }
+              ]
+            })))
+          }
+        }
+        throw new Error('Unexpected Question ' + JSON.stringify(pkt))
+      }
     }
   }
   if (req.method !== 'POST' && req.method !== 'OPTIONS') {

@@ -1,4 +1,4 @@
-import { SingleQuestionPacket } from '@leichtgewicht/dns-packet';
+import { SingleQuestionPacket, RecordClass } from '@leichtgewicht/dns-packet';
 import {
   Endpoint, EndpointOpts
 } from '../common.js';
@@ -57,6 +57,17 @@ export interface QueryOpts {
   signal?: AbortSignal;
 }
 
+export type DNSErrorCodeName = 'FormErr' | 'ServFail' | 'NXDomain' | 'NotImp' | 'Refused' | 'YXDomain' | 'YXRRSet' | 'NXRRSet' | 'NotAuth' | 'NotZone' | 'DSOTYPENI';
+export const DNS_RCODE_ERROR: { [key: number]: DNSErrorCodeName };
+export const DNS_RCODE_MESSAGE: { [key: number]: string };
+
+export class DNSRCodeError extends Error {
+  code: string;
+  rcode: RecordClass;
+  error: string;
+  question: SingleQuestionPacket;
+}
+
 export type SessionOpts = Partial<{
   retries: number
   timeout: number
@@ -67,12 +78,16 @@ export type SessionOpts = Partial<{
   maxAge: number
 }>;
 
+export function validateResponse <R>(res: R): R;
+export function combineTxt(inputs: Uint8Array[]): Uint8Array;
+
 export class Session {
   opts: SessionOpts;
   constructor(opts: SessionOpts);
 
   wellknown(): Promise<Wellknown>;
   endpoints(): Promise<Endpoint[]>;
+  lookupTxt(): Promise<TxtResult>;
   query(query: SingleQuestionPacket, opts: QueryOpts): Promise<SingleQuestionPacket>;
 }
 
@@ -82,4 +97,13 @@ export function query(query: SingleQuestionPacket, opts: QueryOpts): Promise<Sin
 }>;
 export function wellknown(): Promise<Wellknown>;
 export function endpoints(): Promise<Endpoint[]>;
+export interface TxtEntry {
+  data: string;
+  ttl: number;
+}
+export interface TxtResult {
+  entries: TxtEntry[];
+  endpoint: string;
+}
+export function lookupTxt(): Promise<TxtResult>;
 export function loadEndpoints(session: Session, input: EndpointInput): Promise<Endpoint[]>;

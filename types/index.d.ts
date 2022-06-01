@@ -93,6 +93,7 @@ export class Session {
 
 export function query(query: SingleQuestionPacket, opts: QueryOpts): Promise<SingleQuestionPacket & {
   endpoint: string
+  question: SingleQuestionPacket
   response: any
 }>;
 export function wellknown(): Promise<Wellknown>;

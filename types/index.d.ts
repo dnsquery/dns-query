@@ -68,15 +68,13 @@ export class DNSRcodeError extends Error {
   question: SingleQuestionPacket;
 }
 
-export type SessionOpts = Partial<{
-  retries: number
-  timeout: number
-  update: boolean
-  updateURL: URL
-  persist: boolean
-  localStoragePrefix: string
-  maxAge: number
-}>;
+export interface SessionOpts extends Omit<QueryOpts, 'signal'> {
+  update?: boolean;
+  updateURL?: URL;
+  persist?: boolean;
+  localStoragePrefix?: string;
+  maxAge?: number;
+}
 
 export function validateResponse <R>(res: R): R;
 export function combineTxt(inputs: Uint8Array[]): Uint8Array;

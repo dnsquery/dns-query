@@ -76,7 +76,10 @@ export class Session {
   query(query: SingleQuestionPacket, opts: QueryOpts): Promise<SingleQuestionPacket>;
 }
 
-export function query(query: SingleQuestionPacket, opts: QueryOpts): Promise<SingleQuestionPacket>;
+export function query(query: SingleQuestionPacket, opts: QueryOpts): Promise<SingleQuestionPacket & {
+  endpoint: string
+  response: any
+}>;
 export function wellknown(): Promise<Wellknown>;
 export function endpoints(): Promise<Endpoint[]>;
 export function loadEndpoints(session: Session, input: EndpointInput): Promise<Endpoint[]>;

@@ -71,7 +71,8 @@ export const resolvers = {
         lat: 41.8483,
         long: -87.6517
       },
-      filter: true
+      filter: true,
+      cors: true
     },
     {
       name: 'ahadns-doh-in',
@@ -86,7 +87,8 @@ export const resolvers = {
         lat: 19.0748,
         long: 72.8856
       },
-      filter: true
+      filter: true,
+      cors: true
     },
     {
       name: 'ahadns-doh-la',
@@ -101,7 +103,8 @@ export const resolvers = {
         lat: 34.0549,
         long: -118.2578
       },
-      filter: true
+      filter: true,
+      cors: true
     },
     {
       name: 'ahadns-doh-nl',
@@ -116,7 +119,8 @@ export const resolvers = {
         lat: 52.3824,
         long: 4.8995
       },
-      filter: true
+      filter: true,
+      cors: true
     },
     {
       name: 'ahadns-doh-ny',
@@ -131,7 +135,8 @@ export const resolvers = {
         lat: 40.7308,
         long: -73.9975
       },
-      filter: true
+      filter: true,
+      cors: true
     },
     {
       name: 'ahadns-doh-pl',
@@ -146,7 +151,8 @@ export const resolvers = {
         lat: 52.3824,
         long: 4.8995
       },
-      filter: true
+      filter: true,
+      cors: true
     },
     {
       name: 'alidns-doh',
@@ -163,7 +169,8 @@ export const resolvers = {
         long: 113.7266
       },
       filter: true,
-      log: true
+      log: true,
+      cors: true
     },
     {
       name: 'ams-ads-doh-nl',
@@ -172,10 +179,10 @@ export const resolvers = {
         host: 'dnsnl-noads.alekberg.net'
       },
       description: 'Resolver in Amsterdam. DoH protocol. Non-logging. Blocks ads, malware and trackers. DNSSEC enabled.',
-      country: 'Netherlands',
+      country: 'Romania',
       location: {
-        lat: 52.3759,
-        long: 4.8975
+        lat: 45.9968,
+        long: 24.997
       },
       filter: true
     },
@@ -186,10 +193,10 @@ export const resolvers = {
         host: 'dnsnl.alekberg.net'
       },
       description: 'Resolver in Amsterdam. DoH protocol. Non-logging, non-filtering, DNSSEC.',
-      country: 'Netherlands',
+      country: 'Romania',
       location: {
-        lat: 52.3759,
-        long: 4.8975
+        lat: 45.9968,
+        long: 24.997
       }
     },
     {
@@ -202,38 +209,10 @@ export const resolvers = {
       log: true
     },
     {
-      name: 'bcn-ads-doh',
-      endpoint: {
-        protocol: 'https:',
-        host: 'dnses-noads.alekberg.net'
-      },
-      description: 'Resolver in Spain. DoH protocol. Non-logging, remove ads and malware, DNSSEC.',
-      country: 'Spain',
-      location: {
-        lat: 41.3891,
-        long: 2.1611
-      },
-      filter: true
-    },
-    {
-      name: 'bcn-doh',
-      endpoint: {
-        protocol: 'https:',
-        host: 'dnses.alekberg.net'
-      },
-      description: 'Resolver in Spain. DoH protocol. Non-logging, non-filtering, DNSSEC.',
-      country: 'Spain',
-      location: {
-        lat: 41.3891,
-        long: 2.1611
-      }
-    },
-    {
       name: 'brahma-world',
       endpoint: {
         protocol: 'https:',
-        host: 'dns.brahma.world',
-        method: 'POST'
+        host: 'dns.brahma.world'
       },
       description: 'DNS-over-HTTPS server. Non Logging, filters ads, trackers and malware. DNSSEC ready, QNAME Minimization, No EDNS Client-Subnet.\nHosted in Stockholm, Sweden. (https://dns.brahma.world)',
       country: 'United States',
@@ -272,7 +251,8 @@ export const resolvers = {
       location: {
         lat: -33.494,
         long: 143.2104
-      }
+      },
+      cors: true
     },
     {
       name: 'cloudflare-family',
@@ -288,7 +268,8 @@ export const resolvers = {
         lat: -33.494,
         long: 143.2104
       },
-      filter: true
+      filter: true,
+      cors: true
     },
     {
       name: 'cloudflare-ipv6',
@@ -302,7 +283,8 @@ export const resolvers = {
       location: {
         lat: 37.751,
         long: -97.822
-      }
+      },
+      cors: true
     },
     {
       name: 'cloudflare-security',
@@ -318,7 +300,8 @@ export const resolvers = {
         lat: -33.494,
         long: 143.2104
       },
-      filter: true
+      filter: true,
+      cors: true
     },
     {
       name: 'controld-block-malware',
@@ -447,7 +430,8 @@ export const resolvers = {
       location: {
         lat: 47,
         long: 8
-      }
+      },
+      cors: true
     },
     {
       name: 'dns.therifleman.name',
@@ -464,34 +448,6 @@ export const resolvers = {
       filter: true
     },
     {
-      name: 'dnscrypt.uk-doh-ipv4',
-      endpoint: {
-        protocol: 'https:',
-        host: 'doh.dnscrypt.uk'
-      },
-      description: 'DoH, no logs, uncensored, DNSSEC. Hosted in London UK on Digital Ocean\nhttps://www.dnscrypt.uk',
-      country: 'United Kingdom',
-      location: {
-        lat: 51.5177,
-        long: -0.6215
-      }
-    },
-    {
-      name: 'dnsforfamily-doh',
-      endpoint: {
-        protocol: 'https:',
-        host: 'dns-doh.dnsforfamily.com',
-        method: 'POST'
-      },
-      description: '(DoH Protocol) (Now supports DNSSEC). Block adult websites, gambling websites, malwares and advertisements.\nIt also enforces safe search in: Google, YouTube, Bing, DuckDuckGo and Yandex.\nSocial websites like Facebook and Instagram are not blocked. No DNS queries are logged.\nAs of 26-May-2022 5.9 million websites are blocked and new websites are added to blacklist daily.\nCompletely free, no ads or any commercial motive. Operating for 4 years now.\nProvided by: https://dnsforfamily.com',
-      country: 'Finland',
-      location: {
-        lat: 60.1758,
-        long: 24.9349
-      },
-      filter: true
-    },
-    {
       name: 'dnsforfamily-doh-no-safe-search',
       endpoint: {
         protocol: 'https:',
@@ -502,21 +458,6 @@ export const resolvers = {
       location: {
         lat: 60.1758,
         long: 24.9349
-      },
-      filter: true
-    },
-    {
-      name: 'dnsforge.de',
-      endpoint: {
-        protocol: 'https:',
-        host: 'dnsforge.de',
-        cors: true
-      },
-      description: 'Public DoH resolver running with Pihole for Adblocking (https://dnsforge.de).\nNon-logging, AD-filtering, supports DNSSEC. Hosted in Germany.',
-      country: 'Germany',
-      location: {
-        lat: 52.2998,
-        long: 9.447
       },
       filter: true
     },
@@ -537,7 +478,8 @@ export const resolvers = {
       },
       description: 'A public DNS resolver in mainland China provided by DNSPod (Tencent Cloud).\nhttps://www.dnspod.cn/Products/Public.DNS?lang=en',
       filter: true,
-      log: true
+      log: true,
+      cors: true
     },
     {
       name: 'dnswarden-asia-adblock-dohv4',
@@ -624,7 +566,8 @@ export const resolvers = {
         lat: 52.3824,
         long: 4.8995
       },
-      filter: true
+      filter: true,
+      cors: true
     },
     {
       name: 'doh-cleanbrowsing-adult',
@@ -635,7 +578,8 @@ export const resolvers = {
         cors: true
       },
       description: 'Blocks access to all adult, pornographic and explicit sites. It does\nnot block proxy or VPNs, nor mixed-content sites. Sites like Reddit\nare allowed. Google and Bing are set to the Safe Mode.\nBy https://cleanbrowsing.org/',
-      filter: true
+      filter: true,
+      cors: true
     },
     {
       name: 'doh-cleanbrowsing-family',
@@ -646,7 +590,8 @@ export const resolvers = {
         cors: true
       },
       description: 'Blocks access to all adult, pornographic and explicit sites. It also\nblocks proxy and VPN domains that are used to bypass the filters.\nMixed content sites (like Reddit) are also blocked. Google, Bing and\nYoutube are set to the Safe Mode.\nBy https://cleanbrowsing.org/',
-      filter: true
+      filter: true,
+      cors: true
     },
     {
       name: 'doh-cleanbrowsing-security',
@@ -657,7 +602,8 @@ export const resolvers = {
         cors: true
       },
       description: 'Block access to phishing, malware and malicious domains. It does not block adult content.\nBy https://cleanbrowsing.org/',
-      filter: true
+      filter: true,
+      cors: true
     },
     {
       name: 'doh-crypto-sx',
@@ -671,7 +617,8 @@ export const resolvers = {
       location: {
         lat: 37.751,
         long: -97.822
-      }
+      },
+      cors: true
     },
     {
       name: 'doh-crypto-sx-ipv6',
@@ -685,7 +632,8 @@ export const resolvers = {
       location: {
         lat: 37.751,
         long: -97.822
-      }
+      },
+      cors: true
     },
     {
       name: 'doh-de-blahdns',
@@ -700,7 +648,8 @@ export const resolvers = {
         lat: 51.2993,
         long: 9.491
       },
-      filter: true
+      filter: true,
+      cors: true
     },
     {
       name: 'doh-fi-blahdns',
@@ -715,7 +664,8 @@ export const resolvers = {
         lat: 60.1758,
         long: 24.9349
       },
-      filter: true
+      filter: true,
+      cors: true
     },
     {
       name: 'doh-ibksturm',
@@ -738,7 +688,8 @@ export const resolvers = {
         lat: 35.6882,
         long: 139.7532
       },
-      filter: true
+      filter: true,
+      cors: true
     },
     {
       name: 'doh.ffmuc.net',
@@ -781,7 +732,8 @@ export const resolvers = {
         lat: 37.751,
         long: -97.822
       },
-      log: true
+      log: true,
+      cors: true
     },
     {
       name: 'hdns',
@@ -795,7 +747,8 @@ export const resolvers = {
       location: {
         lat: 37.7771,
         long: -122.406
-      }
+      },
+      cors: true
     },
     {
       name: 'he',
@@ -916,7 +869,8 @@ export const resolvers = {
       location: {
         lat: 59.3247,
         long: 18.056
-      }
+      },
+      cors: true
     },
     {
       name: 'odoh-cloudflare',
@@ -925,7 +879,8 @@ export const resolvers = {
         host: 'odoh.cloudflare-dns.com',
         cors: true
       },
-      description: 'Cloudflare ODoH server.\nhttps://cloudflare.com'
+      description: 'Cloudflare ODoH server.\nhttps://cloudflare.com',
+      cors: true
     },
     {
       name: 'odoh-crypto-sx',
@@ -934,7 +889,8 @@ export const resolvers = {
         host: 'odoh.crypto.sx',
         cors: true
       },
-      description: 'ODoH target server. Anycast, no logs.\nBackend hosted by Scaleway. Maintained by Frank Denis.'
+      description: 'ODoH target server. Anycast, no logs.\nBackend hosted by Scaleway. Maintained by Frank Denis.',
+      cors: true
     },
     {
       name: 'odoh-id-gmail',
@@ -945,6 +901,15 @@ export const resolvers = {
       },
       description: 'ODoH target server. Based in Singapore, no logs.\nFilter ads, trackers and malware.',
       filter: true
+    },
+    {
+      name: 'odoh-jp.tiar.app',
+      endpoint: {
+        protocol: 'https:',
+        host: 'jp.tiar.app',
+        path: '/odoh'
+      },
+      description: 'ODoH target server. no logs.'
     },
     {
       name: 'odoh-jp.tiarap.org',
@@ -985,21 +950,24 @@ export const resolvers = {
       location: {
         lat: -33.8591,
         long: 151.2002
-      }
+      },
+      cors: true
     },
     {
       name: 'puredns-doh',
       endpoint: {
         protocol: 'https:',
         host: 'puredns.org',
-        ipv4: '146.190.6.13'
+        ipv4: '146.190.6.13',
+        cors: true
       },
       description: 'Public uncensored DNS resolver in Singapore - https://puredns.org\n** Only available in Indonesia and Singapore **',
       country: 'United States',
       location: {
         lat: 37.751,
         long: -97.822
-      }
+      },
+      cors: true
     },
     {
       name: 'quad101',
@@ -1008,7 +976,8 @@ export const resolvers = {
         host: 'dns.twnic.tw',
         cors: true
       },
-      description: 'DNSSEC-aware public resolver by the Taiwan Network Information Center (TWNIC)\nhttps://101.101.101.101/index_en.html'
+      description: 'DNSSEC-aware public resolver by the Taiwan Network Information Center (TWNIC)\nhttps://101.101.101.101/index_en.html',
+      cors: true
     },
     {
       name: 'quad9-doh-ip4-port443-filter-ecs-pri',
@@ -1029,8 +998,8 @@ export const resolvers = {
       name: 'quad9-doh-ip4-port443-filter-pri',
       endpoint: {
         protocol: 'https:',
-        host: 'dns9.quad9.net',
-        ipv4: '149.112.112.9'
+        host: 'dns.quad9.net',
+        ipv4: '149.112.112.112'
       },
       description: 'Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112',
       country: 'United States',
@@ -1059,7 +1028,7 @@ export const resolvers = {
       endpoint: {
         protocol: 'https:',
         host: 'dns10.quad9.net',
-        ipv4: '9.9.9.10'
+        ipv4: '149.112.112.10'
       },
       description: 'Quad9 (anycast) no-dnssec/no-log/no-filter 9.9.9.10 - 149.112.112.10',
       country: 'United States',
@@ -1072,7 +1041,7 @@ export const resolvers = {
       name: 'quad9-doh-ip6-port5053-filter-pri',
       endpoint: {
         protocol: 'https:',
-        host: 'dns.quad9.net'
+        host: 'dns9.quad9.net'
       },
       description: 'Quad9 (anycast) dnssec/no-log/filter 2620:fe::fe - 2620:fe::9 - 2620:fe::fe:9',
       country: 'United States',
@@ -1091,33 +1060,6 @@ export const resolvers = {
       description: 'Family safety focused blocklist for over 2 million adult sites, as well as phishing and malware and more.\nFree to use, paid for customizing blocking for more categories+sites and viewing usage at my.safesurfer.io. Logs taken for viewing\nusage, data never sold - https://safesurfer.io',
       filter: true,
       log: true
-    },
-    {
-      name: 'sth-ads-doh-se',
-      endpoint: {
-        protocol: 'https:',
-        host: 'dnsse-noads.alekberg.net'
-      },
-      description: 'Resolver in Stockholm, Sweden. DoH server. Non-logging, remove ads and malware, DNSSEC.',
-      country: 'Bulgaria',
-      location: {
-        lat: 42.696,
-        long: 23.332
-      },
-      filter: true
-    },
-    {
-      name: 'sth-doh-se',
-      endpoint: {
-        protocol: 'https:',
-        host: 'dnsse.alekberg.net'
-      },
-      description: 'Resolver in Stockholm, Sweden. DoH server. Non-logging, non-filtering, DNSSEC.',
-      country: 'Bulgaria',
-      location: {
-        lat: 42.696,
-        long: 23.332
-      }
     },
     {
       name: 'switch',
@@ -1168,5 +1110,5 @@ export const resolvers = {
       }
     }
   ],
-  time: 1654007455771
+  time: 1654168694630
 }

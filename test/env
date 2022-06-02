@@ -35,7 +35,8 @@ const resolvers = JSON.stringify({
         lat: 1,
         long: 2
       },
-      filter: true
+      filter: true,
+      cors: true
     }
   ]
 })

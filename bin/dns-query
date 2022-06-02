@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-const { endpoints: allEndpoints, wellknown, lookupTxt, Session } = require('..')
+const { query, lookupTxt, Wellknown } = require('..')
 const dnsPacket = require('@leichtgewicht/dns-packet')
 const { version } = require('../package.json')
 const { base64 } = require('@leichtgewicht/base64-codec')
@@ -70,28 +70,31 @@ async function run (args, signal) {
   if (rawOpts.v || rawOpts.version) {
     return `v${version}\n`
   }
+  const options = processOptions(rawOpts)
+  const wellknown = new Wellknown(options.wellknown)
   if (rawOpts.resolvers) {
-    return JSON.stringify((await wellknown()).resolvers, null, 2)
+    return JSON.stringify((await wellknown.data()).resolvers, null, 2)
   }
   if (rawOpts.endpoints) {
-    return JSON.stringify(await allEndpoints(), null, 2)
+    return JSON.stringify(await wellknown.endpoints(), null, 2)
   }
-  const options = sanitizeOptions(rawOpts)
   if (!input) {
     throw new Error('Missing input. You need to specify a JSON object containing the DNS query!')
   }
-  const session = new Session(options.sessionOpts)
   let binary
+  const queryOpts = {
+    endpoints: await wellknown.endpoints(options.endpoints)
+  }
   if (options.mode === 'free') {
     const packet = getPacket(input, options.type)
-    const result = await session.query(packet, options.queryOpts)
+    const result = await query(packet, queryOpts)
     if (options.out === 'json') {
       return stringify(result, options)
     }
     binary = encodeResultPacket(result)
   } else {
     const domain = getFirstLine(input, options.type)
-    const result = await lookupTxt(domain, options.queryOpts)
+    const result = await lookupTxt(domain, queryOpts)
     const json = stringify(result, options)
     if (options.out === 'json') {
       return json
@@ -186,7 +189,7 @@ function shortcut (options, long, short) {
 const knownModes = ['free', 'txt']
 const knownTypes = ['json', 'base64', 'binary']
 
-function sanitizeOptions (options) {
+function processOptions (options) {
   shortcut(options, 'type', 'json')
   shortcut(options, 'type', 'base64')
   shortcut(options, 'type', 'binary')
@@ -218,16 +221,15 @@ function sanitizeOptions (options) {
     type,
     out: getEnum(options, 'out', knownTypes, type),
     mode: getEnum(options, 'mode', knownModes),
-    sessionOpts: {
+    response: !!options.response,
+    wellknown: {
       maxAge: options['max-age'] === undefined ? 300000 : options['max-age'],
       persist: !options['no-persist'],
       retries: options.retries === undefined ? 5 : options.retries,
       timeout: options.timeout === undefined ? 30000 : options.timeout,
       update: !options.offline
     },
-    queryOpts: {
-      endpoints
-    }
+    endpoints
   }
 }
 

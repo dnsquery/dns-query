@@ -1,4 +1,4 @@
-import { AnyEndpoint } from './common.mjs'
+import { AnyEndpoint, Resolver } from './common.mjs'
 import { Packet } from '@leichtgewicht/dns-packet'
 import { IncomingMessage } from 'http';
 export type Response = undefined | XMLHttpRequest | IncomingMessage;
@@ -16,4 +16,4 @@ export function loadJSON (url: URL, cache: null | {
 }, timeout: number, abortSignal: AbortSignal): Promise<any>
 
 export function queryDns (endpoint: AnyEndpoint, query: Packet, timeout: number, signal?: AbortSignal): Promise<Packet>
-export function nativeEndpoints (): AnyEndpoint[]
+export function processResolvers (resolvers: Resolver[]): Resolver[]

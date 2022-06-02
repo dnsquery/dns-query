@@ -128,6 +128,8 @@ async function verifyDoH (resolver) {
     resolver.endpoint.method = 'POST'
   }
   if (success.cors) {
+    resolver.cors = true
+    // TODO: Remove cors from endpoint, doens't belong here!
     resolver.endpoint.cors = true
   }
   const [ipv4, ipv6] = await Promise.all([

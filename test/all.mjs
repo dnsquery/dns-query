@@ -1,13 +1,14 @@
 import test from 'fresh-tape'
 import AbortController from 'abort-controller'
 import * as dohQuery from '../index.mjs'
-import { TimeoutError, reduceError, parseEndpoint } from '../common.mjs'
+import { TimeoutError, reduceError } from '../common.mjs'
 import XHR from 'xhr2'
 import path from 'path'
 import fs from 'fs'
 const query = dohQuery.query
+const wellknown = dohQuery.wellknown
 const toEndpoint = dohQuery.toEndpoint
-const Session = dohQuery.Session
+const Wellknown = dohQuery.Wellknown
 const isBrowser = typeof window !== 'undefined'
 
 const LOCAL_ENDPOINT = {
@@ -32,7 +33,7 @@ test('Abort before start (doh)', function (t) {
   c.abort()
   return query(
     { question: { type: 'A', name: 'google.com' } },
-    { signal: c.signal, endpoints: 'doh' }
+    { signal: c.signal, endpoints: wellknown.endpoints('doh') }
   ).then(
     failSuccess(t),
     function (err) {
@@ -48,7 +49,7 @@ test('Abort before start (dns)', {
   c.abort()
   return query(
     { question: { type: 'A', name: 'google.com' } },
-    { signal: c.signal, endpoints: 'dns' }
+    { signal: c.signal, endpoints: wellknown.endpoints('dns') }
   ).then(
     failSuccess(t),
     function (err) {
@@ -243,7 +244,7 @@ test('aborting requests while running (dns)', {
   skip: isBrowser
 }, function (t) {
   const c = new AbortController()
-  const p = query({ question: { type: 'A', name: 'google.com' } }, { signal: c.signal, endpoints: 'dns' })
+  const p = query({ question: { type: 'A', name: 'google.com' } }, { signal: c.signal, endpoints: wellknown.endpoints('dns') })
   setImmediate(() => { c.abort() })
   return p.then(
     failSuccess(t),
@@ -329,7 +330,7 @@ test('infinite retries', function (t) {
 test('timeout on udp6 sockets', {
   skip: isBrowser
 }, function (t) {
-  return query({ question: { name: 'google.com', type: 'A' } }, { timeout: 100, endpoints: ['udp6://' + LOCAL_ENDPOINT.host + ':' + LOCAL_ENDPOINT.port] }).then(
+  return query({ question: { name: 'google.com', type: 'A' } }, { timeout: 100, endpoints: ['udp://' + LOCAL_ENDPOINT.host + ':' + LOCAL_ENDPOINT.port] }).then(
     failSuccess(t),
     function (err) {
       t.equals(err.message, (new TimeoutError(100)).message)
@@ -337,44 +338,195 @@ test('timeout on udp6 sockets', {
   )
 })
 
-test('parsing of endpoints', function (t) {
-  const session = new Session({
+test('parsing and stringification of endpoints', function (t) {
+  const { HTTPEndpoint, UDP4Endpoint, UDP6Endpoint } = dohQuery
+  const fixtures = [
+    {
+      in: [
+        'some.domain',
+        'https://some.domain',
+        'some.domain:443',
+        'some.domain/dns-query',
+        'some.domain [GET]',
+        'https://some.domain:443/dns-query [get]',
+        'https://some.domain:443/dns-query [unknown]'
+      ],
+      out: 'some.domain',
+      obj: new HTTPEndpoint({ host: 'some.domain' })
+    },
+    {
+      in: [
+        '1.1.1.1',
+        '1.1.1.1:443'
+      ],
+      out: '1.1.1.1',
+      obj: new HTTPEndpoint({ host: '1.1.1.1' })
+    },
+    {
+      in: ['[::]', '[::]:443'], out: '[::]', obj: new HTTPEndpoint({ host: '[::]' })
+    },
+    {
+      in: [
+        '[ffff:ff00:0000:00ff:f000:000f:f0f0:0f0f]',
+        '[ffff:ff00:0000:00ff:f000:000f:f0f0:0f0f]:443'
+      ],
+      out: '[ffff:ff00:0000:00ff:f000:000f:f0f0:0f0f]',
+      obj: new HTTPEndpoint({ host: '[ffff:ff00:0000:00ff:f000:000f:f0f0:0f0f]' })
+    },
+    {
+      in: [
+        'some.domain [name=hi]',
+        'some.domain/dns-query  [NAME=hi]'
+      ],
+      out: 'some.domain [name=hi]',
+      obj: new HTTPEndpoint({ host: 'some.domain', name: 'hi' })
+    },
+    {
+      in: ['some.domain/'], out: 'some.domain/', obj: new HTTPEndpoint({ host: 'some.domain', path: '/' })
+    },
+    {
+      in: ['http://some.domain'], out: 'http://some.domain', obj: new HTTPEndpoint({ protocol: 'http:', host: 'some.domain' })
+    },
+    {
+      in: ['some.domain:8443'], out: 'some.domain:8443', obj: new HTTPEndpoint({ host: 'some.domain', port: 8443 })
+    },
+    {
+      in: ['some.domain/custom-path'], out: 'some.domain/custom-path', obj: new HTTPEndpoint({ host: 'some.domain', path: '/custom-path' })
+    },
+    {
+      in: [
+        'some.domain [post]',
+        'some.domain  [POST]'
+      ],
+      out: 'some.domain [post]',
+      obj: new HTTPEndpoint({ host: 'some.domain', method: 'POST' })
+    },
+    {
+      in: ['some.domain [ipv4=8.8.8.8]'], out: 'some.domain [ipv4=8.8.8.8]', obj: new HTTPEndpoint({ host: 'some.domain', ipv4: '8.8.8.8' })
+    },
+    {
+      in: ['some.domain [ipv6=::]'], out: 'some.domain [ipv6=::]', obj: new HTTPEndpoint({ host: 'some.domain', ipv6: '::' })
+    },
+    {
+      in: [
+        'http://some.domain:77/some-path  [Post] [ipv4=1.1.1.1][ipv6=::]',
+        'http://some.domain:77/some-path     [ipv4=1.1.1.1] [Post][ipv6=::]'
+      ],
+      out: 'http://some.domain:77/some-path [post] [ipv4=1.1.1.1] [ipv6=::]',
+      obj: new HTTPEndpoint({ protocol: 'http:', host: 'some.domain', port: 77, method: 'post', path: '/some-path', ipv4: '1.1.1.1', ipv6: '::' })
+    },
+    {
+      in: ['some.domain/some-path%20foo?bar=x'], out: 'some.domain/some-path%20foo?bar=x', obj: new HTTPEndpoint({ host: 'some.domain', path: '/some-path%20foo?bar=x' })
+    },
+    {
+      in: [
+        'udp://8.8.8.8',
+        'udp4://8.8.8.8',
+        'udp4://8.8.8.8:53'
+      ],
+      out: 'udp://8.8.8.8',
+      obj: new UDP4Endpoint({ ipv4: '8.8.8.8' })
+    },
+    {
+      in: [
+        'udp://8.8.8.8 [name=foo]',
+        'udp4://8.8.8.8  [name=foo]',
+        'udp4://8.8.8.8:53 [name=foo]'
+      ],
+      out: 'udp://8.8.8.8 [name=foo]',
+      obj: new UDP4Endpoint({ ipv4: '8.8.8.8', name: 'foo' })
+    },
+    {
+      in: [
+        'udp://8.8.8.8 [pk=foo]',
+        'udp4://8.8.8.8  [pk=foo]',
+        'udp4://8.8.8.8:443 [pk=foo]'
+      ],
+      out: 'udp://8.8.8.8 [pk=foo]',
+      obj: new UDP4Endpoint({ ipv4: '8.8.8.8', pk: 'foo' })
+    },
+    {
+      in: [
+        'udp://8.8.8.8:33',
+        'udp4://8.8.8.8:33'
+      ],
+      out: 'udp://8.8.8.8:33',
+      obj: new UDP4Endpoint({ ipv4: '8.8.8.8', port: 33 })
+    },
+    {
+      in: [
+        'udp://8.8.8.8:443 [pk=foo]',
+        'udp4://8.8.8.8  [pk=foo]'
+      ],
+      out: 'udp://8.8.8.8 [pk=foo]',
+      obj: new UDP4Endpoint({ ipv4: '8.8.8.8', pk: 'foo' })
+    },
+    {
+      in: [
+        'udp://[::]',
+        'udp6://[::]'
+      ],
+      out: 'udp://[::]',
+      obj: new UDP6Endpoint({ ipv6: '::' })
+    },
+    {
+      in: [
+        'udp://[::]:443',
+        'udp6://[::]:443'
+      ],
+      out: 'udp://[::]:443',
+      obj: new UDP6Endpoint({ ipv6: '::', port: 443 })
+    }
+  ]
+  fixtures.forEach((fixture, index) => {
+    t.equal(fixture.obj.toString(), fixture.out, `#${index} obj.toString() → ${fixture.out}`)
+    t.deepEqual(toEndpoint(fixture.out), fixture.obj, `#${index} toEndpoint('${fixture.out}')`)
+    fixture.in.forEach((input, inputIndex) => {
+      const processed = toEndpoint(input)
+      t.equal(processed.toString(), fixture.out, `#${index}/${inputIndex} ${JSON.stringify(input)} → ${fixture.out}`)
+    })
+  })
+  t.end()
+})
+
+test('filtering well-known endpoints', function (t) {
+  const wk = new Wellknown({
     update: false
   })
-  return session.wellknown().then(function (wellknown) {
-    const endpoints = wellknown.endpointByName
+  return wk.data().then(function (wellknown) {
+    const { endpointByName } = wellknown
     return Promise.resolve(null)
       .then(function () {
         const fixtures = [
-          { input: [endpoints.google], expected: [endpoints.google] },
-          { input: ['google', 'cloudflare'], expected: [endpoints.google, endpoints.cloudflare] },
-          { input: [{ protocol: 'https:', host: 'abcd.com' }], expected: [toEndpoint({ protocol: 'https:', host: 'abcd.com' })] },
-          { input: [{ host: 'abcd.com' }], expected: [toEndpoint({ protocol: 'https:', host: 'abcd.com' })] },
-          { input: ['google', endpoints.cloudflare, { host: 'abcd.com' }], expected: [endpoints.google, endpoints.cloudflare, toEndpoint({ host: 'abcd.com' })] },
-          { input: ['https://abcd.com'], expected: [toEndpoint({ protocol: 'https:', host: 'abcd.com' })] },
-          { input: ['https://abcd.com:8443/'], expected: [toEndpoint({ protocol: 'https:', host: 'abcd.com', port: 8443, path: '/' })] },
+          { input: [endpointByName.google], expected: [endpointByName.google] },
+          { input: ['@google', '@cloudflare'], expected: [endpointByName.google, endpointByName.cloudflare] },
+          { input: [{ protocol: 'https:', host: 'abcd.com' }], expected: [toEndpoint({ host: 'abcd.com' })] },
+          { input: [{ host: 'abcd.com' }], expected: [toEndpoint({ host: 'abcd.com' })] },
+          { input: ['@google', endpointByName.cloudflare, { host: 'abcd.com' }], expected: [endpointByName.google, endpointByName.cloudflare, toEndpoint({ host: 'abcd.com' })] },
+          { input: ['https://abcd.com'], expected: [toEndpoint({ host: 'abcd.com' })] },
+          { input: ['https://abcd.com:8443/'], expected: [toEndpoint({ host: 'abcd.com', port: 8443, path: '/' })] },
           { input: ['http://foo.com:123/ygga [post]'], expected: [toEndpoint({ protocol: 'http:', host: 'foo.com', port: 123, path: '/ygga', method: 'post' })] },
           { input: ['http://foo.com/ygga/fuga [get]'], expected: [toEndpoint({ protocol: 'http:', host: 'foo.com', path: '/ygga/fuga', method: 'get' })] },
-          { input: ['foo.com:8443/ygga/fuga [get]'], expected: [toEndpoint({ protocol: 'https:', host: 'foo.com', port: 8443, path: '/ygga/fuga', method: 'get' })] },
-          { input: ['1.1.1.1'], expected: [toEndpoint({ protocol: 'https:', host: '1.1.1.1' })] },
-          { input: ['::ffff:ff00'], expected: [toEndpoint({ protocol: 'https:', host: '::ffff:ff00' })] },
-          { input: ['ffff:ff00:0000:00ff:f000:000f:f0f0:0f0f:53'], expected: [toEndpoint({ protocol: 'https:', host: 'ffff:ff00:0000:00ff:f000:000f:f0f0:0f0f', port: 53 })] },
+          { input: ['foo.com:8443/ygga/fuga [get]'], expected: [toEndpoint({ host: 'foo.com', port: 8443, path: '/ygga/fuga', method: 'get' })] },
+          { input: ['1.1.1.1'], expected: [toEndpoint({ host: '1.1.1.1' })] },
+          { input: ['[::ffff:ff00]'], expected: [toEndpoint({ host: '[::ffff:ff00]' })] },
+          { input: ['[ffff:ff00:0000:00ff:f000:000f:f0f0:0f0f]:53'], expected: [toEndpoint({ host: '[ffff:ff00:0000:00ff:f000:000f:f0f0:0f0f]', port: 53 })] },
           { input: ['udp://1.1.1.1'], expected: [toEndpoint({ protocol: 'udp4:', ipv4: '1.1.1.1' })] },
           { input: ['udp4://1.1.1.1'], expected: [toEndpoint({ protocol: 'udp4:', ipv4: '1.1.1.1' })] },
           { input: ['udp://1.1.1.1:53'], expected: [toEndpoint({ protocol: 'udp4:', ipv4: '1.1.1.1', port: 53 })] },
-          { input: ['udp://ffff:ff00:0000:00ff:f000:000f:f0f0:0f0f:53'], expected: [toEndpoint({ protocol: 'udp6:', ipv6: 'ffff:ff00:0000:00ff:f000:000f:f0f0:0f0f', port: 53 })] },
+          { input: ['udp://[ffff:ff00:0000:00ff:f000:000f:f0f0:0f0f]:63'], expected: [toEndpoint({ protocol: 'udp6:', ipv6: 'ffff:ff00:0000:00ff:f000:000f:f0f0:0f0f', port: 63 })] },
           {
             input: (function * () {
-              yield 'google'
-              yield 'cloudflare'
+              yield '@google'
+              yield '@cloudflare'
             })(),
-            expected: [endpoints.google, endpoints.cloudflare]
+            expected: [endpointByName.google, endpointByName.cloudflare]
           },
           {
             input: function (endpoint) {
               return endpoint.name === 'google'
             },
-            expected: [endpoints.google]
+            expected: [endpointByName.google]
           },
           {
             input: 'dns',
@@ -392,12 +544,11 @@ test('parsing of endpoints', function (t) {
             input: null,
             expected: wellknown.endpoints
           },
-          { input: Promise.resolve(['google']), expected: [endpoints.google] },
-          { input: ['google'], expected: [endpoints.google] },
+          { input: ['@google'], expected: [endpointByName.google] },
           { input: [], expected: [] }
         ]
         return Promise.all(fixtures.map(function (fixture, index) {
-          return dohQuery.loadEndpoints(session, fixture.input).catch(err => {
+          return wk.endpoints(fixture.input).catch(err => {
             return Object.assign(err, { fixture, index })
           })
         })).then(function (results) {
@@ -420,11 +571,12 @@ test('parsing of endpoints', function (t) {
           { input: [{ protocol: 'https:' }], expected: /host "undefined"/ },
           { input: [{ protocol: 'https:', host: 'hi', port: false }], expected: /needs to be a number/ },
           { input: [{ protocol: 'udp4:' }], expected: /Invalid Endpoint: .ipv4 "undefined" needs to be set/ },
-          { input: [{ protocol: 'udp6:' }], expected: /Invalid Endpoint: .ipv6 "undefined" needs to be set/ }
+          { input: [{ protocol: 'udp6:' }], expected: /Invalid Endpoint: .ipv6 "undefined" needs to be set/ },
+          { input: Promise.resolve(['@google']), expected: /needs to be iterable/i }
         ]
         return Promise.all(fixtures.map(function (fixture) {
-          return dohQuery.loadEndpoints(session, fixture.input).then(
-            failSuccess(t),
+          return wk.endpoints(fixture.input).then(
+            failSuccess(t, fixture.input),
             err => Promise.resolve(err)
           )
         })).then(function (results) {
@@ -441,7 +593,7 @@ test('parsing of endpoints', function (t) {
 test('dns query using the default servers', {
   skip: isBrowser
 }, function (t) {
-  return query({ question: { type: 'A', name: 'google.com' } }, { endpoints: 'dns' })
+  return query({ question: { type: 'A', name: 'google.com' } }, { endpoints: wellknown.endpoints('dns') })
     .then(data => {
       t.deepEquals(data.answers[0], {
         name: 'google.com',
@@ -459,8 +611,8 @@ test('default endpoint/wellknown apis', function (t) {
     return list.find(entry => entry.name)
   }
   return Promise.all([
-    dohQuery.wellknown(),
-    dohQuery.endpoints()
+    dohQuery.wellknown.data(),
+    dohQuery.wellknown.endpoints()
   ]).then(function (parts) {
     const [wellknown, endpoints] = parts
     const endpoint = firstWithName(endpoints)
@@ -477,19 +629,19 @@ test('default endpoint/wellknown apis', function (t) {
 })
 
 test('custom resolver URL', { skip: typeof URL === 'undefined' }, function (t) {
-  const session = new Session({
+  const wk = new Wellknown({
     maxAge: Number.MAX_VALUE,
     updateURL: new URL('/resolvers', LOCAL_ENDPOINT_URI)
   })
   return getLog().then(function () {
-    return session.endpoints()
+    return wk.endpoints()
       .then(endpoints => {
-        t.deepEqual(endpoints[0], parseEndpoint('some.domain [cors] [name=some-name]'))
+        t.deepEqual(endpoints[0], toEndpoint('some.domain [name=some-name]'))
         // repeat lookup, shouldn't trigger load
         return getLog()
           .then(data => {
             t.deepEqual(data, [{ method: 'GET', url: '/resolvers' }])
-            return session.endpoints()
+            return wk.endpoints()
           })
           .then(repeatEndpoints => {
             t.equals(repeatEndpoints, endpoints, 'same endpoints, since maxAge is active')
@@ -498,8 +650,8 @@ test('custom resolver URL', { skip: typeof URL === 'undefined' }, function (t) {
           .then(data => {
             t.deepEqual(data, [], 'no server requested with update')
             // undocumented API, will force a request
-            session._wellknown(true)
-            return session.endpoints()
+            wk._data(true)
+            return wk.endpoints()
           })
           .then(onceMore => {
             t.notEquals(onceMore, endpoints, 'now the endpoints should have been updated')
@@ -513,11 +665,11 @@ test('custom resolver URL', { skip: typeof URL === 'undefined' }, function (t) {
 })
 
 test('resolvers error', { skip: typeof URL === 'undefined' }, function (t) {
-  const session = new Session({
+  const wk = new Wellknown({
     updateURL: new URL('/broken-resolvers', LOCAL_ENDPOINT_URI)
   })
   return getLog()
-    .then(() => session.endpoints())
+    .then(() => wk.endpoints())
     .then(endpoints => {
       t.notEqual(endpoints.length, 0)
       return getLog(true)
@@ -574,32 +726,32 @@ const persistHelpers = isBrowser ? persistHelperBrowser() : persistHelperNode()
 
 test('persisting resolvers', function (t) {
   persistHelpers.clear(t)
-  const session = new Session({
+  const wk = new Wellknown({
     persist: true
   })
   return Promise.all([
-    session._wellknown(),
+    wk._data(),
     dohQuery.backup
   ])
     .then(function (results) {
       const [wellknown, backup] = results
       persistHelpers.verify(t)
       t.notEqual(wellknown.time, backup.time, 'not serving the backup')
-      const session2 = new Session({
+      const wk2 = new Wellknown({
         persist: true
       })
-      return session2._wellknown().then(function (wellknown2) {
+      return wk2._data().then(function (wellknown2) {
         t.equals(wellknown2.time, wellknown.time, 'The filesystem cache is used if available')
         return results
       })
     })
     .then(function (results) {
       const [wellknown] = results
-      const session3 = new Session({
+      const wk3 = new Wellknown({
         maxAge: 1,
         persist: true
       })
-      return session3._wellknown().then(function (wellknown3) {
+      return wk3._data().then(function (wellknown3) {
         t.ok(wellknown3.time > wellknown.time, `The filesystem cache is skipped if old (${wellknown3.time} > ${wellknown.time} (${wellknown3.time - wellknown.time}))`)
       })
     })
@@ -607,15 +759,15 @@ test('persisting resolvers', function (t) {
 
 test('use persisted resolvers in case of error', { skip: typeof URL === 'undefined' }, function (t) {
   persistHelpers.clear(t)
-  const session = new Session({
+  const wk = new Wellknown({
     persist: true,
     maxAge: -Number.MAX_SAFE_INTEGER,
     updateURL: new URL('/one-time-resolvers', LOCAL_ENDPOINT_URI)
   })
   return getLog()
-    .then(() => session.endpoints())
+    .then(() => wk.endpoints())
     .then((endpoints) => {
-      return session.endpoints()
+      return wk.endpoints()
         .then((endpoints2) => {
           t.equal(endpoints[0].name, 'some-name')
           t.equal(endpoints, endpoints2, 'same endpoints get returned')
@@ -670,8 +822,8 @@ function req (path, method, responseType, data) {
   })
 }
 
-function failSuccess (t) {
-  return function () { t.fail('Unexpected success') }
+function failSuccess (t, info) {
+  return function () { t.fail(`Unexpected success ${info || ''}`) }
 }
 
 function localOpts (paths, opts, endpointOpts) {

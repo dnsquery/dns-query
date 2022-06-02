@@ -1,11 +1,7 @@
 import { SingleQuestionPacket, RecordClass } from '@leichtgewicht/dns-packet';
 import {
-  Endpoint, EndpointOpts
+  Endpoint, EndpointOpts, Resolver
 } from '../common.js';
-
-import {
-  RawResolver
-} from '../resolvers.js';
 
 export {
   TimeoutError,
@@ -23,32 +19,23 @@ export {
   UDP6Endpoint,
   UDP6EndpointOpts,
   parseEndpoint,
-  toEndpoint
+  toEndpoint,
+  Resolver,
+  RawResolver
 } from '../common.js';
 
-export {
-  RawResolver
-} from '../resolvers.js';
-
-export type Resolver = RawResolver<Endpoint>;
 export const backup: {
   data: Resolver
   time: number
 };
 
-export interface Wellknown {
-  resolvers: Resolver[];
-  resolverByName: { [name: string]: Resolver };
-  endpoints: Endpoint[];
-  endpointByName: { [name: string]: Endpoint };
-}
-
 export type OrPromise <T> = Promise<T> | T;
-export type EndpointInput = OrPromise<'doh' | 'dns' | ((endpoint: Endpoint) => boolean) | Iterable<Endpoint | EndpointOpts | string>>;
+export type LoadEndpointInput = OrPromise<'doh' | 'dns' | ((endpoint: Endpoint) => boolean) | Iterable<Endpoint | EndpointOpts | string>>;
+export type EndpointsInput = OrPromise<Iterable<Endpoint | EndpointOpts | string>>;
 
 export interface QueryOpts {
   /* Set of endpoints to lookup doh queries.  */
-  endpoints?: EndpointInput;
+  endpoints?: EndpointsInput;
   /* Amount of retry's if a request fails, defaults to 5 */
   retries?: number;
   /* Timeout for a single request in milliseconds, defaults to 30000 */
@@ -68,25 +55,31 @@ export class DNSRcodeError extends Error {
   question: SingleQuestionPacket;
 }
 
-export interface SessionOpts extends Omit<QueryOpts, 'signal'> {
-  update?: boolean;
-  updateURL?: URL;
-  persist?: boolean;
-  localStoragePrefix?: string;
-  maxAge?: number;
+export interface WellknownOpts {
+  timeout: number;
+  update: boolean;
+  updateURL: URL;
+  persist: boolean;
+  localStoragePrefix: string;
+  maxAge: number;
 }
 
 export function validateResponse <R>(res: R): R;
 export function combineTxt(inputs: Uint8Array[]): Uint8Array;
 
-export class Session {
-  opts: SessionOpts;
-  constructor(opts: SessionOpts);
+export interface WellknownData {
+  resolvers: Resolver[];
+  resolverByName: { [name: string]: Resolver };
+  endpoints: Endpoint[];
+  endpointByName: { [name: string]: Endpoint };
+}
 
-  wellknown(): Promise<Wellknown>;
-  endpoints(): Promise<Endpoint[]>;
-  lookupTxt(): Promise<TxtResult>;
-  query(query: SingleQuestionPacket, opts: QueryOpts): Promise<SingleQuestionPacket>;
+export class Wellknown {
+  opts: WellknownOpts;
+  constructor(opts?: Partial<WellknownOpts>);
+
+  data(): Promise<WellknownData>;
+  endpoints(input?: LoadEndpointInput): Promise<Endpoint[]>;
 }
 
 export function query(query: SingleQuestionPacket, opts: QueryOpts): Promise<SingleQuestionPacket & {
@@ -94,8 +87,7 @@ export function query(query: SingleQuestionPacket, opts: QueryOpts): Promise<Sin
   question: SingleQuestionPacket
   response: any
 }>;
-export function wellknown(): Promise<Wellknown>;
-export function endpoints(): Promise<Endpoint[]>;
+export const wellknown: Wellknown;
 export interface TxtEntry {
   data: string;
   ttl: number;
@@ -104,5 +96,4 @@ export interface TxtResult {
   entries: TxtEntry[];
   endpoint: string;
 }
-export function lookupTxt(): Promise<TxtResult>;
-export function loadEndpoints(session: Session, input: EndpointInput): Promise<Endpoint[]>;
+export function lookupTxt(domain: string, options: QueryOpts): Promise<TxtResult>;

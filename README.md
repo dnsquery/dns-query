@@ -11,31 +11,222 @@ This package provides simple function to make DoH queries both in node and the b
 
 ## Contents
 
-- [Important Note](#important-note-before-getting-started)
-- [DNS support](#dns-support)
 - [JavaScript API](#javascript-api)
+    - [Endpoints](#endpoints)
+        - [Endpoint Properties](#endpoint-properties)
+    - [Well-known Endpoints](#well-known-endpoints)
+        - [DNS Support](#dns-support)
+        - [Controlled Updates](#controlled-updates)
+        - [Persist Node.js](#persist-nodejs)
+        - [Persist Browser](#persist-browser)
+        - [Note about public servers](#note-about-the-public-servers)
     - [Error Responses](#error-responses)
-    - [Session API](#session-api)
     - [Txt Helper](#txt-helper)
 - [CLI](#cli)
-- [Endpoints](#endpoints)
     - [String Endpoints](#string-endpoints)
 - [See also](#see-also)
 - [License](#license)
 
-## Important Note before getting started
+## JavaScript API
 
-By default `dns-query` uses well-known public dns-over-https servers to execute
-queries [automatically compiled][] by the data from the [DNSCrypt][] project.
+```js
+import { query } from 'dns-query'
+try {
+  const { answers } = await query({
+    question: {type: 'A', name: 'google.com'}
+  }, {
+    /* REQUIRED! */
+    endpoints: ['dns.google', 'dns.switch.ch'], // See more about endpoints below!
+
+    /* (optional) */
+    retry: 3, // retries if a given endpoint fails; -1 = infinite retries; 0 = no retry
+    timeout: 4000, // (default=30000) timeout for single requests
+    signal, // An AbortSignal to abort the request
+  })
+} catch (error) {
+  switch (error.code) {
+    case 'HTTP_STATUS': // request failed, http status error
+    case 'RESPONSE_ERR': // request failed, invalid response
+    case 'ABORT_ERR': // request aborted
+    default: // Unexpected error
+  }
+}
+
+import { query, lookupTxt, wellknown } from 'dns-query'
+
+// Use well-known endpoints to request
+await query(/* ... */, { endpoints: wellknown.endpoints() })
+
+// Shorthand for loading txt entries
+await lookupTxt('domain.com', { endpoints: wellknown.endpoints() })
+```
+
+### Endpoints
+
+You can define the endpoints in a variety of ways:
+
+```js
+let endpoints
+endpoints = ['dns.google'] // Simple definition of an endpoint, protocol defaults to https:
+endpoints = ['dns.google', 'dns.switch.ch'] // Defining multiple endpoints will use one at random.
+endpoints = Promise.resolve(['dns.google']) // A promise will be resolved
+endpoints = ['https://dns.google:443/dns-query'] // You can specify a url with detail props
+endpoints = ['udp://8.8.8.8'] // You can also specify DNS endpoints
+endpoints = ['udp://[::]'] // IPV6 endpoints need braces [] around the address.
+endpoints = ['http://localhost'] // http endpoints are supported for tests!
+endpoints = ['localhost [post]'] // some endpoints require POST requests
+endpoints = ['dns.google [name=google]'] // you can give endpoints a name find them
+endpoints = ['dns.google [ipv4=8.8.8.8]'] // you can specify the ipv4/ipv6 url as backup
+endpoints = [{
+  protocol: 'https:',
+  host: 'dns.google'
+}] // You can also specify a set of properties (see the next section)
+
+// It will internally use toEndpoint to create endpoints
+import { toEndpoint } from 'dns-query'
+
+endpoints = [toEndpoint('dns.google')] // To speed things up, pass in preprocess endpoints.
+```
+
+#### Endpoint Properties
+
+For an endpoint to work, it needs to satisfy this interface:
+
+```typescript
+type EndpointProps = {
+  /* https is the default for DoH endpoints and http for debug only! defaults to https: */
+  protocol?: 'https:' | 'http:'
+  /* https port, defaults to 443 for https, 80 for http */
+  port?: number | string | null
+  /* Host to look up */
+  host: string
+  /* Known IPV4 address that can be used for the lookup */
+  ipv4?: string
+  /* Known IPV6 address that can be used for the lookup */
+  ipv6?: string
+  /* Path, prefixed with /, defaults to /dns-query for the http/https protocol */
+  path?: string
+  /* Method to request in case of http/https, defaults to GET */
+  method?: 'POST' | 'GET'
+  /* name of the endpoint () */
+  name?: string
+} | {
+  protocol: 'udp4:'
+  /* ipv4 endpoint to connect-to */
+  ipv4: string
+  /* https port, defaults to 53; 443 if pk is present */
+  port?: number | string | null
+  /* dnscrypt public key */
+  pk?: string | null
+  /* name of the endpoint () */
+  name?: string
+} | {
+  protocol: 'udp6:'
+  /* ipv4 endpoint to connect-to */
+  ipv6: string
+  /* https port, defaults to 53; 443 if pk is present */
+  port?: number | string | null
+  /* dnscrypt public key */
+  pk?: string | null
+  /* name of the endpoint () */
+  name?: string
+}
+```
+
+### Well-known Endpoints
+
+To make your life easier, `dns-query` comes with a list of well-known public dns-over-https
+servers to execute queries.
+
+```js
+import { wellknown } from 'dns-query'
+
+let endpoints = await wellknown.endpoints()
+```
+
+This list is **[automatically compiled][]** using the data from the [DNSCrypt][] project!
 
 [automatically compiled]: https://github.com/martinheidegger/dns-query/actions/workflows/update.yml
 [DNSCrypt]: https://dnscrypt.info/
 
-The npm package comes with the list that was/is current on the time of the publication.
-It will will try to automatically download the list from [the dns-query website][] unless
-you set the `.update` property on a `Session` object.
+The npm package comes with the list that was/is current on the time of it's publication.
+`await wellknown.data()` will try to automatically download the list from [the dns-query website][].
 
 [the dns-query website]: https://martinheidegger.github.io/dns-query/resolvers.json
+
+Using the argument for `wellknown.endpoints(...)` you can specify which endpoints
+you want to use:
+
+```js
+let options
+options = 'doh' // Filter to use only doh endpoints
+options = 'dns' // Filter to use only dns servers (Node.js only!)
+options = ['@cloudflare', '@google', '@opendns'] // Use specific named endpoints
+options = ['https://cloudflare-dns.com/dns-query']) // You can also 
+options = [{ host: 'cloudflare-dns.com' }] // Specify using properties
+options = (endpoint) => endpoint.protocol === 'https:' // Use a filter against the well-known endpoints
+options = Promise.resolve('doh') // The endpoints can also be a promise
+
+await wellknown.endpoints(options)
+```
+
+#### DNS support
+
+Node.js's dns support is limited, primary example being: [`resolveTxt`][node-resolveTxt]
+does not support `ttl` results. For that reason, when using `dns-query` in node you can also
+specify `dns` endpoints that should be helpful in the node environment.
+
+```js
+const dnsServers = await wellknown.endpoints('dns') // all the known dns servers
+const dohServers = await wellknown.endpoints('doh') // all the known doh servers
+```
+
+[node-resolveTxt]: https://nodejs.org/api/dns.html#dnsresolvetxthostname-callback
+
+#### Controlled Updates
+
+If we loaded the resolvers/endpoints for every request, both the server load and
+your application's responsiveness will suffer. Because of that the `wellknown` object
+will **cache** the known resolvers.
+
+You can customize the behavior by creating a new `Wellknown` instance with a different
+configuration:
+
+```js
+import { Wellknown } from 'dns-query'
+const wk = new Wellknown({
+  update: true, // Will load latest definitions from updateURL.
+  updateURL: new URL(), // URL to load the latest definitions. (default: project URL)
+  persist: false, // True to persist the loaded definitions (nodejs: in filesystem, browser: localStorage)
+  localStoragePrefix: 'dnsquery_', // Prefix for files persisted.
+  maxAge: 300000, // Max age of persisted data to be used in ms.
+  timeout: 5000 // Timeout when loading updates.
+})
+```
+
+`persist: true` is useful when you restart a node process or refresh a browser.
+The persisted data will then be available making subsequent requests faster still.
+
+#### Persist: Node.js
+
+If you set `persist: true` in Node.js, it will try to persist the list of resolvers relative to
+the `node_modules` directory.
+
+#### Persist: Browser
+
+In the browser, setting `persist: true` will use `localStorage` to store the copy of resolvers.
+By default it will use the `localStoragePrefix = 'dnsquery_'` option.
+
+You will be able to find the persisted resolvers under
+`localStorage.getItem('dnsquery_resolvers.json')`.
+
+```js
+query(..., {
+  localStoragePrefix: 'my_custom_prefix'
+})
+```
+
+### Note about the public servers.
 
 These servers come with caveats that you should be aware of:
 
@@ -50,52 +241,9 @@ These servers come with caveats that you should be aware of:
 If you are presenting this library to an end-user, you may want to allow them to decide what endpoint
 they want to use as it has privacy and usage implications!
 
-## DNS support
-
-Node.js's dns support is limited, primary example being: [`resolveTxt`][node-resolveTxt] does not support `ttl`
-results. For that reason, when using `dns-query` in node you can also specify `dns` endpoints that
-should be helpful in the node environment.
-
-[node-resolveTxt]: https://nodejs.org/api/dns.html#dnsresolvetxthostname-callback
-
-## JavaScript API
-
-```js
-import { query, endpoints as defaultEndpoints } from 'dns-query'
-const { cloudflare, google, opendns } = defaultEndpoints
-
-let endpoints // If undefined endpoints will be assumed to use one of the dns or doh endpoints!
-endpoints = 'doh' // Use any of the given defaultEndpoints to resolve
-endpoints = 'dns' // Use the system default dns servers to resolve (Node.js only!)
-endpoints = [cloudflare, google, opendns] // Use predefined, well-known endpoints
-endpoints = ['cloudflare', 'google', 'opendns'] // Use predefined, well-known endpoints by their name
-endpoints = ['https://cloudflare-dns.com/dns-query'] // Use a custom endpoint
-endpoints = [{ host: 'cloudflare-dns.com' }] // Specify using properties
-endpoints = (endpoint) => endpoint.protocol === 'https:' // Use a filter against the well-known endpoints
-endpoints = Promise.resolve('doh') // The endpoints can also be a promise
-try {
-  const { answers } = await query({
-    question: {type: 'A', name: 'google.com'}
-  }, {
-    /* Options (optional) */
-    endpoints: endpoints,
-    retry: 3, // (optional) retries if a given endpoint fails; -1 = infinite retries; 0 = no retry
-    timeout: 4000, // (optional, default=30000) timeout for single requests
-    signal, // (optional) an AbortSignal to abort the request
-  })
-} catch (error) {
-  switch (error.code) {
-    case 'HTTP_STATUS': // request failed, http status error
-    case 'RESPONSE_ERR': // request failed, invalid response
-    case 'ABORT_ERR': // request aborted
-    default: // Unexpected error
-  }
-}
-```
-
 ### Error Responses
 
-By default `query` will return the packet as received by the endpoints, even if
+By default `query(...)` will return the packet as received by the endpoints, even if
 that package was flagged as an error. The `validateResponse` helper will give a
 well readable error message.
 
@@ -105,58 +253,9 @@ import { validateResponse, query } from 'dns-query'
 const respone = validateResponse(await query(/* ... */))
 ```
 
-### Session API
-
-Loading the latest list of resolvers from the servers will increase both the load
-on the server hosting the list and your application's responsiveness. `dns-query` comes
-with support for persisting the resolvers in order to ease the load.
-
-You can use the `Session` to define the behavior for requests.
-
-```js
-import { Session } from 'dns-query'
-
-const session = new Session({
-  update: true, // Will load latest definitions from updateURL.
-  updateURL: new URL(), // URL to load the latest definitions. (default: project URL)
-  persist: true, // True to persist the loaded definitions (nodejs: in filesystem, browser: localStorage)
-  localStoragePrefix: 'dnsquery_', // Prefix for files persisted.
-  maxAge: 300000, // Max age of persisted data to be used in ms (default: 5min)
-  // Defaults for requests
-  retries: 3,
-  timeout: 3000,
-  endpoints: 'doh'
-})
-
-await session.wellknown()
-await session.endpoints()
-await session.query({ /* ... */})
-await session.lookupTxt('google.com')
-```
-
 By default, `query` will try load the latest definitions (`update: true`) but will
 persist them only in memory. Subsequent requests will only update the list if
 it is old.
-
-`persist: true` is useful when you restart a node process or refresh a browser.
-The persisted data will then be available making subsequent requests faster still.
-
-#### Persist: Node.js
-
-In node.js this will try to persist the list of resolvers to the `node_modules`
-directory.
-
-#### Persist: Browser
-
-In the browser it will use `localStorage` to store the copy of resolvers. By default
-it will use the `localStoragePrefix = 'dnsquery_'` option. You will be able to find
-the persisted resolvers under `localStorage.getItem('dnsquery_resolvers.json')`.
-
-```js
-query(..., {
-  localStoragePrefix: 'my_custom_prefix'
-})
-```
 
 ### Txt Helper
 
@@ -243,67 +342,10 @@ OPTIONS:
   --offline ........ Do not update the resolver list
 ```
 
-## Endpoints
-
-For an endpoint to work, it needs to satisfy this interface:
-
-```typescript
-type EndpointProps = {
-  /* https is the default for DoH endpoints and http for debug only! If you don't specify a protocol, https is assumed */
-  protocol: 'https:' | 'http:'
-  /* https port, defaults to 443 for https, 80 for http */
-  port?: number | string | null
-  /* Host to look up */
-  host: string
-  /* Known IPV4 address that can be used for the lookup */
-  ipv4?: string
-  /* Known IPV6 address that can be used for the lookup */
-  ipv6?: string
-  /* true, if endpoint supports http/https CORS headers, defaults to false */
-  cors?: boolean
-  /* Path, prefixed with /, defaults to /dns-query for the http/https protocol */
-  path?: string
-  /* Method to request in case of http/https, defaults to GET */
-  method?: 'POST' | 'GET'
-} | {
-  protocol: 'udp4:'
-  /* ipv4 endpoint to connect-to */
-  ipv4: string
-  /* https port, defaults to 53; 443 if pk is present */
-  port?: number | string | null
-  /* dnscrypt public key */
-  pk?: string | null
-} | {
-  protocol: 'udp6:'
-  /* ipv4 endpoint to connect-to */
-  ipv6: string
-  /* https port, defaults to 53; 443 if pk is present */
-  port?: number | string | null
-  /* dnscrypt public key */
-  pk?: string | null
-}
-```
-
 ### String endpoints
 
-Instead of passing an object you can also pass a string. If the string matches the name
-of one of the endpoints, that endpoint will be used. If it doesnt match any endpoint,
-then it will be parsed using the `parseEndpoint` method understands an URL like structure
-with additional properties defined like flags (`[<name>]`).
-
-_Examples:_
-
-`foo.com` → `{ host: 'foo.com' }`
-
-`http://bar.com:81/query [post]` →
-  `{ host: 'bar.com', path: '/query', port: 81, method: 'post', protocol: 'http:' }`
-
-_Note:_ If no path is given, such as `foo.com`, the path will be assumed as `/dns-query`, but
-if a path is given such as `foo.com/` it will assume that path `/`!
-
-To specify DNS endpoints you need to prefix them using `udp:` (or `udp4:`, `udp6`)
-
-`udp://1.1.1.1` → `{ host: '1.1.1.1', protocol: 'udp4' }`
+The input of endpoints are passed to the `toEndpoint` helper. See [Endpoints](#endpoints)
+for the supported formats.
 
 ## See Also
 

@@ -6,8 +6,6 @@ import { resolvers as backupResolvers } from './resolvers.mjs'
 import {
   AbortError,
   ResponseError,
-  BaseEndpoint,
-  parseEndpoint,
   URL,
   toEndpoint
 } from './common.mjs'
@@ -83,13 +81,14 @@ export function validateResponse (data, question) {
   return data
 }
 
-function resolversToWellknown (res) {
-  const resolvers = res.data.map(resolver => {
+function processResolvers (res) {
+  const time = (res.time === null || res.time === undefined) ? Date.now() : res.time
+  const resolvers = lib.processResolvers(res.data.map(resolver => {
     resolver.endpoint = toEndpoint(Object.assign({ name: resolver.name }, resolver.endpoint))
     return resolver
-  })
+  }))
   const endpoints = resolvers.map(resolver => resolver.endpoint)
-  return lib.processWellknown({
+  return {
     data: {
       resolvers,
       resolverByName: resolvers.reduce((byName, resolver) => {
@@ -102,11 +101,11 @@ function resolversToWellknown (res) {
         return byName
       }, {})
     },
-    time: (res.time === null || res.time === undefined) ? Date.now() : res.time
-  })
+    time
+  }
 }
 
-export const backup = resolversToWellknown(backupResolvers)
+export const backup = processResolvers(backupResolvers)
 
 function toMultiQuery (singleQuery) {
   const query = Object.assign({
@@ -164,47 +163,49 @@ function queryDoh (endpoint, query, timeout, abortSignal) {
 
 const UPDATE_URL = new URL('https://martinheidegger.github.io/dns-query/resolvers.json')
 
-function combineUint8 (a, b) {
-  if (!a || a.length === 0) return b
-  if (!b || b.length === 0) return a
-  const res = new Uint8Array(a.length + b.length)
-  res.set(a)
-  res.set(b, a.length)
+function concatUint8 (arrs) {
+  const res = new Uint8Array(
+    arrs.reduce((len, arr) => len + arr.length, 0)
+  )
+  let pos = 0
+  for (const arr of arrs) {
+    res.set(arr, pos)
+    pos += arr.length
+  }
   return res
 }
 
 export function combineTXT (inputs) {
-  let combined = new Uint8Array(0)
-  for (const input of inputs) {
-    combined = combineUint8(combined, input)
-  }
-  return decode(combined)
+  return decode(concatUint8(inputs))
 }
 
-export class Session {
+function isNameString (entry) {
+  return /^@/.test(entry)
+}
+
+export class Wellknown {
   constructor (opts) {
     this.opts = Object.assign({
-      retries: 5,
-      timeout: 30000, // 30 seconds
+      timeout: 5000,
       update: true,
       updateURL: UPDATE_URL,
       persist: false,
       localStoragePrefix: 'dnsquery_',
       maxAge: 300000 // 5 minutes
     }, opts)
-    this._wellknownP = null
+    this._dataP = null
   }
 
-  _wellknown (force, outdated) {
-    if (!force && this._wellknownP !== null) {
-      return this._wellknownP.then(res => {
+  _data (force, outdated) {
+    if (!force && this._dataP !== null) {
+      return this._dataP.then(res => {
         if (res.time < Date.now() - this.opts.maxAge) {
-          return this._wellknown(true, res)
+          return this._data(true, res)
         }
         return res
       })
     }
-    this._wellknownP = (!this.opts.update
+    this._dataP = (!this.opts.update
       ? Promise.resolve(backup)
       : lib.loadJSON(
         this.opts.updateURL,
@@ -217,81 +218,116 @@ export class Session {
           : null,
         this.opts.timeout
       )
-        .then(res => resolversToWellknown({
+        .then(res => processResolvers({
           data: res.data.resolvers,
           time: res.time
         }))
         .catch(() => outdated || backup)
     )
-    return this._wellknownP
+    return this._dataP
   }
 
-  wellknown () {
-    return this._wellknown(false).then(data => data.data)
+  data () {
+    return this._data(false).then(data => data.data)
   }
 
-  endpoints () {
-    return this.wellknown().then(data => data.endpoints)
-  }
-
-  query (q, opts) {
-    opts = Object.assign({}, this.opts, opts)
-    if (!q.question) return Promise.reject(new Error('To request data you need to specify a .question!'))
-    return loadEndpoints(this, opts.endpoints)
-      .then(endpoints => {
-        if (endpoints.length === 0) {
-          throw new Error('No endpoints defined.')
-        }
-        return queryN(endpoints, toMultiQuery(q), opts)
-      })
-      .then(data => {
-        data.question = data.questions[0]
-        delete data.questions
-        return data
-      })
-  }
-
-  lookupTxt (domain, opts) {
-    const q = Object.assign({
-      question: {
-        type: 'TXT',
-        name: domain
+  endpoints (input) {
+    if (input === null || input === undefined) {
+      return this.data().then(data => data.endpoints)
+    }
+    if (input === 'doh') {
+      input = filterDoh
+    }
+    if (input === 'dns') {
+      input = filterDns
+    }
+    if (typeof input === 'function') {
+      return this.data().then(data => data.endpoints.filter(input))
+    }
+    if (typeof input === 'string' || typeof input[Symbol.iterator] !== 'function') {
+      return Promise.reject(new Error(`Endpoints (${input}) needs to be iterable (array).`))
+    }
+    input = Array.from(input).filter(Boolean)
+    if (input.findIndex(isNameString) === -1) {
+      try {
+        return Promise.resolve(input.map(toEndpoint))
+      } catch (err) {
+        return Promise.reject(err)
       }
-    }, opts.query)
-    return this.query(q, opts)
-      .then(data => {
-        validateResponse(data, q)
-        return {
-          entries: (data.answers || []).map(answer => ({
-            data: combineTXT(answer.data),
-            ttl: answer.ttl
-          })).sort((a, b) => {
-            if (a.data > b.data) return 1
-            if (a.data < b.data) return -1
-            return 0
-          }),
-          endpoint: data.endpoint
+    }
+    return this.data().then(data =>
+      input.map(entry => {
+        if (isNameString(entry)) {
+          const found = data.endpointByName[entry.substring(1)]
+          if (!found) {
+            throw new Error(`Endpoint ${entry} is not known.`)
+          }
+          return found
         }
+        return toEndpoint(entry)
       })
+    )
   }
 }
 
-const defautSession = new Session()
+export const wellknown = new Wellknown()
+
+function isPromise (input) {
+  if (input === null) {
+    return false
+  }
+  if (typeof input !== 'object') {
+    return false
+  }
+  return typeof input.then === 'function'
+}
+
+function toPromise (input) {
+  return isPromise(input) ? input : Promise.resolve(input)
+}
 
 export function query (q, opts) {
-  return defautSession.query(q, opts)
+  opts = Object.assign({
+    retries: 5,
+    timeout: 30000 // 30 seconds
+  }, opts)
+  if (!q.question) return Promise.reject(new Error('To request data you need to specify a .question!'))
+  return toPromise(opts.endpoints)
+    .then(endpoints => {
+      if (!Array.isArray(endpoints) || endpoints.length === 0) {
+        throw new Error('No endpoints defined to lookup dns records.')
+      }
+      return queryN(endpoints.map(toEndpoint), toMultiQuery(q), opts)
+    })
+    .then(data => {
+      data.question = data.questions[0]
+      delete data.questions
+      return data
+    })
 }
 
-export function lookupTxt (name, opts) {
-  return defautSession.lookupTxt(name, opts)
-}
-
-export function endpoints () {
-  return defautSession.endpoints()
-}
-
-export function wellknown () {
-  return defautSession.wellknown()
+export function lookupTxt (domain, opts) {
+  const q = Object.assign({
+    question: {
+      type: 'TXT',
+      name: domain
+    }
+  }, opts.query)
+  return query(q, opts)
+    .then(data => {
+      validateResponse(data, q)
+      return {
+        entries: (data.answers || []).map(answer => ({
+          data: combineTXT(answer.data),
+          ttl: answer.ttl
+        })).sort((a, b) => {
+          if (a.data > b.data) return 1
+          if (a.data < b.data) return -1
+          return 0
+        }),
+        endpoint: data.endpoint
+      }
+    })
 }
 
 function queryN (endpoints, q, opts) {
@@ -318,80 +354,10 @@ function queryN (endpoints, q, opts) {
     )
 }
 
-function filterEndpoints (filter) {
-  return function (endpoints) {
-    const result = []
-    for (const name in endpoints) {
-      const endpoint = endpoints[name]
-      if (filter(endpoint)) {
-        result.push(endpoint)
-      }
-    }
-    return result
-  }
-}
-
-const filterDoh = filterEndpoints(function filterDoh (endpoint) {
+function filterDoh (endpoint) {
   return endpoint.protocol === 'https:' || endpoint.protocol === 'http:'
-})
+}
 
-const filterDns = filterEndpoints(function filterDns (endpoint) {
+function filterDns (endpoint) {
   return endpoint.protocol === 'udp4:' || endpoint.protocol === 'udp6:'
-})
-
-function isPromise (input) {
-  if (input === null) {
-    return false
-  }
-  if (typeof input !== 'object') {
-    return false
-  }
-  return typeof input.then === 'function'
-}
-
-function isString (entry) {
-  return typeof entry === 'string'
-}
-
-export function loadEndpoints (session, input) {
-  const p = isPromise(input) ? input : Promise.resolve(input)
-  return p.then(function (endpoints) {
-    if (endpoints === 'doh') {
-      return session.endpoints().then(filterDoh)
-    }
-    if (endpoints === 'dns') {
-      return session.endpoints().then(filterDns)
-    }
-    const type = typeof endpoints
-    if (type === 'function') {
-      return session.endpoints().then(filterEndpoints(endpoints))
-    }
-    if (endpoints === null || endpoints === undefined) {
-      return session.endpoints()
-    }
-    if (type === 'string' || typeof endpoints[Symbol.iterator] !== 'function') {
-      throw new Error(`Endpoints (${endpoints}) needs to be iterable.`)
-    }
-    endpoints = Array.from(endpoints).filter(Boolean)
-    if (endpoints.findIndex(isString) === -1) {
-      return endpoints.map(endpoint => {
-        if (endpoint instanceof BaseEndpoint) {
-          return endpoint
-        }
-        return toEndpoint(endpoint)
-      })
-    }
-    return session.wellknown()
-      .then(wellknown =>
-        endpoints.map(endpoint => {
-          if (endpoint instanceof BaseEndpoint) {
-            return endpoint
-          }
-          if (typeof endpoint === 'string') {
-            return wellknown.endpointByName[endpoint] || parseEndpoint(endpoint)
-          }
-          return toEndpoint(endpoint)
-        })
-      )
-  })
 }

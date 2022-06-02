@@ -1,4 +1,4 @@
-import { query, AbortError, HTTPStatusError, ResponseError, TimeoutError, wellknown, Endpoint, EndpointOpts, Wellknown, SessionOpts, Session } from 'index';
+import { query, AbortError, HTTPStatusError, ResponseError, TimeoutError, wellknown, Endpoint, EndpointOpts, Wellknown, WellknownData, WellknownOpts } from 'index';
 import { Packet } from '@leichtgewicht/dns-packet';
 
 // $ExpectError
@@ -7,7 +7,7 @@ query('');
 const c = new AbortController();
 
 (async () => {
-  const lookup: Wellknown = await wellknown();
+  const lookup: WellknownData = await wellknown.data();
 
   try {
     let p: Packet = await query({ id: 1, question: { type: 'A', name: 'google.com' } }, {
@@ -27,20 +27,21 @@ const c = new AbortController();
       retries: 5,
       timeout: 1000
     });
-    let sessionOpts: SessionOpts = {};
+    let sessionOpts: Partial<WellknownOpts> = {};
     sessionOpts = {
       maxAge: 500,
       persist: true,
       timeout: 5000,
       update: false,
-      updateURL: new URL('https://hello.com'),
-      retries: 5
+      updateURL: new URL('https://hello.com')
     };
-    const session = new Session(sessionOpts);
-    p = await session.query({
+    const wk = new Wellknown(sessionOpts);
+    p = await query({
       id: 2,
       question: { type: 'A', name: 'google.com' }
-    }, {});
+    }, {
+      endpoints: wk.endpoints('doh')
+    });
   } catch (error) {
     if (
       error instanceof ResponseError ||

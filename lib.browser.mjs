@@ -138,11 +138,6 @@ export function request (url, method, packet, timeout, abortSignal) {
   return requestRaw(url, method, packet, timeout, abortSignal)
 }
 
-export function processWellknown (wellknown) {
-  return {
-    time: wellknown.time,
-    data: Object.assign({}, wellknown.data, {
-      endpoints: wellknown.data.endpoints.filter(ep => ep.cors)
-    })
-  }
+export function processResolvers (resolvers) {
+  return resolvers.filter(resolver => resolver.cors || resolver.endpoint.cors)
 }

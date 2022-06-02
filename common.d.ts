@@ -15,6 +15,7 @@ export class HTTPStatusError extends Error {
   name: 'StatusError';
   response?: any;
   endpoint?: string;
+  toJSON (): any;
 }
 
 export class ResponseError extends Error {
@@ -23,6 +24,7 @@ export class ResponseError extends Error {
   name: 'ResponseError';
   response?: any;
   endpoint?: string;
+  toJSON (): any
 }
 
 export class TimeoutError extends Error {
@@ -32,6 +34,16 @@ export class TimeoutError extends Error {
   name: 'TimeoutError';
   response?: any;
   endpoint?: string;
+  toJSON (): any;
+}
+
+export class InvalidProtocolError extends Error {
+  constructor (protocol: string, endpoint: string)
+  protocol: string;
+  endpoint: string;
+  code: 'EPROTOCOL';
+  name: 'InvalidProtocolError';
+  toJSON (): any;
 }
 
 export interface BaseEndpointOpts <Protocol extends string> {
@@ -97,6 +109,29 @@ export class HTTPEndpoint extends BaseEndpoint<'http:' | 'https:'> {
   url: URL
   constructor (opts: HTTPEndpointOpts);
 }
+
+export interface RawResolver <Endpoint=EndpointOpts> {
+  name: string
+  endpoint: Endpoint
+  /** Description as provided by hoster. */
+  description: string
+  /** true, if endpoint is known to log requests, defaults to false */
+  log?: boolean
+  /** true, if endpoint is known to filters/redirects DNS packets, defaults to false */
+  filter?: boolean
+  /** link to documentation */
+  docs?: string
+  /** Country as specified by hoster */
+  country?: string
+  /** GEO Location as specified by the hoster */
+  location?: {
+    lat: number
+    long: number
+  }
+  cors?: boolean
+}
+
+export type Resolver = RawResolver<Endpoint>;
 
 export type EndpointOpts = UDP4EndpointOpts | UDP6EndpointOpts | HTTPEndpointOpts;
 export type Endpoint = UDP4Endpoint | UDP6Endpoint | HTTPEndpoint;

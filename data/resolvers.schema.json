@@ -43,7 +43,7 @@
                   },
                   "cors": {
                     "type": "boolean",
-                    "description": "true, if endpoint supports http/https CORS headers, defaults to false"
+                    "description": "(DEPRECATED: Use resolver.cors instead!) true, if endpoint supports http/https CORS headers, defaults to false"
                   },
                   "ipv4": {
                     "type": "string",
@@ -105,6 +105,10 @@
                 "required": ["protocol", "ipv6"]
               }
             ]
+          },
+          "cors": {
+            "type": "boolean",
+            "description": "true, if endpoint supports http/https CORS headers, defaults to false"
           },
           "description": {
             "type": "string",

@@ -174,6 +174,33 @@
       "cors": true
     },
     {
+      "name": "ams-ads-doh-nl",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dnsnl-noads.alekberg.net"
+      },
+      "description": "Resolver in Amsterdam. DoH protocol. Non-logging. Blocks ads, malware and trackers. DNSSEC enabled.",
+      "country": "Romania",
+      "location": {
+        "lat": 45.9968,
+        "long": 24.997
+      },
+      "filter": true
+    },
+    {
+      "name": "ams-doh-nl",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dnsnl.alekberg.net"
+      },
+      "description": "Resolver in Amsterdam. DoH protocol. Non-logging, non-filtering, DNSSEC.",
+      "country": "Romania",
+      "location": {
+        "lat": 45.9968,
+        "long": 24.997
+      }
+    },
+    {
       "name": "att",
       "endpoint": {
         "protocol": "https:",
@@ -936,14 +963,6 @@
         "path": "/odoh"
       },
       "description": "ODoH target server via Cloudflare, no logs."
-    },
-    {
-      "name": "odoh-resolver4.dns.openinternet.io",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "resolver4.dns.openinternet.io"
-      },
-      "description": "ODoH target server. no logs, no filter, DNSSEC.\nRunning on dedicated hardware colocated at Sonic.net in Santa Rosa, CA in the United States.\nUses Sonic's recusrive DNS servers as upstream resolvers (but is not affiliated with Sonic\nin any way). Provided by https://openinternet.io"
     },
     {
       "name": "odoh-tiarap.org",

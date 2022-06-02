@@ -72,7 +72,8 @@
         "lat": 41.8483,
         "long": -87.6517
       },
-      "filter": true
+      "filter": true,
+      "cors": true
     },
     {
       "name": "ahadns-doh-in",
@@ -87,7 +88,8 @@
         "lat": 19.0748,
         "long": 72.8856
       },
-      "filter": true
+      "filter": true,
+      "cors": true
     },
     {
       "name": "ahadns-doh-la",
@@ -102,7 +104,8 @@
         "lat": 34.0549,
         "long": -118.2578
       },
-      "filter": true
+      "filter": true,
+      "cors": true
     },
     {
       "name": "ahadns-doh-nl",
@@ -117,7 +120,8 @@
         "lat": 52.3824,
         "long": 4.8995
       },
-      "filter": true
+      "filter": true,
+      "cors": true
     },
     {
       "name": "ahadns-doh-ny",
@@ -132,7 +136,8 @@
         "lat": 40.7308,
         "long": -73.9975
       },
-      "filter": true
+      "filter": true,
+      "cors": true
     },
     {
       "name": "ahadns-doh-pl",
@@ -147,7 +152,8 @@
         "lat": 52.3824,
         "long": 4.8995
       },
-      "filter": true
+      "filter": true,
+      "cors": true
     },
     {
       "name": "alidns-doh",
@@ -164,7 +170,8 @@
         "long": 113.7266
       },
       "filter": true,
-      "log": true
+      "log": true,
+      "cors": true
     },
     {
       "name": "ams-ads-doh-nl",
@@ -181,6 +188,19 @@
       "filter": true
     },
     {
+      "name": "ams-doh-nl",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dnsnl.alekberg.net"
+      },
+      "description": "Resolver in Amsterdam. DoH protocol. Non-logging, non-filtering, DNSSEC.",
+      "country": "Romania",
+      "location": {
+        "lat": 45.9968,
+        "long": 24.997
+      }
+    },
+    {
       "name": "att",
       "endpoint": {
         "protocol": "https:",
@@ -188,33 +208,6 @@
       },
       "description": "AT&T test DoH server.",
       "log": true
-    },
-    {
-      "name": "bcn-ads-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dnses-noads.alekberg.net"
-      },
-      "description": "Resolver in Spain. DoH protocol. Non-logging, remove ads and malware, DNSSEC.",
-      "country": "Spain",
-      "location": {
-        "lat": 41.3891,
-        "long": 2.1611
-      },
-      "filter": true
-    },
-    {
-      "name": "bcn-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dnses.alekberg.net"
-      },
-      "description": "Resolver in Spain. DoH protocol. Non-logging, non-filtering, DNSSEC.",
-      "country": "Spain",
-      "location": {
-        "lat": 41.3891,
-        "long": 2.1611
-      }
     },
     {
       "name": "brahma-world",
@@ -259,7 +252,8 @@
       "location": {
         "lat": -33.494,
         "long": 143.2104
-      }
+      },
+      "cors": true
     },
     {
       "name": "cloudflare-family",
@@ -275,7 +269,8 @@
         "lat": -33.494,
         "long": 143.2104
       },
-      "filter": true
+      "filter": true,
+      "cors": true
     },
     {
       "name": "cloudflare-ipv6",
@@ -289,7 +284,8 @@
       "location": {
         "lat": 37.751,
         "long": -97.822
-      }
+      },
+      "cors": true
     },
     {
       "name": "cloudflare-security",
@@ -305,7 +301,8 @@
         "lat": -33.494,
         "long": 143.2104
       },
-      "filter": true
+      "filter": true,
+      "cors": true
     },
     {
       "name": "controld-block-malware",
@@ -434,7 +431,8 @@
       "location": {
         "lat": 47,
         "long": 8
-      }
+      },
+      "cors": true
     },
     {
       "name": "dns.therifleman.name",
@@ -504,7 +502,8 @@
         "lat": 52.2998,
         "long": 9.447
       },
-      "filter": true
+      "filter": true,
+      "cors": true
     },
     {
       "name": "dnshome-doh",
@@ -523,7 +522,8 @@
       },
       "description": "A public DNS resolver in mainland China provided by DNSPod (Tencent Cloud).\nhttps://www.dnspod.cn/Products/Public.DNS?lang=en",
       "filter": true,
-      "log": true
+      "log": true,
+      "cors": true
     },
     {
       "name": "dnswarden-asia-adblock-dohv4",
@@ -610,7 +610,8 @@
         "lat": 52.3824,
         "long": 4.8995
       },
-      "filter": true
+      "filter": true,
+      "cors": true
     },
     {
       "name": "doh-cleanbrowsing-adult",
@@ -621,7 +622,8 @@
         "cors": true
       },
       "description": "Blocks access to all adult, pornographic and explicit sites. It does\nnot block proxy or VPNs, nor mixed-content sites. Sites like Reddit\nare allowed. Google and Bing are set to the Safe Mode.\nBy https://cleanbrowsing.org/",
-      "filter": true
+      "filter": true,
+      "cors": true
     },
     {
       "name": "doh-cleanbrowsing-family",
@@ -632,7 +634,8 @@
         "cors": true
       },
       "description": "Blocks access to all adult, pornographic and explicit sites. It also\nblocks proxy and VPN domains that are used to bypass the filters.\nMixed content sites (like Reddit) are also blocked. Google, Bing and\nYoutube are set to the Safe Mode.\nBy https://cleanbrowsing.org/",
-      "filter": true
+      "filter": true,
+      "cors": true
     },
     {
       "name": "doh-cleanbrowsing-security",
@@ -643,7 +646,8 @@
         "cors": true
       },
       "description": "Block access to phishing, malware and malicious domains. It does not block adult content.\nBy https://cleanbrowsing.org/",
-      "filter": true
+      "filter": true,
+      "cors": true
     },
     {
       "name": "doh-crypto-sx",
@@ -657,7 +661,8 @@
       "location": {
         "lat": 37.751,
         "long": -97.822
-      }
+      },
+      "cors": true
     },
     {
       "name": "doh-crypto-sx-ipv6",
@@ -671,7 +676,8 @@
       "location": {
         "lat": 37.751,
         "long": -97.822
-      }
+      },
+      "cors": true
     },
     {
       "name": "doh-de-blahdns",
@@ -686,7 +692,8 @@
         "lat": 51.2993,
         "long": 9.491
       },
-      "filter": true
+      "filter": true,
+      "cors": true
     },
     {
       "name": "doh-fi-blahdns",
@@ -701,7 +708,8 @@
         "lat": 60.1758,
         "long": 24.9349
       },
-      "filter": true
+      "filter": true,
+      "cors": true
     },
     {
       "name": "doh-ibksturm",
@@ -724,7 +732,8 @@
         "lat": 35.6882,
         "long": 139.7532
       },
-      "filter": true
+      "filter": true,
+      "cors": true
     },
     {
       "name": "doh.ffmuc.net",
@@ -767,7 +776,8 @@
         "lat": 37.751,
         "long": -97.822
       },
-      "log": true
+      "log": true,
+      "cors": true
     },
     {
       "name": "hdns",
@@ -781,7 +791,8 @@
       "location": {
         "lat": 37.7771,
         "long": -122.406
-      }
+      },
+      "cors": true
     },
     {
       "name": "he",
@@ -902,7 +913,8 @@
       "location": {
         "lat": 59.3247,
         "long": 18.056
-      }
+      },
+      "cors": true
     },
     {
       "name": "odoh-cloudflare",
@@ -911,7 +923,8 @@
         "host": "odoh.cloudflare-dns.com",
         "cors": true
       },
-      "description": "Cloudflare ODoH server.\nhttps://cloudflare.com"
+      "description": "Cloudflare ODoH server.\nhttps://cloudflare.com",
+      "cors": true
     },
     {
       "name": "odoh-crypto-sx",
@@ -920,7 +933,18 @@
         "host": "odoh.crypto.sx",
         "cors": true
       },
-      "description": "ODoH target server. Anycast, no logs.\nBackend hosted by Scaleway. Maintained by Frank Denis."
+      "description": "ODoH target server. Anycast, no logs.\nBackend hosted by Scaleway. Maintained by Frank Denis.",
+      "cors": true
+    },
+    {
+      "name": "odoh-id-gmail",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "doh.tiar.app",
+        "path": "/odoh"
+      },
+      "description": "ODoH target server. Based in Singapore, no logs.\nFilter ads, trackers and malware.",
+      "filter": true
     },
     {
       "name": "odoh-jp.tiar.app",
@@ -939,14 +963,6 @@
         "path": "/odoh"
       },
       "description": "ODoH target server via Cloudflare, no logs."
-    },
-    {
-      "name": "odoh-resolver4.dns.openinternet.io",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "resolver4.dns.openinternet.io"
-      },
-      "description": "ODoH target server. no logs, no filter, DNSSEC.\nRunning on dedicated hardware colocated at Sonic.net in Santa Rosa, CA in the United States.\nUses Sonic's recusrive DNS servers as upstream resolvers (but is not affiliated with Sonic\nin any way). Provided by https://openinternet.io"
     },
     {
       "name": "odoh-tiarap.org",
@@ -970,7 +986,8 @@
       "location": {
         "lat": -33.8591,
         "long": 151.2002
-      }
+      },
+      "cors": true
     },
     {
       "name": "puredns-doh",
@@ -985,7 +1002,8 @@
       "location": {
         "lat": 37.751,
         "long": -97.822
-      }
+      },
+      "cors": true
     },
     {
       "name": "quad101",
@@ -994,7 +1012,8 @@
         "host": "dns.twnic.tw",
         "cors": true
       },
-      "description": "DNSSEC-aware public resolver by the Taiwan Network Information Center (TWNIC)\nhttps://101.101.101.101/index_en.html"
+      "description": "DNSSEC-aware public resolver by the Taiwan Network Information Center (TWNIC)\nhttps://101.101.101.101/index_en.html",
+      "cors": true
     },
     {
       "name": "quad9-doh-ip4-port443-filter-ecs-pri",
@@ -1077,33 +1096,6 @@
       "description": "Family safety focused blocklist for over 2 million adult sites, as well as phishing and malware and more.\nFree to use, paid for customizing blocking for more categories+sites and viewing usage at my.safesurfer.io. Logs taken for viewing\nusage, data never sold - https://safesurfer.io",
       "filter": true,
       "log": true
-    },
-    {
-      "name": "sth-ads-doh-se",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dnsse-noads.alekberg.net"
-      },
-      "description": "Resolver in Stockholm, Sweden. DoH server. Non-logging, remove ads and malware, DNSSEC.",
-      "country": "Bulgaria",
-      "location": {
-        "lat": 42.696,
-        "long": 23.332
-      },
-      "filter": true
-    },
-    {
-      "name": "sth-doh-se",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dnsse.alekberg.net"
-      },
-      "description": "Resolver in Stockholm, Sweden. DoH server. Non-logging, non-filtering, DNSSEC.",
-      "country": "Bulgaria",
-      "location": {
-        "lat": 42.696,
-        "long": 23.332
-      }
     },
     {
       "name": "switch",

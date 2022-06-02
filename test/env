@@ -180,6 +180,15 @@ function handleRequest (req, res) {
                   type: 'TXT',
                   name: 'test.domain',
                   data: 'a'
+                },
+                // Sometimes dns servers return things that are not
+                // requested. They are funny that way.
+                {
+                  type: 'CNAME',
+                  name: 'test.domain',
+                  ttl: 60,
+                  class: 'IN',
+                  data: 'other.domain'
                 }
               ]
             })))

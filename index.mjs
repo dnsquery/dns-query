@@ -317,14 +317,19 @@ export function lookupTxt (domain, opts) {
     .then(data => {
       validateResponse(data, q)
       return {
-        entries: (data.answers || []).map(answer => ({
-          data: combineTXT(answer.data),
-          ttl: answer.ttl
-        })).sort((a, b) => {
-          if (a.data > b.data) return 1
-          if (a.data < b.data) return -1
-          return 0
-        }),
+        entries: (data.answers || [])
+          .filter(answer => answer.type === 'TXT' && answer.data)
+          .map(answer => {
+            return ({
+              data: combineTXT(answer.data),
+              ttl: answer.ttl
+            })
+          })
+          .sort((a, b) => {
+            if (a.data > b.data) return 1
+            if (a.data < b.data) return -1
+            return 0
+          }),
         endpoint: data.endpoint
       }
     })

@@ -475,6 +475,34 @@ export const resolvers = {
       filter: true
     },
     {
+      name: 'dnsforfamily-doh',
+      endpoint: {
+        protocol: 'https:',
+        host: 'dns-doh.dnsforfamily.com'
+      },
+      description: '(DoH Protocol) (Now supports DNSSEC). Block adult websites, gambling websites, malwares and advertisements.\nIt also enforces safe search in: Google, YouTube, Bing, DuckDuckGo and Yandex.\nSocial websites like Facebook and Instagram are not blocked. No DNS queries are logged.\nAs of 26-May-2022 5.9 million websites are blocked and new websites are added to blacklist daily.\nCompletely free, no ads or any commercial motive. Operating for 4 years now.\nProvided by: https://dnsforfamily.com',
+      country: 'Finland',
+      location: {
+        lat: 60.1758,
+        long: 24.9349
+      },
+      filter: true
+    },
+    {
+      name: 'dnsforfamily-doh-no-safe-search',
+      endpoint: {
+        protocol: 'https:',
+        host: 'dns-doh-no-safe-search.dnsforfamily.com'
+      },
+      description: '(DoH Protocol) (Now supports DNSSEC) Block adult websites, gambling websites, malwares and advertisements.\nUnlike other dnsforfamily servers, this one does not enforces safe search. So Google, YouTube, Bing, DuckDuckGo and Yandex are completely accessible without any restriction.\nSocial websites like Facebook and Instagram are not blocked. No DNS queries are logged.\nAs of 26-May-2022 5.9 million websites are blocked and new websites are added to blacklist daily.\nCompletely free, no ads or any commercial motive. Operating for 4 years now.\nWarning: This server is incompatible with anonymization.\nProvided by: https://dnsforfamily.com',
+      country: 'Finland',
+      location: {
+        lat: 60.1758,
+        long: 24.9349
+      },
+      filter: true
+    },
+    {
       name: 'dnsforge.de',
       endpoint: {
         protocol: 'https:',
@@ -695,6 +723,14 @@ export const resolvers = {
       },
       filter: true,
       cors: true
+    },
+    {
+      name: 'doh-ibksturm',
+      endpoint: {
+        protocol: 'https:',
+        host: 'ibksturm.synology.me'
+      },
+      description: 'DoH & DoT Server, No Logging, No Filters, DNSSEC\nRunning privately by ibksturm in Thurgau, Switzerland'
     },
     {
       name: 'doh-jp-blahdns',
@@ -1158,5 +1194,5 @@ export const resolvers = {
       }
     }
   ],
-  time: 1654185279537
+  time: 1654187067783
 }

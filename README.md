@@ -1,13 +1,32 @@
 # dns-query
 
-Node & Browser tested, Non-JSON DNS over HTTPS (and DNS) fetching with minimal dependencies.
+Low-level DNS requests using JavaScript in the Browser and Node.js.
 
-> DNS over HTTPS (DoH) is protocol designed for performing remote Domain Name System
-> resolution over HTTPS. Requests are made of HTTP to increase user security and privacy.
-> See [DNS over HTTPS](https://en.wikipedia.org/wiki/DNS_over_HTTPS) for more
-> information.
+```js
+import { query } from 'dns-query'
 
-This package provides simple function to make DoH queries both in node and the browser.
+const { answers, rcode } = await query(
+  { question: { type: 'TXT', name: 'google.com' } },
+  { endpoints: ['1.1.1.1'] }
+)
+```
+
+#### Why use it?
+
+- You get the **same API both on Node.js and the Browser** _(and React-Native)_.
+- You need DNS information not exposed through high-level APIs _(eg. [`ttl` for `TXT` entries](#dns-support))_.
+- You want to **use [DNS-over-HTTPS][]** _(DoH)_ servers.
+
+[DNS-over-HTTPS]: https://en.wikipedia.org/wiki/DNS_over_HTTPS
+
+#### What is in the package?
+
+- [DoH][DNS-over-HTTPS] implementation in Node.js and the browser.
+- Low level implementation of classic DNS in Node.js.
+- ESM modules, CommonJS modules and typescript definitions.
+- A list of well-known DoH endpoints.
+- A parser for compact definitions of DoH and DNS endpoints.
+- A command line tool to run DNS requests.
 
 ## Contents
 
@@ -150,7 +169,8 @@ This list is **[automatically compiled][]** using the data from the [DNSCrypt][]
 [DNSCrypt]: https://dnscrypt.info/
 
 The npm package comes with the list that was/is current on the time of it's publication.
-`await wellknown.data()` will try to automatically download the list from [the dns-query website][].
+By default `await wellknown.data()` will try to automatically download the newest list from [the dns-query website][]
+and fall back to the list at publication if downloading fails.
 
 [the dns-query website]: https://martinheidegger.github.io/dns-query/resolvers.json
 
@@ -162,8 +182,8 @@ let options
 options = 'doh' // Filter to use only doh endpoints
 options = 'dns' // Filter to use only dns servers (Node.js only!)
 options = ['@cloudflare', '@google', '@opendns'] // Use specific named endpoints
-options = ['https://cloudflare-dns.com/dns-query']) // You can also 
-options = [{ host: 'cloudflare-dns.com' }] // Specify using properties
+options = ['https://cloudflare-dns.com/dns-query']) // For a convenient API, you can also define regular endpoints...
+options = [{ host: 'cloudflare-dns.com' }] // ... and bypass the well-known entries.
 options = (endpoint) => endpoint.protocol === 'https:' // Use a filter against the well-known endpoints
 options = Promise.resolve('doh') // The endpoints can also be a promise
 

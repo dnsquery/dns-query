@@ -237,6 +237,20 @@
       }
     },
     {
+      "name": "brahma-world",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.brahma.world"
+      },
+      "description": "DNS-over-HTTPS server. Non Logging, filters ads, trackers and malware. DNSSEC ready, QNAME Minimization, No EDNS Client-Subnet.\nHosted in Stockholm, Sweden. (https://dns.brahma.world)",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      },
+      "filter": true
+    },
+    {
       "name": "cisco-doh",
       "endpoint": {
         "protocol": "https:",
@@ -1004,11 +1018,67 @@
       "filter": true
     },
     {
+      "name": "publicarray-au2-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "doh-2.seby.io",
+        "cors": true
+      },
+      "description": "DNSSEC • OpenNIC • Non-logging • Uncensored - hosted on ovh.com.au\nMaintained by publicarray - https://dns.seby.io",
+      "country": "Australia",
+      "location": {
+        "lat": -33.8591,
+        "long": 151.2002
+      },
+      "cors": true
+    },
+    {
+      "name": "puredns-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "puredns.org",
+        "ipv4": "146.190.6.13",
+        "cors": true
+      },
+      "description": "Public uncensored DNS resolver in Singapore - https://puredns.org\n** Only available in Indonesia and Singapore **",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      },
+      "cors": true
+    },
+    {
+      "name": "quad101",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.twnic.tw",
+        "cors": true
+      },
+      "description": "DNSSEC-aware public resolver by the Taiwan Network Information Center (TWNIC)\nhttps://101.101.101.101/index_en.html",
+      "cors": true
+    },
+    {
+      "name": "quad9-doh-ip4-port443-filter-ecs-pri",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns11.quad9.net",
+        "ipv4": "9.9.9.11"
+      },
+      "description": "Quad9 (anycast) dnssec/no-log/filter/ecs 9.9.9.11 - 149.112.112.11",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      },
+      "filter": true
+    },
+    {
       "name": "quad9-doh-ip4-port443-filter-pri",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns.quad9.net",
-        "ipv4": "149.112.112.112"
+        "host": "dns9.quad9.net",
+        "ipv4": "149.112.112.9"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
       "country": "United States",
@@ -1037,7 +1107,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns10.quad9.net",
-        "ipv4": "9.9.9.10"
+        "ipv4": "149.112.112.10"
       },
       "description": "Quad9 (anycast) no-dnssec/no-log/no-filter 9.9.9.10 - 149.112.112.10",
       "country": "United States",
@@ -1045,21 +1115,6 @@
         "lat": 37.751,
         "long": -97.822
       }
-    },
-    {
-      "name": "quad9-doh-ip4-port5053-filter-pri",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns9.quad9.net",
-        "ipv4": "9.9.9.9"
-      },
-      "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
-      "country": "France",
-      "location": {
-        "lat": 48.8582,
-        "long": 2.3387
-      },
-      "filter": true
     },
     {
       "name": "safesurfer-doh",

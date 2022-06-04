@@ -990,6 +990,15 @@
       "filter": true
     },
     {
+      "name": "odoh-jp.tiar.app",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "jp.tiar.app",
+        "path": "/odoh"
+      },
+      "description": "ODoH target server. no logs."
+    },
+    {
       "name": "odoh-jp.tiarap.org",
       "endpoint": {
         "protocol": "https:",

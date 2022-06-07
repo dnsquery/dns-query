@@ -210,33 +210,6 @@
       "log": true
     },
     {
-      "name": "bcn-ads-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dnses-noads.alekberg.net"
-      },
-      "description": "Resolver in Spain. DoH protocol. Non-logging, remove ads and malware, DNSSEC.",
-      "country": "Spain",
-      "location": {
-        "lat": 41.3891,
-        "long": 2.1611
-      },
-      "filter": true
-    },
-    {
-      "name": "bcn-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dnses.alekberg.net"
-      },
-      "description": "Resolver in Spain. DoH protocol. Non-logging, non-filtering, DNSSEC.",
-      "country": "Spain",
-      "location": {
-        "lat": 41.3891,
-        "long": 2.1611
-      }
-    },
-    {
       "name": "brahma-world",
       "endpoint": {
         "protocol": "https:",
@@ -739,6 +712,14 @@
       "cors": true
     },
     {
+      "name": "doh-ibksturm",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "ibksturm.synology.me"
+      },
+      "description": "DoH & DoT Server, No Logging, No Filters, DNSSEC\nRunning privately by ibksturm in Thurgau, Switzerland"
+    },
+    {
       "name": "doh-jp-blahdns",
       "endpoint": {
         "protocol": "https:",
@@ -771,7 +752,8 @@
       "name": "doh.tiarap.org",
       "endpoint": {
         "protocol": "https:",
-        "host": "doh.tiarap.org"
+        "host": "doh.tiarap.org",
+        "cors": true
       },
       "description": "Non-Logging DNS-over-HTTPS server, cached via Cloudflare.\nFilters out ads, trackers and malware, NO ECS, supports DNSSEC.",
       "country": "United States",
@@ -779,7 +761,8 @@
         "lat": 37.751,
         "long": -97.822
       },
-      "filter": true
+      "filter": true,
+      "cors": true
     },
     {
       "name": "google",
@@ -831,7 +814,8 @@
       "name": "id-gmail-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "doh.tiar.app"
+        "host": "doh.tiar.app",
+        "cors": true
       },
       "description": "Non-Logging DNS-over-HTTPS server located in Singapore.\nFilters out ads, trackers and malware, supports DNSSEC, provided by id-gmail.",
       "country": "Singapore",
@@ -839,7 +823,8 @@
         "lat": 1.2929,
         "long": 103.8547
       },
-      "filter": true
+      "filter": true,
+      "cors": true
     },
     {
       "name": "iij",
@@ -856,25 +841,38 @@
       "log": true
     },
     {
+      "name": "iqdns-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "a.passcloud.xyz"
+      },
+      "description": "Non-logging DoH service runned by V2EX.com user johnsonwil.\nReturns \"no such domain\" for anti-Chinese government websites. Supports DNSSEC.\nFor more information: https://www.v2ex.com/t/785666",
+      "filter": true
+    },
+    {
       "name": "jp.tiar.app-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "jp.tiar.app"
+        "host": "jp.tiar.app",
+        "cors": true
       },
       "description": "Non-Logging, Non-Filtering DNS-over-HTTPS server in Japan.\nNo ECS, Support DNSSEC",
       "country": "Japan",
       "location": {
         "lat": 35.6882,
         "long": 139.7532
-      }
+      },
+      "cors": true
     },
     {
       "name": "jp.tiarap.org",
       "endpoint": {
         "protocol": "https:",
-        "host": "jp.tiarap.org"
+        "host": "jp.tiarap.org",
+        "cors": true
       },
-      "description": "DNS-over-HTTPS Server. Non-Logging, Non-Filtering, No ECS, Support DNSSEC.\nCached via Cloudflare."
+      "description": "DNS-over-HTTPS Server. Non-Logging, Non-Filtering, No ECS, Support DNSSEC.\nCached via Cloudflare.",
+      "cors": true
     },
     {
       "name": "libredns",
@@ -967,38 +965,23 @@
       "endpoint": {
         "protocol": "https:",
         "host": "doh.tiar.app",
-        "path": "/odoh"
+        "path": "/odoh",
+        "cors": true
       },
       "description": "ODoH target server. Based in Singapore, no logs.\nFilter ads, trackers and malware.",
-      "filter": true
+      "filter": true,
+      "cors": true
     },
     {
       "name": "odoh-jp.tiar.app",
       "endpoint": {
         "protocol": "https:",
         "host": "jp.tiar.app",
-        "path": "/odoh"
+        "path": "/odoh",
+        "cors": true
       },
-      "description": "ODoH target server. no logs."
-    },
-    {
-      "name": "odoh-jp.tiarap.org",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "jp.tiarap.org",
-        "path": "/odoh"
-      },
-      "description": "ODoH target server via Cloudflare, no logs."
-    },
-    {
-      "name": "odoh-tiarap.org",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh.tiarap.org",
-        "path": "/odoh"
-      },
-      "description": "ODoH target server via Cloudflare, no logs.\nFilter ads, trackers and malware.",
-      "filter": true
+      "description": "ODoH target server. no logs.",
+      "cors": true
     },
     {
       "name": "publicarray-au2-doh",
@@ -1036,6 +1019,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns.twnic.tw",
+        "method": "POST",
         "cors": true
       },
       "description": "DNSSEC-aware public resolver by the Taiwan Network Information Center (TWNIC)\nhttps://101.101.101.101/index_en.html",
@@ -1060,8 +1044,8 @@
       "name": "quad9-doh-ip4-port443-filter-pri",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns.quad9.net",
-        "ipv4": "149.112.112.112"
+        "host": "dns9.quad9.net",
+        "ipv4": "149.112.112.9"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
       "country": "United States",
@@ -1098,21 +1082,6 @@
         "lat": 37.751,
         "long": -97.822
       }
-    },
-    {
-      "name": "quad9-doh-ip4-port5053-filter-pri",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns9.quad9.net",
-        "ipv4": "9.9.9.9"
-      },
-      "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
-      "country": "France",
-      "location": {
-        "lat": 48.8582,
-        "long": 2.3387
-      },
-      "filter": true
     },
     {
       "name": "safesurfer-doh",
@@ -1184,6 +1153,19 @@
       "location": {
         "lat": 55.7123,
         "long": 12.0564
+      }
+    },
+    {
+      "name": "v.dnscrypt.uk-doh-ipv4",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "v.dnscrypt.uk"
+      },
+      "description": "DoH, no logs, uncensored, DNSSEC. Hosted in London UK on Digital Ocean\nhttps://www.dnscrypt.uk",
+      "country": "United Kingdom",
+      "location": {
+        "lat": 51.4964,
+        "long": -0.1224
       }
     }
   ]

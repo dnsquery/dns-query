@@ -739,14 +739,6 @@
       "cors": true
     },
     {
-      "name": "doh-ibksturm",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "ibksturm.synology.me"
-      },
-      "description": "DoH & DoT Server, No Logging, No Filters, DNSSEC\nRunning privately by ibksturm in Thurgau, Switzerland"
-    },
-    {
       "name": "doh-jp-blahdns",
       "endpoint": {
         "protocol": "https:",
@@ -974,6 +966,7 @@
         "protocol": "https:",
         "host": "jp.tiar.app",
         "path": "/odoh",
+        "method": "POST",
         "cors": true
       },
       "description": "ODoH target server. no logs.",
@@ -1048,7 +1041,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns11.quad9.net",
-        "ipv4": "9.9.9.11"
+        "ipv4": "149.112.112.11"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter/ecs 9.9.9.11 - 149.112.112.11",
       "country": "United States",
@@ -1062,14 +1055,14 @@
       "name": "quad9-doh-ip4-port443-filter-pri",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns.quad9.net",
-        "ipv4": "149.112.112.112"
+        "host": "dns9.quad9.net",
+        "ipv4": "9.9.9.9"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
-      "country": "United States",
+      "country": "France",
       "location": {
-        "lat": 37.751,
-        "long": -97.822
+        "lat": 48.8582,
+        "long": 2.3387
       },
       "filter": true
     },
@@ -1078,7 +1071,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns12.quad9.net",
-        "ipv4": "9.9.9.12"
+        "ipv4": "149.112.112.12"
       },
       "description": "Quad9 (anycast) no-dnssec/no-log/no-filter/ecs 9.9.9.12 - 149.112.112.12",
       "country": "United States",
@@ -1100,6 +1093,20 @@
         "lat": 37.751,
         "long": -97.822
       }
+    },
+    {
+      "name": "quad9-doh-ip6-port443-filter-pri",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.quad9.net"
+      },
+      "description": "Quad9 (anycast) dnssec/no-log/filter 2620:fe::fe - 2620:fe::9 - 2620:fe::fe:9",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      },
+      "filter": true
     },
     {
       "name": "safesurfer-doh",
@@ -1154,6 +1161,19 @@
         "host": "unicast.uncensoreddns.org"
       },
       "description": "Also known as censurfridns.\nDoH, no logs, no filter, DNSSEC, unicast hosted in Denmark - https://blog.uncensoreddns.org",
+      "country": "Denmark",
+      "location": {
+        "lat": 55.7123,
+        "long": 12.0564
+      }
+    },
+    {
+      "name": "uncensoreddns-ipv4",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "anycast.uncensoreddns.org"
+      },
+      "description": "Also known as censurfridns.\nDoH, no logs, no filter, DNSSEC, anycast - https://blog.uncensoreddns.org",
       "country": "Denmark",
       "location": {
         "lat": 55.7123,

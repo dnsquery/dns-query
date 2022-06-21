@@ -210,33 +210,6 @@
       "log": true
     },
     {
-      "name": "bcn-ads-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dnses-noads.alekberg.net"
-      },
-      "description": "Resolver in Spain. DoH protocol. Non-logging, remove ads and malware, DNSSEC.",
-      "country": "Spain",
-      "location": {
-        "lat": 41.3891,
-        "long": 2.1611
-      },
-      "filter": true
-    },
-    {
-      "name": "bcn-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dnses.alekberg.net"
-      },
-      "description": "Resolver in Spain. DoH protocol. Non-logging, non-filtering, DNSSEC.",
-      "country": "Spain",
-      "location": {
-        "lat": 41.3891,
-        "long": 2.1611
-      }
-    },
-    {
       "name": "brahma-world",
       "endpoint": {
         "protocol": "https:",
@@ -433,6 +406,19 @@
       }
     },
     {
+      "name": "dns.ryan-palmer",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns1.ryan-palmer.com"
+      },
+      "description": "Non-logging, non-filtering, DNSSEC DoH Server. Hosted in the UK.",
+      "country": "United Kingdom",
+      "location": {
+        "lat": 51.5164,
+        "long": -0.093
+      }
+    },
+    {
       "name": "dns.sb",
       "endpoint": {
         "protocol": "https:",
@@ -540,75 +526,40 @@
       "cors": true
     },
     {
-      "name": "dnswarden-asia-adblock-dohv4",
+      "name": "dnswarden-asia-adblock-doh",
       "endpoint": {
         "protocol": "https:",
         "host": "doh.asia.dnswarden.com",
         "path": "/adblock"
       },
       "description": "Hosted in Singapore. For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com).",
-      "country": "Singapore",
-      "location": {
-        "lat": 1.2929,
-        "long": 103.8547
-      },
       "filter": true
     },
     {
-      "name": "dnswarden-asia-adultfilter-dohv4",
+      "name": "dnswarden-asia-adultfilter-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "doh.asia.dnswarden.com",
-        "path": "/adultfilter"
+        "host": "doh.asia.dnswarden.com"
       },
       "description": "Hosted in Singapore. For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com).",
-      "country": "Singapore",
-      "location": {
-        "lat": 1.2929,
-        "long": 103.8547
-      },
       "filter": true
     },
     {
-      "name": "dnswarden-asia-uncensor-dohv4",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh.asia.dnswarden.com",
-        "path": "/uncensored"
-      },
-      "description": "Hosted in Singapore. For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com).",
-      "country": "Singapore",
-      "location": {
-        "lat": 1.2929,
-        "long": 103.8547
-      }
-    },
-    {
-      "name": "dnswarden-eu-adblock-dohv4",
+      "name": "dnswarden-eu-adblock-doh",
       "endpoint": {
         "protocol": "https:",
         "host": "doh.eu.dnswarden.com"
       },
       "description": "Hosted in Germany. For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com).",
-      "country": "Germany",
-      "location": {
-        "lat": 50.1103,
-        "long": 8.7147
-      },
       "filter": true
     },
     {
-      "name": "dnswarden-us-adblock-dohv4",
+      "name": "dnswarden-us-adblock-doh",
       "endpoint": {
         "protocol": "https:",
         "host": "doh.us.dnswarden.com"
       },
       "description": "Hosted in USA (Dallas) . For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com).",
-      "country": "United States",
-      "location": {
-        "lat": 32.7889,
-        "long": -96.8021
-      },
       "filter": true
     },
     {
@@ -729,7 +680,8 @@
       "name": "doh-ibksturm",
       "endpoint": {
         "protocol": "https:",
-        "host": "ibksturm.synology.me"
+        "host": "ibksturm.synology.me",
+        "method": "POST"
       },
       "description": "DoH & DoT Server, No Logging, No Filters, DNSSEC\nRunning privately by ibksturm in Thurgau, Switzerland"
     },
@@ -887,28 +839,6 @@
       }
     },
     {
-      "name": "nextdns",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "anycast.dns.nextdns.io"
-      },
-      "description": "NextDNS is a cloud-based private DNS service that gives you full control\nover what is allowed and what is blocked on the Internet.\nDNSSEC, Anycast, Non-logging, NoFilters\nhttps://www.nextdns.io/",
-      "country": "United States",
-      "location": {
-        "lat": 37.751,
-        "long": -97.822
-      }
-    },
-    {
-      "name": "nextdns-ultralow",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns.nextdns.io",
-        "path": "/dnscrypt-proxy"
-      },
-      "description": "NextDNS is a cloud-based private DNS service that gives you full control\nover what is allowed and what is blocked on the Internet.\nhttps://www.nextdns.io/\nTo select the server location, the \"-ultralow\" variant relies on bootstrap servers\ninstead of anycast."
-    },
-    {
       "name": "njalla-doh",
       "endpoint": {
         "protocol": "https:",
@@ -1020,6 +950,21 @@
       "cors": true
     },
     {
+      "name": "puredns-family-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "family.puredns.org",
+        "cors": true
+      },
+      "description": "Public DNS resolver for Families in Indonesia - https://puredns.org/family/\nBlocks malware, adware, gambling, fakenews, and adult sites. Google, Bing,\nand YouTube are set to Safe mode.",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      },
+      "cors": true
+    },
+    {
       "name": "quad101",
       "endpoint": {
         "protocol": "https:",
@@ -1034,7 +979,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns11.quad9.net",
-        "ipv4": "9.9.9.11"
+        "ipv4": "149.112.112.11"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter/ecs 9.9.9.11 - 149.112.112.11",
       "country": "United States",
@@ -1049,13 +994,13 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns9.quad9.net",
-        "ipv4": "9.9.9.9"
+        "ipv4": "149.112.112.9"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
-      "country": "France",
+      "country": "United States",
       "location": {
-        "lat": 48.8582,
-        "long": 2.3387
+        "lat": 37.751,
+        "long": -97.822
       },
       "filter": true
     },

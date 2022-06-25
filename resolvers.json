@@ -677,14 +677,6 @@
       "cors": true
     },
     {
-      "name": "doh-ibksturm",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "ibksturm.synology.me"
-      },
-      "description": "DoH & DoT Server, No Logging, No Filters, DNSSEC\nRunning privately by ibksturm in Thurgau, Switzerland"
-    },
-    {
       "name": "doh-jp-blahdns",
       "endpoint": {
         "protocol": "https:",
@@ -838,6 +830,22 @@
       }
     },
     {
+      "name": "meganerd-doh-ipv6",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "chewbacca.meganerd.nl",
+        "path": "/doh",
+        "cors": true
+      },
+      "description": "DoH server by MegaNerd.nl (IPv6) - https://meganerd.nl/encrypted-dns-server\nHosted in Amsterdam (AMS1), The Netherlands.\nNon-logging, non-filtering, supports DNSSEC.",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      },
+      "cors": true
+    },
+    {
       "name": "nextdns",
       "endpoint": {
         "protocol": "https:",
@@ -956,21 +964,6 @@
       "cors": true
     },
     {
-      "name": "puredns-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "puredns.org",
-        "cors": true
-      },
-      "description": "Public uncensored DNS resolver in Singapore - https://puredns.org\n** Only available in Indonesia and Singapore **",
-      "country": "United States",
-      "location": {
-        "lat": 37.751,
-        "long": -97.822
-      },
-      "cors": true
-    },
-    {
       "name": "puredns-family-doh",
       "endpoint": {
         "protocol": "https:",
@@ -1015,13 +1008,13 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns9.quad9.net",
-        "ipv4": "9.9.9.9"
+        "ipv4": "149.112.112.9"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
-      "country": "France",
+      "country": "United States",
       "location": {
-        "lat": 48.8582,
-        "long": 2.3387
+        "lat": 37.751,
+        "long": -97.822
       },
       "filter": true
     },
@@ -1030,7 +1023,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns12.quad9.net",
-        "ipv4": "149.112.112.12"
+        "ipv4": "9.9.9.12"
       },
       "description": "Quad9 (anycast) no-dnssec/no-log/no-filter/ecs 9.9.9.12 - 149.112.112.12",
       "country": "United States",
@@ -1044,7 +1037,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns10.quad9.net",
-        "ipv4": "149.112.112.10"
+        "ipv4": "9.9.9.10"
       },
       "description": "Quad9 (anycast) no-dnssec/no-log/no-filter 9.9.9.10 - 149.112.112.10",
       "country": "United States",
@@ -1054,7 +1047,7 @@
       }
     },
     {
-      "name": "quad9-doh-ip6-port5053-filter-pri",
+      "name": "quad9-doh-ip6-port443-filter-pri",
       "endpoint": {
         "protocol": "https:",
         "host": "dns.quad9.net"

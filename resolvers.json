@@ -406,6 +406,21 @@
       }
     },
     {
+      "name": "dns.digitalsize.net",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.digitalsize.net",
+        "cors": true
+      },
+      "description": "A public, non-tracking, non-filtering DNS resolver with DNSSEC enabled and hosted in Germany (https://dns.digitalsize.net)",
+      "country": "Germany",
+      "location": {
+        "lat": 51.2993,
+        "long": 9.491
+      },
+      "cors": true
+    },
+    {
       "name": "dns.ryan-palmer",
       "endpoint": {
         "protocol": "https:",
@@ -527,16 +542,6 @@
     },
     {
       "name": "dnswarden-asia-adblock-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh.asia.dnswarden.com",
-        "path": "/adblock"
-      },
-      "description": "Hosted in Singapore. For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com).",
-      "filter": true
-    },
-    {
-      "name": "dnswarden-asia-adultfilter-doh",
       "endpoint": {
         "protocol": "https:",
         "host": "doh.asia.dnswarden.com"
@@ -672,51 +677,6 @@
       "location": {
         "lat": 60.1758,
         "long": 24.9349
-      },
-      "filter": true,
-      "cors": true
-    },
-    {
-      "name": "doh-jp-blahdns",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh-jp.blahdns.com",
-        "cors": true
-      },
-      "description": "Blocks ad and Tracking, no Logging, DNSSEC, Hosted in Japan. By https://blahdns.com/",
-      "country": "Japan",
-      "location": {
-        "lat": 35.6882,
-        "long": 139.7532
-      },
-      "filter": true,
-      "cors": true
-    },
-    {
-      "name": "doh.ffmuc.net",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh.ffmuc.net"
-      },
-      "description": "An open (non-logging, non-filtering, non-censoring) DoH resolver operated by Freifunk Munich with nodes in DE.\nhttps://ffmuc.net/",
-      "country": "Germany",
-      "location": {
-        "lat": 51.2993,
-        "long": 9.491
-      }
-    },
-    {
-      "name": "doh.tiarap.org",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh.tiarap.org",
-        "cors": true
-      },
-      "description": "Non-Logging DNS-over-HTTPS server, cached via Cloudflare.\nFilters out ads, trackers and malware, NO ECS, supports DNSSEC.",
-      "country": "United States",
-      "location": {
-        "lat": 37.751,
-        "long": -97.822
       },
       "filter": true,
       "cors": true
@@ -964,6 +924,21 @@
       "cors": true
     },
     {
+      "name": "puredns-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "puredns.org",
+        "cors": true
+      },
+      "description": "Public uncensored DNS resolver in Singapore - https://puredns.org\n** Only available in Indonesia and Singapore **",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      },
+      "cors": true
+    },
+    {
       "name": "puredns-family-doh",
       "endpoint": {
         "protocol": "https:",
@@ -1007,8 +982,8 @@
       "name": "quad9-doh-ip4-port443-filter-pri",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns9.quad9.net",
-        "ipv4": "149.112.112.9"
+        "host": "dns.quad9.net",
+        "ipv4": "149.112.112.112"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
       "country": "United States",
@@ -1023,7 +998,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns12.quad9.net",
-        "ipv4": "9.9.9.12"
+        "ipv4": "149.112.112.12"
       },
       "description": "Quad9 (anycast) no-dnssec/no-log/no-filter/ecs 9.9.9.12 - 149.112.112.12",
       "country": "United States",
@@ -1047,12 +1022,13 @@
       }
     },
     {
-      "name": "quad9-doh-ip6-port443-filter-pri",
+      "name": "quad9-doh-ip4-port5053-filter-pri",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns.quad9.net"
+        "host": "dns9.quad9.net",
+        "ipv4": "149.112.112.9"
       },
-      "description": "Quad9 (anycast) dnssec/no-log/filter 2620:fe::fe - 2620:fe::9 - 2620:fe::fe:9",
+      "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
       "country": "United States",
       "location": {
         "lat": 37.751,

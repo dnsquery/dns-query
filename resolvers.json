@@ -682,6 +682,59 @@
       "cors": true
     },
     {
+      "name": "doh-ibksturm",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "ibksturm.synology.me"
+      },
+      "description": "DoH & DoT Server, No Logging, No Filters, DNSSEC\nRunning privately by ibksturm in Thurgau, Switzerland"
+    },
+    {
+      "name": "doh-jp-blahdns",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "doh-jp.blahdns.com",
+        "cors": true
+      },
+      "description": "Blocks ad and Tracking, no Logging, DNSSEC, Hosted in Japan. By https://blahdns.com/",
+      "country": "Japan",
+      "location": {
+        "lat": 35.6882,
+        "long": 139.7532
+      },
+      "filter": true,
+      "cors": true
+    },
+    {
+      "name": "doh.ffmuc.net",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "doh.ffmuc.net"
+      },
+      "description": "An open (non-logging, non-filtering, non-censoring) DoH resolver operated by Freifunk Munich with nodes in DE.\nhttps://ffmuc.net/",
+      "country": "Germany",
+      "location": {
+        "lat": 51.2993,
+        "long": 9.491
+      }
+    },
+    {
+      "name": "doh.tiarap.org",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "doh.tiarap.org",
+        "cors": true
+      },
+      "description": "Non-Logging DNS-over-HTTPS server, cached via Cloudflare.\nFilters out ads, trackers and malware, NO ECS, supports DNSSEC.",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      },
+      "filter": true,
+      "cors": true
+    },
+    {
       "name": "google",
       "endpoint": {
         "protocol": "https:",
@@ -868,6 +921,7 @@
         "protocol": "https:",
         "host": "doh.tiar.app",
         "path": "/odoh",
+        "method": "POST",
         "cors": true
       },
       "description": "ODoH target server. Based in Singapore, no logs.\nFilter ads, trackers and malware.",
@@ -954,16 +1008,6 @@
       "cors": true
     },
     {
-      "name": "quad101",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns.twnic.tw",
-        "cors": true
-      },
-      "description": "DNSSEC-aware public resolver by the Taiwan Network Information Center (TWNIC)\nhttps://101.101.101.101/index_en.html",
-      "cors": true
-    },
-    {
       "name": "quad9-doh-ip4-port443-filter-ecs-pri",
       "endpoint": {
         "protocol": "https:",
@@ -1012,7 +1056,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns10.quad9.net",
-        "ipv4": "9.9.9.10"
+        "ipv4": "149.112.112.10"
       },
       "description": "Quad9 (anycast) no-dnssec/no-log/no-filter 9.9.9.10 - 149.112.112.10",
       "country": "United States",
@@ -1026,13 +1070,13 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns9.quad9.net",
-        "ipv4": "149.112.112.9"
+        "ipv4": "9.9.9.9"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
-      "country": "United States",
+      "country": "France",
       "location": {
-        "lat": 37.751,
-        "long": -97.822
+        "lat": 48.8582,
+        "long": 2.3387
       },
       "filter": true
     },

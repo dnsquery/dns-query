@@ -1006,16 +1006,6 @@
       "cors": true
     },
     {
-      "name": "quad101",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns.twnic.tw",
-        "cors": true
-      },
-      "description": "DNSSEC-aware public resolver by the Taiwan Network Information Center (TWNIC)\nhttps://101.101.101.101/index_en.html",
-      "cors": true
-    },
-    {
       "name": "quad9-doh-ip4-port443-filter-ecs-pri",
       "endpoint": {
         "protocol": "https:",
@@ -1034,14 +1024,14 @@
       "name": "quad9-doh-ip4-port443-filter-pri",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns.quad9.net",
-        "ipv4": "149.112.112.112"
+        "host": "dns9.quad9.net",
+        "ipv4": "9.9.9.9"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
-      "country": "United States",
+      "country": "France",
       "location": {
-        "lat": 37.751,
-        "long": -97.822
+        "lat": 48.8582,
+        "long": 2.3387
       },
       "filter": true
     },
@@ -1077,8 +1067,8 @@
       "name": "quad9-doh-ip4-port5053-filter-pri",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns9.quad9.net",
-        "ipv4": "149.112.112.9"
+        "host": "dns.quad9.net",
+        "ipv4": "149.112.112.112"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
       "country": "United States",

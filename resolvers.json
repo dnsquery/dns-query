@@ -541,6 +541,14 @@
       "cors": true
     },
     {
+      "name": "dnswarden-asia-uncensor-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "doh.asia.dnswarden.com"
+      },
+      "description": "Hosted in Singapore. For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com)."
+    },
+    {
       "name": "dnswarden-eu-adblock-doh",
       "endpoint": {
         "protocol": "https:",
@@ -830,7 +838,6 @@
       "endpoint": {
         "protocol": "https:",
         "host": "chewbacca.meganerd.nl",
-        "path": "/doh",
         "cors": true
       },
       "description": "DoH server by MegaNerd.nl (IPv4) - https://meganerd.nl/encrypted-dns-server\nHosted in Amsterdam (AMS1), The Netherlands.\nNon-logging, non-filtering, supports DNSSEC.",
@@ -1107,13 +1114,13 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns9.quad9.net",
-        "ipv4": "149.112.112.9"
+        "ipv4": "9.9.9.9"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
-      "country": "United States",
+      "country": "France",
       "location": {
-        "lat": 37.751,
-        "long": -97.822
+        "lat": 48.8582,
+        "long": 2.3387
       },
       "filter": true
     },

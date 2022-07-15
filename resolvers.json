@@ -454,6 +454,20 @@
       "cors": true
     },
     {
+      "name": "dns.therifleman.name",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.therifleman.name"
+      },
+      "description": "DNS-over-HTTPS DNS forwarder from Mumbai, India. Blocks web and Android trackers and ads.\nIP addresses are not logged, but queries are logged for 24 hours for debugging.\nReport issues, send suggestions @ joker349 at protonmail.com.\nAlso supports DoT (for android) @ dns.therifleman.name and plain DNS @ 172.104.206.174",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      },
+      "filter": true
+    },
+    {
       "name": "dnscrypt.uk-doh-ipv4",
       "endpoint": {
         "protocol": "https:",
@@ -531,30 +545,180 @@
       "cors": true
     },
     {
-      "name": "dnswarden-asia-uncensor-doh",
+      "name": "dnswarden-adblock-fr1-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "doh.asia.dnswarden.com"
+        "host": "fr1.dnswarden.com",
+        "path": "/adblock"
       },
-      "description": "Hosted in Singapore. For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com)."
-    },
-    {
-      "name": "dnswarden-eu-adblock-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh.eu.dnswarden.com"
+      "description": "Hosted in France. For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com).",
+      "country": "Germany",
+      "location": {
+        "lat": 51.2993,
+        "long": 9.491
       },
-      "description": "Hosted in Germany. For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com).",
       "filter": true
     },
     {
-      "name": "dnswarden-us-adblock-doh",
+      "name": "dnswarden-adblock-ind1-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "doh.us.dnswarden.com"
+        "host": "ind1.dnswarden.com",
+        "path": "/adblock"
+      },
+      "description": "Hosted in India. For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com).",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      },
+      "filter": true
+    },
+    {
+      "name": "dnswarden-adblock-sg1-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "sg1.dnswarden.com",
+        "path": "/adblock"
+      },
+      "description": "Hosted in Singapore. For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com).",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      },
+      "filter": true
+    },
+    {
+      "name": "dnswarden-adblock-us1-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "us1.dnswarden.com",
+        "path": "/adblock"
       },
       "description": "Hosted in USA (Dallas) . For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com).",
+      "country": "United States",
+      "location": {
+        "lat": 32.7889,
+        "long": -96.8021
+      },
       "filter": true
+    },
+    {
+      "name": "dnswarden-adult-fr1-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "fr1.dnswarden.com",
+        "path": "/adultfilter"
+      },
+      "description": "Hosted in France. For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com). Blocks adult content and enforces safe search on major search engines.",
+      "country": "Germany",
+      "location": {
+        "lat": 51.2993,
+        "long": 9.491
+      },
+      "filter": true
+    },
+    {
+      "name": "dnswarden-adult-ind1-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "ind1.dnswarden.com",
+        "path": "/adultfilter"
+      },
+      "description": "Hosted in India. For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com). Blocks adult content and enforces safe search on major search engines.",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      },
+      "filter": true
+    },
+    {
+      "name": "dnswarden-adult-sg1-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "sg1.dnswarden.com",
+        "path": "/adultfilter"
+      },
+      "description": "Hosted in Singapore. For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com).  Blocks adult content and enforces safe search on major search engines.",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      },
+      "filter": true
+    },
+    {
+      "name": "dnswarden-adult-us1-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "us1.dnswarden.com",
+        "path": "/adultfilter"
+      },
+      "description": "Hosted in USA (Dallas) . For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com). Blocks adult content and enforces safe search on major search engines.",
+      "country": "United States",
+      "location": {
+        "lat": 32.7889,
+        "long": -96.8021
+      },
+      "filter": true
+    },
+    {
+      "name": "dnswarden-uncensor-fr1-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "fr1.dnswarden.com",
+        "path": "/uncensored"
+      },
+      "description": "Hosted in France. For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com).",
+      "country": "Germany",
+      "location": {
+        "lat": 51.2993,
+        "long": 9.491
+      }
+    },
+    {
+      "name": "dnswarden-uncensor-ind1-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "ind1.dnswarden.com",
+        "path": "/uncensored"
+      },
+      "description": "Hosted in India. For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com).",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      }
+    },
+    {
+      "name": "dnswarden-uncensor-sg1-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "sg1.dnswarden.com",
+        "path": "/uncensored"
+      },
+      "description": "Hosted in Singapore. For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com).",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      }
+    },
+    {
+      "name": "dnswarden-uncensor-us1-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "us1.dnswarden.com",
+        "path": "/uncensored"
+      },
+      "description": "Hosted in USA (Dallas) . For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com).",
+      "country": "United States",
+      "location": {
+        "lat": 32.7889,
+        "long": -96.8021
+      }
     },
     {
       "name": "doh-ch-blahdns",
@@ -785,6 +949,15 @@
       "log": true
     },
     {
+      "name": "iqdns-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "a.passcloud.xyz"
+      },
+      "description": "Non-logging DoH service runned by V2EX.com user johnsonwil.\nReturns \"no such domain\" for anti-Chinese government websites. Supports DNSSEC.\nFor more information: https://www.v2ex.com/t/785666",
+      "filter": true
+    },
+    {
       "name": "jp.tiar.app-doh",
       "endpoint": {
         "protocol": "https:",
@@ -998,6 +1171,19 @@
       "cors": true
     },
     {
+      "name": "plan9dns-mx-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "helios.plan9-dns.com"
+      },
+      "description": "Mexico City, Mexico No-logs, no-filters, DNSSEC -info https://jlongua.github.io/plan9-dns",
+      "country": "United States",
+      "location": {
+        "lat": 39.9668,
+        "long": -75.1512
+      }
+    },
+    {
       "name": "plan9dns-nj-doh",
       "endpoint": {
         "protocol": "https:",
@@ -1055,6 +1241,7 @@
         "lat": 37.751,
         "long": -97.822
       },
+      "filter": true,
       "cors": true
     },
     {
@@ -1062,6 +1249,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns.twnic.tw",
+        "method": "POST",
         "cors": true
       },
       "description": "DNSSEC-aware public resolver by the Taiwan Network Information Center (TWNIC)\nhttps://101.101.101.101/index_en.html",

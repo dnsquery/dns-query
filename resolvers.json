@@ -92,6 +92,22 @@
       "cors": true
     },
     {
+      "name": "ahadns-doh-la",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "doh.la.ahadns.net",
+        "cors": true
+      },
+      "description": "A zero logging DNS with support for DNS-over-HTTPS (DoH) & DNS-over-TLS (DoT). Blocks ads, malware, trackers, viruses, ransomware, telemetry and more. No persistent logs. DNSSEC. Hosted in Los Angeles, USA. By https://ahadns.com/\nServer statistics can be seen at: https://statistics.ahadns.com/?server=la",
+      "country": "United States",
+      "location": {
+        "lat": 34.0549,
+        "long": -118.2578
+      },
+      "filter": true,
+      "cors": true
+    },
+    {
       "name": "ahadns-doh-nl",
       "endpoint": {
         "protocol": "https:",
@@ -162,6 +178,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dnsnl-noads.alekberg.net",
+        "method": "POST",
         "cors": true
       },
       "description": "Resolver in Amsterdam. DoH protocol. Non-logging. Blocks ads, malware and trackers. DNSSEC enabled.",
@@ -178,6 +195,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dnsnl.alekberg.net",
+        "method": "POST",
         "cors": true
       },
       "description": "Resolver in Amsterdam. DoH protocol. Non-logging, non-filtering, DNSSEC.",
@@ -980,21 +998,6 @@
       }
     },
     {
-      "name": "meganerd-doh-ipv4",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "chewbacca.meganerd.nl",
-        "cors": true
-      },
-      "description": "DoH server by MegaNerd.nl (IPv4) - https://meganerd.nl/encrypted-dns-server\nHosted in Amsterdam (AMS1), The Netherlands.\nNon-logging, non-filtering, supports DNSSEC.",
-      "country": "Netherlands",
-      "location": {
-        "lat": 52.3891,
-        "long": 4.6563
-      },
-      "cors": true
-    },
-    {
       "name": "nextdns",
       "endpoint": {
         "protocol": "https:",
@@ -1233,6 +1236,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns.twnic.tw",
+        "method": "POST",
         "cors": true
       },
       "description": "DNSSEC-aware public resolver by the Taiwan Network Information Center (TWNIC)\nhttps://101.101.101.101/index_en.html",
@@ -1273,7 +1277,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns12.quad9.net",
-        "ipv4": "149.112.112.12"
+        "ipv4": "9.9.9.12"
       },
       "description": "Quad9 (anycast) no-dnssec/no-log/no-filter/ecs 9.9.9.12 - 149.112.112.12",
       "country": "United States",
@@ -1287,7 +1291,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns10.quad9.net",
-        "ipv4": "9.9.9.10"
+        "ipv4": "149.112.112.10"
       },
       "description": "Quad9 (anycast) no-dnssec/no-log/no-filter 9.9.9.10 - 149.112.112.10",
       "country": "United States",
@@ -1297,13 +1301,12 @@
       }
     },
     {
-      "name": "quad9-doh-ip4-port5053-filter-pri",
+      "name": "quad9-doh-ip6-port443-filter-pri",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns.quad9.net",
-        "ipv4": "149.112.112.112"
+        "host": "dns.quad9.net"
       },
-      "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
+      "description": "Quad9 (anycast) dnssec/no-log/filter 2620:fe::fe - 2620:fe::9 - 2620:fe::fe:9",
       "country": "United States",
       "location": {
         "lat": 37.751,

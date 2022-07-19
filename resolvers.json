@@ -1247,6 +1247,16 @@
       "cors": true
     },
     {
+      "name": "quad101",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.twnic.tw",
+        "cors": true
+      },
+      "description": "DNSSEC-aware public resolver by the Taiwan Network Information Center (TWNIC)\nhttps://101.101.101.101/index_en.html",
+      "cors": true
+    },
+    {
       "name": "quad9-doh-ip4-port443-filter-ecs-pri",
       "endpoint": {
         "protocol": "https:",

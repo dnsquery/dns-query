@@ -1060,6 +1060,7 @@
         "protocol": "https:",
         "host": "doh.tiar.app",
         "path": "/odoh",
+        "method": "POST",
         "cors": true
       },
       "description": "ODoH target server. Based in Singapore, no logs.\nFilter ads, trackers and malware.",
@@ -1229,16 +1230,6 @@
         "long": -97.822
       },
       "filter": true,
-      "cors": true
-    },
-    {
-      "name": "quad101",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns.twnic.tw",
-        "cors": true
-      },
-      "description": "DNSSEC-aware public resolver by the Taiwan Network Information Center (TWNIC)\nhttps://101.101.101.101/index_en.html",
       "cors": true
     },
     {

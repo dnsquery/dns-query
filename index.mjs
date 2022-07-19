@@ -175,7 +175,7 @@ function concatUint8 (arrs) {
   return res
 }
 
-export function combineTXT (inputs) {
+export function combineTxt (inputs) {
   return decode(concatUint8(inputs))
 }
 
@@ -321,7 +321,7 @@ export function lookupTxt (domain, opts) {
           .filter(answer => answer.type === 'TXT' && answer.data)
           .map(answer => {
             return ({
-              data: combineTXT(answer.data),
+              data: combineTxt(answer.data),
               ttl: answer.ttl
             })
           })

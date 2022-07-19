@@ -280,14 +280,14 @@ it is old.
 ### Txt Helper
 
 The default `TXT` response of dns-queries is a list of `Uint8Array`'s. If you have a
-`TXT` response you can use the `combineTXT` API to combine the requests.
+`TXT` response you can use the `combineTxt` API to combine the requests.
 
 ```js
-import { combineTXT } from 'dns-query'
+import { combineTxt } from 'dns-query'
 
 const response = await query(/* ... */)
 if (response.question.type === 'TXT') {
-  const txt = response.answers.map(answer => combineTXT(answer.data))
+  const txt = response.answers.map(answer => combineTxt(answer.data))
 }
 ```
 

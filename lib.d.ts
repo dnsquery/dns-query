@@ -7,7 +7,7 @@ export function request (url: URL, method: 'POST' | 'GET', packet: Uint8Array, t
   error: Error
   response: Response
 } | {
-  data: Buffer
+  data: Uint8Array
   response: Response
 }>
 export function loadJSON (url: URL, cache: null | {

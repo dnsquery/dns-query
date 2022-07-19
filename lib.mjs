@@ -139,7 +139,7 @@ function requestRaw (url, method, body, timeout, abortSignal, headers) {
     }
     req.on('error', onerror)
     if (method === 'POST') {
-      req.end(Buffer.from(body))
+      req.end(body)
     } else {
       req.end()
     }
@@ -167,7 +167,14 @@ function requestRaw (url, method, body, timeout, abortSignal, headers) {
 
       function onclose () {
         if (finish !== null) {
-          finish(null, Buffer.concat(result), res)
+          const totalLen = result.reduce((acc, chunk) => acc + chunk.length, 0)
+          const { bytes } = result.reduce((acc, chunk) => {
+            acc.bytes.set(chunk, acc.offset)
+            acc.offset += chunk.length
+            return acc
+          }, { bytes: new Uint8Array(totalLen), offset: 0 })
+
+          finish(null, bytes, res)
         }
       }
     }
@@ -256,7 +263,7 @@ export function loadJSON (url, cache, timeout, abortSignal) {
           if (response.error) {
             return Promise.reject(response.error)
           }
-          const data = response.data
+          const data = Buffer.from(response.data)
           return storeCache(folder, cachePath, data).then(function (time) {
             return {
               time,

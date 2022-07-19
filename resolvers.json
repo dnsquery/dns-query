@@ -998,21 +998,6 @@
       }
     },
     {
-      "name": "meganerd-doh-ipv4",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "chewbacca.meganerd.nl",
-        "cors": true
-      },
-      "description": "DoH server by MegaNerd.nl (IPv4) - https://meganerd.nl/encrypted-dns-server\nHosted in Amsterdam (AMS1), The Netherlands.\nNon-logging, non-filtering, supports DNSSEC.",
-      "country": "Netherlands",
-      "location": {
-        "lat": 52.3891,
-        "long": 4.6563
-      },
-      "cors": true
-    },
-    {
       "name": "nextdns",
       "endpoint": {
         "protocol": "https:",

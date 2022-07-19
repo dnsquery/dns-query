@@ -182,7 +182,7 @@ let options
 options = 'doh' // Filter to use only doh endpoints
 options = 'dns' // Filter to use only dns servers (Node.js only!)
 options = ['@cloudflare', '@google', '@opendns'] // Use specific named endpoints
-options = ['https://cloudflare-dns.com/dns-query']) // For a convenient API, you can also define regular endpoints...
+options = ['https://cloudflare-dns.com/dns-query'] // For a convenient API, you can also define regular endpoints...
 options = [{ host: 'cloudflare-dns.com' }] // ... and bypass the well-known entries.
 options = (endpoint) => endpoint.protocol === 'https:' // Use a filter against the well-known endpoints
 options = Promise.resolve('doh') // The endpoints can also be a promise

@@ -58,7 +58,7 @@ try {
     endpoints: ['dns.google', 'dns.switch.ch'], // See more about endpoints below!
 
     /* (optional) */
-    retry: 3, // retries if a given endpoint fails; -1 = infinite retries; 0 = no retry
+    retries: 3, // retries if a given endpoint fails; -1 = infinite retries; 0 = no retry
     timeout: 4000, // (default=30000) timeout for single requests
     signal, // An AbortSignal to abort the request
   })

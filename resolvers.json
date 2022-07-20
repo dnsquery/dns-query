@@ -174,39 +174,6 @@
       "cors": true
     },
     {
-      "name": "ams-ads-doh-nl",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dnsnl-noads.alekberg.net",
-        "method": "POST",
-        "cors": true
-      },
-      "description": "Resolver in Amsterdam. DoH protocol. Non-logging. Blocks ads, malware and trackers. DNSSEC enabled.",
-      "country": "Romania",
-      "location": {
-        "lat": 45.9968,
-        "long": 24.997
-      },
-      "filter": true,
-      "cors": true
-    },
-    {
-      "name": "ams-doh-nl",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dnsnl.alekberg.net",
-        "method": "POST",
-        "cors": true
-      },
-      "description": "Resolver in Amsterdam. DoH protocol. Non-logging, non-filtering, DNSSEC.",
-      "country": "Romania",
-      "location": {
-        "lat": 45.9968,
-        "long": 24.997
-      },
-      "cors": true
-    },
-    {
       "name": "att",
       "endpoint": {
         "protocol": "https:",
@@ -1114,17 +1081,6 @@
       "cors": true
     },
     {
-      "name": "odoh-koki-noads-ams",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "odoh-target-noads.alekberg.net",
-        "cors": true
-      },
-      "description": "Oblivious DoH target server in The Netherlands. No logs, filter ads and malware, DNSSEC.",
-      "filter": true,
-      "cors": true
-    },
-    {
       "name": "odoh-koki-noads-se",
       "endpoint": {
         "protocol": "https:",
@@ -1261,7 +1217,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns11.quad9.net",
-        "ipv4": "149.112.112.11"
+        "ipv4": "9.9.9.11"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter/ecs 9.9.9.11 - 149.112.112.11",
       "country": "United States",
@@ -1315,12 +1271,13 @@
       }
     },
     {
-      "name": "quad9-doh-ip6-port443-filter-pri",
+      "name": "quad9-doh-ip4-port5053-filter-pri",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns9.quad9.net"
+        "host": "dns9.quad9.net",
+        "ipv4": "149.112.112.9"
       },
-      "description": "Quad9 (anycast) dnssec/no-log/filter 2620:fe::fe - 2620:fe::9 - 2620:fe::fe:9",
+      "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
       "country": "United States",
       "location": {
         "lat": 37.751,
@@ -1337,37 +1294,6 @@
       "description": "Family safety focused blocklist for over 2 million adult sites, as well as phishing and malware and more.\nFree to use, paid for customizing blocking for more categories+sites and viewing usage at my.safesurfer.io. Logs taken for viewing\nusage, data never sold - https://safesurfer.io",
       "filter": true,
       "log": true
-    },
-    {
-      "name": "sth-ads-doh-se",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dnsse-noads.alekberg.net",
-        "cors": true
-      },
-      "description": "Resolver in Stockholm, Sweden. DoH server. Non-logging, remove ads and malware, DNSSEC.",
-      "country": "Bulgaria",
-      "location": {
-        "lat": 42.696,
-        "long": 23.332
-      },
-      "filter": true,
-      "cors": true
-    },
-    {
-      "name": "sth-doh-se",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dnsse.alekberg.net",
-        "cors": true
-      },
-      "description": "Resolver in Stockholm, Sweden. DoH server. Non-logging, non-filtering, DNSSEC.",
-      "country": "Bulgaria",
-      "location": {
-        "lat": 42.696,
-        "long": 23.332
-      },
-      "cors": true
     },
     {
       "name": "switch",

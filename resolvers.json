@@ -892,6 +892,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "doh.tiar.app",
+        "method": "POST",
         "cors": true
       },
       "description": "Non-Logging DNS-over-HTTPS server located in Singapore.\nFilters out ads, trackers and malware, supports DNSSEC, provided by id-gmail.",
@@ -1207,6 +1208,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns.twnic.tw",
+        "method": "POST",
         "cors": true
       },
       "description": "DNSSEC-aware public resolver by the Taiwan Network Information Center (TWNIC)\nhttps://101.101.101.101/index_en.html",

@@ -65,7 +65,7 @@ export interface WellknownOpts {
 }
 
 export function validateResponse <R>(res: R): R;
-export function combineTXT(inputs: Uint8Array[]): Uint8Array;
+export function combineTxt(inputs: Uint8Array[]): Uint8Array;
 
 export interface WellknownData {
   resolvers: Resolver[];

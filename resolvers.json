@@ -174,6 +174,33 @@
       "cors": true
     },
     {
+      "name": "ams-ads-doh-nl",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dnsnl-noads.alekberg.net"
+      },
+      "description": "Resolver in Amsterdam. DoH protocol. Non-logging. Blocks ads, malware and trackers. DNSSEC enabled.",
+      "country": "Romania",
+      "location": {
+        "lat": 45.9968,
+        "long": 24.997
+      },
+      "filter": true
+    },
+    {
+      "name": "ams-doh-nl",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dnsnl.alekberg.net"
+      },
+      "description": "Resolver in Amsterdam. DoH protocol. Non-logging, non-filtering, DNSSEC.",
+      "country": "Romania",
+      "location": {
+        "lat": 45.9968,
+        "long": 24.997
+      }
+    },
+    {
       "name": "att",
       "endpoint": {
         "protocol": "https:",
@@ -500,114 +527,6 @@
         "host": "dns.dnshome.de"
       },
       "description": "https://www.dnshome.de/ public resolver in Germany"
-    },
-    {
-      "name": "dnspod-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh.pub",
-        "cors": true
-      },
-      "description": "A public DNS resolver in mainland China provided by DNSPod (Tencent Cloud).\nhttps://www.dnspod.cn/Products/Public.DNS?lang=en",
-      "filter": true,
-      "log": true,
-      "cors": true
-    },
-    {
-      "name": "dnswarden-adblock-fr1-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "fr1.dnswarden.com"
-      },
-      "description": "Hosted in France. For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com).",
-      "country": "Germany",
-      "location": {
-        "lat": 51.2993,
-        "long": 9.491
-      },
-      "filter": true
-    },
-    {
-      "name": "dnswarden-adblock-ind1-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "ind1.dnswarden.com"
-      },
-      "description": "Hosted in India. For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com).",
-      "country": "United States",
-      "location": {
-        "lat": 37.751,
-        "long": -97.822
-      },
-      "filter": true
-    },
-    {
-      "name": "dnswarden-adblock-sg1-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "sg1.dnswarden.com"
-      },
-      "description": "Hosted in Singapore. For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com).",
-      "country": "United States",
-      "location": {
-        "lat": 37.751,
-        "long": -97.822
-      },
-      "filter": true
-    },
-    {
-      "name": "dnswarden-adblock-us1-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "us1.dnswarden.com"
-      },
-      "description": "Hosted in USA (Dallas) . For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com).",
-      "country": "United States",
-      "location": {
-        "lat": 32.7889,
-        "long": -96.8021
-      },
-      "filter": true
-    },
-    {
-      "name": "doh-ch-blahdns",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh-ch.blahdns.com",
-        "cors": true
-      },
-      "description": "Blocks ad and Tracking, no Logging, DNSSEC, Hosted in Switzerland. By https://blahdns.com/",
-      "country": "Netherlands",
-      "location": {
-        "lat": 52.3824,
-        "long": 4.8995
-      },
-      "filter": true,
-      "cors": true
-    },
-    {
-      "name": "doh-cleanbrowsing-adult",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh.cleanbrowsing.org",
-        "path": "/doh/adult-filter/",
-        "cors": true
-      },
-      "description": "Blocks access to all adult, pornographic and explicit sites. It does\nnot block proxy or VPNs, nor mixed-content sites. Sites like Reddit\nare allowed. Google and Bing are set to the Safe Mode.\nBy https://cleanbrowsing.org/",
-      "filter": true,
-      "cors": true
-    },
-    {
-      "name": "doh-cleanbrowsing-family",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh.cleanbrowsing.org",
-        "path": "/doh/family-filter/",
-        "cors": true
-      },
-      "description": "Blocks access to all adult, pornographic and explicit sites. It also\nblocks proxy and VPN domains that are used to bypass the filters.\nMixed content sites (like Reddit) are also blocked. Google, Bing and\nYoutube are set to the Safe Mode.\nBy https://cleanbrowsing.org/",
-      "filter": true,
-      "cors": true
     },
     {
       "name": "doh-cleanbrowsing-security",
@@ -961,6 +880,17 @@
       "cors": true
     },
     {
+      "name": "odoh-koki-noads-ams",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "odoh-target-noads.alekberg.net",
+        "cors": true
+      },
+      "description": "Oblivious DoH target server in The Netherlands. No logs, filter ads and malware, DNSSEC.",
+      "filter": true,
+      "cors": true
+    },
+    {
       "name": "odoh-koki-noads-se",
       "endpoint": {
         "protocol": "https:",
@@ -1087,7 +1017,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns11.quad9.net",
-        "ipv4": "149.112.112.11"
+        "ipv4": "9.9.9.11"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter/ecs 9.9.9.11 - 149.112.112.11",
       "country": "United States",
@@ -1102,13 +1032,13 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns9.quad9.net",
-        "ipv4": "9.9.9.9"
+        "ipv4": "149.112.112.9"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
-      "country": "France",
+      "country": "United States",
       "location": {
-        "lat": 48.8582,
-        "long": 2.3387
+        "lat": 37.751,
+        "long": -97.822
       },
       "filter": true
     },
@@ -1117,7 +1047,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns12.quad9.net",
-        "ipv4": "9.9.9.12"
+        "ipv4": "149.112.112.12"
       },
       "description": "Quad9 (anycast) no-dnssec/no-log/no-filter/ecs 9.9.9.12 - 149.112.112.12",
       "country": "United States",
@@ -1139,6 +1069,20 @@
         "lat": 37.751,
         "long": -97.822
       }
+    },
+    {
+      "name": "quad9-doh-ip6-port443-filter-pri",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.quad9.net"
+      },
+      "description": "Quad9 (anycast) dnssec/no-log/filter 2620:fe::fe - 2620:fe::9 - 2620:fe::fe:9",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      },
+      "filter": true
     },
     {
       "name": "safesurfer-doh",

@@ -529,6 +529,114 @@
       "description": "https://www.dnshome.de/ public resolver in Germany"
     },
     {
+      "name": "dnspod-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "doh.pub",
+        "cors": true
+      },
+      "description": "A public DNS resolver in mainland China provided by DNSPod (Tencent Cloud).\nhttps://www.dnspod.cn/Products/Public.DNS?lang=en",
+      "filter": true,
+      "log": true,
+      "cors": true
+    },
+    {
+      "name": "dnswarden-adblock-fr1-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "fr1.dnswarden.com"
+      },
+      "description": "Hosted in France. For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com).",
+      "country": "Germany",
+      "location": {
+        "lat": 51.2993,
+        "long": 9.491
+      },
+      "filter": true
+    },
+    {
+      "name": "dnswarden-adblock-ind1-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "ind1.dnswarden.com"
+      },
+      "description": "Hosted in India. For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com).",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      },
+      "filter": true
+    },
+    {
+      "name": "dnswarden-adblock-sg1-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "sg1.dnswarden.com"
+      },
+      "description": "Hosted in Singapore. For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com).",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      },
+      "filter": true
+    },
+    {
+      "name": "dnswarden-adblock-us1-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "us1.dnswarden.com"
+      },
+      "description": "Hosted in USA (Dallas) . For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com).",
+      "country": "United States",
+      "location": {
+        "lat": 32.7889,
+        "long": -96.8021
+      },
+      "filter": true
+    },
+    {
+      "name": "doh-ch-blahdns",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "doh-ch.blahdns.com",
+        "cors": true
+      },
+      "description": "Blocks ad and Tracking, no Logging, DNSSEC, Hosted in Switzerland. By https://blahdns.com/",
+      "country": "Netherlands",
+      "location": {
+        "lat": 52.3824,
+        "long": 4.8995
+      },
+      "filter": true,
+      "cors": true
+    },
+    {
+      "name": "doh-cleanbrowsing-adult",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "doh.cleanbrowsing.org",
+        "path": "/doh/adult-filter/",
+        "cors": true
+      },
+      "description": "Blocks access to all adult, pornographic and explicit sites. It does\nnot block proxy or VPNs, nor mixed-content sites. Sites like Reddit\nare allowed. Google and Bing are set to the Safe Mode.\nBy https://cleanbrowsing.org/",
+      "filter": true,
+      "cors": true
+    },
+    {
+      "name": "doh-cleanbrowsing-family",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "doh.cleanbrowsing.org",
+        "path": "/doh/family-filter/",
+        "cors": true
+      },
+      "description": "Blocks access to all adult, pornographic and explicit sites. It also\nblocks proxy and VPN domains that are used to bypass the filters.\nMixed content sites (like Reddit) are also blocked. Google, Bing and\nYoutube are set to the Safe Mode.\nBy https://cleanbrowsing.org/",
+      "filter": true,
+      "cors": true
+    },
+    {
       "name": "doh-cleanbrowsing-security",
       "endpoint": {
         "protocol": "https:",
@@ -853,6 +961,7 @@
         "protocol": "https:",
         "host": "jp.tiar.app",
         "path": "/odoh",
+        "method": "POST",
         "cors": true
       },
       "description": "ODoH target server. no logs.",
@@ -955,16 +1064,14 @@
       "name": "plan9dns-nj-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "kronos.plan9-dns.com",
-        "cors": true
+        "host": "kronos.plan9-dns.com"
       },
       "description": "Piscataway New Jersey, US No-logs, no-filters, DNSSEC -info https://jlongua.github.io/plan9-dns",
       "country": "United States",
       "location": {
         "lat": 40.5511,
         "long": -74.4606
-      },
-      "cors": true
+      }
     },
     {
       "name": "publicarray-au2-doh",

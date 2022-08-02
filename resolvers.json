@@ -529,6 +529,46 @@
       "description": "https://www.dnshome.de/ public resolver in Germany"
     },
     {
+      "name": "dnspod-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "doh.pub",
+        "cors": true
+      },
+      "description": "A public DNS resolver in mainland China provided by DNSPod (Tencent Cloud).\nhttps://www.dnspod.cn/Products/Public.DNS?lang=en",
+      "filter": true,
+      "log": true,
+      "cors": true
+    },
+    {
+      "name": "dnswarden-adblock-fr1-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "fr1.dnswarden.com"
+      },
+      "description": "Hosted in France. For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com).",
+      "country": "Germany",
+      "location": {
+        "lat": 51.2993,
+        "long": 9.491
+      },
+      "filter": true
+    },
+    {
+      "name": "dnswarden-adblock-ind1-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "ind1.dnswarden.com"
+      },
+      "description": "Hosted in India. For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com).",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      },
+      "filter": true
+    },
+    {
       "name": "dnswarden-adblock-sg1-doh",
       "endpoint": {
         "protocol": "https:",
@@ -539,6 +579,20 @@
       "location": {
         "lat": 37.751,
         "long": -97.822
+      },
+      "filter": true
+    },
+    {
+      "name": "dnswarden-adblock-us1-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "us1.dnswarden.com"
+      },
+      "description": "Hosted in USA (Dallas) . For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com).",
+      "country": "United States",
+      "location": {
+        "lat": 32.7889,
+        "long": -96.8021
       },
       "filter": true
     },
@@ -784,7 +838,6 @@
       "endpoint": {
         "protocol": "https:",
         "host": "jp.tiar.app",
-        "method": "POST",
         "cors": true
       },
       "description": "Non-Logging, Non-Filtering DNS-over-HTTPS server in Japan.\nNo ECS, Support DNSSEC",
@@ -800,6 +853,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "jp.tiarap.org",
+        "method": "POST",
         "cors": true
       },
       "description": "DNS-over-HTTPS Server. Non-Logging, Non-Filtering, No ECS, Support DNSSEC.\nCached via Cloudflare.",
@@ -1066,21 +1120,11 @@
       "cors": true
     },
     {
-      "name": "quad101",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns.twnic.tw",
-        "cors": true
-      },
-      "description": "DNSSEC-aware public resolver by the Taiwan Network Information Center (TWNIC)\nhttps://101.101.101.101/index_en.html",
-      "cors": true
-    },
-    {
       "name": "quad9-doh-ip4-port443-filter-ecs-pri",
       "endpoint": {
         "protocol": "https:",
         "host": "dns11.quad9.net",
-        "ipv4": "149.112.112.11"
+        "ipv4": "9.9.9.11"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter/ecs 9.9.9.11 - 149.112.112.11",
       "country": "United States",
@@ -1110,7 +1154,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns12.quad9.net",
-        "ipv4": "9.9.9.12"
+        "ipv4": "149.112.112.12"
       },
       "description": "Quad9 (anycast) no-dnssec/no-log/no-filter/ecs 9.9.9.12 - 149.112.112.12",
       "country": "United States",
@@ -1132,6 +1176,21 @@
         "lat": 37.751,
         "long": -97.822
       }
+    },
+    {
+      "name": "quad9-doh-ip4-port5053-filter-pri",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns9.quad9.net",
+        "ipv4": "149.112.112.9"
+      },
+      "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      },
+      "filter": true
     },
     {
       "name": "safesurfer-doh",
@@ -1178,6 +1237,19 @@
       },
       "description": "Public DoH service provided by SWITCH in Switzerland\nhttps://www.switch.ch\nProvides protection against malware, but does not block ads.",
       "filter": true
+    },
+    {
+      "name": "uncensoreddns-dk-ipv4",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "unicast.uncensoreddns.org"
+      },
+      "description": "Also known as censurfridns.\nDoH, no logs, no filter, DNSSEC, unicast hosted in Denmark - https://blog.uncensoreddns.org",
+      "country": "Denmark",
+      "location": {
+        "lat": 55.7123,
+        "long": 12.0564
+      }
     },
     {
       "name": "uncensoreddns-ipv4",

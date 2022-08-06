@@ -16,146 +16,6 @@
       "filter": true
     },
     {
-      "name": "adguard-dns-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns.adguard.com",
-        "ipv4": "94.140.15.15"
-      },
-      "description": "Remove ads and protect your computer from malware (over DoH)",
-      "country": "France",
-      "location": {
-        "lat": 48.8582,
-        "long": 2.3387
-      },
-      "filter": true
-    },
-    {
-      "name": "adguard-dns-family-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns-family.adguard.com",
-        "ipv4": "94.140.15.16"
-      },
-      "description": "Adguard DNS with safesearch and adult content blocking (over DoH)",
-      "country": "France",
-      "location": {
-        "lat": 48.8582,
-        "long": 2.3387
-      },
-      "filter": true
-    },
-    {
-      "name": "adguard-dns-unfiltered-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns-unfiltered.adguard.com",
-        "ipv4": "94.140.14.140"
-      },
-      "description": "AdGuard public DNS servers without filters (over DoH)",
-      "country": "France",
-      "location": {
-        "lat": 48.8582,
-        "long": 2.3387
-      }
-    },
-    {
-      "name": "ahadns-doh-chi",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh.chi.ahadns.net",
-        "cors": true
-      },
-      "description": "A zero logging DNS with support for DNS-over-HTTPS (DoH) & DNS-over-TLS (DoT). Blocks ads, malware, trackers, viruses, ransomware, telemetry and more. No persistent logs. DNSSEC. Hosted in Chicago, USA. By https://ahadns.com/\nServer statistics can be seen at: https://statistics.ahadns.com/?server=chi",
-      "country": "United States",
-      "location": {
-        "lat": 41.8483,
-        "long": -87.6517
-      },
-      "filter": true,
-      "cors": true
-    },
-    {
-      "name": "ahadns-doh-in",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh.in.ahadns.net",
-        "cors": true
-      },
-      "description": "A zero logging DNS with support for DNS-over-HTTPS (DoH) & DNS-over-TLS (DoT). Blocks ads, malware, trackers, viruses, ransomware, telemetry and more. No persistent logs. DNSSEC. Hosted in Mumbai, India. By https://ahadns.com/\nServer statistics can be seen at: https://statistics.ahadns.com/?server=in",
-      "country": "India",
-      "location": {
-        "lat": 19.0748,
-        "long": 72.8856
-      },
-      "filter": true,
-      "cors": true
-    },
-    {
-      "name": "ahadns-doh-la",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh.la.ahadns.net",
-        "cors": true
-      },
-      "description": "A zero logging DNS with support for DNS-over-HTTPS (DoH) & DNS-over-TLS (DoT). Blocks ads, malware, trackers, viruses, ransomware, telemetry and more. No persistent logs. DNSSEC. Hosted in Los Angeles, USA. By https://ahadns.com/\nServer statistics can be seen at: https://statistics.ahadns.com/?server=la",
-      "country": "United States",
-      "location": {
-        "lat": 34.0549,
-        "long": -118.2578
-      },
-      "filter": true,
-      "cors": true
-    },
-    {
-      "name": "ahadns-doh-nl",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh.nl.ahadns.net",
-        "cors": true
-      },
-      "description": "A zero logging DNS with support for DNS-over-HTTPS (DoH) & DNS-over-TLS (DoT). Blocks ads, malware, trackers, viruses, ransomware, telemetry and more. No persistent logs. DNSSEC. Hosted in Amsterdam, Netherlands. By https://ahadns.com/\nServer statistics can be seen at: https://statistics.ahadns.com/?server=nl",
-      "country": "Netherlands",
-      "location": {
-        "lat": 52.3824,
-        "long": 4.8995
-      },
-      "filter": true,
-      "cors": true
-    },
-    {
-      "name": "ahadns-doh-ny",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh.ny.ahadns.net",
-        "cors": true
-      },
-      "description": "A zero logging DNS with support for DNS-over-HTTPS (DoH) & DNS-over-TLS (DoT). Blocks ads, malware, trackers, viruses, ransomware, telemetry and more. No persistent logs. DNSSEC. Hosted in New York. By https://ahadns.com/\nServer statistics can be seen at: https://statistics.ahadns.com/?server=ny",
-      "country": "United States",
-      "location": {
-        "lat": 40.7308,
-        "long": -73.9975
-      },
-      "filter": true,
-      "cors": true
-    },
-    {
-      "name": "ahadns-doh-pl",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh.pl.ahadns.net",
-        "cors": true
-      },
-      "description": "A zero logging DNS with support for DNS-over-HTTPS (DoH) & DNS-over-TLS (DoT). Blocks ads, malware, trackers, viruses, ransomware, telemetry and more. No persistent logs. DNSSEC. Hosted in Poland. By https://ahadns.com/\nServer statistics can be seen at: https://statistics.ahadns.com/?server=pl",
-      "country": "Netherlands",
-      "location": {
-        "lat": 52.3824,
-        "long": 4.8995
-      },
-      "filter": true,
-      "cors": true
-    },
-    {
       "name": "alidns-doh",
       "endpoint": {
         "protocol": "https:",
@@ -421,19 +281,6 @@
       "cors": true
     },
     {
-      "name": "dns.ryan-palmer",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns1.ryan-palmer.com"
-      },
-      "description": "Non-logging, non-filtering, DNSSEC DoH Server. Hosted in the UK.",
-      "country": "United Kingdom",
-      "location": {
-        "lat": 51.5164,
-        "long": -0.093
-      }
-    },
-    {
       "name": "dns.sb",
       "endpoint": {
         "protocol": "https:",
@@ -539,20 +386,6 @@
       "filter": true,
       "log": true,
       "cors": true
-    },
-    {
-      "name": "dnswarden-adblock-fr1-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "fr1.dnswarden.com"
-      },
-      "description": "Hosted in France. For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com).",
-      "country": "Germany",
-      "location": {
-        "lat": 51.2993,
-        "long": 9.491
-      },
-      "filter": true
     },
     {
       "name": "dnswarden-adblock-ind1-doh",
@@ -933,7 +766,6 @@
         "protocol": "https:",
         "host": "doh.tiar.app",
         "path": "/odoh",
-        "method": "POST",
         "cors": true
       },
       "description": "ODoH target server. Based in Singapore, no logs.\nFilter ads, trackers and malware.",
@@ -1017,6 +849,19 @@
       "cors": true
     },
     {
+      "name": "plan9dns-fl-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "pluton.plan9-dns.com"
+      },
+      "description": "Miami Florida, US No-logs, no-filters, DNSSEC -info https://jlongua.github.io/plan9-dns",
+      "country": "United States",
+      "location": {
+        "lat": 25.8119,
+        "long": -80.2318
+      }
+    },
+    {
       "name": "plan9dns-mx-doh",
       "endpoint": {
         "protocol": "https:",
@@ -1089,11 +934,21 @@
       "cors": true
     },
     {
+      "name": "quad101",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.twnic.tw",
+        "cors": true
+      },
+      "description": "DNSSEC-aware public resolver by the Taiwan Network Information Center (TWNIC)\nhttps://101.101.101.101/index_en.html",
+      "cors": true
+    },
+    {
       "name": "quad9-doh-ip4-port443-filter-ecs-pri",
       "endpoint": {
         "protocol": "https:",
         "host": "dns11.quad9.net",
-        "ipv4": "149.112.112.11"
+        "ipv4": "9.9.9.11"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter/ecs 9.9.9.11 - 149.112.112.11",
       "country": "United States",
@@ -1123,7 +978,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns12.quad9.net",
-        "ipv4": "149.112.112.12"
+        "ipv4": "9.9.9.12"
       },
       "description": "Quad9 (anycast) no-dnssec/no-log/no-filter/ecs 9.9.9.12 - 149.112.112.12",
       "country": "United States",
@@ -1147,7 +1002,7 @@
       }
     },
     {
-      "name": "quad9-doh-ip6-port5053-filter-pri",
+      "name": "quad9-doh-ip6-port443-filter-pri",
       "endpoint": {
         "protocol": "https:",
         "host": "dns.quad9.net"

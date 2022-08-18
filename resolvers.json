@@ -856,6 +856,21 @@
       }
     },
     {
+      "name": "meganerd-doh-ipv4",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "chewbacca.meganerd.nl",
+        "cors": true
+      },
+      "description": "DoH server by MegaNerd.nl (IPv4) - https://meganerd.nl/encrypted-dns-server\nHosted in Amsterdam (AMS1), The Netherlands.\nNon-logging, non-filtering, supports DNSSEC.",
+      "country": "Netherlands",
+      "location": {
+        "lat": 52.3891,
+        "long": 4.6563
+      },
+      "cors": true
+    },
+    {
       "name": "nextdns",
       "endpoint": {
         "protocol": "https:",
@@ -1090,7 +1105,6 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns.twnic.tw",
-        "method": "POST",
         "cors": true
       },
       "description": "DNSSEC-aware public resolver by the Taiwan Network Information Center (TWNIC)\nhttps://101.101.101.101/index_en.html",
@@ -1145,7 +1159,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns10.quad9.net",
-        "ipv4": "9.9.9.10"
+        "ipv4": "149.112.112.10"
       },
       "description": "Quad9 (anycast) no-dnssec/no-log/no-filter 9.9.9.10 - 149.112.112.10",
       "country": "United States",

@@ -541,20 +541,6 @@
       "cors": true
     },
     {
-      "name": "dnswarden-adblock-fr1-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "fr1.dnswarden.com"
-      },
-      "description": "Hosted in France. For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com).",
-      "country": "Germany",
-      "location": {
-        "lat": 51.2993,
-        "long": 9.491
-      },
-      "filter": true
-    },
-    {
       "name": "dnswarden-adblock-ind1-doh",
       "endpoint": {
         "protocol": "https:",
@@ -579,20 +565,6 @@
       "location": {
         "lat": 37.751,
         "long": -97.822
-      },
-      "filter": true
-    },
-    {
-      "name": "dnswarden-adblock-us1-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "us1.dnswarden.com"
-      },
-      "description": "Hosted in USA (Dallas) . For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com).",
-      "country": "United States",
-      "location": {
-        "lat": 32.7889,
-        "long": -96.8021
       },
       "filter": true
     },
@@ -723,7 +695,6 @@
       "endpoint": {
         "protocol": "https:",
         "host": "doh-jp.blahdns.com",
-        "method": "POST",
         "cors": true
       },
       "description": "Blocks ad and Tracking, no Logging, DNSSEC, Hosted in Japan. By https://blahdns.com/",
@@ -950,7 +921,6 @@
         "protocol": "https:",
         "host": "doh.tiar.app",
         "path": "/odoh",
-        "method": "POST",
         "cors": true
       },
       "description": "ODoH target server. Based in Singapore, no logs.\nFilter ads, trackers and malware.",
@@ -1133,7 +1103,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns11.quad9.net",
-        "ipv4": "149.112.112.11"
+        "ipv4": "9.9.9.11"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter/ecs 9.9.9.11 - 149.112.112.11",
       "country": "United States",
@@ -1148,13 +1118,13 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns9.quad9.net",
-        "ipv4": "149.112.112.9"
+        "ipv4": "9.9.9.9"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
-      "country": "United States",
+      "country": "France",
       "location": {
-        "lat": 37.751,
-        "long": -97.822
+        "lat": 48.8582,
+        "long": 2.3387
       },
       "filter": true
     },
@@ -1187,12 +1157,13 @@
       }
     },
     {
-      "name": "quad9-doh-ip6-port443-filter-pri",
+      "name": "quad9-doh-ip4-port5053-filter-pri",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns.quad9.net"
+        "host": "dns.quad9.net",
+        "ipv4": "149.112.112.112"
       },
-      "description": "Quad9 (anycast) dnssec/no-log/filter 2620:fe::fe - 2620:fe::9 - 2620:fe::fe:9",
+      "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
       "country": "United States",
       "location": {
         "lat": 37.751,
@@ -1245,6 +1216,45 @@
       },
       "description": "Public DoH service provided by SWITCH in Switzerland\nhttps://www.switch.ch\nProvides protection against malware, but does not block ads.",
       "filter": true
+    },
+    {
+      "name": "uncensoreddns-dk-ipv4",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "unicast.uncensoreddns.org"
+      },
+      "description": "Also known as censurfridns.\nDoH, no logs, no filter, DNSSEC, unicast hosted in Denmark - https://blog.uncensoreddns.org",
+      "country": "Denmark",
+      "location": {
+        "lat": 55.7123,
+        "long": 12.0564
+      }
+    },
+    {
+      "name": "uncensoreddns-ipv4",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "anycast.uncensoreddns.org"
+      },
+      "description": "Also known as censurfridns.\nDoH, no logs, no filter, DNSSEC, anycast - https://blog.uncensoreddns.org",
+      "country": "Denmark",
+      "location": {
+        "lat": 55.7123,
+        "long": 12.0564
+      }
+    },
+    {
+      "name": "v.dnscrypt.uk-doh-ipv4",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "v.dnscrypt.uk"
+      },
+      "description": "DoH, no logs, uncensored, DNSSEC. Hosted in London UK on Digital Ocean\nhttps://www.dnscrypt.uk",
+      "country": "United Kingdom",
+      "location": {
+        "lat": 51.4964,
+        "long": -0.1224
+      }
     }
   ]
 }

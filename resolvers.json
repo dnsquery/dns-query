@@ -541,20 +541,6 @@
       "cors": true
     },
     {
-      "name": "dnswarden-adblock-fr1-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "fr1.dnswarden.com"
-      },
-      "description": "Hosted in France. For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com).",
-      "country": "Germany",
-      "location": {
-        "lat": 51.2993,
-        "long": 9.491
-      },
-      "filter": true
-    },
-    {
       "name": "dnswarden-adblock-ind1-doh",
       "endpoint": {
         "protocol": "https:",
@@ -719,6 +705,22 @@
       "description": "DoH & DoT Server, No Logging, No Filters, DNSSEC\nRunning privately by ibksturm in Thurgau, Switzerland"
     },
     {
+      "name": "doh-jp-blahdns",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "doh-jp.blahdns.com",
+        "cors": true
+      },
+      "description": "Blocks ad and Tracking, no Logging, DNSSEC, Hosted in Japan. By https://blahdns.com/",
+      "country": "Japan",
+      "location": {
+        "lat": 35.6882,
+        "long": 139.7532
+      },
+      "filter": true,
+      "cors": true
+    },
+    {
       "name": "doh.ffmuc.net",
       "endpoint": {
         "protocol": "https:",
@@ -854,21 +856,6 @@
         "lat": 51.2993,
         "long": 9.491
       }
-    },
-    {
-      "name": "meganerd-doh-ipv4",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "chewbacca.meganerd.nl",
-        "cors": true
-      },
-      "description": "DoH server by MegaNerd.nl (IPv4) - https://meganerd.nl/encrypted-dns-server\nHosted in Amsterdam (AMS1), The Netherlands.\nNon-logging, non-filtering, supports DNSSEC.",
-      "country": "Netherlands",
-      "location": {
-        "lat": 52.3891,
-        "long": 4.6563
-      },
-      "cors": true
     },
     {
       "name": "nextdns",
@@ -1129,8 +1116,8 @@
       "name": "quad9-doh-ip4-port443-filter-pri",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns.quad9.net",
-        "ipv4": "149.112.112.112"
+        "host": "dns9.quad9.net",
+        "ipv4": "149.112.112.9"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
       "country": "United States",
@@ -1159,7 +1146,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns10.quad9.net",
-        "ipv4": "149.112.112.10"
+        "ipv4": "9.9.9.10"
       },
       "description": "Quad9 (anycast) no-dnssec/no-log/no-filter 9.9.9.10 - 149.112.112.10",
       "country": "United States",
@@ -1169,13 +1156,12 @@
       }
     },
     {
-      "name": "quad9-doh-ip4-port5053-filter-pri",
+      "name": "quad9-doh-ip6-port5053-filter-pri",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns9.quad9.net",
-        "ipv4": "149.112.112.9"
+        "host": "dns.quad9.net"
       },
-      "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
+      "description": "Quad9 (anycast) dnssec/no-log/filter 2620:fe::fe - 2620:fe::9 - 2620:fe::fe:9",
       "country": "United States",
       "location": {
         "lat": 37.751,
@@ -1253,19 +1239,6 @@
       "location": {
         "lat": 55.7123,
         "long": 12.0564
-      }
-    },
-    {
-      "name": "v.dnscrypt.uk-doh-ipv4",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "v.dnscrypt.uk"
-      },
-      "description": "DoH, no logs, uncensored, DNSSEC. Hosted in London UK on Digital Ocean\nhttps://www.dnscrypt.uk",
-      "country": "United Kingdom",
-      "location": {
-        "lat": 51.4964,
-        "long": -0.1224
       }
     }
   ]

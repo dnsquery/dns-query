@@ -709,6 +709,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "doh-jp.blahdns.com",
+        "method": "POST",
         "cors": true
       },
       "description": "Blocks ad and Tracking, no Logging, DNSSEC, Hosted in Japan. By https://blahdns.com/",
@@ -843,69 +844,6 @@
       },
       "description": "DNS-over-HTTPS Server. Non-Logging, Non-Filtering, No ECS, Support DNSSEC.\nCached via Cloudflare.",
       "cors": true
-    },
-    {
-      "name": "libredns",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh.libredns.gr"
-      },
-      "description": "DoH server in Germany. No logging, but no DNS padding and no DNSSEC support.\nhttps://libredns.gr/",
-      "country": "Germany",
-      "location": {
-        "lat": 51.2993,
-        "long": 9.491
-      }
-    },
-    {
-      "name": "meganerd-doh-ipv4",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "chewbacca.meganerd.nl",
-        "cors": true
-      },
-      "description": "DoH server by MegaNerd.nl (IPv4) - https://meganerd.nl/encrypted-dns-server\nHosted in Amsterdam (AMS1), The Netherlands.\nNon-logging, non-filtering, supports DNSSEC.",
-      "country": "Netherlands",
-      "location": {
-        "lat": 52.3891,
-        "long": 4.6563
-      },
-      "cors": true
-    },
-    {
-      "name": "nextdns",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "anycast.dns.nextdns.io"
-      },
-      "description": "NextDNS is a cloud-based private DNS service that gives you full control\nover what is allowed and what is blocked on the Internet.\nDNSSEC, Anycast, Non-logging, NoFilters\nhttps://www.nextdns.io/",
-      "country": "United States",
-      "location": {
-        "lat": 37.751,
-        "long": -97.822
-      }
-    },
-    {
-      "name": "nextdns-ultralow",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns.nextdns.io",
-        "path": "/dnscrypt-proxy"
-      },
-      "description": "NextDNS is a cloud-based private DNS service that gives you full control\nover what is allowed and what is blocked on the Internet.\nhttps://www.nextdns.io/\nTo select the server location, the \"-ultralow\" variant relies on bootstrap servers\ninstead of anycast."
-    },
-    {
-      "name": "njalla-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns.njal.la"
-      },
-      "description": "Non-logging DoH server in Sweden operated by Njalla.\nhttps://dns.njal.la/",
-      "country": "Sweden",
-      "location": {
-        "lat": 59.3247,
-        "long": 18.056
-      }
     },
     {
       "name": "odoh-cloudflare",
@@ -1130,13 +1068,13 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns9.quad9.net",
-        "ipv4": "9.9.9.9"
+        "ipv4": "149.112.112.9"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
-      "country": "France",
+      "country": "United States",
       "location": {
-        "lat": 48.8582,
-        "long": 2.3387
+        "lat": 37.751,
+        "long": -97.822
       },
       "filter": true
     },
@@ -1145,7 +1083,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns12.quad9.net",
-        "ipv4": "9.9.9.12"
+        "ipv4": "149.112.112.12"
       },
       "description": "Quad9 (anycast) no-dnssec/no-log/no-filter/ecs 9.9.9.12 - 149.112.112.12",
       "country": "United States",

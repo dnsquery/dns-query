@@ -108,6 +108,22 @@
       "cors": true
     },
     {
+      "name": "ahadns-doh-nl",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "doh.nl.ahadns.net",
+        "cors": true
+      },
+      "description": "A zero logging DNS with support for DNS-over-HTTPS (DoH) & DNS-over-TLS (DoT). Blocks ads, malware, trackers, viruses, ransomware, telemetry and more. No persistent logs. DNSSEC. Hosted in Amsterdam, Netherlands. By https://ahadns.com/\nServer statistics can be seen at: https://statistics.ahadns.com/?server=nl",
+      "country": "Netherlands",
+      "location": {
+        "lat": 52.3824,
+        "long": 4.8995
+      },
+      "filter": true,
+      "cors": true
+    },
+    {
       "name": "ahadns-doh-ny",
       "endpoint": {
         "protocol": "https:",
@@ -192,6 +208,20 @@
       },
       "description": "AT&T test DoH server.",
       "log": true
+    },
+    {
+      "name": "bebasdns",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.bebasid.com"
+      },
+      "description": "DNS-over-HTTPS forwarder run by BebasID. Filters ads and malware.\nUses Cloudflare, Quad9 & MyRepublic DNS (unfiltered) as upstream resolvers.\nhttps://github.com/bebasid/bebasdns",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      },
+      "filter": true
     },
     {
       "name": "cisco-doh",
@@ -525,20 +555,6 @@
       "filter": true
     },
     {
-      "name": "dnswarden-adblock-ind1-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "ind1.dnswarden.com"
-      },
-      "description": "Hosted in India. For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com).",
-      "country": "United States",
-      "location": {
-        "lat": 37.751,
-        "long": -97.822
-      },
-      "filter": true
-    },
-    {
       "name": "dnswarden-adblock-sg1-doh",
       "endpoint": {
         "protocol": "https:",
@@ -549,20 +565,6 @@
       "location": {
         "lat": 37.751,
         "long": -97.822
-      },
-      "filter": true
-    },
-    {
-      "name": "dnswarden-adblock-us1-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "us1.dnswarden.com"
-      },
-      "description": "Hosted in USA (Dallas) . For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com).",
-      "country": "United States",
-      "location": {
-        "lat": 32.7889,
-        "long": -96.8021
       },
       "filter": true
     },
@@ -793,6 +795,15 @@
         "long": 139.69
       },
       "log": true
+    },
+    {
+      "name": "iqdns-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "a.passcloud.xyz"
+      },
+      "description": "Non-logging DoH service runned by V2EX.com user johnsonwil.\nReturns \"no such domain\" for anti-Chinese government websites. Supports DNSSEC.\nFor more information: https://www.v2ex.com/t/785666",
+      "filter": true
     },
     {
       "name": "jp.tiar.app-doh",

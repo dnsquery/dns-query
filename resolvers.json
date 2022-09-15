@@ -128,7 +128,6 @@
       "endpoint": {
         "protocol": "https:",
         "host": "doh.ny.ahadns.net",
-        "method": "POST",
         "cors": true
       },
       "description": "A zero logging DNS with support for DNS-over-HTTPS (DoH) & DNS-over-TLS (DoT). Blocks ads, malware, trackers, viruses, ransomware, telemetry and more. No persistent logs. DNSSEC. Hosted in New York. By https://ahadns.com/\nServer statistics can be seen at: https://statistics.ahadns.com/?server=ny",
@@ -394,19 +393,6 @@
       }
     },
     {
-      "name": "dns.digitale-gesellschaft.ch",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns.digitale-gesellschaft.ch"
-      },
-      "description": "Public DoH resolver operated by the Digital Society (https://www.digitale-gesellschaft.ch).\nHosted in Zurich, Switzerland.\nNon-logging, non-filtering, supports DNSSEC.",
-      "country": "Switzerland",
-      "location": {
-        "lat": 47.1449,
-        "long": 8.1551
-      }
-    },
-    {
       "name": "dns.digitalsize.net",
       "endpoint": {
         "protocol": "https:",
@@ -545,28 +531,13 @@
       "name": "dnswarden-adblock-fr1-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "fr1.dnswarden.com",
-        "method": "POST"
+        "host": "fr1.dnswarden.com"
       },
       "description": "Hosted in France. For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com).",
       "country": "Germany",
       "location": {
         "lat": 51.2993,
         "long": 9.491
-      },
-      "filter": true
-    },
-    {
-      "name": "dnswarden-adblock-sg1-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "sg1.dnswarden.com"
-      },
-      "description": "Hosted in Singapore. For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com).",
-      "country": "United States",
-      "location": {
-        "lat": 37.751,
-        "long": -97.822
       },
       "filter": true
     },
@@ -799,6 +770,15 @@
       "log": true
     },
     {
+      "name": "iqdns-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "a.passcloud.xyz"
+      },
+      "description": "Non-logging DoH service runned by V2EX.com user johnsonwil.\nReturns \"no such domain\" for anti-Chinese government websites. Supports DNSSEC.\nFor more information: https://www.v2ex.com/t/785666",
+      "filter": true
+    },
+    {
       "name": "jp.tiar.app-doh",
       "endpoint": {
         "protocol": "https:",
@@ -924,6 +904,7 @@
         "protocol": "https:",
         "host": "jp.tiar.app",
         "path": "/odoh",
+        "method": "POST",
         "cors": true
       },
       "description": "ODoH target server. no logs.",
@@ -1094,7 +1075,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns11.quad9.net",
-        "ipv4": "9.9.9.11"
+        "ipv4": "149.112.112.11"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter/ecs 9.9.9.11 - 149.112.112.11",
       "country": "United States",
@@ -1124,7 +1105,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns12.quad9.net",
-        "ipv4": "149.112.112.12"
+        "ipv4": "9.9.9.12"
       },
       "description": "Quad9 (anycast) no-dnssec/no-log/no-filter/ecs 9.9.9.12 - 149.112.112.12",
       "country": "United States",
@@ -1138,7 +1119,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns10.quad9.net",
-        "ipv4": "9.9.9.10"
+        "ipv4": "149.112.112.10"
       },
       "description": "Quad9 (anycast) no-dnssec/no-log/no-filter 9.9.9.10 - 149.112.112.10",
       "country": "United States",
@@ -1152,13 +1133,13 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns9.quad9.net",
-        "ipv4": "9.9.9.9"
+        "ipv4": "149.112.112.9"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
-      "country": "France",
+      "country": "United States",
       "location": {
-        "lat": 48.8582,
-        "long": 2.3387
+        "lat": 37.751,
+        "long": -97.822
       },
       "filter": true
     },

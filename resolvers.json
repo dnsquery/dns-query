@@ -393,6 +393,19 @@
       }
     },
     {
+      "name": "dns.digitale-gesellschaft.ch",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.digitale-gesellschaft.ch"
+      },
+      "description": "Public DoH resolver operated by the Digital Society (https://www.digitale-gesellschaft.ch).\nHosted in Zurich, Switzerland.\nNon-logging, non-filtering, supports DNSSEC.",
+      "country": "Switzerland",
+      "location": {
+        "lat": 47.1449,
+        "long": 8.1551
+      }
+    },
+    {
       "name": "dns.digitalsize.net",
       "endpoint": {
         "protocol": "https:",
@@ -516,6 +529,16 @@
       "description": "https://www.dnshome.de/ public resolver in Germany"
     },
     {
+      "name": "dnslow.me",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dnslow.me"
+      },
+      "description": "dnslow.me is an open source project, also your advertisement and threat blocking, privacy-first, encrypted DNS.\nAll DNS requests will be protected with threat-intelligence feeds and randomly distributed to some other DNS resolvers.\nMore info on the [homepage](https://dnslow.me) and [GitHub](https://github.com/PeterDaveHello/dnslow.me)",
+      "filter": true,
+      "log": true
+    },
+    {
       "name": "dnspod-doh",
       "endpoint": {
         "protocol": "https:",
@@ -528,17 +551,12 @@
       "cors": true
     },
     {
-      "name": "dnswarden-adblock-fr1-doh",
+      "name": "dnswarden-adult-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "fr1.dnswarden.com"
+        "host": "dns.dnswarden.com"
       },
-      "description": "Hosted in France. For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com).",
-      "country": "Germany",
-      "location": {
-        "lat": 51.2993,
-        "long": 9.491
-      },
+      "description": "Blocks adult content and enforces safe search on major search engines.\nFor further customization look here: https://dnswarden.com/customfilter.html",
       "filter": true
     },
     {
@@ -904,7 +922,6 @@
         "protocol": "https:",
         "host": "jp.tiar.app",
         "path": "/odoh",
-        "method": "POST",
         "cors": true
       },
       "description": "ODoH target server. no logs.",
@@ -1089,8 +1106,8 @@
       "name": "quad9-doh-ip4-port443-filter-pri",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns.quad9.net",
-        "ipv4": "149.112.112.112"
+        "host": "dns9.quad9.net",
+        "ipv4": "149.112.112.9"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
       "country": "United States",
@@ -1105,7 +1122,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns12.quad9.net",
-        "ipv4": "9.9.9.12"
+        "ipv4": "149.112.112.12"
       },
       "description": "Quad9 (anycast) no-dnssec/no-log/no-filter/ecs 9.9.9.12 - 149.112.112.12",
       "country": "United States",
@@ -1119,7 +1136,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns10.quad9.net",
-        "ipv4": "149.112.112.10"
+        "ipv4": "9.9.9.10"
       },
       "description": "Quad9 (anycast) no-dnssec/no-log/no-filter 9.9.9.10 - 149.112.112.10",
       "country": "United States",
@@ -1129,13 +1146,12 @@
       }
     },
     {
-      "name": "quad9-doh-ip4-port5053-filter-pri",
+      "name": "quad9-doh-ip6-port5053-filter-pri",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns9.quad9.net",
-        "ipv4": "149.112.112.9"
+        "host": "dns.quad9.net"
       },
-      "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
+      "description": "Quad9 (anycast) dnssec/no-log/filter 2620:fe::fe - 2620:fe::9 - 2620:fe::fe:9",
       "country": "United States",
       "location": {
         "lat": 37.751,

@@ -682,6 +682,22 @@
       "description": "DoH & DoT Server, No Logging, No Filters, DNSSEC\nRunning privately by ibksturm in Thurgau, Switzerland"
     },
     {
+      "name": "doh-jp-blahdns",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "doh-jp.blahdns.com",
+        "cors": true
+      },
+      "description": "Blocks ad and Tracking, no Logging, DNSSEC, Hosted in Japan. By https://blahdns.com/",
+      "country": "Japan",
+      "location": {
+        "lat": 35.6882,
+        "long": 139.7532
+      },
+      "filter": true,
+      "cors": true
+    },
+    {
       "name": "doh.ffmuc.net",
       "endpoint": {
         "protocol": "https:",
@@ -772,15 +788,6 @@
       "log": true
     },
     {
-      "name": "iqdns-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "a.passcloud.xyz"
-      },
-      "description": "Non-logging DoH service runned by V2EX.com user johnsonwil.\nReturns \"no such domain\" for anti-Chinese government websites. Supports DNSSEC.\nFor more information: https://www.v2ex.com/t/785666",
-      "filter": true
-    },
-    {
       "name": "jp.tiar.app-doh",
       "endpoint": {
         "protocol": "https:",
@@ -856,19 +863,6 @@
       "description": "NextDNS is a cloud-based private DNS service that gives you full control\nover what is allowed and what is blocked on the Internet.\nhttps://www.nextdns.io/\nTo select the server location, the \"-ultralow\" variant relies on bootstrap servers\ninstead of anycast."
     },
     {
-      "name": "njalla-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns.njal.la"
-      },
-      "description": "Non-logging DoH server in Sweden operated by Njalla.\nhttps://dns.njal.la/",
-      "country": "Sweden",
-      "location": {
-        "lat": 59.3247,
-        "long": 18.056
-      }
-    },
-    {
       "name": "odoh-cloudflare",
       "endpoint": {
         "protocol": "https:",
@@ -906,6 +900,7 @@
         "protocol": "https:",
         "host": "jp.tiar.app",
         "path": "/odoh",
+        "method": "POST",
         "cors": true
       },
       "description": "ODoH target server. no logs.",
@@ -1090,14 +1085,14 @@
       "name": "quad9-doh-ip4-port443-filter-pri",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns.quad9.net",
-        "ipv4": "149.112.112.112"
+        "host": "dns9.quad9.net",
+        "ipv4": "9.9.9.9"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
-      "country": "United States",
+      "country": "France",
       "location": {
-        "lat": 37.751,
-        "long": -97.822
+        "lat": 48.8582,
+        "long": 2.3387
       },
       "filter": true
     },
@@ -1133,8 +1128,8 @@
       "name": "quad9-doh-ip4-port5053-filter-pri",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns9.quad9.net",
-        "ipv4": "149.112.112.9"
+        "host": "dns.quad9.net",
+        "ipv4": "149.112.112.112"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
       "country": "United States",

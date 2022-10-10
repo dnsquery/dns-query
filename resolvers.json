@@ -16,6 +16,50 @@
       "filter": true
     },
     {
+      "name": "adguard-dns-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.adguard.com",
+        "ipv4": "94.140.15.15"
+      },
+      "description": "Remove ads and protect your computer from malware (over DoH)",
+      "country": "France",
+      "location": {
+        "lat": 48.8582,
+        "long": 2.3387
+      },
+      "filter": true
+    },
+    {
+      "name": "adguard-dns-family-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns-family.adguard.com",
+        "ipv4": "94.140.15.16"
+      },
+      "description": "Adguard DNS with safesearch and adult content blocking (over DoH)",
+      "country": "France",
+      "location": {
+        "lat": 48.8582,
+        "long": 2.3387
+      },
+      "filter": true
+    },
+    {
+      "name": "adguard-dns-unfiltered-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns-unfiltered.adguard.com",
+        "ipv4": "94.140.14.140"
+      },
+      "description": "AdGuard public DNS servers without filters (over DoH)",
+      "country": "France",
+      "location": {
+        "lat": 48.8582,
+        "long": 2.3387
+      }
+    },
+    {
       "name": "ahadns-doh-chi",
       "endpoint": {
         "protocol": "https:",
@@ -642,7 +686,6 @@
       "endpoint": {
         "protocol": "https:",
         "host": "doh-jp.blahdns.com",
-        "method": "POST",
         "cors": true
       },
       "description": "Blocks ad and Tracking, no Logging, DNSSEC, Hosted in Japan. By https://blahdns.com/",
@@ -743,6 +786,15 @@
         "long": 139.69
       },
       "log": true
+    },
+    {
+      "name": "iqdns-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "a.passcloud.xyz"
+      },
+      "description": "Non-logging DoH service runned by V2EX.com user johnsonwil.\nReturns \"no such domain\" for anti-Chinese government websites. Supports DNSSEC.\nFor more information: https://www.v2ex.com/t/785666",
+      "filter": true
     },
     {
       "name": "jp.tiar.app-doh",
@@ -1054,8 +1106,8 @@
       "name": "quad9-doh-ip4-port443-filter-pri",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns.quad9.net",
-        "ipv4": "149.112.112.112"
+        "host": "dns9.quad9.net",
+        "ipv4": "149.112.112.9"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
       "country": "United States",
@@ -1070,7 +1122,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns12.quad9.net",
-        "ipv4": "149.112.112.12"
+        "ipv4": "9.9.9.12"
       },
       "description": "Quad9 (anycast) no-dnssec/no-log/no-filter/ecs 9.9.9.12 - 149.112.112.12",
       "country": "United States",
@@ -1094,17 +1146,16 @@
       }
     },
     {
-      "name": "quad9-doh-ip4-port5053-filter-pri",
+      "name": "quad9-doh-ip6-port443-filter-pri",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns9.quad9.net",
-        "ipv4": "9.9.9.9"
+        "host": "dns.quad9.net"
       },
-      "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
-      "country": "France",
+      "description": "Quad9 (anycast) dnssec/no-log/filter 2620:fe::fe - 2620:fe::9 - 2620:fe::fe:9",
+      "country": "United States",
       "location": {
-        "lat": 48.8582,
-        "long": 2.3387
+        "lat": 37.751,
+        "long": -97.822
       },
       "filter": true
     },

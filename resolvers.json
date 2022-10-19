@@ -551,6 +551,15 @@
       "cors": true
     },
     {
+      "name": "dnswarden-adult-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.dnswarden.com"
+      },
+      "description": "Blocks adult content and enforces safe search on major search engines.\nFor further customization look here: https://dnswarden.com/customfilter.html",
+      "filter": true
+    },
+    {
       "name": "doh-ch-blahdns",
       "endpoint": {
         "protocol": "https:",
@@ -673,22 +682,6 @@
       "description": "DoH & DoT Server, No Logging, No Filters, DNSSEC\nRunning privately by ibksturm in Thurgau, Switzerland"
     },
     {
-      "name": "doh-jp-blahdns",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh-jp.blahdns.com",
-        "cors": true
-      },
-      "description": "Blocks ad and Tracking, no Logging, DNSSEC, Hosted in Japan. By https://blahdns.com/",
-      "country": "Japan",
-      "location": {
-        "lat": 35.6882,
-        "long": 139.7532
-      },
-      "filter": true,
-      "cors": true
-    },
-    {
       "name": "doh.ffmuc.net",
       "endpoint": {
         "protocol": "https:",
@@ -777,6 +770,15 @@
         "long": 139.69
       },
       "log": true
+    },
+    {
+      "name": "iqdns-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "a.passcloud.xyz"
+      },
+      "description": "Non-logging DoH service runned by V2EX.com user johnsonwil.\nReturns \"no such domain\" for anti-Chinese government websites. Supports DNSSEC.\nFor more information: https://www.v2ex.com/t/785666",
+      "filter": true
     },
     {
       "name": "jp.tiar.app-doh",
@@ -1073,14 +1075,14 @@
       "name": "quad9-doh-ip4-port443-filter-pri",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns9.quad9.net",
-        "ipv4": "9.9.9.9"
+        "host": "dns.quad9.net",
+        "ipv4": "149.112.112.112"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
-      "country": "France",
+      "country": "United States",
       "location": {
-        "lat": 48.8582,
-        "long": 2.3387
+        "lat": 37.751,
+        "long": -97.822
       },
       "filter": true
     },
@@ -1103,7 +1105,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns10.quad9.net",
-        "ipv4": "149.112.112.10"
+        "ipv4": "9.9.9.10"
       },
       "description": "Quad9 (anycast) no-dnssec/no-log/no-filter 9.9.9.10 - 149.112.112.10",
       "country": "United States",
@@ -1113,12 +1115,13 @@
       }
     },
     {
-      "name": "quad9-doh-ip6-port443-filter-pri",
+      "name": "quad9-doh-ip4-port5053-filter-pri",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns.quad9.net"
+        "host": "dns9.quad9.net",
+        "ipv4": "149.112.112.9"
       },
-      "description": "Quad9 (anycast) dnssec/no-log/filter 2620:fe::fe - 2620:fe::9 - 2620:fe::fe:9",
+      "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
       "country": "United States",
       "location": {
         "lat": 37.751,
@@ -1179,6 +1182,19 @@
         "host": "unicast.uncensoreddns.org"
       },
       "description": "Also known as censurfridns.\nDoH, no logs, no filter, DNSSEC, unicast hosted in Denmark - https://blog.uncensoreddns.org",
+      "country": "Denmark",
+      "location": {
+        "lat": 55.7123,
+        "long": 12.0564
+      }
+    },
+    {
+      "name": "uncensoreddns-ipv4",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "anycast.uncensoreddns.org"
+      },
+      "description": "Also known as censurfridns.\nDoH, no logs, no filter, DNSSEC, anycast - https://blog.uncensoreddns.org",
       "country": "Denmark",
       "location": {
         "lat": 55.7123,

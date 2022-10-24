@@ -539,18 +539,6 @@
       "log": true
     },
     {
-      "name": "dnspod-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh.pub",
-        "cors": true
-      },
-      "description": "A public DNS resolver in mainland China provided by DNSPod (Tencent Cloud).\nhttps://www.dnspod.cn/Products/Public.DNS?lang=en",
-      "filter": true,
-      "log": true,
-      "cors": true
-    },
-    {
       "name": "dnswarden-adult-doh",
       "endpoint": {
         "protocol": "https:",
@@ -682,6 +670,23 @@
       "description": "DoH & DoT Server, No Logging, No Filters, DNSSEC\nRunning privately by ibksturm in Thurgau, Switzerland"
     },
     {
+      "name": "doh-jp-blahdns",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "doh-jp.blahdns.com",
+        "method": "POST",
+        "cors": true
+      },
+      "description": "Blocks ad and Tracking, no Logging, DNSSEC, Hosted in Japan. By https://blahdns.com/",
+      "country": "Japan",
+      "location": {
+        "lat": 35.6882,
+        "long": 139.7532
+      },
+      "filter": true,
+      "cors": true
+    },
+    {
       "name": "doh.ffmuc.net",
       "endpoint": {
         "protocol": "https:",
@@ -785,7 +790,6 @@
       "endpoint": {
         "protocol": "https:",
         "host": "jp.tiar.app",
-        "method": "POST",
         "cors": true
       },
       "description": "Non-Logging, Non-Filtering DNS-over-HTTPS server in Japan.\nNo ECS, Support DNSSEC",
@@ -1032,22 +1036,6 @@
       "cors": true
     },
     {
-      "name": "puredns-family-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "family.puredns.org",
-        "cors": true
-      },
-      "description": "Public DNS resolver for Families in Indonesia - https://puredns.org/family/\nBlocks malware, adware, gambling, fakenews, and adult sites. Google, Bing,\nand YouTube are set to Safe mode.",
-      "country": "United States",
-      "location": {
-        "lat": 37.751,
-        "long": -97.822
-      },
-      "filter": true,
-      "cors": true
-    },
-    {
       "name": "quad101",
       "endpoint": {
         "protocol": "https:",
@@ -1076,8 +1064,8 @@
       "name": "quad9-doh-ip4-port443-filter-pri",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns.quad9.net",
-        "ipv4": "149.112.112.112"
+        "host": "dns9.quad9.net",
+        "ipv4": "149.112.112.9"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
       "country": "United States",
@@ -1106,7 +1094,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns10.quad9.net",
-        "ipv4": "149.112.112.10"
+        "ipv4": "9.9.9.10"
       },
       "description": "Quad9 (anycast) no-dnssec/no-log/no-filter 9.9.9.10 - 149.112.112.10",
       "country": "United States",
@@ -1114,21 +1102,6 @@
         "lat": 37.751,
         "long": -97.822
       }
-    },
-    {
-      "name": "quad9-doh-ip4-port5053-filter-pri",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns9.quad9.net",
-        "ipv4": "149.112.112.9"
-      },
-      "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
-      "country": "United States",
-      "location": {
-        "lat": 37.751,
-        "long": -97.822
-      },
-      "filter": true
     },
     {
       "name": "safesurfer-doh",

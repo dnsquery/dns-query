@@ -540,22 +540,6 @@
       "filter": true
     },
     {
-      "name": "doh-ch-blahdns",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh-ch.blahdns.com",
-        "cors": true
-      },
-      "description": "Blocks ad and Tracking, no Logging, DNSSEC, Hosted in Switzerland. By https://blahdns.com/",
-      "country": "Netherlands",
-      "location": {
-        "lat": 52.3824,
-        "long": 4.8995
-      },
-      "filter": true,
-      "cors": true
-    },
-    {
       "name": "doh-cleanbrowsing-adult",
       "endpoint": {
         "protocol": "https:",
@@ -619,22 +603,6 @@
         "lat": 37.751,
         "long": -97.822
       },
-      "cors": true
-    },
-    {
-      "name": "doh-de-blahdns",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh-de.blahdns.com",
-        "cors": true
-      },
-      "description": "Blocks ad and Tracking, no Logging, DNSSEC, Hosted in Germany. By https://blahdns.com/",
-      "country": "Germany",
-      "location": {
-        "lat": 51.2993,
-        "long": 9.491
-      },
-      "filter": true,
       "cors": true
     },
     {
@@ -886,6 +854,7 @@
         "protocol": "https:",
         "host": "jp.tiar.app",
         "path": "/odoh",
+        "method": "POST",
         "cors": true
       },
       "description": "ODoH target server. no logs.",
@@ -1024,8 +993,7 @@
       "name": "quad9-doh-ip4-port443-filter-ecs-pri",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns11.quad9.net",
-        "ipv4": "9.9.9.11"
+        "host": "dns11.quad9.net"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter/ecs 9.9.9.11 - 149.112.112.11",
       "country": "United States",
@@ -1039,8 +1007,8 @@
       "name": "quad9-doh-ip4-port443-filter-pri",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns.quad9.net",
-        "ipv4": "149.112.112.112"
+        "host": "dns9.quad9.net",
+        "ipv4": "149.112.112.9"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
       "country": "United States",
@@ -1054,24 +1022,9 @@
       "name": "quad9-doh-ip4-port443-nofilter-ecs-pri",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns12.quad9.net",
-        "ipv4": "149.112.112.12"
+        "host": "dns12.quad9.net"
       },
       "description": "Quad9 (anycast) no-dnssec/no-log/no-filter/ecs 9.9.9.12 - 149.112.112.12",
-      "country": "United States",
-      "location": {
-        "lat": 37.751,
-        "long": -97.822
-      }
-    },
-    {
-      "name": "quad9-doh-ip4-port443-nofilter-pri",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns10.quad9.net",
-        "ipv4": "149.112.112.10"
-      },
-      "description": "Quad9 (anycast) no-dnssec/no-log/no-filter 9.9.9.10 - 149.112.112.10",
       "country": "United States",
       "location": {
         "lat": 37.751,
@@ -1082,8 +1035,8 @@
       "name": "quad9-doh-ip4-port5053-filter-pri",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns9.quad9.net",
-        "ipv4": "149.112.112.9"
+        "host": "dns.quad9.net",
+        "ipv4": "149.112.112.112"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
       "country": "United States",

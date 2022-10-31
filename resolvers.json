@@ -854,7 +854,6 @@
         "protocol": "https:",
         "host": "jp.tiar.app",
         "path": "/odoh",
-        "method": "POST",
         "cors": true
       },
       "description": "ODoH target server. no logs.",
@@ -993,7 +992,8 @@
       "name": "quad9-doh-ip4-port443-filter-ecs-pri",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns11.quad9.net"
+        "host": "dns11.quad9.net",
+        "ipv4": "149.112.112.11"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter/ecs 9.9.9.11 - 149.112.112.11",
       "country": "United States",
@@ -1022,9 +1022,24 @@
       "name": "quad9-doh-ip4-port443-nofilter-ecs-pri",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns12.quad9.net"
+        "host": "dns12.quad9.net",
+        "ipv4": "149.112.112.12"
       },
       "description": "Quad9 (anycast) no-dnssec/no-log/no-filter/ecs 9.9.9.12 - 149.112.112.12",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      }
+    },
+    {
+      "name": "quad9-doh-ip4-port443-nofilter-pri",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns10.quad9.net",
+        "ipv4": "149.112.112.10"
+      },
+      "description": "Quad9 (anycast) no-dnssec/no-log/no-filter 9.9.9.10 - 149.112.112.10",
       "country": "United States",
       "location": {
         "lat": 37.751,

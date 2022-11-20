@@ -198,20 +198,6 @@
       "log": true
     },
     {
-      "name": "bebasdns",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns.bebasid.com"
-      },
-      "description": "DNS-over-HTTPS forwarder run by BebasID. Filters ads and malware.\nUses Cloudflare, Quad9 & MyRepublic DNS (unfiltered) as upstream resolvers.\nhttps://github.com/bebasid/bebasdns",
-      "country": "United States",
-      "location": {
-        "lat": 37.751,
-        "long": -97.822
-      },
-      "filter": true
-    },
-    {
       "name": "cisco-doh",
       "endpoint": {
         "protocol": "https:",
@@ -517,6 +503,15 @@
       "description": "dnslow.me is an open source project, also your advertisement and threat blocking, privacy-first, encrypted DNS.\nAll DNS requests will be protected with threat-intelligence feeds and randomly distributed to some other DNS resolvers.\nMore info on the [homepage](https://dnslow.me) and [GitHub](https://github.com/PeterDaveHello/dnslow.me)",
       "filter": true,
       "log": true
+    },
+    {
+      "name": "dnswarden-adult-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.dnswarden.com"
+      },
+      "description": "Blocks adult content and enforces safe search on major search engines.\nFor further customization look here: https://dnswarden.com/customfilter.html",
+      "filter": true
     },
     {
       "name": "doh-cleanbrowsing-adult",

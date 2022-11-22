@@ -158,6 +158,37 @@
       "cors": true
     },
     {
+      "name": "ams-ads-doh-nl",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dnsnl-noads.alekberg.net",
+        "cors": true
+      },
+      "description": "Resolver in Amsterdam. DoH protocol. Non-logging. Blocks ads, malware and trackers. DNSSEC enabled.",
+      "country": "Romania",
+      "location": {
+        "lat": 45.9968,
+        "long": 24.997
+      },
+      "filter": true,
+      "cors": true
+    },
+    {
+      "name": "ams-doh-nl",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dnsnl.alekberg.net",
+        "cors": true
+      },
+      "description": "Resolver in Amsterdam. DoH protocol. Non-logging, non-filtering, DNSSEC.",
+      "country": "Romania",
+      "location": {
+        "lat": 45.9968,
+        "long": 24.997
+      },
+      "cors": true
+    },
+    {
       "name": "att",
       "endpoint": {
         "protocol": "https:",
@@ -165,6 +196,20 @@
       },
       "description": "AT&T test DoH server.",
       "log": true
+    },
+    {
+      "name": "bebasdns",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.bebasid.com"
+      },
+      "description": "DNS-over-HTTPS forwarder run by BebasID. Filters ads and malware.\nUses Cloudflare, Quad9 & MyRepublic DNS (unfiltered) as upstream resolvers.\nhttps://github.com/bebasid/bebasdns",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      },
+      "filter": true
     },
     {
       "name": "cisco-doh",
@@ -829,6 +874,17 @@
       "cors": true
     },
     {
+      "name": "odoh-koki-noads-se",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "odoh-target-noads-se.alekberg.net",
+        "cors": true
+      },
+      "description": "Oblivious DoH target server in Sweden. No logs, filter ads and malware, DNSSEC.",
+      "filter": true,
+      "cors": true
+    },
+    {
       "name": "quad101",
       "endpoint": {
         "protocol": "https:",
@@ -873,7 +929,8 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns12.quad9.net",
-        "ipv4": "9.9.9.12"
+        "ipv4": "9.9.9.12",
+        "method": "POST"
       },
       "description": "Quad9 (anycast) no-dnssec/no-log/no-filter/ecs 9.9.9.12 - 149.112.112.12",
       "country": "United States",

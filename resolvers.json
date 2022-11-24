@@ -394,6 +394,21 @@
       }
     },
     {
+      "name": "dns.digitalsize.net",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.digitalsize.net",
+        "cors": true
+      },
+      "description": "A public, non-tracking, non-filtering DNS resolver with DNSSEC enabled and hosted in Germany (https://dns.digitalsize.net)",
+      "country": "Germany",
+      "location": {
+        "lat": 51.2993,
+        "long": 9.491
+      },
+      "cors": true
+    },
+    {
       "name": "dns.ryan-palmer",
       "endpoint": {
         "protocol": "https:",
@@ -504,15 +519,6 @@
       "log": true
     },
     {
-      "name": "dnswarden-adult-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns.dnswarden.com"
-      },
-      "description": "Blocks adult content and enforces safe search on major search engines.\nFor further customization look here: https://dnswarden.com/customfilter.html",
-      "filter": true
-    },
-    {
       "name": "doh-cleanbrowsing-adult",
       "endpoint": {
         "protocol": "https:",
@@ -593,6 +599,14 @@
       },
       "filter": true,
       "cors": true
+    },
+    {
+      "name": "doh-ibksturm",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "ibksturm.synology.me"
+      },
+      "description": "DoH & DoT Server, No Logging, No Filters, DNSSEC\nRunning privately by ibksturm in Thurgau, Switzerland"
     },
     {
       "name": "doh-jp-blahdns",
@@ -694,15 +708,6 @@
         "long": 139.69
       },
       "log": true
-    },
-    {
-      "name": "iqdns-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "a.passcloud.xyz"
-      },
-      "description": "Non-logging DoH service runned by V2EX.com user johnsonwil.\nReturns \"no such domain\" for anti-Chinese government websites. Supports DNSSEC.\nFor more information: https://www.v2ex.com/t/785666",
-      "filter": true
     },
     {
       "name": "jp.tiar.app-doh",

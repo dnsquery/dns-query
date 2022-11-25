@@ -397,16 +397,14 @@
       "name": "dns.digitalsize.net",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns.digitalsize.net",
-        "cors": true
+        "host": "dns.digitalsize.net"
       },
       "description": "A public, non-tracking, non-filtering DNS resolver with DNSSEC enabled and hosted in Germany (https://dns.digitalsize.net)",
       "country": "Germany",
       "location": {
         "lat": 51.2993,
         "long": 9.491
-      },
-      "cors": true
+      }
     },
     {
       "name": "dns.ryan-palmer",
@@ -517,6 +515,15 @@
       "description": "dnslow.me is an open source project, also your advertisement and threat blocking, privacy-first, encrypted DNS.\nAll DNS requests will be protected with threat-intelligence feeds and randomly distributed to some other DNS resolvers.\nMore info on the [homepage](https://dnslow.me) and [GitHub](https://github.com/PeterDaveHello/dnslow.me)",
       "filter": true,
       "log": true
+    },
+    {
+      "name": "dnswarden-adult-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.dnswarden.com"
+      },
+      "description": "Blocks adult content and enforces safe search on major search engines.\nFor further customization look here: https://dnswarden.com/customfilter.html",
+      "filter": true
     },
     {
       "name": "doh-cleanbrowsing-adult",
@@ -708,6 +715,15 @@
         "long": 139.69
       },
       "log": true
+    },
+    {
+      "name": "iqdns-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "a.passcloud.xyz"
+      },
+      "description": "Non-logging DoH service runned by V2EX.com user johnsonwil.\nReturns \"no such domain\" for anti-Chinese government websites. Supports DNSSEC.\nFor more information: https://www.v2ex.com/t/785666",
+      "filter": true
     },
     {
       "name": "jp.tiar.app-doh",

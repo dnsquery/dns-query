@@ -177,16 +177,14 @@
       "name": "ams-doh-nl",
       "endpoint": {
         "protocol": "https:",
-        "host": "dnsnl.alekberg.net",
-        "cors": true
+        "host": "dnsnl.alekberg.net"
       },
       "description": "Resolver in Amsterdam. DoH protocol. Non-logging, non-filtering, DNSSEC.",
       "country": "Romania",
       "location": {
         "lat": 45.9968,
         "long": 24.997
-      },
-      "cors": true
+      }
     },
     {
       "name": "att",
@@ -1118,16 +1116,14 @@
       "name": "sth-doh-se",
       "endpoint": {
         "protocol": "https:",
-        "host": "dnsse.alekberg.net",
-        "cors": true
+        "host": "dnsse.alekberg.net"
       },
       "description": "Resolver in Stockholm, Sweden. DoH server. Non-logging, non-filtering, DNSSEC.",
       "country": "Bulgaria",
       "location": {
         "lat": 42.696,
         "long": 23.332
-      },
-      "cors": true
+      }
     },
     {
       "name": "switch",

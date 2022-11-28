@@ -489,22 +489,6 @@
       "filter": true
     },
     {
-      "name": "dnsforge.de",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dnsforge.de",
-        "cors": true
-      },
-      "description": "Public DoH resolver running with Pihole for Adblocking (https://dnsforge.de).\nNon-logging, AD-filtering, supports DNSSEC. Hosted in Germany.",
-      "country": "Germany",
-      "location": {
-        "lat": 52.2998,
-        "long": 9.447
-      },
-      "filter": true,
-      "cors": true
-    },
-    {
       "name": "dnslow.me",
       "endpoint": {
         "protocol": "https:",
@@ -597,6 +581,14 @@
       "cors": true
     },
     {
+      "name": "doh-ibksturm",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "ibksturm.synology.me"
+      },
+      "description": "DoH & DoT Server, No Logging, No Filters, DNSSEC\nRunning privately by ibksturm in Thurgau, Switzerland"
+    },
+    {
       "name": "doh-jp-blahdns",
       "endpoint": {
         "protocol": "https:",
@@ -652,20 +644,6 @@
       },
       "log": true,
       "cors": true
-    },
-    {
-      "name": "he",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "ordns.he.net"
-      },
-      "description": "Hurricane Electric DoH server (anycast)\nUnknown logging policy.",
-      "country": "United States",
-      "location": {
-        "lat": 37.751,
-        "long": -97.822
-      },
-      "log": true
     },
     {
       "name": "id-gmail-doh",

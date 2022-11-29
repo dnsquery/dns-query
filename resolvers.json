@@ -161,8 +161,7 @@
       "name": "ams-ads-doh-nl",
       "endpoint": {
         "protocol": "https:",
-        "host": "dnsnl-noads.alekberg.net",
-        "cors": true
+        "host": "dnsnl-noads.alekberg.net"
       },
       "description": "Resolver in Amsterdam. DoH protocol. Non-logging. Blocks ads, malware and trackers. DNSSEC enabled.",
       "country": "Romania",
@@ -170,8 +169,7 @@
         "lat": 45.9968,
         "long": 24.997
       },
-      "filter": true,
-      "cors": true
+      "filter": true
     },
     {
       "name": "ams-doh-nl",
@@ -489,6 +487,22 @@
       "filter": true
     },
     {
+      "name": "dnsforge.de",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dnsforge.de",
+        "cors": true
+      },
+      "description": "Public DoH resolver running with Pihole for Adblocking (https://dnsforge.de).\nNon-logging, AD-filtering, supports DNSSEC. Hosted in Germany.",
+      "country": "Germany",
+      "location": {
+        "lat": 52.2998,
+        "long": 9.447
+      },
+      "filter": true,
+      "cors": true
+    },
+    {
       "name": "dnslow.me",
       "endpoint": {
         "protocol": "https:",
@@ -497,6 +511,15 @@
       "description": "dnslow.me is an open source project, also your advertisement and threat blocking, privacy-first, encrypted DNS.\nAll DNS requests will be protected with threat-intelligence feeds and randomly distributed to some other DNS resolvers.\nMore info on the [homepage](https://dnslow.me) and [GitHub](https://github.com/PeterDaveHello/dnslow.me)",
       "filter": true,
       "log": true
+    },
+    {
+      "name": "dnswarden-adult-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.dnswarden.com"
+      },
+      "description": "Blocks adult content and enforces safe search on major search engines.\nFor further customization look here: https://dnswarden.com/customfilter.html",
+      "filter": true
     },
     {
       "name": "doh-cleanbrowsing-adult",
@@ -581,14 +604,6 @@
       "cors": true
     },
     {
-      "name": "doh-ibksturm",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "ibksturm.synology.me"
-      },
-      "description": "DoH & DoT Server, No Logging, No Filters, DNSSEC\nRunning privately by ibksturm in Thurgau, Switzerland"
-    },
-    {
       "name": "doh-jp-blahdns",
       "endpoint": {
         "protocol": "https:",
@@ -646,6 +661,20 @@
       "cors": true
     },
     {
+      "name": "he",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "ordns.he.net"
+      },
+      "description": "Hurricane Electric DoH server (anycast)\nUnknown logging policy.",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      },
+      "log": true
+    },
+    {
       "name": "id-gmail-doh",
       "endpoint": {
         "protocol": "https:",
@@ -674,15 +703,6 @@
         "long": 139.69
       },
       "log": true
-    },
-    {
-      "name": "iqdns-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "a.passcloud.xyz"
-      },
-      "description": "Non-logging DoH service runned by V2EX.com user johnsonwil.\nReturns \"no such domain\" for anti-Chinese government websites. Supports DNSSEC.\nFor more information: https://www.v2ex.com/t/785666",
-      "filter": true
     },
     {
       "name": "jp.tiar.app-doh",
@@ -824,27 +844,6 @@
         "cors": true
       },
       "description": "ODoH target server via Cloudflare, no logs.",
-      "cors": true
-    },
-    {
-      "name": "odoh-koki-ams",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "odoh-target.alekberg.net",
-        "cors": true
-      },
-      "description": "Oblivious DoH target server in The Netherlands. No logs, No filter, DNSSEC.",
-      "cors": true
-    },
-    {
-      "name": "odoh-koki-noads-ams",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "odoh-target-noads.alekberg.net",
-        "cors": true
-      },
-      "description": "Oblivious DoH target server in The Netherlands. No logs, filter ads and malware, DNSSEC.",
-      "filter": true,
       "cors": true
     },
     {

@@ -513,15 +513,6 @@
       "log": true
     },
     {
-      "name": "dnswarden-adult-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns.dnswarden.com"
-      },
-      "description": "Blocks adult content and enforces safe search on major search engines.\nFor further customization look here: https://dnswarden.com/customfilter.html",
-      "filter": true
-    },
-    {
       "name": "doh-cleanbrowsing-adult",
       "endpoint": {
         "protocol": "https:",
@@ -602,6 +593,14 @@
       },
       "filter": true,
       "cors": true
+    },
+    {
+      "name": "doh-ibksturm",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "ibksturm.synology.me"
+      },
+      "description": "DoH & DoT Server, No Logging, No Filters, DNSSEC\nRunning privately by ibksturm in Thurgau, Switzerland"
     },
     {
       "name": "doh-jp-blahdns",
@@ -847,27 +846,6 @@
       "cors": true
     },
     {
-      "name": "odoh-koki-noads-se",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "odoh-target-noads-se.alekberg.net",
-        "cors": true
-      },
-      "description": "Oblivious DoH target server in Sweden. No logs, filter ads and malware, DNSSEC.",
-      "filter": true,
-      "cors": true
-    },
-    {
-      "name": "odoh-koki-se",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "odoh-target-se.alekberg.net",
-        "cors": true
-      },
-      "description": "Oblivious DoH target server in Sweden. No logs, No filter, DNSSEC.",
-      "cors": true
-    },
-    {
       "name": "odoh-tiarap.org",
       "endpoint": {
         "protocol": "https:",
@@ -1060,8 +1038,7 @@
       "name": "sth-ads-doh-se",
       "endpoint": {
         "protocol": "https:",
-        "host": "dnsse-noads.alekberg.net",
-        "cors": true
+        "host": "dnsse-noads.alekberg.net"
       },
       "description": "Resolver in Stockholm, Sweden. DoH server. Non-logging, remove ads and malware, DNSSEC.",
       "country": "Bulgaria",
@@ -1069,8 +1046,7 @@
         "lat": 42.696,
         "long": 23.332
       },
-      "filter": true,
-      "cors": true
+      "filter": true
     },
     {
       "name": "sth-doh-se",
@@ -1101,6 +1077,19 @@
         "host": "unicast.uncensoreddns.org"
       },
       "description": "Also known as censurfridns.\nDoH, no logs, no filter, DNSSEC, unicast hosted in Denmark - https://blog.uncensoreddns.org",
+      "country": "Denmark",
+      "location": {
+        "lat": 55.7123,
+        "long": 12.0564
+      }
+    },
+    {
+      "name": "uncensoreddns-ipv4",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "anycast.uncensoreddns.org"
+      },
+      "description": "Also known as censurfridns.\nDoH, no logs, no filter, DNSSEC, anycast - https://blog.uncensoreddns.org",
       "country": "Denmark",
       "location": {
         "lat": 55.7123,

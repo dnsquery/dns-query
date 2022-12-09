@@ -92,6 +92,22 @@
       "cors": true
     },
     {
+      "name": "ahadns-doh-nl",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "doh.nl.ahadns.net",
+        "cors": true
+      },
+      "description": "A zero logging DNS with support for DNS-over-HTTPS (DoH) & DNS-over-TLS (DoT). Blocks ads, malware, trackers, viruses, ransomware, telemetry and more. No persistent logs. DNSSEC. Hosted in Amsterdam, Netherlands. By https://ahadns.com/\nServer statistics can be seen at: https://statistics.ahadns.com/?server=nl",
+      "country": "Netherlands",
+      "location": {
+        "lat": 52.3824,
+        "long": 4.8995
+      },
+      "filter": true,
+      "cors": true
+    },
+    {
       "name": "ahadns-doh-ny",
       "endpoint": {
         "protocol": "https:",
@@ -167,6 +183,29 @@
         "lat": 45.9968,
         "long": 24.997
       }
+    },
+    {
+      "name": "att",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dohtrial.att.net"
+      },
+      "description": "AT&T test DoH server.",
+      "log": true
+    },
+    {
+      "name": "bebasdns",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.bebasid.com"
+      },
+      "description": "DNS-over-HTTPS forwarder run by BebasID. Filters ads and malware.\nUses Cloudflare, Quad9 & MyRepublic DNS (unfiltered) as upstream resolvers.\nhttps://github.com/bebasid/bebasdns",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      },
+      "filter": true
     },
     {
       "name": "cisco-doh",
@@ -446,6 +485,22 @@
         "long": 9.491
       },
       "filter": true
+    },
+    {
+      "name": "dnsforge.de",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dnsforge.de",
+        "cors": true
+      },
+      "description": "Public DoH resolver running with Pihole for Adblocking (https://dnsforge.de).\nNon-logging, AD-filtering, supports DNSSEC. Hosted in Germany.",
+      "country": "Germany",
+      "location": {
+        "lat": 52.2998,
+        "long": 9.447
+      },
+      "filter": true,
+      "cors": true
     },
     {
       "name": "dnslow.me",

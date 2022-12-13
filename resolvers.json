@@ -92,6 +92,22 @@
       "cors": true
     },
     {
+      "name": "ahadns-doh-nl",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "doh.nl.ahadns.net",
+        "cors": true
+      },
+      "description": "A zero logging DNS with support for DNS-over-HTTPS (DoH) & DNS-over-TLS (DoT). Blocks ads, malware, trackers, viruses, ransomware, telemetry and more. No persistent logs. DNSSEC. Hosted in Amsterdam, Netherlands. By https://ahadns.com/\nServer statistics can be seen at: https://statistics.ahadns.com/?server=nl",
+      "country": "Netherlands",
+      "location": {
+        "lat": 52.3824,
+        "long": 4.8995
+      },
+      "filter": true,
+      "cors": true
+    },
+    {
       "name": "ahadns-doh-ny",
       "endpoint": {
         "protocol": "https:",
@@ -145,7 +161,8 @@
       "name": "ams-ads-doh-nl",
       "endpoint": {
         "protocol": "https:",
-        "host": "dnsnl-noads.alekberg.net"
+        "host": "dnsnl-noads.alekberg.net",
+        "cors": true
       },
       "description": "Resolver in Amsterdam. DoH protocol. Non-logging. Blocks ads, malware and trackers. DNSSEC enabled.",
       "country": "Romania",
@@ -153,20 +170,23 @@
         "lat": 45.9968,
         "long": 24.997
       },
-      "filter": true
+      "filter": true,
+      "cors": true
     },
     {
       "name": "ams-doh-nl",
       "endpoint": {
         "protocol": "https:",
-        "host": "dnsnl.alekberg.net"
+        "host": "dnsnl.alekberg.net",
+        "cors": true
       },
       "description": "Resolver in Amsterdam. DoH protocol. Non-logging, non-filtering, DNSSEC.",
       "country": "Romania",
       "location": {
         "lat": 45.9968,
         "long": 24.997
-      }
+      },
+      "cors": true
     },
     {
       "name": "att",
@@ -176,20 +196,6 @@
       },
       "description": "AT&T test DoH server.",
       "log": true
-    },
-    {
-      "name": "bebasdns",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns.bebasid.com"
-      },
-      "description": "DNS-over-HTTPS forwarder run by BebasID. Filters ads and malware.\nUses Cloudflare, Quad9 & MyRepublic DNS (unfiltered) as upstream resolvers.\nhttps://github.com/bebasid/bebasdns",
-      "country": "United States",
-      "location": {
-        "lat": 37.751,
-        "long": -97.822
-      },
-      "filter": true
     },
     {
       "name": "cisco-doh",
@@ -497,6 +503,15 @@
       "log": true
     },
     {
+      "name": "dnswarden-adult-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.dnswarden.com"
+      },
+      "description": "Blocks adult content and enforces safe search on major search engines.\nFor further customization look here: https://dnswarden.com/customfilter.html",
+      "filter": true
+    },
+    {
       "name": "doh-cleanbrowsing-adult",
       "endpoint": {
         "protocol": "https:",
@@ -582,8 +597,7 @@
       "name": "doh-ibksturm",
       "endpoint": {
         "protocol": "https:",
-        "host": "ibksturm.synology.me",
-        "method": "POST"
+        "host": "ibksturm.synology.me"
       },
       "description": "DoH & DoT Server, No Logging, No Filters, DNSSEC\nRunning privately by ibksturm in Thurgau, Switzerland"
     },
@@ -831,6 +845,48 @@
       "cors": true
     },
     {
+      "name": "odoh-koki-ams",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "odoh-target.alekberg.net",
+        "cors": true
+      },
+      "description": "Oblivious DoH target server in The Netherlands. No logs, No filter, DNSSEC.",
+      "cors": true
+    },
+    {
+      "name": "odoh-koki-noads-ams",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "odoh-target-noads.alekberg.net",
+        "cors": true
+      },
+      "description": "Oblivious DoH target server in The Netherlands. No logs, filter ads and malware, DNSSEC.",
+      "filter": true,
+      "cors": true
+    },
+    {
+      "name": "odoh-koki-noads-se",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "odoh-target-noads-se.alekberg.net",
+        "cors": true
+      },
+      "description": "Oblivious DoH target server in Sweden. No logs, filter ads and malware, DNSSEC.",
+      "filter": true,
+      "cors": true
+    },
+    {
+      "name": "odoh-koki-se",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "odoh-target-se.alekberg.net",
+        "cors": true
+      },
+      "description": "Oblivious DoH target server in Sweden. No logs, No filter, DNSSEC.",
+      "cors": true
+    },
+    {
       "name": "odoh-tiarap.org",
       "endpoint": {
         "protocol": "https:",
@@ -1023,7 +1079,8 @@
       "name": "sth-ads-doh-se",
       "endpoint": {
         "protocol": "https:",
-        "host": "dnsse-noads.alekberg.net"
+        "host": "dnsse-noads.alekberg.net",
+        "cors": true
       },
       "description": "Resolver in Stockholm, Sweden. DoH server. Non-logging, remove ads and malware, DNSSEC.",
       "country": "Bulgaria",
@@ -1031,20 +1088,23 @@
         "lat": 42.696,
         "long": 23.332
       },
-      "filter": true
+      "filter": true,
+      "cors": true
     },
     {
       "name": "sth-doh-se",
       "endpoint": {
         "protocol": "https:",
-        "host": "dnsse.alekberg.net"
+        "host": "dnsse.alekberg.net",
+        "cors": true
       },
       "description": "Resolver in Stockholm, Sweden. DoH server. Non-logging, non-filtering, DNSSEC.",
       "country": "Bulgaria",
       "location": {
         "lat": 42.696,
         "long": 23.332
-      }
+      },
+      "cors": true
     },
     {
       "name": "switch",

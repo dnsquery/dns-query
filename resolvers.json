@@ -189,15 +189,6 @@
       "cors": true
     },
     {
-      "name": "att",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dohtrial.att.net"
-      },
-      "description": "AT&T test DoH server.",
-      "log": true
-    },
-    {
       "name": "cisco-doh",
       "endpoint": {
         "protocol": "https:",
@@ -816,6 +807,7 @@
         "protocol": "https:",
         "host": "doh.tiar.app",
         "path": "/odoh",
+        "method": "POST",
         "cors": true
       },
       "description": "ODoH target server. Based in Singapore, no logs.\nFilter ads, trackers and malware.",

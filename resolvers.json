@@ -108,22 +108,6 @@
       "cors": true
     },
     {
-      "name": "ahadns-doh-ny",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh.ny.ahadns.net",
-        "cors": true
-      },
-      "description": "A zero logging DNS with support for DNS-over-HTTPS (DoH) & DNS-over-TLS (DoT). Blocks ads, malware, trackers, viruses, ransomware, telemetry and more. No persistent logs. DNSSEC. Hosted in New York. By https://ahadns.com/\nServer statistics can be seen at: https://statistics.ahadns.com/?server=ny",
-      "country": "United States",
-      "location": {
-        "lat": 40.7308,
-        "long": -73.9975
-      },
-      "filter": true,
-      "cors": true
-    },
-    {
       "name": "ahadns-doh-pl",
       "endpoint": {
         "protocol": "https:",
@@ -187,6 +171,29 @@
         "long": 24.997
       },
       "cors": true
+    },
+    {
+      "name": "att",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dohtrial.att.net"
+      },
+      "description": "AT&T test DoH server.",
+      "log": true
+    },
+    {
+      "name": "bebasdns",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.bebasid.com"
+      },
+      "description": "DNS-over-HTTPS forwarder run by BebasID. Filters ads and malware.\nUses Cloudflare, Quad9 & MyRepublic DNS (unfiltered) as upstream resolvers.\nhttps://github.com/bebasid/bebasdns",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      },
+      "filter": true
     },
     {
       "name": "cisco-doh",
@@ -807,7 +814,6 @@
         "protocol": "https:",
         "host": "doh.tiar.app",
         "path": "/odoh",
-        "method": "POST",
         "cors": true
       },
       "description": "ODoH target server. Based in Singapore, no logs.\nFilter ads, trackers and malware.",

@@ -173,15 +173,6 @@
       "cors": true
     },
     {
-      "name": "att",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dohtrial.att.net"
-      },
-      "description": "AT&T test DoH server.",
-      "log": true
-    },
-    {
       "name": "bebasdns",
       "endpoint": {
         "protocol": "https:",
@@ -499,15 +490,6 @@
       "description": "dnslow.me is an open source project, also your advertisement and threat blocking, privacy-first, encrypted DNS.\nAll DNS requests will be protected with threat-intelligence feeds and randomly distributed to some other DNS resolvers.\nMore info on the [homepage](https://dnslow.me) and [GitHub](https://github.com/PeterDaveHello/dnslow.me)",
       "filter": true,
       "log": true
-    },
-    {
-      "name": "dnswarden-adult-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns.dnswarden.com"
-      },
-      "description": "Blocks adult content and enforces safe search on major search engines.\nFor further customization look here: https://dnswarden.com/customfilter.html",
-      "filter": true
     },
     {
       "name": "doh-cleanbrowsing-adult",

@@ -492,6 +492,15 @@
       "log": true
     },
     {
+      "name": "dnswarden-adult-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.dnswarden.com"
+      },
+      "description": "Blocks adult content and enforces safe search on major search engines.\nFor further customization look here: https://dnswarden.com/customfilter.html",
+      "filter": true
+    },
+    {
       "name": "doh-cleanbrowsing-adult",
       "endpoint": {
         "protocol": "https:",
@@ -555,22 +564,6 @@
         "lat": 37.751,
         "long": -97.822
       },
-      "cors": true
-    },
-    {
-      "name": "doh-fi-blahdns",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh-fi.blahdns.com",
-        "cors": true
-      },
-      "description": "Blocks ad and Tracking, no Logging, DNSSEC, Hosted in Finland. By https://blahdns.com/",
-      "country": "Finland",
-      "location": {
-        "lat": 60.1758,
-        "long": 24.9349
-      },
-      "filter": true,
       "cors": true
     },
     {

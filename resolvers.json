@@ -145,8 +145,7 @@
       "name": "ams-ads-doh-nl",
       "endpoint": {
         "protocol": "https:",
-        "host": "dnsnl-noads.alekberg.net",
-        "cors": true
+        "host": "dnsnl-noads.alekberg.net"
       },
       "description": "Resolver in Amsterdam. DoH protocol. Non-logging. Blocks ads, malware and trackers. DNSSEC enabled.",
       "country": "Romania",
@@ -154,23 +153,20 @@
         "lat": 45.9968,
         "long": 24.997
       },
-      "filter": true,
-      "cors": true
+      "filter": true
     },
     {
       "name": "ams-doh-nl",
       "endpoint": {
         "protocol": "https:",
-        "host": "dnsnl.alekberg.net",
-        "cors": true
+        "host": "dnsnl.alekberg.net"
       },
       "description": "Resolver in Amsterdam. DoH protocol. Non-logging, non-filtering, DNSSEC.",
       "country": "Romania",
       "location": {
         "lat": 45.9968,
         "long": 24.997
-      },
-      "cors": true
+      }
     },
     {
       "name": "att",

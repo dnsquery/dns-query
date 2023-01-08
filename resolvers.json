@@ -145,7 +145,8 @@
       "name": "ams-ads-doh-nl",
       "endpoint": {
         "protocol": "https:",
-        "host": "dnsnl-noads.alekberg.net"
+        "host": "dnsnl-noads.alekberg.net",
+        "cors": true
       },
       "description": "Resolver in Amsterdam. DoH protocol. Non-logging. Blocks ads, malware and trackers. DNSSEC enabled.",
       "country": "Romania",
@@ -153,20 +154,23 @@
         "lat": 45.9968,
         "long": 24.997
       },
-      "filter": true
+      "filter": true,
+      "cors": true
     },
     {
       "name": "ams-doh-nl",
       "endpoint": {
         "protocol": "https:",
-        "host": "dnsnl.alekberg.net"
+        "host": "dnsnl.alekberg.net",
+        "cors": true
       },
       "description": "Resolver in Amsterdam. DoH protocol. Non-logging, non-filtering, DNSSEC.",
       "country": "Romania",
       "location": {
         "lat": 45.9968,
         "long": 24.997
-      }
+      },
+      "cors": true
     },
     {
       "name": "att",
@@ -495,15 +499,6 @@
       "description": "dnslow.me is an open source project, also your advertisement and threat blocking, privacy-first, encrypted DNS.\nAll DNS requests will be protected with threat-intelligence feeds and randomly distributed to some other DNS resolvers.\nMore info on the [homepage](https://dnslow.me) and [GitHub](https://github.com/PeterDaveHello/dnslow.me)",
       "filter": true,
       "log": true
-    },
-    {
-      "name": "dnswarden-adult-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns.dnswarden.com"
-      },
-      "description": "Blocks adult content and enforces safe search on major search engines.\nFor further customization look here: https://dnswarden.com/customfilter.html",
-      "filter": true
     },
     {
       "name": "doh-cleanbrowsing-adult",

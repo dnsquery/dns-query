@@ -391,6 +391,19 @@
       }
     },
     {
+      "name": "dns.ryan-palmer",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns1.ryan-palmer.com"
+      },
+      "description": "Non-logging, non-filtering, DNSSEC DoH Server. Hosted in the UK.",
+      "country": "United Kingdom",
+      "location": {
+        "lat": 51.5164,
+        "long": -0.093
+      }
+    },
+    {
       "name": "dns.sb",
       "endpoint": {
         "protocol": "https:",
@@ -715,21 +728,6 @@
         "lat": 51.2993,
         "long": 9.491
       }
-    },
-    {
-      "name": "meganerd-doh-ipv4",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "chewbacca.meganerd.nl",
-        "cors": true
-      },
-      "description": "DoH server by MegaNerd.nl (IPv4) - https://meganerd.nl/encrypted-dns-server\nHosted in Amsterdam (AMS1), The Netherlands.\nNon-logging, non-filtering, supports DNSSEC.",
-      "country": "Netherlands",
-      "location": {
-        "lat": 52.3891,
-        "long": 4.6563
-      },
-      "cors": true
     },
     {
       "name": "nextdns",

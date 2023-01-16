@@ -422,7 +422,8 @@
       "name": "dns.ryan-palmer",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns1.ryan-palmer.com"
+        "host": "dns1.ryan-palmer.com",
+        "method": "POST"
       },
       "description": "Non-logging, non-filtering, DNSSEC DoH Server. Hosted in the UK.",
       "country": "United Kingdom",
@@ -430,6 +431,22 @@
         "lat": 51.5164,
         "long": -0.093
       }
+    },
+    {
+      "name": "dns.sb",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "185.222.222.222",
+        "ipv4": "185.222.222.222",
+        "cors": true
+      },
+      "description": "DoH server runned by xTom.com. No logs, no filtering, supports DNSSEC.\nHomepage: https://dns.sb",
+      "country": "Unknown",
+      "location": {
+        "lat": 47,
+        "long": 8
+      },
+      "cors": true
     },
     {
       "name": "dns.therifleman.name",
@@ -511,6 +528,18 @@
       "description": "dnslow.me is an open source project, also your advertisement and threat blocking, privacy-first, encrypted DNS.\nAll DNS requests will be protected with threat-intelligence feeds and randomly distributed to some other DNS resolvers.\nMore info on the [homepage](https://dnslow.me) and [GitHub](https://github.com/PeterDaveHello/dnslow.me)",
       "filter": true,
       "log": true
+    },
+    {
+      "name": "dnspod-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "doh.pub",
+        "cors": true
+      },
+      "description": "DoH server runned by Tencent's DNSPod, has logs, support DNSSEC. China's GFW filtering rules are applied.\nHomepage: https://www.dnspod.cn/Products/publicdns",
+      "filter": true,
+      "log": true,
+      "cors": true
     },
     {
       "name": "dnswarden-adult-doh",
@@ -948,6 +977,16 @@
       "cors": true
     },
     {
+      "name": "qihoo360-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "doh.360.cn"
+      },
+      "description": "DoH server runned by Qihoo 360, has logs, supports DNSSEC. GFW filtering rules are applied.\nHomepage: https://sdns.360.net/",
+      "filter": true,
+      "log": true
+    },
+    {
       "name": "quad101",
       "endpoint": {
         "protocol": "https:",
@@ -962,7 +1001,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns11.quad9.net",
-        "ipv4": "9.9.9.11"
+        "ipv4": "149.112.112.11"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter/ecs 9.9.9.11 - 149.112.112.11",
       "country": "United States",
@@ -992,7 +1031,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns12.quad9.net",
-        "ipv4": "149.112.112.12"
+        "ipv4": "9.9.9.12"
       },
       "description": "Quad9 (anycast) no-dnssec/no-log/no-filter/ecs 9.9.9.12 - 149.112.112.12",
       "country": "United States",
@@ -1016,16 +1055,17 @@
       }
     },
     {
-      "name": "quad9-doh-ip6-port443-filter-pri",
+      "name": "quad9-doh-ip4-port5053-filter-pri",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns9.quad9.net"
+        "host": "dns9.quad9.net",
+        "ipv4": "9.9.9.9"
       },
-      "description": "Quad9 (anycast) dnssec/no-log/filter 2620:fe::fe - 2620:fe::9 - 2620:fe::fe:9",
-      "country": "United States",
+      "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
+      "country": "France",
       "location": {
-        "lat": 37.751,
-        "long": -97.822
+        "lat": 48.8582,
+        "long": 2.3387
       },
       "filter": true
     },

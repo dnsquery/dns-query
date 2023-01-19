@@ -215,47 +215,6 @@
       "cors": true
     },
     {
-      "name": "att",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dohtrial.att.net"
-      },
-      "description": "AT&T test DoH server.",
-      "log": true
-    },
-    {
-      "name": "cisco-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh.opendns.com",
-        "ipv4": "146.112.41.2"
-      },
-      "description": "Remove your DNS blind spot (DoH protocol)\nWarning: modifies your queries to include a copy of your network\naddress when forwarding them to a selection of companies and organizations.",
-      "country": "United States",
-      "location": {
-        "lat": 37.751,
-        "long": -97.822
-      },
-      "filter": true,
-      "log": true
-    },
-    {
-      "name": "cloudflare",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns.cloudflare.com",
-        "ipv4": "1.0.0.1",
-        "cors": true
-      },
-      "description": "Cloudflare DNS (anycast) - aka 1.1.1.1 / 1.0.0.1",
-      "country": "Australia",
-      "location": {
-        "lat": -33.494,
-        "long": 143.2104
-      },
-      "cors": true
-    },
-    {
       "name": "cloudflare-family",
       "endpoint": {
         "protocol": "https:",
@@ -416,6 +375,19 @@
       "location": {
         "lat": 51.2993,
         "long": 9.491
+      }
+    },
+    {
+      "name": "dns.ryan-palmer",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns1.ryan-palmer.com"
+      },
+      "description": "Non-logging, non-filtering, DNSSEC DoH Server. Hosted in the UK.",
+      "country": "United Kingdom",
+      "location": {
+        "lat": 51.5164,
+        "long": -0.093
       }
     },
     {
@@ -954,16 +926,6 @@
       "cors": true
     },
     {
-      "name": "qihoo360-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh.360.cn"
-      },
-      "description": "DoH server runned by Qihoo 360, has logs, supports DNSSEC. GFW filtering rules are applied.\nHomepage: https://sdns.360.net/",
-      "filter": true,
-      "log": true
-    },
-    {
       "name": "quad101",
       "endpoint": {
         "protocol": "https:",
@@ -992,8 +954,8 @@
       "name": "quad9-doh-ip4-port443-filter-pri",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns.quad9.net",
-        "ipv4": "149.112.112.112"
+        "host": "dns9.quad9.net",
+        "ipv4": "149.112.112.9"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
       "country": "United States",
@@ -1008,7 +970,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns12.quad9.net",
-        "ipv4": "149.112.112.12"
+        "ipv4": "9.9.9.12"
       },
       "description": "Quad9 (anycast) no-dnssec/no-log/no-filter/ecs 9.9.9.12 - 149.112.112.12",
       "country": "United States",
@@ -1035,8 +997,8 @@
       "name": "quad9-doh-ip4-port5053-filter-pri",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns9.quad9.net",
-        "ipv4": "149.112.112.9"
+        "host": "dns.quad9.net",
+        "ipv4": "149.112.112.112"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
       "country": "United States",

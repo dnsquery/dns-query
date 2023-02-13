@@ -358,6 +358,19 @@
       }
     },
     {
+      "name": "dns.digitalsize.net",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.digitalsize.net"
+      },
+      "description": "A public, non-tracking, non-filtering DNS resolver with DNSSEC enabled and hosted in Germany (https://dns.digitalsize.net)",
+      "country": "Germany",
+      "location": {
+        "lat": 51.2993,
+        "long": 9.491
+      }
+    },
+    {
       "name": "dns.ryan-palmer",
       "endpoint": {
         "protocol": "https:",
@@ -602,6 +615,22 @@
       }
     },
     {
+      "name": "doh.tiar.app-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "doh.tiar.app",
+        "cors": true
+      },
+      "description": "Non-Logging DNS-over-HTTPS (HTTP/2 & HTTP/3) server located in Singapore.\nFilters out ads, trackers and malware, supports DNSSEC, provided by id-gmail.",
+      "country": "Singapore",
+      "location": {
+        "lat": 1.2929,
+        "long": 103.8547
+      },
+      "filter": true,
+      "cors": true
+    },
+    {
       "name": "doh.tiarap.org",
       "endpoint": {
         "protocol": "https:",
@@ -616,6 +645,15 @@
       },
       "filter": true,
       "cors": true
+    },
+    {
+      "name": "easymosdns-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "doh.apad.pro"
+      },
+      "description": "DoH forwarded runned personally, as a example server of the project [EasyMosdns](https://github.com/pmkol/easymosdns).\nNo filtering or logs (by the forwarder itself).\nNo DNSSEC support due to one of the upstream servers (AliDNS) that doesn't support it.\nUpstreams are AliDNS and DNSPod for resolving domains in mainland China, and GoogleDNS is for domains.\nCloudflare CDN is used as a front-end for non-China areas, and Mobile CDN is used in China.\nHomepage: https://apad.pro/dns-doh/",
+      "log": true
     },
     {
       "name": "google",
@@ -647,22 +685,6 @@
         "long": -97.822
       },
       "log": true
-    },
-    {
-      "name": "id-gmail-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh.tiar.app",
-        "cors": true
-      },
-      "description": "Non-Logging DNS-over-HTTPS server located in Singapore.\nFilters out ads, trackers and malware, supports DNSSEC, provided by id-gmail.",
-      "country": "Singapore",
-      "location": {
-        "lat": 1.2929,
-        "long": 103.8547
-      },
-      "filter": true,
-      "cors": true
     },
     {
       "name": "iij",
@@ -861,13 +883,13 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns9.quad9.net",
-        "ipv4": "9.9.9.9"
+        "ipv4": "149.112.112.9"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
-      "country": "France",
+      "country": "United States",
       "location": {
-        "lat": 48.8582,
-        "long": 2.3387
+        "lat": 37.751,
+        "long": -97.822
       },
       "filter": true
     },
@@ -876,7 +898,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns12.quad9.net",
-        "ipv4": "149.112.112.12"
+        "ipv4": "9.9.9.12"
       },
       "description": "Quad9 (anycast) no-dnssec/no-log/no-filter/ecs 9.9.9.12 - 149.112.112.12",
       "country": "United States",
@@ -890,7 +912,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns10.quad9.net",
-        "ipv4": "9.9.9.10"
+        "ipv4": "149.112.112.10"
       },
       "description": "Quad9 (anycast) no-dnssec/no-log/no-filter 9.9.9.10 - 149.112.112.10",
       "country": "United States",

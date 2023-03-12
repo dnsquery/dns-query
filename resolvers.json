@@ -58,6 +58,21 @@
       "filter": true
     },
     {
+      "name": "adguard-dns-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.adguard.com",
+        "ipv4": "94.140.15.15"
+      },
+      "description": "Remove ads and protect your computer from malware (over DoH)",
+      "country": "France",
+      "location": {
+        "lat": 48.8582,
+        "long": 2.3387
+      },
+      "filter": true
+    },
+    {
       "name": "adguard-dns-family-doh",
       "endpoint": {
         "protocol": "https:",
@@ -71,6 +86,20 @@
         "long": 2.3387
       },
       "filter": true
+    },
+    {
+      "name": "adguard-dns-unfiltered-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns-unfiltered.adguard.com",
+        "ipv4": "94.140.14.140"
+      },
+      "description": "AdGuard public DNS servers without filters (over DoH)",
+      "country": "France",
+      "location": {
+        "lat": 48.8582,
+        "long": 2.3387
+      }
     },
     {
       "name": "ahadns-doh-la",
@@ -855,6 +884,16 @@
       "cors": true
     },
     {
+      "name": "quad101",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.twnic.tw",
+        "cors": true
+      },
+      "description": "DNSSEC-aware public resolver by the Taiwan Network Information Center (TWNIC)\nhttps://101.101.101.101/index_en.html",
+      "cors": true
+    },
+    {
       "name": "quad9-doh-ip4-port443-filter-ecs-pri",
       "endpoint": {
         "protocol": "https:",
@@ -903,7 +942,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns10.quad9.net",
-        "ipv4": "9.9.9.10"
+        "ipv4": "149.112.112.10"
       },
       "description": "Quad9 (anycast) no-dnssec/no-log/no-filter 9.9.9.10 - 149.112.112.10",
       "country": "United States",
@@ -913,12 +952,13 @@
       }
     },
     {
-      "name": "quad9-doh-ip6-port443-filter-pri",
+      "name": "quad9-doh-ip4-port5053-filter-pri",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns.quad9.net"
+        "host": "dns.quad9.net",
+        "ipv4": "149.112.112.112"
       },
-      "description": "Quad9 (anycast) dnssec/no-log/filter 2620:fe::fe - 2620:fe::9 - 2620:fe::fe:9",
+      "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
       "country": "United States",
       "location": {
         "lat": 37.751,

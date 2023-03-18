@@ -416,15 +416,15 @@
       "name": "dns.sb",
       "endpoint": {
         "protocol": "https:",
-        "host": "45.11.45.11",
-        "ipv4": "45.11.45.11",
+        "host": "185.222.222.222",
+        "ipv4": "185.222.222.222",
         "cors": true
       },
       "description": "DoH server runned by xTom.com. No logs, no filtering, supports DNSSEC.\nHomepage: https://dns.sb",
-      "country": "Netherlands",
+      "country": "Unknown",
       "location": {
-        "lat": 52.3824,
-        "long": 4.8995
+        "lat": 47,
+        "long": 8
       },
       "cors": true
     },
@@ -533,6 +533,15 @@
       "cors": true
     },
     {
+      "name": "dnswarden-adult-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.dnswarden.com"
+      },
+      "description": "Blocks adult content and enforces safe search on major search engines.\nFor further customization look here: https://dnswarden.com/customfilter.html",
+      "filter": true
+    },
+    {
       "name": "doh-cleanbrowsing-adult",
       "endpoint": {
         "protocol": "https:",
@@ -605,17 +614,6 @@
         "host": "ibksturm.synology.me"
       },
       "description": "DoH & DoT Server, No Logging, No Filters, DNSSEC\nRunning privately by ibksturm in Thurgau, Switzerland"
-    },
-    {
-      "name": "doh-jp-blahdns",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh-jp.blahdns.com",
-        "cors": true
-      },
-      "description": "Blocks ad and Tracking, no Logging, DNSSEC, Hosted in Japan. By https://blahdns.com/",
-      "filter": true,
-      "cors": true
     },
     {
       "name": "doh.ffmuc.net",
@@ -875,6 +873,16 @@
       "cors": true
     },
     {
+      "name": "qihoo360-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "doh.360.cn"
+      },
+      "description": "DoH server runned by Qihoo 360, has logs, supports DNSSEC. GFW filtering rules are applied.\nHomepage: https://sdns.360.net/",
+      "filter": true,
+      "log": true
+    },
+    {
       "name": "quad9-doh-ip4-port443-filter-ecs-pri",
       "endpoint": {
         "protocol": "https:",
@@ -893,14 +901,14 @@
       "name": "quad9-doh-ip4-port443-filter-pri",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns.quad9.net",
-        "ipv4": "149.112.112.112"
+        "host": "dns9.quad9.net",
+        "ipv4": "9.9.9.9"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
-      "country": "United States",
+      "country": "France",
       "location": {
-        "lat": 37.751,
-        "long": -97.822
+        "lat": 48.8582,
+        "long": 2.3387
       },
       "filter": true
     },
@@ -909,7 +917,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns12.quad9.net",
-        "ipv4": "149.112.112.12"
+        "ipv4": "9.9.9.12"
       },
       "description": "Quad9 (anycast) no-dnssec/no-log/no-filter/ecs 9.9.9.12 - 149.112.112.12",
       "country": "United States",
@@ -933,13 +941,12 @@
       }
     },
     {
-      "name": "quad9-doh-ip4-port5053-filter-pri",
+      "name": "quad9-doh-ip6-port5053-filter-pri",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns9.quad9.net",
-        "ipv4": "149.112.112.9"
+        "host": "dns.quad9.net"
       },
-      "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
+      "description": "Quad9 (anycast) dnssec/no-log/filter 2620:fe::fe - 2620:fe::9 - 2620:fe::fe:9",
       "country": "United States",
       "location": {
         "lat": 37.751,

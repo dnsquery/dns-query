@@ -533,6 +533,15 @@
       "cors": true
     },
     {
+      "name": "dnswarden-adult-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.dnswarden.com"
+      },
+      "description": "Blocks adult content and enforces safe search on major search engines.\nFor further customization look here: https://dnswarden.com/customfilter.html",
+      "filter": true
+    },
+    {
       "name": "doh-cleanbrowsing-adult",
       "endpoint": {
         "protocol": "https:",
@@ -576,21 +585,6 @@
         "cors": true
       },
       "description": "DNS-over-HTTPS server. Anycast, no logs, no censorship, DNSSEC.\nBackend hosted by Scaleway, globally cached via Cloudflare.\nMaintained by Frank Denis.",
-      "country": "United States",
-      "location": {
-        "lat": 37.751,
-        "long": -97.822
-      },
-      "cors": true
-    },
-    {
-      "name": "doh-crypto-sx-ipv6",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh-ipv6.crypto.sx",
-        "cors": true
-      },
-      "description": "DNS-over-HTTPS server accessible over IPv6. Anycast, no logs, no censorship, DNSSEC.\nBackend hosted by Scaleway, globally cached via Cloudflare.\nMaintained by Frank Denis.",
       "country": "United States",
       "location": {
         "lat": 37.751,
@@ -946,13 +940,13 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns9.quad9.net",
-        "ipv4": "149.112.112.9"
+        "ipv4": "9.9.9.9"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
-      "country": "United States",
+      "country": "France",
       "location": {
-        "lat": 37.751,
-        "long": -97.822
+        "lat": 48.8582,
+        "long": 2.3387
       },
       "filter": true
     },

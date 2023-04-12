@@ -800,32 +800,6 @@
       }
     },
     {
-      "name": "plan9dns-fl-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "pluton.plan9-dns.com"
-      },
-      "description": "Miami Florida, US No-logs, no-filters, DNSSEC -info https://jlongua.github.io/plan9-dns",
-      "country": "United States",
-      "location": {
-        "lat": 25.8119,
-        "long": -80.2318
-      }
-    },
-    {
-      "name": "plan9dns-mx-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "helios.plan9-dns.com"
-      },
-      "description": "Mexico City, Mexico No-logs, no-filters, DNSSEC -info https://jlongua.github.io/plan9-dns",
-      "country": "United States",
-      "location": {
-        "lat": 39.9668,
-        "long": -75.1512
-      }
-    },
-    {
       "name": "publicarray-au2-doh",
       "endpoint": {
         "protocol": "https:",
@@ -865,7 +839,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns11.quad9.net",
-        "ipv4": "149.112.112.11"
+        "ipv4": "9.9.9.11"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter/ecs 9.9.9.11 - 149.112.112.11",
       "country": "United States",
@@ -909,7 +883,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns10.quad9.net",
-        "ipv4": "9.9.9.10"
+        "ipv4": "149.112.112.10"
       },
       "description": "Quad9 (anycast) no-dnssec/no-log/no-filter 9.9.9.10 - 149.112.112.10",
       "country": "United States",
@@ -919,7 +893,7 @@
       }
     },
     {
-      "name": "quad9-doh-ip6-port5053-filter-pri",
+      "name": "quad9-doh-ip6-port443-filter-pri",
       "endpoint": {
         "protocol": "https:",
         "host": "dns.quad9.net"

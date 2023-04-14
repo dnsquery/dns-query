@@ -188,6 +188,83 @@
       "log": true
     },
     {
+      "name": "circl-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.circl.lu"
+      },
+      "description": "DoH server operated by CIRCL, Computer Incident Response Center Luxembourg.\nHosted in Bettembourg, Luxembourg.",
+      "country": "Luxembourg",
+      "location": {
+        "lat": 49.7498,
+        "long": 6.1661
+      }
+    },
+    {
+      "name": "cisco-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "doh.opendns.com",
+        "ipv4": "146.112.41.2"
+      },
+      "description": "Remove your DNS blind spot (DoH protocol)\nWarning: modifies your queries to include a copy of your network\naddress when forwarding them to a selection of companies and organizations.",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      },
+      "filter": true,
+      "log": true
+    },
+    {
+      "name": "cloudflare",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.cloudflare.com",
+        "ipv4": "1.0.0.1",
+        "cors": true
+      },
+      "description": "Cloudflare DNS (anycast) - aka 1.1.1.1 / 1.0.0.1",
+      "country": "Australia",
+      "location": {
+        "lat": -33.494,
+        "long": 143.2104
+      },
+      "cors": true
+    },
+    {
+      "name": "cloudflare-family",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "family.cloudflare-dns.com",
+        "ipv4": "1.0.0.3",
+        "cors": true
+      },
+      "description": "Cloudflare DNS (anycast) with malware protection and parental control - aka 1.1.1.3 / 1.0.0.3",
+      "country": "Australia",
+      "location": {
+        "lat": -33.494,
+        "long": 143.2104
+      },
+      "filter": true,
+      "cors": true
+    },
+    {
+      "name": "cloudflare-ipv6",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "1dot1dot1dot1.cloudflare-dns.com",
+        "cors": true
+      },
+      "description": "Cloudflare DNS over IPv6 (anycast)",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      },
+      "cors": true
+    },
+    {
       "name": "cloudflare-security",
       "endpoint": {
         "protocol": "https:",
@@ -512,74 +589,6 @@
       "cors": true
     },
     {
-      "name": "doh-crypto-sx-ipv6",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh-ipv6.crypto.sx",
-        "cors": true
-      },
-      "description": "DNS-over-HTTPS server accessible over IPv6. Anycast, no logs, no censorship, DNSSEC.\nBackend hosted by Scaleway, globally cached via Cloudflare.\nMaintained by Frank Denis.",
-      "country": "United States",
-      "location": {
-        "lat": 37.751,
-        "long": -97.822
-      },
-      "cors": true
-    },
-    {
-      "name": "doh-ibksturm",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "ibksturm.synology.me"
-      },
-      "description": "DoH & DoT Server, No Logging, No Filters, DNSSEC\nRunning privately by ibksturm in Thurgau, Switzerland"
-    },
-    {
-      "name": "doh.ffmuc.net",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh.ffmuc.net"
-      },
-      "description": "An open (non-logging, non-filtering, non-censoring) DoH resolver operated by Freifunk Munich with nodes in DE.\nhttps://ffmuc.net/",
-      "country": "Germany",
-      "location": {
-        "lat": 51.2993,
-        "long": 9.491
-      }
-    },
-    {
-      "name": "doh.tiar.app-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh.tiar.app",
-        "cors": true
-      },
-      "description": "Non-Logging DNS-over-HTTPS (HTTP/2 & HTTP/3) server located in Singapore.\nFilters out ads, trackers and malware, supports DNSSEC, provided by id-gmail.",
-      "country": "Singapore",
-      "location": {
-        "lat": 1.2929,
-        "long": 103.8547
-      },
-      "filter": true,
-      "cors": true
-    },
-    {
-      "name": "doh.tiarap.org",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh.tiarap.org",
-        "cors": true
-      },
-      "description": "Non-Logging DNS-over-HTTPS server, cached via Cloudflare.\nFilters out ads, trackers and malware, NO ECS, supports DNSSEC.",
-      "country": "United States",
-      "location": {
-        "lat": 37.751,
-        "long": -97.822
-      },
-      "filter": true,
-      "cors": true
-    },
-    {
       "name": "easymosdns-doh",
       "endpoint": {
         "protocol": "https:",
@@ -720,6 +729,45 @@
       "location": {
         "lat": 59.3247,
         "long": 18.056
+      }
+    },
+    {
+      "name": "plan9dns-fl-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "pluton.plan9-dns.com"
+      },
+      "description": "Miami Florida, US No-logs, no-filters, DNSSEC -info https://jlongua.github.io/plan9-dns",
+      "country": "United States",
+      "location": {
+        "lat": 25.8119,
+        "long": -80.2318
+      }
+    },
+    {
+      "name": "plan9dns-mx-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "helios.plan9-dns.com"
+      },
+      "description": "Mexico City, Mexico No-logs, no-filters, DNSSEC -info https://jlongua.github.io/plan9-dns",
+      "country": "United States",
+      "location": {
+        "lat": 39.9668,
+        "long": -75.1512
+      }
+    },
+    {
+      "name": "plan9dns-nj-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "kronos.plan9-dns.com"
+      },
+      "description": "Piscataway New Jersey, US No-logs, no-filters, DNSSEC -info https://jlongua.github.io/plan9-dns",
+      "country": "United States",
+      "location": {
+        "lat": 40.5511,
+        "long": -74.4606
       }
     },
     {

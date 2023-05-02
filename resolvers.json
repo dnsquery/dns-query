@@ -155,8 +155,7 @@
       "name": "ams-ads-doh-nl",
       "endpoint": {
         "protocol": "https:",
-        "host": "dnsnl-noads.alekberg.net",
-        "cors": true
+        "host": "dnsnl-noads.alekberg.net"
       },
       "description": "Resolver in Amsterdam. DoH protocol. Non-logging. Blocks ads, malware and trackers. DNSSEC enabled.",
       "country": "Romania",
@@ -164,44 +163,19 @@
         "lat": 45.9968,
         "long": 24.997
       },
-      "filter": true,
-      "cors": true
+      "filter": true
     },
     {
       "name": "ams-doh-nl",
       "endpoint": {
         "protocol": "https:",
-        "host": "dnsnl.alekberg.net",
-        "cors": true
+        "host": "dnsnl.alekberg.net"
       },
       "description": "Resolver in Amsterdam. DoH protocol. Non-logging, non-filtering, DNSSEC.",
       "country": "Romania",
       "location": {
         "lat": 45.9968,
         "long": 24.997
-      },
-      "cors": true
-    },
-    {
-      "name": "att",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dohtrial.att.net"
-      },
-      "description": "AT&T test DoH server.",
-      "log": true
-    },
-    {
-      "name": "circl-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns.circl.lu"
-      },
-      "description": "DoH server operated by CIRCL, Computer Incident Response Center Luxembourg.\nHosted in Bettembourg, Luxembourg.",
-      "country": "Luxembourg",
-      "location": {
-        "lat": 49.7498,
-        "long": 6.1661
       }
     },
     {
@@ -858,26 +832,6 @@
       "cors": true
     },
     {
-      "name": "qihoo360-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh.360.cn"
-      },
-      "description": "DoH server runned by Qihoo 360, has logs, supports DNSSEC. GFW filtering rules are applied.\nHomepage: https://sdns.360.net/",
-      "filter": true,
-      "log": true
-    },
-    {
-      "name": "quad101",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns.twnic.tw",
-        "cors": true
-      },
-      "description": "DNSSEC-aware public resolver by the Taiwan Network Information Center (TWNIC)\nhttps://101.101.101.101/index_en.html",
-      "cors": true
-    },
-    {
       "name": "quad9-doh-ip4-port443-filter-ecs-pri",
       "endpoint": {
         "protocol": "https:",
@@ -896,8 +850,8 @@
       "name": "quad9-doh-ip4-port443-filter-pri",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns.quad9.net",
-        "ipv4": "149.112.112.112"
+        "host": "dns9.quad9.net",
+        "ipv4": "149.112.112.9"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
       "country": "United States",
@@ -926,7 +880,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns10.quad9.net",
-        "ipv4": "9.9.9.10"
+        "ipv4": "149.112.112.10"
       },
       "description": "Quad9 (anycast) no-dnssec/no-log/no-filter 9.9.9.10 - 149.112.112.10",
       "country": "United States",
@@ -939,8 +893,8 @@
       "name": "quad9-doh-ip4-port5053-filter-pri",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns9.quad9.net",
-        "ipv4": "149.112.112.9"
+        "host": "dns.quad9.net",
+        "ipv4": "149.112.112.112"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
       "country": "United States",

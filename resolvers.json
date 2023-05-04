@@ -179,15 +179,6 @@
       }
     },
     {
-      "name": "att",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dohtrial.att.net"
-      },
-      "description": "AT&T test DoH server.",
-      "log": true
-    },
-    {
       "name": "circl-doh",
       "endpoint": {
         "protocol": "https:",
@@ -430,7 +421,7 @@
         "protocol": "https:",
         "host": "dns.therifleman.name"
       },
-      "description": "DNS-over-HTTPS DNS forwarder from Mumbai, India.\nBlocks web, Android trackers and ads.\nDoes not log client IP addresses, but logs queries for 24 hours for debugging\nand delegates DNS resolution to the default Linode DNS server.\nReport issues, and send suggestions to @ joker349 at protonmail.com.\nAlso supports DoT (for android) @ dns.therifleman.name and plain\nDNS @ 172.104.206.174 (Note: because of spam bots mostly from USA,\nplain DNS access is limited to India and Singapore for now. If you\nare not from these countries and would like to access plain DNS, send\na request at aforementioned email address.\nDoT and DoH are available world-wide.",
+      "description": "DNS-over-HTTPS DNS forwarder from Mumbai, India 🇮🇳.\nBlocks Web, Android trackers and Ads.\nDoes not log client IP addresses, but logs queries for 24 hours for debugging\nand delegates DNS resolution to the default Linode DNS server.\nReport issues, and send suggestions to joker349 on protonmail.\nAlso supports:\n* DoT @ dns.therifleman.name\n* plain DNS @ 172.104.206.174",
       "country": "United States",
       "location": {
         "lat": 37.751,
@@ -532,8 +523,7 @@
       "name": "dnswarden-adult-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns.dnswarden.com",
-        "method": "POST"
+        "host": "dns.dnswarden.com"
       },
       "description": "Blocks adult content and enforces safe search on major search engines.\nFor further customization look here: https://dnswarden.com/customfilter.html",
       "filter": true
@@ -855,16 +845,6 @@
       "cors": true
     },
     {
-      "name": "qihoo360-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh.360.cn"
-      },
-      "description": "DoH server runned by Qihoo 360, has logs, supports DNSSEC. GFW filtering rules are applied.\nHomepage: https://sdns.360.net/",
-      "filter": true,
-      "log": true
-    },
-    {
       "name": "quad101",
       "endpoint": {
         "protocol": "https:",
@@ -879,7 +859,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns11.quad9.net",
-        "ipv4": "149.112.112.11"
+        "ipv4": "9.9.9.11"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter/ecs 9.9.9.11 - 149.112.112.11",
       "country": "United States",
@@ -923,7 +903,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns10.quad9.net",
-        "ipv4": "9.9.9.10"
+        "ipv4": "149.112.112.10"
       },
       "description": "Quad9 (anycast) no-dnssec/no-log/no-filter 9.9.9.10 - 149.112.112.10",
       "country": "United States",
@@ -960,7 +940,8 @@
       "name": "sth-ads-doh-se",
       "endpoint": {
         "protocol": "https:",
-        "host": "dnsse-noads.alekberg.net"
+        "host": "dnsse-noads.alekberg.net",
+        "cors": true
       },
       "description": "Resolver in Stockholm, Sweden. DoH server. Non-logging, remove ads and malware, DNSSEC.",
       "country": "Bulgaria",
@@ -968,7 +949,8 @@
         "lat": 42.696,
         "long": 23.332
       },
-      "filter": true
+      "filter": true,
+      "cors": true
     },
     {
       "name": "sth-doh-se",

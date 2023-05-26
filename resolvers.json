@@ -179,6 +179,15 @@
       }
     },
     {
+      "name": "att",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dohtrial.att.net"
+      },
+      "description": "AT&T test DoH server.",
+      "log": true
+    },
+    {
       "name": "circl-doh",
       "endpoint": {
         "protocol": "https:",
@@ -400,22 +409,6 @@
       }
     },
     {
-      "name": "dns.sb",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "185.222.222.222",
-        "ipv4": "185.222.222.222",
-        "cors": true
-      },
-      "description": "DoH server runned by xTom.com. No logs, no filtering, supports DNSSEC.\nHomepage: https://dns.sb",
-      "country": "Unknown",
-      "location": {
-        "lat": 47,
-        "long": 8
-      },
-      "cors": true
-    },
-    {
       "name": "dns.therifleman.name",
       "endpoint": {
         "protocol": "https:",
@@ -518,15 +511,6 @@
       "filter": true,
       "log": true,
       "cors": true
-    },
-    {
-      "name": "dnswarden-adult-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns.dnswarden.com"
-      },
-      "description": "Blocks adult content and enforces safe search on major search engines.\nFor further customization look here: https://dnswarden.com/customfilter.html",
-      "filter": true
     },
     {
       "name": "doh-cleanbrowsing-adult",
@@ -884,13 +868,13 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns9.quad9.net",
-        "ipv4": "9.9.9.9"
+        "ipv4": "149.112.112.9"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
-      "country": "France",
+      "country": "United States",
       "location": {
-        "lat": 48.8582,
-        "long": 2.3387
+        "lat": 37.751,
+        "long": -97.822
       },
       "filter": true
     },
@@ -921,21 +905,6 @@
         "lat": 37.751,
         "long": -97.822
       }
-    },
-    {
-      "name": "quad9-doh-ip4-port5053-filter-pri",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns.quad9.net",
-        "ipv4": "149.112.112.112"
-      },
-      "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
-      "country": "United States",
-      "location": {
-        "lat": 37.751,
-        "long": -97.822
-      },
-      "filter": true
     },
     {
       "name": "safesurfer-doh",
@@ -986,19 +955,6 @@
       },
       "description": "Public DoH service provided by SWITCH in Switzerland\nhttps://www.switch.ch\nProvides protection against malware, but does not block ads.",
       "filter": true
-    },
-    {
-      "name": "uncensoreddns-dk-ipv4",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "unicast.uncensoreddns.org"
-      },
-      "description": "Also known as censurfridns.\nDoH, no logs, no filter, DNSSEC, unicast hosted in Denmark - https://blog.uncensoreddns.org",
-      "country": "Denmark",
-      "location": {
-        "lat": 55.7123,
-        "long": 12.0564
-      }
     },
     {
       "name": "uncensoreddns-ipv4",

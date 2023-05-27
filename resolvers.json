@@ -155,7 +155,8 @@
       "name": "ams-ads-doh-nl",
       "endpoint": {
         "protocol": "https:",
-        "host": "dnsnl-noads.alekberg.net"
+        "host": "dnsnl-noads.alekberg.net",
+        "cors": true
       },
       "description": "Resolver in Amsterdam. DoH protocol. Non-logging. Blocks ads, malware and trackers. DNSSEC enabled.",
       "country": "Romania",
@@ -163,20 +164,23 @@
         "lat": 45.9968,
         "long": 24.997
       },
-      "filter": true
+      "filter": true,
+      "cors": true
     },
     {
       "name": "ams-doh-nl",
       "endpoint": {
         "protocol": "https:",
-        "host": "dnsnl.alekberg.net"
+        "host": "dnsnl.alekberg.net",
+        "cors": true
       },
       "description": "Resolver in Amsterdam. DoH protocol. Non-logging, non-filtering, DNSSEC.",
       "country": "Romania",
       "location": {
         "lat": 45.9968,
         "long": 24.997
-      }
+      },
+      "cors": true
     },
     {
       "name": "att",
@@ -409,6 +413,22 @@
       }
     },
     {
+      "name": "dns.sb",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "45.11.45.11",
+        "ipv4": "45.11.45.11",
+        "cors": true
+      },
+      "description": "DoH server runned by xTom.com. No logs, no filtering, supports DNSSEC.\nHomepage: https://dns.sb",
+      "country": "Netherlands",
+      "location": {
+        "lat": 52.3824,
+        "long": 4.8995
+      },
+      "cors": true
+    },
+    {
       "name": "dns.therifleman.name",
       "endpoint": {
         "protocol": "https:",
@@ -511,6 +531,15 @@
       "filter": true,
       "log": true,
       "cors": true
+    },
+    {
+      "name": "dnswarden-adult-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.dnswarden.com"
+      },
+      "description": "Blocks adult content and enforces safe search on major search engines.\nFor further customization look here: https://dnswarden.com/customfilter.html",
+      "filter": true
     },
     {
       "name": "doh-cleanbrowsing-adult",
@@ -853,7 +882,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns11.quad9.net",
-        "ipv4": "9.9.9.11"
+        "ipv4": "149.112.112.11"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter/ecs 9.9.9.11 - 149.112.112.11",
       "country": "United States",
@@ -883,7 +912,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns12.quad9.net",
-        "ipv4": "9.9.9.12"
+        "ipv4": "149.112.112.12"
       },
       "description": "Quad9 (anycast) no-dnssec/no-log/no-filter/ecs 9.9.9.12 - 149.112.112.12",
       "country": "United States",
@@ -897,7 +926,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns10.quad9.net",
-        "ipv4": "9.9.9.10"
+        "ipv4": "149.112.112.10"
       },
       "description": "Quad9 (anycast) no-dnssec/no-log/no-filter 9.9.9.10 - 149.112.112.10",
       "country": "United States",
@@ -905,6 +934,20 @@
         "lat": 37.751,
         "long": -97.822
       }
+    },
+    {
+      "name": "quad9-doh-ip6-port443-filter-pri",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.quad9.net"
+      },
+      "description": "Quad9 (anycast) dnssec/no-log/filter 2620:fe::fe - 2620:fe::9 - 2620:fe::fe:9",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      },
+      "filter": true
     },
     {
       "name": "safesurfer-doh",
@@ -915,59 +958,6 @@
       "description": "Family safety focused blocklist for over 2 million adult sites, as well as phishing and malware and more.\nFree to use, paid for customizing blocking for more categories+sites and viewing usage at my.safesurfer.io. Logs taken for viewing\nusage, data never sold - https://safesurfer.io",
       "filter": true,
       "log": true
-    },
-    {
-      "name": "sth-ads-doh-se",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dnsse-noads.alekberg.net",
-        "cors": true
-      },
-      "description": "Resolver in Stockholm, Sweden. DoH server. Non-logging, remove ads and malware, DNSSEC.",
-      "country": "Bulgaria",
-      "location": {
-        "lat": 42.696,
-        "long": 23.332
-      },
-      "filter": true,
-      "cors": true
-    },
-    {
-      "name": "sth-doh-se",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dnsse.alekberg.net",
-        "cors": true
-      },
-      "description": "Resolver in Stockholm, Sweden. DoH server. Non-logging, non-filtering, DNSSEC.",
-      "country": "Bulgaria",
-      "location": {
-        "lat": 42.696,
-        "long": 23.332
-      },
-      "cors": true
-    },
-    {
-      "name": "switch",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns.switch.ch"
-      },
-      "description": "Public DoH service provided by SWITCH in Switzerland\nhttps://www.switch.ch\nProvides protection against malware, but does not block ads.",
-      "filter": true
-    },
-    {
-      "name": "uncensoreddns-ipv4",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "anycast.uncensoreddns.org"
-      },
-      "description": "Also known as censurfridns.\nDoH, no logs, no filter, DNSSEC, anycast - https://blog.uncensoreddns.org",
-      "country": "Denmark",
-      "location": {
-        "lat": 55.7123,
-        "long": 12.0564
-      }
     }
   ]
 }

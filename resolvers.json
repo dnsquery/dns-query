@@ -183,6 +183,15 @@
       "cors": true
     },
     {
+      "name": "att",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dohtrial.att.net"
+      },
+      "description": "AT&T test DoH server.",
+      "log": true
+    },
+    {
       "name": "circl-doh",
       "endpoint": {
         "protocol": "https:",
@@ -407,15 +416,15 @@
       "name": "dns.sb",
       "endpoint": {
         "protocol": "https:",
-        "host": "45.11.45.11",
-        "ipv4": "45.11.45.11",
+        "host": "185.222.222.222",
+        "ipv4": "185.222.222.222",
         "cors": true
       },
       "description": "DoH server runned by xTom.com. No logs, no filtering, supports DNSSEC.\nHomepage: https://dns.sb",
-      "country": "Netherlands",
+      "country": "Unknown",
       "location": {
-        "lat": 52.3824,
-        "long": 4.8995
+        "lat": 47,
+        "long": 8
       },
       "cors": true
     },
@@ -593,8 +602,7 @@
       "name": "doh-ibksturm",
       "endpoint": {
         "protocol": "https:",
-        "host": "ibksturm.synology.me",
-        "method": "POST"
+        "host": "ibksturm.synology.me"
       },
       "description": "DoH & DoT Server, No Logging, No Filters, DNSSEC\nRunning privately by ibksturm in Thurgau, Switzerland"
     },
@@ -660,8 +668,7 @@
       "name": "he",
       "endpoint": {
         "protocol": "https:",
-        "host": "ordns.he.net",
-        "method": "POST"
+        "host": "ordns.he.net"
       },
       "description": "Hurricane Electric DoH server (anycast)\nUnknown logging policy.",
       "country": "United States",
@@ -829,31 +836,11 @@
       "cors": true
     },
     {
-      "name": "qihoo360-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh.360.cn"
-      },
-      "description": "DoH server runned by Qihoo 360, has logs, supports DNSSEC. GFW filtering rules are applied.\nHomepage: https://sdns.360.net/",
-      "filter": true,
-      "log": true
-    },
-    {
-      "name": "quad101",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns.twnic.tw",
-        "cors": true
-      },
-      "description": "DNSSEC-aware public resolver by the Taiwan Network Information Center (TWNIC)\nhttps://101.101.101.101/index_en.html",
-      "cors": true
-    },
-    {
       "name": "quad9-doh-ip4-port443-filter-ecs-pri",
       "endpoint": {
         "protocol": "https:",
         "host": "dns11.quad9.net",
-        "ipv4": "9.9.9.11"
+        "ipv4": "149.112.112.11"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter/ecs 9.9.9.11 - 149.112.112.11",
       "country": "United States",
@@ -867,8 +854,8 @@
       "name": "quad9-doh-ip4-port443-filter-pri",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns.quad9.net",
-        "ipv4": "149.112.112.112"
+        "host": "dns9.quad9.net",
+        "ipv4": "149.112.112.9"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
       "country": "United States",
@@ -897,7 +884,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns10.quad9.net",
-        "ipv4": "9.9.9.10"
+        "ipv4": "149.112.112.10"
       },
       "description": "Quad9 (anycast) no-dnssec/no-log/no-filter 9.9.9.10 - 149.112.112.10",
       "country": "United States",
@@ -905,20 +892,6 @@
         "lat": 37.751,
         "long": -97.822
       }
-    },
-    {
-      "name": "quad9-doh-ip6-port5053-filter-pri",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns9.quad9.net"
-      },
-      "description": "Quad9 (anycast) dnssec/no-log/filter 2620:fe::fe - 2620:fe::9 - 2620:fe::fe:9",
-      "country": "United States",
-      "location": {
-        "lat": 37.751,
-        "long": -97.822
-      },
-      "filter": true
     },
     {
       "name": "safesurfer-doh",

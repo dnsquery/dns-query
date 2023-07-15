@@ -365,19 +365,6 @@
       }
     },
     {
-      "name": "dns.digitale-gesellschaft.ch",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns.digitale-gesellschaft.ch"
-      },
-      "description": "Public DoH resolver operated by the Digital Society (https://www.digitale-gesellschaft.ch).\nHosted in Zurich, Switzerland.\nNon-logging, non-filtering, supports DNSSEC.",
-      "country": "Switzerland",
-      "location": {
-        "lat": 47.1449,
-        "long": 8.1551
-      }
-    },
-    {
       "name": "dns.digitalsize.net",
       "endpoint": {
         "protocol": "https:",
@@ -407,15 +394,15 @@
       "name": "dns.sb",
       "endpoint": {
         "protocol": "https:",
-        "host": "185.222.222.222",
-        "ipv4": "185.222.222.222",
+        "host": "45.11.45.11",
+        "ipv4": "45.11.45.11",
         "cors": true
       },
       "description": "DoH server runned by xTom.com. No logs, no filtering, supports DNSSEC.\nHomepage: https://dns.sb",
-      "country": "Unknown",
+      "country": "Netherlands",
       "location": {
-        "lat": 47,
-        "long": 8
+        "lat": 52.3824,
+        "long": 4.8995
       },
       "cors": true
     },
@@ -431,6 +418,24 @@
         "lat": 37.751,
         "long": -97.822
       },
+      "filter": true
+    },
+    {
+      "name": "dns0",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns0.eu"
+      },
+      "description": "A free, sovereign and GDPR-compliant recursive DNS resolver with a\nstrong focus on security to protect the citizens and organizations of\nthe European Union.\nBlocks new domains, dynamic DNS, parked domains, uncommon TLDs, etc.\nhttps://www.dns0.eu/",
+      "filter": true
+    },
+    {
+      "name": "dns0-kids",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "kids.dns0.eu"
+      },
+      "description": "A free, sovereign and GDPR-compliant recursive DNS resolver with a\nstrong focus on security to protect the citizens and organizations of\nthe European Union.\nThis version blocks content not suitable for children.\nAlso blocks new domains, dynamic DNS, parked domains, uncommon TLDs, etc.\nhttps://www.dns0.eu/",
       "filter": true
     },
     {
@@ -527,18 +532,6 @@
       "cors": true
     },
     {
-      "name": "doh-cleanbrowsing-family",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh.cleanbrowsing.org",
-        "path": "/doh/family-filter/",
-        "cors": true
-      },
-      "description": "Blocks access to all adult, pornographic and explicit sites. It also\nblocks proxy and VPN domains that are used to bypass the filters.\nMixed content sites (like Reddit) are also blocked. Google, Bing and\nYoutube are set to the Safe Mode.\nBy https://cleanbrowsing.org/",
-      "filter": true,
-      "cors": true
-    },
-    {
       "name": "doh-cleanbrowsing-security",
       "endpoint": {
         "protocol": "https:",
@@ -592,14 +585,16 @@
       "name": "doh.ffmuc.net",
       "endpoint": {
         "protocol": "https:",
-        "host": "doh.ffmuc.net"
+        "host": "doh.ffmuc.net",
+        "cors": true
       },
       "description": "An open (non-logging, non-filtering, non-censoring) DoH resolver operated by Freifunk Munich with nodes in DE.\nhttps://ffmuc.net/",
       "country": "Germany",
       "location": {
         "lat": 51.2993,
         "long": 9.491
-      }
+      },
+      "cors": true
     },
     {
       "name": "doh.tiar.app-doh",
@@ -841,16 +836,6 @@
       "log": true
     },
     {
-      "name": "quad101",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns.twnic.tw",
-        "cors": true
-      },
-      "description": "DNSSEC-aware public resolver by the Taiwan Network Information Center (TWNIC)\nhttps://101.101.101.101/index_en.html",
-      "cors": true
-    },
-    {
       "name": "quad9-doh-ip4-port443-filter-ecs-pri",
       "endpoint": {
         "protocol": "https:",
@@ -869,8 +854,8 @@
       "name": "quad9-doh-ip4-port443-filter-pri",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns9.quad9.net",
-        "ipv4": "149.112.112.9"
+        "host": "dns.quad9.net",
+        "ipv4": "149.112.112.112"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
       "country": "United States",
@@ -885,7 +870,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns12.quad9.net",
-        "ipv4": "149.112.112.12"
+        "ipv4": "9.9.9.12"
       },
       "description": "Quad9 (anycast) no-dnssec/no-log/no-filter/ecs 9.9.9.12 - 149.112.112.12",
       "country": "United States",
@@ -909,13 +894,12 @@
       }
     },
     {
-      "name": "quad9-doh-ip4-port5053-filter-pri",
+      "name": "quad9-doh-ip6-port443-filter-pri",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns.quad9.net",
-        "ipv4": "149.112.112.112"
+        "host": "dns9.quad9.net"
       },
-      "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
+      "description": "Quad9 (anycast) dnssec/no-log/filter 2620:fe::fe - 2620:fe::9 - 2620:fe::fe:9",
       "country": "United States",
       "location": {
         "lat": 37.751,

@@ -542,15 +542,38 @@
       "filter": true
     },
     {
+      "name": "doh-cleanbrowsing-adult",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "doh.cleanbrowsing.org",
+        "path": "/doh/adult-filter/",
+        "cors": true
+      },
+      "description": "Blocks access to all adult, pornographic and explicit sites. It does\nnot block proxy or VPNs, nor mixed-content sites. Sites like Reddit\nare allowed. Google and Bing are set to the Safe Mode.\nBy https://cleanbrowsing.org/",
+      "filter": true,
+      "cors": true
+    },
+    {
       "name": "doh-cleanbrowsing-family",
       "endpoint": {
         "protocol": "https:",
         "host": "doh.cleanbrowsing.org",
         "path": "/doh/family-filter/",
-        "method": "POST",
         "cors": true
       },
       "description": "Blocks access to all adult, pornographic and explicit sites. It also\nblocks proxy and VPN domains that are used to bypass the filters.\nMixed content sites (like Reddit) are also blocked. Google, Bing and\nYoutube are set to the Safe Mode.\nBy https://cleanbrowsing.org/",
+      "filter": true,
+      "cors": true
+    },
+    {
+      "name": "doh-cleanbrowsing-security",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "doh.cleanbrowsing.org",
+        "path": "/doh/security-filter/",
+        "cors": true
+      },
+      "description": "Block access to phishing, malware and malicious domains. It does not block adult content.\nBy https://cleanbrowsing.org/",
       "filter": true,
       "cors": true
     },
@@ -748,19 +771,6 @@
       "cors": true
     },
     {
-      "name": "nextdns",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "anycast.dns.nextdns.io"
-      },
-      "description": "NextDNS is a cloud-based private DNS service that gives you full control\nover what is allowed and what is blocked on the Internet.\nDNSSEC, Anycast, Non-logging, NoFilters\nhttps://www.nextdns.io/",
-      "country": "United States",
-      "location": {
-        "lat": 37.751,
-        "long": -97.822
-      }
-    },
-    {
       "name": "nextdns-ultralow",
       "endpoint": {
         "protocol": "https:",
@@ -837,75 +847,11 @@
       "cors": true
     },
     {
-      "name": "qihoo360-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh.360.cn"
-      },
-      "description": "DoH server runned by Qihoo 360, has logs, supports DNSSEC. GFW filtering rules are applied.\nHomepage: https://sdns.360.net/",
-      "filter": true,
-      "log": true
-    },
-    {
-      "name": "quad101",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns.twnic.tw",
-        "cors": true
-      },
-      "description": "DNSSEC-aware public resolver by the Taiwan Network Information Center (TWNIC)\nhttps://101.101.101.101/index_en.html",
-      "cors": true
-    },
-    {
-      "name": "quad9-doh-ip4-port443-filter-ecs-pri",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns11.quad9.net",
-        "ipv4": "9.9.9.11"
-      },
-      "description": "Quad9 (anycast) dnssec/no-log/filter/ecs 9.9.9.11 - 149.112.112.11",
-      "country": "United States",
-      "location": {
-        "lat": 37.751,
-        "long": -97.822
-      },
-      "filter": true
-    },
-    {
-      "name": "quad9-doh-ip4-port443-filter-pri",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns9.quad9.net",
-        "ipv4": "149.112.112.9"
-      },
-      "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
-      "country": "United States",
-      "location": {
-        "lat": 37.751,
-        "long": -97.822
-      },
-      "filter": true
-    },
-    {
-      "name": "quad9-doh-ip4-port443-nofilter-ecs-pri",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns12.quad9.net",
-        "ipv4": "149.112.112.12"
-      },
-      "description": "Quad9 (anycast) no-dnssec/no-log/no-filter/ecs 9.9.9.12 - 149.112.112.12",
-      "country": "United States",
-      "location": {
-        "lat": 37.751,
-        "long": -97.822
-      }
-    },
-    {
       "name": "quad9-doh-ip4-port443-nofilter-pri",
       "endpoint": {
         "protocol": "https:",
         "host": "dns10.quad9.net",
-        "ipv4": "9.9.9.10"
+        "ipv4": "149.112.112.10"
       },
       "description": "Quad9 (anycast) no-dnssec/no-log/no-filter 9.9.9.10 - 149.112.112.10",
       "country": "United States",
@@ -915,10 +861,10 @@
       }
     },
     {
-      "name": "quad9-doh-ip6-port443-filter-pri",
+      "name": "quad9-doh-ip6-port5053-filter-pri",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns.quad9.net"
+        "host": "dns9.quad9.net"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter 2620:fe::fe - 2620:fe::9 - 2620:fe::fe:9",
       "country": "United States",

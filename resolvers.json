@@ -183,32 +183,13 @@
       "cors": true
     },
     {
-      "name": "bebasdns",
+      "name": "att",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns.bebasid.com"
+        "host": "dohtrial.att.net"
       },
-      "description": "BebasDNS default server by BebasID. DNSSEC supported. Filters ads, tracker, and malware.",
-      "country": "Australia",
-      "location": {
-        "lat": -33.494,
-        "long": 143.2104
-      },
-      "filter": true
-    },
-    {
-      "name": "bebasdns-security",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "antivirus.bebasid.com"
-      },
-      "description": "BebasDNS Security Variant by BebasID. DNSSEC supported. Only blocks malicious links.",
-      "country": "Australia",
-      "location": {
-        "lat": -33.494,
-        "long": 143.2104
-      },
-      "filter": true
+      "description": "AT&T test DoH server.",
+      "log": true
     },
     {
       "name": "circl-doh",
@@ -430,6 +411,22 @@
         "lat": 51.5164,
         "long": -0.093
       }
+    },
+    {
+      "name": "dns.sb",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "185.222.222.222",
+        "ipv4": "185.222.222.222",
+        "cors": true
+      },
+      "description": "DoH server runned by xTom.com. No logs, no filtering, supports DNSSEC.\nHomepage: https://dns.sb",
+      "country": "Unknown",
+      "location": {
+        "lat": 47,
+        "long": 8
+      },
+      "cors": true
     },
     {
       "name": "dns.therifleman.name",
@@ -926,7 +923,7 @@
       }
     },
     {
-      "name": "quad9-doh-ip6-port443-filter-pri",
+      "name": "quad9-doh-ip6-port5053-filter-pri",
       "endpoint": {
         "protocol": "https:",
         "host": "dns.quad9.net"

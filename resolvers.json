@@ -458,15 +458,15 @@
       "name": "dns.sb",
       "endpoint": {
         "protocol": "https:",
-        "host": "45.11.45.11",
-        "ipv4": "45.11.45.11",
+        "host": "185.222.222.222",
+        "ipv4": "185.222.222.222",
         "cors": true
       },
       "description": "DoH server runned by xTom.com. No logs, no filtering, supports DNSSEC.\nHomepage: https://dns.sb",
-      "country": "Netherlands",
+      "country": "Unknown",
       "location": {
-        "lat": 52.3824,
-        "long": 4.8995
+        "lat": 47,
+        "long": 8
       },
       "cors": true
     },
@@ -509,192 +509,6 @@
         "host": "open.dns0.eu"
       },
       "description": "The unfiltered version of dns0.eu.\nhttps://open.dns0.eu/"
-    },
-    {
-      "name": "dnsforfamily-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns-doh.dnsforfamily.com"
-      },
-      "description": "(DoH Protocol) (Now supports DNSSEC). Block adult websites, gambling websites, malwares and advertisements.\nIt also enforces safe search in: Google, YouTube, Bing, DuckDuckGo and Yandex.\nSocial websites like Facebook and Instagram are not blocked. No DNS queries are logged.\nAs of 26-May-2022 5.9 million websites are blocked and new websites are added to blacklist daily.\nCompletely free, no ads or any commercial motive. Operating for 4 years now.\nProvided by: https://dnsforfamily.com",
-      "country": "Germany",
-      "location": {
-        "lat": 51.2993,
-        "long": 9.491
-      },
-      "filter": true
-    },
-    {
-      "name": "dnsforfamily-doh-no-safe-search",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns-doh-no-safe-search.dnsforfamily.com"
-      },
-      "description": "(DoH Protocol) (Now supports DNSSEC) Block adult websites, gambling websites, malwares and advertisements.\nUnlike other dnsforfamily servers, this one does not enforces safe search. So Google, YouTube, Bing, DuckDuckGo and Yandex are completely accessible without any restriction.\nSocial websites like Facebook and Instagram are not blocked. No DNS queries are logged.\nAs of 26-May-2022 5.9 million websites are blocked and new websites are added to blacklist daily.\nCompletely free, no ads or any commercial motive. Operating for 4 years now.\nWarning: This server is incompatible with anonymization.\nProvided by: https://dnsforfamily.com",
-      "country": "Germany",
-      "location": {
-        "lat": 51.2993,
-        "long": 9.491
-      },
-      "filter": true
-    },
-    {
-      "name": "dnsforge.de",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dnsforge.de",
-        "cors": true
-      },
-      "description": "Public DoH resolver running with Pihole for Adblocking (https://dnsforge.de).\nNon-logging, AD-filtering, supports DNSSEC. Hosted in Germany.",
-      "country": "Germany",
-      "location": {
-        "lat": 52.2998,
-        "long": 9.447
-      },
-      "filter": true,
-      "cors": true
-    },
-    {
-      "name": "dnslow.me",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dnslow.me"
-      },
-      "description": "dnslow.me is an open source project, also your advertisement and threat blocking, privacy-first, encrypted DNS.\nAll DNS requests will be protected with threat-intelligence feeds and randomly distributed to some other DNS resolvers.\nMore info on the [homepage](https://dnslow.me) and [GitHub](https://github.com/PeterDaveHello/dnslow.me)",
-      "filter": true,
-      "log": true
-    },
-    {
-      "name": "dnspod",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh.pub",
-        "ipv4": "1.12.12.12",
-        "cors": true
-      },
-      "description": "A public DNS resolver that supports DoH/DoT in mainland China, provided by dnspod/Tencent-cloud.\nWarning: GFW filtering rules are applied by that resolver.\nHomepage: https://dnspod.cn/",
-      "country": "China",
-      "location": {
-        "lat": 34.7725,
-        "long": 113.7266
-      },
-      "filter": true,
-      "log": true,
-      "cors": true
-    },
-    {
-      "name": "dnswarden-adult-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns.dnswarden.com"
-      },
-      "description": "Blocks adult content and enforces safe search on major search engines.\nFor further customization look here: https://dnswarden.com/customfilter.html",
-      "filter": true
-    },
-    {
-      "name": "doh-cleanbrowsing-adult",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh.cleanbrowsing.org",
-        "path": "/doh/adult-filter/",
-        "cors": true
-      },
-      "description": "Blocks access to all adult, pornographic and explicit sites. It does\nnot block proxy or VPNs, nor mixed-content sites. Sites like Reddit\nare allowed. Google and Bing are set to the Safe Mode.\nBy https://cleanbrowsing.org/",
-      "filter": true,
-      "cors": true
-    },
-    {
-      "name": "doh-cleanbrowsing-family",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh.cleanbrowsing.org",
-        "path": "/doh/family-filter/",
-        "cors": true
-      },
-      "description": "Blocks access to all adult, pornographic and explicit sites. It also\nblocks proxy and VPN domains that are used to bypass the filters.\nMixed content sites (like Reddit) are also blocked. Google, Bing and\nYoutube are set to the Safe Mode.\nBy https://cleanbrowsing.org/",
-      "filter": true,
-      "cors": true
-    },
-    {
-      "name": "doh-cleanbrowsing-security",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh.cleanbrowsing.org",
-        "path": "/doh/security-filter/",
-        "cors": true
-      },
-      "description": "Block access to phishing, malware and malicious domains. It does not block adult content.\nBy https://cleanbrowsing.org/",
-      "filter": true,
-      "cors": true
-    },
-    {
-      "name": "doh-crypto-sx",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh.crypto.sx",
-        "cors": true
-      },
-      "description": "DNS-over-HTTPS server. Anycast, no logs, no censorship, DNSSEC.\nBackend hosted by Scaleway, globally cached via Cloudflare.\nMaintained by Frank Denis.",
-      "country": "United States",
-      "location": {
-        "lat": 37.751,
-        "long": -97.822
-      },
-      "cors": true
-    },
-    {
-      "name": "doh-crypto-sx-ipv6",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh-ipv6.crypto.sx",
-        "cors": true
-      },
-      "description": "DNS-over-HTTPS server accessible over IPv6. Anycast, no logs, no censorship, DNSSEC.\nBackend hosted by Scaleway, globally cached via Cloudflare.\nMaintained by Frank Denis.",
-      "country": "United States",
-      "location": {
-        "lat": 37.751,
-        "long": -97.822
-      },
-      "cors": true
-    },
-    {
-      "name": "doh-ibksturm",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "ibksturm.synology.me"
-      },
-      "description": "DoH & DoT Server, No Logging, No Filters, DNSSEC\nRunning privately by ibksturm in Thurgau, Switzerland"
-    },
-    {
-      "name": "doh.ffmuc.net",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh.ffmuc.net",
-        "cors": true
-      },
-      "description": "An open (non-logging, non-filtering, non-censoring) DoH resolver operated by Freifunk Munich with nodes in DE.\nhttps://ffmuc.net/",
-      "country": "Germany",
-      "location": {
-        "lat": 51.2993,
-        "long": 9.491
-      },
-      "cors": true
-    },
-    {
-      "name": "doh.tiar.app-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh.tiar.app",
-        "cors": true
-      },
-      "description": "Non-Logging DNS-over-HTTPS (HTTP/2 & HTTP/3) server located in Singapore.\nFilters out ads, trackers and malware, supports DNSSEC, provided by id-gmail.",
-      "country": "Singapore",
-      "location": {
-        "lat": 1.2929,
-        "long": 103.8547
-      },
-      "filter": true,
-      "cors": true
     },
     {
       "name": "doh.tiarap.org",
@@ -944,7 +758,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns11.quad9.net",
-        "ipv4": "149.112.112.11"
+        "ipv4": "9.9.9.11"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter/ecs 9.9.9.11 - 149.112.112.11",
       "country": "United States",

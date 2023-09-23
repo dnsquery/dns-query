@@ -16,48 +16,6 @@
       "filter": true
     },
     {
-      "name": "adfilter-per",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "per.adfilter.net"
-      },
-      "description": "Hosted in Perth, Australia.\nBlocks ads, malware, trackers and more. No persistent logs. DNSSEC. No EDNS Client-Subnet.",
-      "country": "Australia",
-      "location": {
-        "lat": -31.8575,
-        "long": 115.8913
-      },
-      "filter": true
-    },
-    {
-      "name": "adfilter-syd",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "syd.adfilter.net"
-      },
-      "description": "Hosted in Sydney, Australia.\nBlocks ads, malware, trackers and more. No persistent logs. DNSSEC. No EDNS Client-Subnet.",
-      "country": "Australia",
-      "location": {
-        "lat": -33.7806,
-        "long": 151.1181
-      },
-      "filter": true
-    },
-    {
-      "name": "adfree.usableprivacy.net",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "adfree.usableprivacy.net"
-      },
-      "description": "Public updns DoH service with advertising, tracker and malware filters.\nHosted in Europe by @usableprivacy, details see: https://docs.usableprivacy.com",
-      "country": "Germany",
-      "location": {
-        "lat": 51.2993,
-        "long": 9.491
-      },
-      "filter": true
-    },
-    {
       "name": "adguard-dns-doh",
       "endpoint": {
         "protocol": "https:",
@@ -88,24 +46,11 @@
       "filter": true
     },
     {
-      "name": "adguard-dns-unfiltered-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns-unfiltered.adguard.com",
-        "ipv4": "94.140.14.140"
-      },
-      "description": "AdGuard public DNS servers without filters (over DoH)",
-      "country": "France",
-      "location": {
-        "lat": 48.8582,
-        "long": 2.3387
-      }
-    },
-    {
       "name": "ahadns-doh-la",
       "endpoint": {
         "protocol": "https:",
         "host": "doh.la.ahadns.net",
+        "method": "POST",
         "cors": true
       },
       "description": "A zero logging DNS with support for DNS-over-HTTPS (DoH) & DNS-over-TLS (DoT). Blocks ads, malware, trackers, viruses, ransomware, telemetry and more. No persistent logs. DNSSEC. Hosted in Los Angeles, USA. By https://ahadns.com/\nServer statistics can be seen at: https://statistics.ahadns.com/?server=la",
@@ -115,40 +60,6 @@
         "long": -118.2578
       },
       "filter": true,
-      "cors": true
-    },
-    {
-      "name": "ahadns-doh-nl",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh.nl.ahadns.net",
-        "cors": true
-      },
-      "description": "A zero logging DNS with support for DNS-over-HTTPS (DoH) & DNS-over-TLS (DoT). Blocks ads, malware, trackers, viruses, ransomware, telemetry and more. No persistent logs. DNSSEC. Hosted in Amsterdam, Netherlands. By https://ahadns.com/\nServer statistics can be seen at: https://statistics.ahadns.com/?server=nl",
-      "country": "Netherlands",
-      "location": {
-        "lat": 52.3824,
-        "long": 4.8995
-      },
-      "filter": true,
-      "cors": true
-    },
-    {
-      "name": "alidns-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns.alidns.com",
-        "ipv4": "223.5.5.5",
-        "cors": true
-      },
-      "description": "A public DNS resolver that supports DoH/DoT in mainland China, provided by Alibaba-Cloud.\nWarning: GFW filtering rules are applied by that resolver.\nHomepage: https://alidns.com/",
-      "country": "China",
-      "location": {
-        "lat": 34.7725,
-        "long": 113.7266
-      },
-      "filter": true,
-      "log": true,
       "cors": true
     },
     {
@@ -960,7 +871,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns12.quad9.net",
-        "ipv4": "9.9.9.12"
+        "ipv4": "149.112.112.12"
       },
       "description": "Quad9 (anycast) no-dnssec/no-log/no-filter/ecs 9.9.9.12 - 149.112.112.12",
       "country": "United States",

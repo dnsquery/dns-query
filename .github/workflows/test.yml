@@ -34,15 +34,15 @@ jobs:
     strategy:
       matrix:
         include:
-          - id: windows:12
+          - id: windows:16
             os: windows-latest
-            node: 12
-          - id: macos:14
-            os: macos-latest
-            node: 14
-          - id: ubuntu:16
-            os: ubuntu-latest
             node: 16
+          - id: macos:18
+            os: macos-latest
+            node: 18
+          - id: ubuntu:20
+            os: ubuntu-latest
+            node: 20
     runs-on: ${{ matrix.os }}
     needs: [strict, browser]
     steps:

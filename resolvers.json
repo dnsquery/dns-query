@@ -16,6 +16,48 @@
       "filter": true
     },
     {
+      "name": "adfilter-per",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "per.adfilter.net"
+      },
+      "description": "Hosted in Perth, Australia.\nBlocks ads, malware, trackers and more. No persistent logs. DNSSEC. No EDNS Client-Subnet.",
+      "country": "Australia",
+      "location": {
+        "lat": -31.8575,
+        "long": 115.8913
+      },
+      "filter": true
+    },
+    {
+      "name": "adfilter-syd",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "syd.adfilter.net"
+      },
+      "description": "Hosted in Sydney, Australia.\nBlocks ads, malware, trackers and more. No persistent logs. DNSSEC. No EDNS Client-Subnet.",
+      "country": "Australia",
+      "location": {
+        "lat": -33.7806,
+        "long": 151.1181
+      },
+      "filter": true
+    },
+    {
+      "name": "adfree.usableprivacy.net",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "adfree.usableprivacy.net"
+      },
+      "description": "Public updns DoH service with advertising, tracker and malware filters.\nHosted in Europe by @usableprivacy, details see: https://docs.usableprivacy.com",
+      "country": "Germany",
+      "location": {
+        "lat": 51.2993,
+        "long": 9.491
+      },
+      "filter": true
+    },
+    {
       "name": "adguard-dns-doh",
       "endpoint": {
         "protocol": "https:",
@@ -46,11 +88,24 @@
       "filter": true
     },
     {
+      "name": "adguard-dns-unfiltered-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns-unfiltered.adguard.com",
+        "ipv4": "94.140.14.140"
+      },
+      "description": "AdGuard public DNS servers without filters (over DoH)",
+      "country": "France",
+      "location": {
+        "lat": 48.8582,
+        "long": 2.3387
+      }
+    },
+    {
       "name": "ahadns-doh-la",
       "endpoint": {
         "protocol": "https:",
         "host": "doh.la.ahadns.net",
-        "method": "POST",
         "cors": true
       },
       "description": "A zero logging DNS with support for DNS-over-HTTPS (DoH) & DNS-over-TLS (DoT). Blocks ads, malware, trackers, viruses, ransomware, telemetry and more. No persistent logs. DNSSEC. Hosted in Los Angeles, USA. By https://ahadns.com/\nServer statistics can be seen at: https://statistics.ahadns.com/?server=la",
@@ -63,13 +118,47 @@
       "cors": true
     },
     {
+      "name": "ahadns-doh-nl",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "doh.nl.ahadns.net",
+        "cors": true
+      },
+      "description": "A zero logging DNS with support for DNS-over-HTTPS (DoH) & DNS-over-TLS (DoT). Blocks ads, malware, trackers, viruses, ransomware, telemetry and more. No persistent logs. DNSSEC. Hosted in Amsterdam, Netherlands. By https://ahadns.com/\nServer statistics can be seen at: https://statistics.ahadns.com/?server=nl",
+      "country": "Netherlands",
+      "location": {
+        "lat": 52.3824,
+        "long": 4.8995
+      },
+      "filter": true,
+      "cors": true
+    },
+    {
+      "name": "alidns-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.alidns.com",
+        "ipv4": "223.5.5.5",
+        "cors": true
+      },
+      "description": "A public DNS resolver that supports DoH/DoT in mainland China, provided by Alibaba-Cloud.\nWarning: GFW filtering rules are applied by that resolver.\nHomepage: https://alidns.com/",
+      "country": "China",
+      "location": {
+        "lat": 34.7725,
+        "long": 113.7266
+      },
+      "filter": true,
+      "log": true,
+      "cors": true
+    },
+    {
       "name": "ams-ads-doh-nl",
       "endpoint": {
         "protocol": "https:",
         "host": "dnsnl-noads.alekberg.net",
         "cors": true
       },
-      "description": "Resolver in Amsterdam. DoH protocol. Non-logging. Blocks ads, malware and trackers. DNSSEC enabled.",
+      "description": "Resolver in Amsterdam. HTTP3, DoH protocol. Non-logging. Blocks ads, malware and trackers. DNSSEC enabled.",
       "country": "Romania",
       "location": {
         "lat": 45.9968,
@@ -85,7 +174,7 @@
         "host": "dnsnl.alekberg.net",
         "cors": true
       },
-      "description": "Resolver in Amsterdam. DoH protocol. Non-logging, non-filtering, DNSSEC.",
+      "description": "Resolver in Amsterdam. HTTP3, DoH protocol. Non-logging, non-filtering, DNSSEC.",
       "country": "Romania",
       "location": {
         "lat": 45.9968,
@@ -94,32 +183,18 @@
       "cors": true
     },
     {
-      "name": "bebasdns",
+      "name": "bebasdns-unfiltered",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns.bebasid.com"
+        "host": "dns.bebasid.com",
+        "path": "/unfiltered"
       },
-      "description": "BebasDNS default server by BebasID. DNSSEC supported. Filters ads, tracker, and malware.",
+      "description": "BebasDNS by BebasID. DNSSEC and OpenNIC supported. This variant doesn't block anything",
       "country": "Australia",
       "location": {
         "lat": -33.494,
         "long": 143.2104
-      },
-      "filter": true
-    },
-    {
-      "name": "bebasdns-security",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "antivirus.bebasid.com"
-      },
-      "description": "BebasDNS Security Variant by BebasID. DNSSEC supported. Only blocks malicious links.",
-      "country": "Australia",
-      "location": {
-        "lat": -33.494,
-        "long": 143.2104
-      },
-      "filter": true
+      }
     },
     {
       "name": "brahma-world",
@@ -360,15 +435,15 @@
       "name": "dns.sb",
       "endpoint": {
         "protocol": "https:",
-        "host": "185.222.222.222",
-        "ipv4": "185.222.222.222",
+        "host": "45.11.45.11",
+        "ipv4": "45.11.45.11",
         "cors": true
       },
       "description": "DoH server runned by xTom.com. No logs, no filtering, supports DNSSEC.\nHomepage: https://dns.sb",
-      "country": "Unknown",
+      "country": "Netherlands",
       "location": {
-        "lat": 47,
-        "long": 8
+        "lat": 52.3824,
+        "long": 4.8995
       },
       "cors": true
     },
@@ -763,6 +838,114 @@
       }
     },
     {
+      "name": "odoh-cloudflare",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "odoh.cloudflare-dns.com",
+        "cors": true
+      },
+      "description": "Cloudflare ODoH server.\nhttps://cloudflare.com",
+      "cors": true
+    },
+    {
+      "name": "odoh-crypto-sx",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "odoh.crypto.sx",
+        "cors": true
+      },
+      "description": "ODoH target server. Anycast, no logs.\nBackend hosted by Scaleway. Maintained by Frank Denis.",
+      "cors": true
+    },
+    {
+      "name": "odoh-id-gmail",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "doh.tiar.app",
+        "path": "/odoh",
+        "cors": true
+      },
+      "description": "ODoH target server. Based in Singapore, no logs.\nFilter ads, trackers and malware.",
+      "filter": true,
+      "cors": true
+    },
+    {
+      "name": "odoh-jp.tiar.app",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "jp.tiar.app",
+        "path": "/odoh",
+        "cors": true
+      },
+      "description": "ODoH target server. no logs.",
+      "cors": true
+    },
+    {
+      "name": "odoh-jp.tiarap.org",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "jp.tiarap.org",
+        "path": "/odoh",
+        "cors": true
+      },
+      "description": "ODoH target server via Cloudflare, no logs.",
+      "cors": true
+    },
+    {
+      "name": "odoh-koki-ams",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "odoh-target.alekberg.net",
+        "cors": true
+      },
+      "description": "Oblivious DoH target server in The Netherlands. No logs, No filter, DNSSEC.",
+      "cors": true
+    },
+    {
+      "name": "odoh-koki-noads-ams",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "odoh-target-noads.alekberg.net",
+        "cors": true
+      },
+      "description": "Oblivious DoH target server in The Netherlands. No logs, filter ads and malware, DNSSEC.",
+      "filter": true,
+      "cors": true
+    },
+    {
+      "name": "odoh-koki-noads-se",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "odoh-target-noads-se.alekberg.net",
+        "cors": true
+      },
+      "description": "Oblivious DoH target server in Sweden. No logs, filter ads and malware, DNSSEC.",
+      "filter": true,
+      "cors": true
+    },
+    {
+      "name": "odoh-koki-se",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "odoh-target-se.alekberg.net",
+        "cors": true
+      },
+      "description": "Oblivious DoH target server in Sweden. No logs, No filter, DNSSEC.",
+      "cors": true
+    },
+    {
+      "name": "odoh-tiarap.org",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "doh.tiarap.org",
+        "path": "/odoh",
+        "cors": true
+      },
+      "description": "ODoH target server via Cloudflare, no logs.\nFilter ads, trackers and malware.",
+      "filter": true,
+      "cors": true
+    },
+    {
       "name": "plan9dns-fl-doh",
       "endpoint": {
         "protocol": "https:",
@@ -802,19 +985,31 @@
       }
     },
     {
-      "name": "publicarray-au2-doh",
+      "name": "puredns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "doh-2.seby.io",
-        "cors": true
+        "host": "puredns.org"
       },
-      "description": "DNSSEC • OpenNIC • Non-logging • Uncensored - hosted on ovh.com.au\nMaintained by publicarray - https://dns.seby.io",
-      "country": "Australia",
+      "description": "DNSSEC, No-log, No-filter by https://upset.dev\nServers in Singapore and Indonesia\nHomepage: https://puredns.org",
+      "country": "Singapore",
       "location": {
-        "lat": -33.8591,
-        "long": 151.2002
+        "lat": 1.2929,
+        "long": 103.8547
+      }
+    },
+    {
+      "name": "puredns-family-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "family.puredns.org"
       },
-      "cors": true
+      "description": "DNSSEC, No-log, with malware, adware, gambling, fakenews, and NSFW blocking by https://upset.dev\nServers in Singapore and Indonesia\nHomepage: https://puredns.org/family",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      },
+      "filter": true
     },
     {
       "name": "qihoo360-doh",
@@ -855,14 +1050,14 @@
       "name": "quad9-doh-ip4-port443-filter-pri",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns9.quad9.net",
-        "ipv4": "9.9.9.9"
+        "host": "dns.quad9.net",
+        "ipv4": "149.112.112.112"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
-      "country": "France",
+      "country": "United States",
       "location": {
-        "lat": 48.8582,
-        "long": 2.3387
+        "lat": 37.751,
+        "long": -97.822
       },
       "filter": true
     },
@@ -871,7 +1066,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns12.quad9.net",
-        "ipv4": "149.112.112.12"
+        "ipv4": "9.9.9.12"
       },
       "description": "Quad9 (anycast) no-dnssec/no-log/no-filter/ecs 9.9.9.12 - 149.112.112.12",
       "country": "United States",
@@ -885,7 +1080,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns10.quad9.net",
-        "ipv4": "9.9.9.10"
+        "ipv4": "149.112.112.10"
       },
       "description": "Quad9 (anycast) no-dnssec/no-log/no-filter 9.9.9.10 - 149.112.112.10",
       "country": "United States",
@@ -895,18 +1090,29 @@
       }
     },
     {
-      "name": "quad9-doh-ip6-port443-filter-pri",
+      "name": "quad9-doh-ip4-port5053-filter-pri",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns.quad9.net"
+        "host": "dns9.quad9.net",
+        "ipv4": "149.112.112.9"
       },
-      "description": "Quad9 (anycast) dnssec/no-log/filter 2620:fe::fe - 2620:fe::9 - 2620:fe::fe:9",
+      "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
       "country": "United States",
       "location": {
         "lat": 37.751,
         "long": -97.822
       },
       "filter": true
+    },
+    {
+      "name": "rethinkdns-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "sky.rethinkdns.com",
+        "cors": true
+      },
+      "description": "DNSSEC, No-log, No-filter\nRethinkDNS, a stub (sky.rethinkdns.com hosted on Cloudflare) and recursive (max.rethinkdns.com hosted on fly.io) resolver\nThe stub server strips identification parameters from the request and acts as a proxy to another recursive resolver.",
+      "cors": true
     },
     {
       "name": "safesurfer-doh",
@@ -983,6 +1189,14 @@
         "lat": 55.7123,
         "long": 12.0564
       }
+    },
+    {
+      "name": "wikimedia",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "wikimedia-dns.org"
+      },
+      "description": "Wikimedia DNS (formerly called Wikidough), is a caching, recursive,\npublic resolver service that is run and managed by the Site\nReliability Engineering (Traffic) team at the Foundation.\nWikimedia DNS helps prevent some surveillance and censorship of our\nwikis and other websites by securing DNS lookups."
     }
   ]
 }

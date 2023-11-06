@@ -48,7 +48,7 @@ function toResolver (dnscryptResolver) {
   } else {
     endpoint = {
       protocol: 'https:',
-      host: dnscryptResolver.addrs[0] || parsed.host
+      host: (dnscryptResolver.addrs && dnscryptResolver.addrs[0]) || parsed.host
     }
     if (path && path !== '/dns-query') {
       endpoint.path = path
@@ -56,7 +56,7 @@ function toResolver (dnscryptResolver) {
     if (port && port !== 443) {
       endpoint.port = port
     }
-    const ip = dnscryptResolver.addrs[1]
+    const ip = (dnscryptResolver.addrs && dnscryptResolver.addrs[1])
     if (ip) {
       if (ip.startsWith('[')) {
         endpoint.ipv6 = removeBraces(ip)

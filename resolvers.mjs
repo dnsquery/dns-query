@@ -1,6 +1,48 @@
 export const resolvers = {
   data: [
     {
+      name: 'adfilter-adl',
+      endpoint: {
+        protocol: 'https:',
+        host: 'adl.adfilter.net'
+      },
+      description: 'Hosted in Adelaide, Australia.\nBlocks ads, malware, trackers and more. No persistent logs. DNSSEC. No EDNS Client-Subnet.',
+      country: 'Australia',
+      location: {
+        lat: -33.494,
+        long: 143.2104
+      },
+      filter: true
+    },
+    {
+      name: 'adfilter-per',
+      endpoint: {
+        protocol: 'https:',
+        host: 'per.adfilter.net'
+      },
+      description: 'Hosted in Perth, Australia.\nBlocks ads, malware, trackers and more. No persistent logs. DNSSEC. No EDNS Client-Subnet.',
+      country: 'Australia',
+      location: {
+        lat: -31.8575,
+        long: 115.8913
+      },
+      filter: true
+    },
+    {
+      name: 'adfilter-syd',
+      endpoint: {
+        protocol: 'https:',
+        host: 'syd.adfilter.net'
+      },
+      description: 'Hosted in Sydney, Australia.\nBlocks ads, malware, trackers and more. No persistent logs. DNSSEC. No EDNS Client-Subnet.',
+      country: 'Australia',
+      location: {
+        lat: -33.7806,
+        long: 151.1181
+      },
+      filter: true
+    },
+    {
       name: 'adfree.usableprivacy.net',
       endpoint: {
         protocol: 'https:',
@@ -59,38 +101,6 @@ export const resolvers = {
       }
     },
     {
-      name: 'ahadns-doh-chi',
-      endpoint: {
-        protocol: 'https:',
-        host: 'doh.chi.ahadns.net',
-        cors: true
-      },
-      description: 'A zero logging DNS with support for DNS-over-HTTPS (DoH) & DNS-over-TLS (DoT). Blocks ads, malware, trackers, viruses, ransomware, telemetry and more. No persistent logs. DNSSEC. Hosted in Chicago, USA. By https://ahadns.com/\nServer statistics can be seen at: https://statistics.ahadns.com/?server=chi',
-      country: 'United States',
-      location: {
-        lat: 41.8483,
-        long: -87.6517
-      },
-      filter: true,
-      cors: true
-    },
-    {
-      name: 'ahadns-doh-in',
-      endpoint: {
-        protocol: 'https:',
-        host: 'doh.in.ahadns.net',
-        cors: true
-      },
-      description: 'A zero logging DNS with support for DNS-over-HTTPS (DoH) & DNS-over-TLS (DoT). Blocks ads, malware, trackers, viruses, ransomware, telemetry and more. No persistent logs. DNSSEC. Hosted in Mumbai, India. By https://ahadns.com/\nServer statistics can be seen at: https://statistics.ahadns.com/?server=in',
-      country: 'India',
-      location: {
-        lat: 19.0748,
-        long: 72.8856
-      },
-      filter: true,
-      cors: true
-    },
-    {
       name: 'ahadns-doh-la',
       endpoint: {
         protocol: 'https:',
@@ -123,38 +133,6 @@ export const resolvers = {
       cors: true
     },
     {
-      name: 'ahadns-doh-ny',
-      endpoint: {
-        protocol: 'https:',
-        host: 'doh.ny.ahadns.net',
-        cors: true
-      },
-      description: 'A zero logging DNS with support for DNS-over-HTTPS (DoH) & DNS-over-TLS (DoT). Blocks ads, malware, trackers, viruses, ransomware, telemetry and more. No persistent logs. DNSSEC. Hosted in New York. By https://ahadns.com/\nServer statistics can be seen at: https://statistics.ahadns.com/?server=ny',
-      country: 'United States',
-      location: {
-        lat: 40.7308,
-        long: -73.9975
-      },
-      filter: true,
-      cors: true
-    },
-    {
-      name: 'ahadns-doh-pl',
-      endpoint: {
-        protocol: 'https:',
-        host: 'doh.pl.ahadns.net',
-        cors: true
-      },
-      description: 'A zero logging DNS with support for DNS-over-HTTPS (DoH) & DNS-over-TLS (DoT). Blocks ads, malware, trackers, viruses, ransomware, telemetry and more. No persistent logs. DNSSEC. Hosted in Poland. By https://ahadns.com/\nServer statistics can be seen at: https://statistics.ahadns.com/?server=pl',
-      country: 'Netherlands',
-      location: {
-        lat: 52.3824,
-        long: 4.8995
-      },
-      filter: true,
-      cors: true
-    },
-    {
       name: 'alidns-doh',
       endpoint: {
         protocol: 'https:',
@@ -176,63 +154,45 @@ export const resolvers = {
       name: 'ams-ads-doh-nl',
       endpoint: {
         protocol: 'https:',
-        host: 'dnsnl-noads.alekberg.net'
+        host: 'dnsnl-noads.alekberg.net',
+        cors: true
       },
-      description: 'Resolver in Amsterdam. DoH protocol. Non-logging. Blocks ads, malware and trackers. DNSSEC enabled.',
+      description: 'Resolver in Amsterdam. HTTP3, DoH protocol. Non-logging. Blocks ads, malware and trackers. DNSSEC enabled.',
       country: 'Romania',
       location: {
         lat: 45.9968,
         long: 24.997
       },
-      filter: true
+      filter: true,
+      cors: true
     },
     {
       name: 'ams-doh-nl',
       endpoint: {
         protocol: 'https:',
-        host: 'dnsnl.alekberg.net'
+        host: 'dnsnl.alekberg.net',
+        cors: true
       },
-      description: 'Resolver in Amsterdam. DoH protocol. Non-logging, non-filtering, DNSSEC.',
+      description: 'Resolver in Amsterdam. HTTP3, DoH protocol. Non-logging, non-filtering, DNSSEC.',
       country: 'Romania',
       location: {
         lat: 45.9968,
         long: 24.997
-      }
+      },
+      cors: true
     },
     {
-      name: 'att',
+      name: 'bebasdns-unfiltered',
       endpoint: {
         protocol: 'https:',
-        host: 'dohtrial.att.net'
+        host: 'dns.bebasid.com',
+        path: '/unfiltered'
       },
-      description: 'AT&T test DoH server.',
-      log: true
-    },
-    {
-      name: 'bcn-ads-doh',
-      endpoint: {
-        protocol: 'https:',
-        host: 'dnses-noads.alekberg.net'
-      },
-      description: 'Resolver in Spain. DoH protocol. Non-logging, remove ads and malware, DNSSEC.',
-      country: 'Spain',
+      description: "BebasDNS by BebasID. DNSSEC and OpenNIC supported. This variant doesn't block anything",
+      country: 'Australia',
       location: {
-        lat: 41.3891,
-        long: 2.1611
-      },
-      filter: true
-    },
-    {
-      name: 'bcn-doh',
-      endpoint: {
-        protocol: 'https:',
-        host: 'dnses.alekberg.net'
-      },
-      description: 'Resolver in Spain. DoH protocol. Non-logging, non-filtering, DNSSEC.',
-      country: 'Spain',
-      location: {
-        lat: 41.3891,
-        long: 2.1611
+        lat: -33.494,
+        long: 143.2104
       }
     },
     {
@@ -241,13 +201,26 @@ export const resolvers = {
         protocol: 'https:',
         host: 'dns.brahma.world'
       },
-      description: 'DNS-over-HTTPS server. Non Logging, filters ads, trackers and malware. DNSSEC ready, QNAME Minimization, No EDNS Client-Subnet.\nHosted in Stockholm, Sweden. (https://dns.brahma.world)',
-      country: 'United States',
+      description: 'DNS-over-HTTPS server. Non Logging, filters ads, trackers and malware. DNSSEC ready, QNAME Minimization, No EDNS Client-Subnet.\nHosted in Nuremberg, Germany. (https://dns.brahma.world)',
+      country: 'Germany',
       location: {
-        lat: 37.751,
-        long: -97.822
+        lat: 51.2993,
+        long: 9.491
       },
       filter: true
+    },
+    {
+      name: 'circl-doh',
+      endpoint: {
+        protocol: 'https:',
+        host: 'dns.circl.lu'
+      },
+      description: 'DoH server operated by CIRCL, Computer Incident Response Center Luxembourg.\nHosted in Bettembourg, Luxembourg.',
+      country: 'Luxembourg',
+      location: {
+        lat: 49.7498,
+        long: 6.1661
+      }
     },
     {
       name: 'cisco-doh',
@@ -432,6 +405,19 @@ export const resolvers = {
       }
     },
     {
+      name: 'dns.digitalsize.net',
+      endpoint: {
+        protocol: 'https:',
+        host: 'dns.digitalsize.net'
+      },
+      description: 'A public, non-tracking, non-filtering DNS resolver with DNSSEC enabled and hosted in Germany (https://dns.digitalsize.net)',
+      country: 'Germany',
+      location: {
+        lat: 51.2993,
+        long: 9.491
+      }
+    },
+    {
       name: 'dns.ryan-palmer',
       endpoint: {
         protocol: 'https:',
@@ -448,15 +434,15 @@ export const resolvers = {
       name: 'dns.sb',
       endpoint: {
         protocol: 'https:',
-        host: 'doh.sb',
-        ipv4: '185.222.222.222',
+        host: '45.11.45.11',
+        ipv4: '45.11.45.11',
         cors: true
       },
-      description: 'DNSSEC-enabled DoH server by https://xtom.com/\nhttps://dns.sb/doh/',
-      country: 'Unknown',
+      description: 'DoH server runned by xTom.com. No logs, no filtering, supports DNSSEC.\nHomepage: https://dns.sb',
+      country: 'Netherlands',
       location: {
-        lat: 47,
-        long: 8
+        lat: 52.3824,
+        long: 4.8995
       },
       cors: true
     },
@@ -466,7 +452,7 @@ export const resolvers = {
         protocol: 'https:',
         host: 'dns.therifleman.name'
       },
-      description: 'DNS-over-HTTPS DNS forwarder from Mumbai, India. Blocks web and Android trackers and ads.\nIP addresses are not logged, but queries are logged for 24 hours for debugging.\nReport issues, send suggestions @ joker349 at protonmail.com.\nAlso supports DoT (for android) @ dns.therifleman.name and plain DNS @ 172.104.206.174',
+      description: 'DNS-over-HTTPS DNS forwarder from Mumbai, India 🇮🇳.\nBlocks Web, Android trackers and Ads.\nDoes not log client IP addresses, but logs queries for 24 hours for debugging\nand delegates DNS resolution to the default Linode DNS server.\nReport issues, and send suggestions to joker349 on protonmail.\nAlso supports:\n* DoT @ dns.therifleman.name\n* plain DNS @ 172.104.206.174',
       country: 'United States',
       location: {
         lat: 37.751,
@@ -475,16 +461,42 @@ export const resolvers = {
       filter: true
     },
     {
+      name: 'dns0',
+      endpoint: {
+        protocol: 'https:',
+        host: 'dns0.eu'
+      },
+      description: 'A free, sovereign and GDPR-compliant recursive DNS resolver with a\nstrong focus on security to protect the citizens and organizations of\nthe European Union.\nBlocks new domains, dynamic DNS, parked domains, uncommon TLDs, etc.\nhttps://www.dns0.eu/',
+      filter: true
+    },
+    {
+      name: 'dns0-kids',
+      endpoint: {
+        protocol: 'https:',
+        host: 'kids.dns0.eu'
+      },
+      description: 'A free, sovereign and GDPR-compliant recursive DNS resolver with a\nstrong focus on security to protect the citizens and organizations of\nthe European Union.\nThis version blocks content not suitable for children.\nAlso blocks new domains, dynamic DNS, parked domains, uncommon TLDs, etc.\nhttps://www.dns0.eu/',
+      filter: true
+    },
+    {
+      name: 'dns0-unfiltered',
+      endpoint: {
+        protocol: 'https:',
+        host: 'open.dns0.eu'
+      },
+      description: 'The unfiltered version of dns0.eu.\nhttps://open.dns0.eu/'
+    },
+    {
       name: 'dnsforfamily-doh',
       endpoint: {
         protocol: 'https:',
         host: 'dns-doh.dnsforfamily.com'
       },
       description: '(DoH Protocol) (Now supports DNSSEC). Block adult websites, gambling websites, malwares and advertisements.\nIt also enforces safe search in: Google, YouTube, Bing, DuckDuckGo and Yandex.\nSocial websites like Facebook and Instagram are not blocked. No DNS queries are logged.\nAs of 26-May-2022 5.9 million websites are blocked and new websites are added to blacklist daily.\nCompletely free, no ads or any commercial motive. Operating for 4 years now.\nProvided by: https://dnsforfamily.com',
-      country: 'Finland',
+      country: 'Germany',
       location: {
-        lat: 60.1758,
-        long: 24.9349
+        lat: 51.2993,
+        long: 9.491
       },
       filter: true
     },
@@ -495,10 +507,10 @@ export const resolvers = {
         host: 'dns-doh-no-safe-search.dnsforfamily.com'
       },
       description: '(DoH Protocol) (Now supports DNSSEC) Block adult websites, gambling websites, malwares and advertisements.\nUnlike other dnsforfamily servers, this one does not enforces safe search. So Google, YouTube, Bing, DuckDuckGo and Yandex are completely accessible without any restriction.\nSocial websites like Facebook and Instagram are not blocked. No DNS queries are logged.\nAs of 26-May-2022 5.9 million websites are blocked and new websites are added to blacklist daily.\nCompletely free, no ads or any commercial motive. Operating for 4 years now.\nWarning: This server is incompatible with anonymization.\nProvided by: https://dnsforfamily.com',
-      country: 'Finland',
+      country: 'Germany',
       location: {
-        lat: 60.1758,
-        long: 24.9349
+        lat: 51.2993,
+        long: 9.491
       },
       filter: true
     },
@@ -519,111 +531,31 @@ export const resolvers = {
       cors: true
     },
     {
-      name: 'dnshome-doh',
+      name: 'dnslow.me',
       endpoint: {
         protocol: 'https:',
-        host: 'dns.dnshome.de'
+        host: 'dnslow.me'
       },
-      description: 'https://www.dnshome.de/ public resolver in Germany'
+      description: 'dnslow.me is an open source project, also your advertisement and threat blocking, privacy-first, encrypted DNS.\nAll DNS requests will be protected with threat-intelligence feeds and randomly distributed to some other DNS resolvers.\nMore info on the [homepage](https://dnslow.me) and [GitHub](https://github.com/PeterDaveHello/dnslow.me)',
+      filter: true,
+      log: true
     },
     {
-      name: 'dnspod-doh',
+      name: 'dnspod',
       endpoint: {
         protocol: 'https:',
         host: 'doh.pub',
+        ipv4: '1.12.12.12',
         cors: true
       },
-      description: 'A public DNS resolver in mainland China provided by DNSPod (Tencent Cloud).\nhttps://www.dnspod.cn/Products/Public.DNS?lang=en',
+      description: 'A public DNS resolver that supports DoH/DoT in mainland China, provided by dnspod/Tencent-cloud.\nWarning: GFW filtering rules are applied by that resolver.\nHomepage: https://dnspod.cn/',
+      country: 'China',
+      location: {
+        lat: 34.7725,
+        long: 113.7266
+      },
       filter: true,
       log: true,
-      cors: true
-    },
-    {
-      name: 'dnswarden-asia-adblock-dohv4',
-      endpoint: {
-        protocol: 'https:',
-        host: 'doh.asia.dnswarden.com',
-        path: '/adblock'
-      },
-      description: 'Hosted in Singapore. For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com).',
-      country: 'Singapore',
-      location: {
-        lat: 1.2929,
-        long: 103.8547
-      },
-      filter: true
-    },
-    {
-      name: 'dnswarden-asia-adultfilter-dohv4',
-      endpoint: {
-        protocol: 'https:',
-        host: 'doh.asia.dnswarden.com',
-        path: '/adultfilter'
-      },
-      description: 'Hosted in Singapore. For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com).',
-      country: 'Singapore',
-      location: {
-        lat: 1.2929,
-        long: 103.8547
-      },
-      filter: true
-    },
-    {
-      name: 'dnswarden-asia-uncensor-dohv4',
-      endpoint: {
-        protocol: 'https:',
-        host: 'doh.asia.dnswarden.com',
-        path: '/uncensored'
-      },
-      description: 'Hosted in Singapore. For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com).',
-      country: 'Singapore',
-      location: {
-        lat: 1.2929,
-        long: 103.8547
-      }
-    },
-    {
-      name: 'dnswarden-eu-adblock-dohv4',
-      endpoint: {
-        protocol: 'https:',
-        host: 'doh.eu.dnswarden.com'
-      },
-      description: 'Hosted in Germany. For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com).',
-      country: 'Germany',
-      location: {
-        lat: 50.1103,
-        long: 8.7147
-      },
-      filter: true
-    },
-    {
-      name: 'dnswarden-us-adblock-dohv4',
-      endpoint: {
-        protocol: 'https:',
-        host: 'doh.us.dnswarden.com'
-      },
-      description: 'Hosted in USA (Dallas) . For more information look [here](https://github.com/bhanupratapys/dnswarden) or [here](https://dnswarden.com).',
-      country: 'United States',
-      location: {
-        lat: 32.7889,
-        long: -96.8021
-      },
-      filter: true
-    },
-    {
-      name: 'doh-ch-blahdns',
-      endpoint: {
-        protocol: 'https:',
-        host: 'doh-ch.blahdns.com',
-        cors: true
-      },
-      description: 'Blocks ad and Tracking, no Logging, DNSSEC, Hosted in Switzerland. By https://blahdns.com/',
-      country: 'Netherlands',
-      location: {
-        lat: 52.3824,
-        long: 4.8995
-      },
-      filter: true,
       cors: true
     },
     {
@@ -693,79 +625,55 @@ export const resolvers = {
       cors: true
     },
     {
-      name: 'doh-de-blahdns',
-      endpoint: {
-        protocol: 'https:',
-        host: 'doh-de.blahdns.com',
-        cors: true
-      },
-      description: 'Blocks ad and Tracking, no Logging, DNSSEC, Hosted in Germany. By https://blahdns.com/',
-      country: 'Germany',
-      location: {
-        lat: 51.2993,
-        long: 9.491
-      },
-      filter: true,
-      cors: true
-    },
-    {
-      name: 'doh-fi-blahdns',
-      endpoint: {
-        protocol: 'https:',
-        host: 'doh-fi.blahdns.com',
-        cors: true
-      },
-      description: 'Blocks ad and Tracking, no Logging, DNSSEC, Hosted in Finland. By https://blahdns.com/',
-      country: 'Finland',
-      location: {
-        lat: 60.1758,
-        long: 24.9349
-      },
-      filter: true,
-      cors: true
-    },
-    {
       name: 'doh-ibksturm',
       endpoint: {
         protocol: 'https:',
         host: 'ibksturm.synology.me'
       },
-      description: 'DoH & DoT Server, No Logging, No Filters, DNSSEC\nRunning privately by ibksturm in Thurgau, Switzerland'
-    },
-    {
-      name: 'doh-jp-blahdns',
-      endpoint: {
-        protocol: 'https:',
-        host: 'doh-jp.blahdns.com',
-        cors: true
-      },
-      description: 'Blocks ad and Tracking, no Logging, DNSSEC, Hosted in Japan. By https://blahdns.com/',
-      country: 'Japan',
+      description: 'DoH & DoT Server, No Logging, No Filters, DNSSEC\nRunning privately by ibksturm in Thurgau, Switzerland',
+      country: 'Switzerland',
       location: {
-        lat: 35.6882,
-        long: 139.7532
-      },
-      filter: true,
-      cors: true
+        lat: 47.4091,
+        long: 9.0362
+      }
     },
     {
       name: 'doh.ffmuc.net',
       endpoint: {
         protocol: 'https:',
-        host: 'doh.ffmuc.net'
+        host: 'doh.ffmuc.net',
+        cors: true
       },
       description: 'An open (non-logging, non-filtering, non-censoring) DoH resolver operated by Freifunk Munich with nodes in DE.\nhttps://ffmuc.net/',
       country: 'Germany',
       location: {
         lat: 51.2993,
         long: 9.491
-      }
+      },
+      cors: true
+    },
+    {
+      name: 'doh.tiar.app-doh',
+      endpoint: {
+        protocol: 'https:',
+        host: 'doh.tiar.app',
+        cors: true
+      },
+      description: 'Non-Logging DNS-over-HTTPS (HTTP/2 & HTTP/3) server located in Singapore.\nFilters out ads, trackers and malware, supports DNSSEC, provided by id-gmail.',
+      country: 'Singapore',
+      location: {
+        lat: 1.2929,
+        long: 103.8547
+      },
+      filter: true,
+      cors: true
     },
     {
       name: 'doh.tiarap.org',
       endpoint: {
         protocol: 'https:',
-        host: 'doh.tiarap.org'
+        host: 'doh.tiarap.org',
+        cors: true
       },
       description: 'Non-Logging DNS-over-HTTPS server, cached via Cloudflare.\nFilters out ads, trackers and malware, NO ECS, supports DNSSEC.',
       country: 'United States',
@@ -773,7 +681,17 @@ export const resolvers = {
         lat: 37.751,
         long: -97.822
       },
-      filter: true
+      filter: true,
+      cors: true
+    },
+    {
+      name: 'easymosdns-doh',
+      endpoint: {
+        protocol: 'https:',
+        host: 'doh.apad.pro'
+      },
+      description: "DoH forwarded runned personally, as a example server of the project [EasyMosdns](https://github.com/pmkol/easymosdns).\nNo filtering or logs (by the forwarder itself).\nNo DNSSEC support due to one of the upstream servers (AliDNS) that doesn't support it.\nUpstreams are AliDNS and DNSPod for resolving domains in mainland China, and GoogleDNS is for domains.\nCloudflare CDN is used as a front-end for non-China areas, and Mobile CDN is used in China.\nHomepage: https://apad.pro/dns-doh/",
+      log: true
     },
     {
       name: 'google',
@@ -793,21 +711,6 @@ export const resolvers = {
       cors: true
     },
     {
-      name: 'hdns',
-      endpoint: {
-        protocol: 'https:',
-        host: 'query.hdns.io',
-        cors: true
-      },
-      description: 'HDNS is a public DNS resolver that supports Handshake domains.\nhttps://www.hdns.io',
-      country: 'United States',
-      location: {
-        lat: 37.7771,
-        long: -122.406
-      },
-      cors: true
-    },
-    {
       name: 'he',
       endpoint: {
         protocol: 'https:',
@@ -822,62 +725,44 @@ export const resolvers = {
       log: true
     },
     {
-      name: 'id-gmail-doh',
-      endpoint: {
-        protocol: 'https:',
-        host: 'doh.tiar.app'
-      },
-      description: 'Non-Logging DNS-over-HTTPS server located in Singapore.\nFilters out ads, trackers and malware, supports DNSSEC, provided by id-gmail.',
-      country: 'Singapore',
-      location: {
-        lat: 1.2929,
-        long: 103.8547
-      },
-      filter: true
-    },
-    {
       name: 'iij',
       endpoint: {
         protocol: 'https:',
         host: 'public.dns.iij.jp'
       },
-      description: 'DoH server operated by Internet Initiative Japan in Tokyo.\nhttps://www.iij.ad.jp/',
+      description: 'DoH server operated by Internet Initiative Japan in Tokyo. Blocks child pornography.\nhttps://www.iij.ad.jp/',
       country: 'Japan',
       location: {
         lat: 35.69,
         long: 139.69
       },
+      filter: true,
       log: true
-    },
-    {
-      name: 'iqdns-doh',
-      endpoint: {
-        protocol: 'https:',
-        host: 'a.passcloud.xyz'
-      },
-      description: 'Non-logging DoH service runned by V2EX.com user johnsonwil.\nReturns "no such domain" for anti-Chinese government websites. Supports DNSSEC.\nFor more information: https://www.v2ex.com/t/785666',
-      filter: true
     },
     {
       name: 'jp.tiar.app-doh',
       endpoint: {
         protocol: 'https:',
-        host: 'jp.tiar.app'
+        host: 'jp.tiar.app',
+        cors: true
       },
       description: 'Non-Logging, Non-Filtering DNS-over-HTTPS server in Japan.\nNo ECS, Support DNSSEC',
       country: 'Japan',
       location: {
         lat: 35.6882,
         long: 139.7532
-      }
+      },
+      cors: true
     },
     {
       name: 'jp.tiarap.org',
       endpoint: {
         protocol: 'https:',
-        host: 'jp.tiarap.org'
+        host: 'jp.tiarap.org',
+        cors: true
       },
-      description: 'DNS-over-HTTPS Server. Non-Logging, Non-Filtering, No ECS, Support DNSSEC.\nCached via Cloudflare.'
+      description: 'DNS-over-HTTPS Server. Non-Logging, Non-Filtering, No ECS, Support DNSSEC.\nCached via Cloudflare.',
+      cors: true
     },
     {
       name: 'libredns',
@@ -893,16 +778,31 @@ export const resolvers = {
       }
     },
     {
-      name: 'nextdns',
+      name: 'meganerd-doh-ipv4',
       endpoint: {
         protocol: 'https:',
-        host: 'anycsast.dns.nextdns.io'
+        host: 'snoke.meganerd.nl',
+        cors: true
       },
-      description: 'NextDNS is a cloud-based private DNS service that gives you full control\nover what is allowed and what is blocked on the Internet.\nDNSSEC, Anycast, Non-logging, NoFilters\nhttps://www.nextdns.io/',
+      description: 'DoH server by MegaNerd.nl (IPv4) - https://meganerd.nl/encrypted-dns-server\nHosted in Amsterdam (AMS1), The Netherlands.\nNon-logging, non-filtering, supports DNSSEC.',
       country: 'Netherlands',
       location: {
         lat: 52.3891,
         long: 4.6563
+      },
+      cors: true
+    },
+    {
+      name: 'nextdns',
+      endpoint: {
+        protocol: 'https:',
+        host: 'anycast.dns.nextdns.io'
+      },
+      description: 'NextDNS is a cloud-based private DNS service that gives you full control\nover what is allowed and what is blocked on the Internet.\nDNSSEC, Anycast, Non-logging, NoFilters\nhttps://www.nextdns.io/',
+      country: 'United States',
+      location: {
+        lat: 37.751,
+        long: -97.822
       }
     },
     {
@@ -918,16 +818,14 @@ export const resolvers = {
       name: 'njalla-doh',
       endpoint: {
         protocol: 'https:',
-        host: 'dns.njal.la',
-        cors: true
+        host: 'dns.njal.la'
       },
       description: 'Non-logging DoH server in Sweden operated by Njalla.\nhttps://dns.njal.la/',
       country: 'Sweden',
       location: {
         lat: 59.3247,
         long: 18.056
-      },
-      cors: true
+      }
     },
     {
       name: 'odoh-cloudflare',
@@ -954,77 +852,164 @@ export const resolvers = {
       endpoint: {
         protocol: 'https:',
         host: 'doh.tiar.app',
-        path: '/odoh'
+        path: '/odoh',
+        cors: true
       },
       description: 'ODoH target server. Based in Singapore, no logs.\nFilter ads, trackers and malware.',
-      filter: true
+      filter: true,
+      cors: true
     },
     {
       name: 'odoh-jp.tiar.app',
       endpoint: {
         protocol: 'https:',
         host: 'jp.tiar.app',
-        path: '/odoh'
+        path: '/odoh',
+        cors: true
       },
-      description: 'ODoH target server. no logs.'
+      description: 'ODoH target server. no logs.',
+      cors: true
     },
     {
       name: 'odoh-jp.tiarap.org',
       endpoint: {
         protocol: 'https:',
         host: 'jp.tiarap.org',
-        path: '/odoh'
+        path: '/odoh',
+        cors: true
       },
-      description: 'ODoH target server via Cloudflare, no logs.'
+      description: 'ODoH target server via Cloudflare, no logs.',
+      cors: true
     },
     {
-      name: 'odoh-resolver4.dns.openinternet.io',
+      name: 'odoh-koki-ams',
       endpoint: {
         protocol: 'https:',
-        host: 'resolver4.dns.openinternet.io'
+        host: 'odoh-target.alekberg.net',
+        cors: true
       },
-      description: "ODoH target server. no logs, no filter, DNSSEC.\nRunning on dedicated hardware colocated at Sonic.net in Santa Rosa, CA in the United States.\nUses Sonic's recusrive DNS servers as upstream resolvers (but is not affiliated with Sonic\nin any way). Provided by https://openinternet.io"
+      description: 'Oblivious DoH target server in The Netherlands. No logs, No filter, DNSSEC.',
+      cors: true
+    },
+    {
+      name: 'odoh-koki-noads-ams',
+      endpoint: {
+        protocol: 'https:',
+        host: 'odoh-target-noads.alekberg.net',
+        cors: true
+      },
+      description: 'Oblivious DoH target server in The Netherlands. No logs, filter ads and malware, DNSSEC.',
+      filter: true,
+      cors: true
+    },
+    {
+      name: 'odoh-koki-noads-se',
+      endpoint: {
+        protocol: 'https:',
+        host: 'odoh-target-noads-se.alekberg.net',
+        cors: true
+      },
+      description: 'Oblivious DoH target server in Sweden. No logs, filter ads and malware, DNSSEC.',
+      filter: true,
+      cors: true
+    },
+    {
+      name: 'odoh-koki-se',
+      endpoint: {
+        protocol: 'https:',
+        host: 'odoh-target-se.alekberg.net',
+        cors: true
+      },
+      description: 'Oblivious DoH target server in Sweden. No logs, No filter, DNSSEC.',
+      cors: true
     },
     {
       name: 'odoh-tiarap.org',
       endpoint: {
         protocol: 'https:',
         host: 'doh.tiarap.org',
-        path: '/odoh'
-      },
-      description: 'ODoH target server via Cloudflare, no logs.\nFilter ads, trackers and malware.',
-      filter: true
-    },
-    {
-      name: 'publicarray-au2-doh',
-      endpoint: {
-        protocol: 'https:',
-        host: 'doh-2.seby.io',
+        path: '/odoh',
         cors: true
       },
-      description: 'DNSSEC • OpenNIC • Non-logging • Uncensored - hosted on ovh.com.au\nMaintained by publicarray - https://dns.seby.io',
-      country: 'Australia',
-      location: {
-        lat: -33.8591,
-        long: 151.2002
-      },
+      description: 'ODoH target server via Cloudflare, no logs.\nFilter ads, trackers and malware.',
+      filter: true,
       cors: true
+    },
+    {
+      name: 'plan9dns-fl-doh',
+      endpoint: {
+        protocol: 'https:',
+        host: 'pluton.plan9-dns.com'
+      },
+      description: 'Miami Florida, US No-logs, no-filters, DNSSEC -info https://jlongua.github.io/plan9-dns',
+      country: 'United States',
+      location: {
+        lat: 25.8119,
+        long: -80.2318
+      }
+    },
+    {
+      name: 'plan9dns-mx-doh',
+      endpoint: {
+        protocol: 'https:',
+        host: 'helios.plan9-dns.com'
+      },
+      description: 'Mexico City, Mexico No-logs, no-filters, DNSSEC -info https://jlongua.github.io/plan9-dns',
+      country: 'United States',
+      location: {
+        lat: 39.9668,
+        long: -75.1512
+      }
+    },
+    {
+      name: 'plan9dns-nj-doh',
+      endpoint: {
+        protocol: 'https:',
+        host: 'kronos.plan9-dns.com'
+      },
+      description: 'Piscataway New Jersey, US No-logs, no-filters, DNSSEC -info https://jlongua.github.io/plan9-dns',
+      country: 'United States',
+      location: {
+        lat: 40.5511,
+        long: -74.4606
+      }
     },
     {
       name: 'puredns-doh',
       endpoint: {
         protocol: 'https:',
-        host: 'puredns.org',
-        ipv4: '146.190.6.13',
-        cors: true
+        host: 'puredns.org'
       },
-      description: 'Public uncensored DNS resolver in Singapore - https://puredns.org\n** Only available in Indonesia and Singapore **',
+      description: 'DNSSEC, No-log, No-filter by https://upset.dev\nServers in Singapore and Indonesia\nHomepage: https://puredns.org',
+      country: 'Singapore',
+      location: {
+        lat: 1.2929,
+        long: 103.8547
+      }
+    },
+    {
+      name: 'puredns-family-doh',
+      endpoint: {
+        protocol: 'https:',
+        host: 'family.puredns.org'
+      },
+      description: 'DNSSEC, No-log, with malware, adware, gambling, fakenews, and NSFW blocking by https://upset.dev\nServers in Singapore and Indonesia\nHomepage: https://puredns.org/family',
       country: 'United States',
       location: {
         lat: 37.751,
         long: -97.822
       },
-      cors: true
+      filter: true
+    },
+    {
+      name: 'qihoo360-doh',
+      endpoint: {
+        protocol: 'https:',
+        host: 'doh.360.cn'
+      },
+      description: 'DoH server runned by Qihoo 360, has logs, supports DNSSEC. GFW filtering rules are applied.\nHomepage: https://sdns.360.net/',
+      filter: true,
+      log: true
     },
     {
       name: 'quad101',
@@ -1095,18 +1080,29 @@ export const resolvers = {
       }
     },
     {
-      name: 'quad9-doh-ip6-port5053-filter-pri',
+      name: 'quad9-doh-ip4-port5053-filter-pri',
       endpoint: {
         protocol: 'https:',
-        host: 'dns9.quad9.net'
+        host: 'dns9.quad9.net',
+        ipv4: '149.112.112.9'
       },
-      description: 'Quad9 (anycast) dnssec/no-log/filter 2620:fe::fe - 2620:fe::9 - 2620:fe::fe:9',
+      description: 'Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112',
       country: 'United States',
       location: {
         lat: 37.751,
         long: -97.822
       },
       filter: true
+    },
+    {
+      name: 'rethinkdns-doh',
+      endpoint: {
+        protocol: 'https:',
+        host: 'sky.rethinkdns.com',
+        cors: true
+      },
+      description: 'DNSSEC, No-log, No-filter\nRethinkDNS, a stub (sky.rethinkdns.com hosted on Cloudflare) and recursive (max.rethinkdns.com hosted on fly.io) resolver\nThe stub server strips identification parameters from the request and acts as a proxy to another recursive resolver.',
+      cors: true
     },
     {
       name: 'safesurfer-doh',
@@ -1122,7 +1118,8 @@ export const resolvers = {
       name: 'sth-ads-doh-se',
       endpoint: {
         protocol: 'https:',
-        host: 'dnsse-noads.alekberg.net'
+        host: 'dnsse-noads.alekberg.net',
+        cors: true
       },
       description: 'Resolver in Stockholm, Sweden. DoH server. Non-logging, remove ads and malware, DNSSEC.',
       country: 'Bulgaria',
@@ -1130,20 +1127,23 @@ export const resolvers = {
         lat: 42.696,
         long: 23.332
       },
-      filter: true
+      filter: true,
+      cors: true
     },
     {
       name: 'sth-doh-se',
       endpoint: {
         protocol: 'https:',
-        host: 'dnsse.alekberg.net'
+        host: 'dnsse.alekberg.net',
+        cors: true
       },
       description: 'Resolver in Stockholm, Sweden. DoH server. Non-logging, non-filtering, DNSSEC.',
       country: 'Bulgaria',
       location: {
         lat: 42.696,
         long: 23.332
-      }
+      },
+      cors: true
     },
     {
       name: 'switch',
@@ -1181,18 +1181,13 @@ export const resolvers = {
       }
     },
     {
-      name: 'v.dnscrypt.uk-doh-ipv4',
+      name: 'wikimedia',
       endpoint: {
         protocol: 'https:',
-        host: 'v.dnscrypt.uk'
+        host: 'wikimedia-dns.org'
       },
-      description: 'DoH, no logs, uncensored, DNSSEC. Hosted in London UK on Digital Ocean\nhttps://www.dnscrypt.uk',
-      country: 'United Kingdom',
-      location: {
-        lat: 51.4964,
-        long: -0.1224
-      }
+      description: 'Wikimedia DNS (formerly called Wikidough), is a caching, recursive,\npublic resolver service that is run and managed by the Site\nReliability Engineering (Traffic) team at the Foundation.\nWikimedia DNS helps prevent some surveillance and censorship of our\nwikis and other websites by securing DNS lookups.'
     }
   ],
-  time: 1654187067783
+  time: 1699287681062
 }

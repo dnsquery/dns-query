@@ -183,6 +183,20 @@
       "cors": true
     },
     {
+      "name": "bebasdns-unfiltered-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.bebasid.com",
+        "path": "/unfiltered"
+      },
+      "description": "BebasDNS by BebasID. DNSSEC and OpenNIC supported. This variant doesn't block anything",
+      "country": "Australia",
+      "location": {
+        "lat": -33.494,
+        "long": 143.2104
+      }
+    },
+    {
       "name": "brahma-world",
       "endpoint": {
         "protocol": "https:",
@@ -679,7 +693,7 @@
       "name": "fdn",
       "endpoint": {
         "protocol": "https:",
-        "host": "ns0.fdn.fr"
+        "host": "ns1.fdn.fr"
       },
       "description": "DoH server in France operated by FDN - French Data Network (non-profit ISP)\nhttps://www.fdn.fr/",
       "country": "France",
@@ -692,7 +706,7 @@
       "name": "fdn-ipv6",
       "endpoint": {
         "protocol": "https:",
-        "host": "ns1.fdn.fr"
+        "host": "ns0.fdn.fr"
       },
       "description": "DoH server in France operated by FDN - French Data Network (non-profit ISP)\nhttps://www.fdn.fr/",
       "country": "France",
@@ -932,18 +946,6 @@
       "cors": true
     },
     {
-      "name": "odoh-tiarap.org",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh.tiarap.org",
-        "path": "/odoh",
-        "cors": true
-      },
-      "description": "ODoH target server via Cloudflare, no logs.\nFilter ads, trackers and malware.",
-      "filter": true,
-      "cors": true
-    },
-    {
       "name": "plan9dns-fl-doh",
       "endpoint": {
         "protocol": "https:",
@@ -1061,12 +1063,13 @@
       }
     },
     {
-      "name": "quad9-doh-ip6-port5053-filter-pri",
+      "name": "quad9-doh-ip4-port5053-filter-pri",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns.quad9.net"
+        "host": "dns.quad9.net",
+        "ipv4": "149.112.112.112"
       },
-      "description": "Quad9 (anycast) dnssec/no-log/filter 2620:fe::fe - 2620:fe::9 - 2620:fe::fe:9",
+      "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
       "country": "United States",
       "location": {
         "lat": 37.751,
@@ -1162,6 +1165,27 @@
         "lat": 55.7123,
         "long": 12.0564
       }
+    },
+    {
+      "name": "uncensoreddns-ipv4",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "anycast.uncensoreddns.org"
+      },
+      "description": "Also known as censurfridns.\nDoH, no logs, no filter, DNSSEC, anycast - https://blog.uncensoreddns.org",
+      "country": "Denmark",
+      "location": {
+        "lat": 55.7123,
+        "long": 12.0564
+      }
+    },
+    {
+      "name": "wikimedia",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "wikimedia-dns.org"
+      },
+      "description": "Wikimedia DNS (formerly called Wikidough), is a caching, recursive,\npublic resolver service that is run and managed by the Site\nReliability Engineering (Traffic) team at the Foundation.\nWikimedia DNS helps prevent some surveillance and censorship of our\nwikis and other websites by securing DNS lookups."
     }
   ]
 }

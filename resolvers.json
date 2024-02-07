@@ -448,15 +448,6 @@
       "cors": true
     },
     {
-      "name": "dns0",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns0.eu"
-      },
-      "description": "A free, sovereign and GDPR-compliant recursive DNS resolver with a\nstrong focus on security to protect the citizens and organizations of\nthe European Union.\nBlocks new domains, dynamic DNS, parked domains, uncommon TLDs, etc.\nhttps://www.dns0.eu/",
-      "filter": true
-    },
-    {
       "name": "dns0-kids",
       "endpoint": {
         "protocol": "https:",
@@ -472,34 +463,6 @@
         "host": "open.dns0.eu"
       },
       "description": "The unfiltered version of dns0.eu.\nhttps://open.dns0.eu/"
-    },
-    {
-      "name": "dnsforfamily-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns-doh.dnsforfamily.com"
-      },
-      "description": "(DoH Protocol) (Now supports DNSSEC). Block adult websites, gambling websites, malwares and advertisements.\nIt also enforces safe search in: Google, YouTube, Bing, DuckDuckGo and Yandex.\nSocial websites like Facebook and Instagram are not blocked. No DNS queries are logged.\nAs of 26-May-2022 5.9 million websites are blocked and new websites are added to blacklist daily.\nCompletely free, no ads or any commercial motive. Operating for 4 years now.\nProvided by: https://dnsforfamily.com",
-      "country": "Germany",
-      "location": {
-        "lat": 51.2993,
-        "long": 9.491
-      },
-      "filter": true
-    },
-    {
-      "name": "dnsforfamily-doh-no-safe-search",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns-doh-no-safe-search.dnsforfamily.com"
-      },
-      "description": "(DoH Protocol) (Now supports DNSSEC) Block adult websites, gambling websites, malwares and advertisements.\nUnlike other dnsforfamily servers, this one does not enforces safe search. So Google, YouTube, Bing, DuckDuckGo and Yandex are completely accessible without any restriction.\nSocial websites like Facebook and Instagram are not blocked. No DNS queries are logged.\nAs of 26-May-2022 5.9 million websites are blocked and new websites are added to blacklist daily.\nCompletely free, no ads or any commercial motive. Operating for 4 years now.\nWarning: This server is incompatible with anonymization.\nProvided by: https://dnsforfamily.com",
-      "country": "Germany",
-      "location": {
-        "lat": 51.2993,
-        "long": 9.491
-      },
-      "filter": true
     },
     {
       "name": "dnsforge.de",
@@ -544,6 +507,15 @@
       "filter": true,
       "log": true,
       "cors": true
+    },
+    {
+      "name": "dnswarden-adult-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.dnswarden.com"
+      },
+      "description": "Blocks adult content and enforces safe search on major search engines.\nFor further customization look here: https://dnswarden.com/customfilter.html",
+      "filter": true
     },
     {
       "name": "doh-cleanbrowsing-adult",
@@ -684,13 +656,26 @@
       "name": "fdn",
       "endpoint": {
         "protocol": "https:",
-        "host": "ns0.fdn.fr"
+        "host": "ns1.fdn.fr"
       },
       "description": "DoH server in France operated by FDN - French Data Network (non-profit ISP)\nhttps://www.fdn.fr/",
       "country": "France",
       "location": {
         "lat": 48.8582,
         "long": 2.3387
+      }
+    },
+    {
+      "name": "fdn-ipv6",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "ns0.fdn.fr"
+      },
+      "description": "DoH server in France operated by FDN - French Data Network (non-profit ISP)\nhttps://www.fdn.fr/",
+      "country": "France",
+      "location": {
+        "lat": 46,
+        "long": 2
       }
     },
     {
@@ -999,7 +984,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns11.quad9.net",
-        "ipv4": "149.112.112.11"
+        "ipv4": "9.9.9.11"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter/ecs 9.9.9.11 - 149.112.112.11",
       "country": "United States",
@@ -1014,13 +999,13 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns9.quad9.net",
-        "ipv4": "9.9.9.9"
+        "ipv4": "149.112.112.9"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
-      "country": "France",
+      "country": "United States",
       "location": {
-        "lat": 48.8582,
-        "long": 2.3387
+        "lat": 37.751,
+        "long": -97.822
       },
       "filter": true
     },
@@ -1043,7 +1028,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns10.quad9.net",
-        "ipv4": "149.112.112.10"
+        "ipv4": "9.9.9.10"
       },
       "description": "Quad9 (anycast) no-dnssec/no-log/no-filter 9.9.9.10 - 149.112.112.10",
       "country": "United States",
@@ -1053,12 +1038,13 @@
       }
     },
     {
-      "name": "quad9-doh-ip6-port5053-filter-pri",
+      "name": "quad9-doh-ip4-port5053-filter-pri",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns.quad9.net"
+        "host": "dns.quad9.net",
+        "ipv4": "149.112.112.112"
       },
-      "description": "Quad9 (anycast) dnssec/no-log/filter 2620:fe::fe - 2620:fe::9 - 2620:fe::fe:9",
+      "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
       "country": "United States",
       "location": {
         "lat": 37.751,

@@ -183,6 +183,20 @@
       "cors": true
     },
     {
+      "name": "bebasdns-unfiltered-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.bebasid.com",
+        "path": "/unfiltered"
+      },
+      "description": "BebasDNS by BebasID. DNSSEC and OpenNIC supported. This variant doesn't block anything",
+      "country": "Australia",
+      "location": {
+        "lat": -33.494,
+        "long": 143.2104
+      }
+    },
+    {
       "name": "brahma-world",
       "endpoint": {
         "protocol": "https:",
@@ -421,15 +435,15 @@
       "name": "dns.sb",
       "endpoint": {
         "protocol": "https:",
-        "host": "185.222.222.222",
-        "ipv4": "185.222.222.222",
+        "host": "45.11.45.11",
+        "ipv4": "45.11.45.11",
         "cors": true
       },
       "description": "DoH server runned by xTom.com. No logs, no filtering, supports DNSSEC.\nHomepage: https://dns.sb",
-      "country": "Unknown",
+      "country": "Netherlands",
       "location": {
-        "lat": 47,
-        "long": 8
+        "lat": 52.3824,
+        "long": 4.8995
       },
       "cors": true
     },
@@ -651,7 +665,7 @@
       "name": "fdn",
       "endpoint": {
         "protocol": "https:",
-        "host": "ns1.fdn.fr"
+        "host": "ns0.fdn.fr"
       },
       "description": "DoH server in France operated by FDN - French Data Network (non-profit ISP)\nhttps://www.fdn.fr/",
       "country": "France",
@@ -980,8 +994,8 @@
       "name": "quad9-doh-ip4-port443-filter-pri",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns.quad9.net",
-        "ipv4": "149.112.112.112"
+        "host": "dns9.quad9.net",
+        "ipv4": "149.112.112.9"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
       "country": "United States",
@@ -1010,7 +1024,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns10.quad9.net",
-        "ipv4": "149.112.112.10"
+        "ipv4": "9.9.9.10"
       },
       "description": "Quad9 (anycast) no-dnssec/no-log/no-filter 9.9.9.10 - 149.112.112.10",
       "country": "United States",
@@ -1018,6 +1032,21 @@
         "lat": 37.751,
         "long": -97.822
       }
+    },
+    {
+      "name": "quad9-doh-ip4-port5053-filter-pri",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.quad9.net",
+        "ipv4": "149.112.112.112"
+      },
+      "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      },
+      "filter": true
     },
     {
       "name": "rethinkdns-doh",

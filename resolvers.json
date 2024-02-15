@@ -641,7 +641,6 @@
       "endpoint": {
         "protocol": "https:",
         "host": "doh.tiarap.org",
-        "method": "POST",
         "cors": true
       },
       "description": "Non-Logging DNS-over-HTTPS server, cached via Cloudflare.\nFilters out ads, trackers and malware, NO ECS, supports DNSSEC.",
@@ -911,7 +910,6 @@
         "protocol": "https:",
         "host": "doh.tiarap.org",
         "path": "/odoh",
-        "method": "POST",
         "cors": true
       },
       "description": "ODoH target server via Cloudflare, no logs.\nFilter ads, trackers and malware.",
@@ -996,14 +994,14 @@
       "name": "quad9-doh-ip4-port443-filter-pri",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns9.quad9.net",
-        "ipv4": "9.9.9.9"
+        "host": "dns.quad9.net",
+        "ipv4": "149.112.112.112"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
-      "country": "France",
+      "country": "United States",
       "location": {
-        "lat": 48.8582,
-        "long": 2.3387
+        "lat": 37.751,
+        "long": -97.822
       },
       "filter": true
     },
@@ -1036,13 +1034,12 @@
       }
     },
     {
-      "name": "quad9-doh-ip4-port5053-filter-pri",
+      "name": "quad9-doh-ip6-port443-filter-pri",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns.quad9.net",
-        "ipv4": "149.112.112.112"
+        "host": "dns9.quad9.net"
       },
-      "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
+      "description": "Quad9 (anycast) dnssec/no-log/filter 2620:fe::fe - 2620:fe::9 - 2620:fe::fe:9",
       "country": "United States",
       "location": {
         "lat": 37.751,

@@ -665,7 +665,7 @@
       "name": "fdn",
       "endpoint": {
         "protocol": "https:",
-        "host": "ns0.fdn.fr"
+        "host": "ns1.fdn.fr"
       },
       "description": "DoH server in France operated by FDN - French Data Network (non-profit ISP)\nhttps://www.fdn.fr/",
       "country": "France",
@@ -956,16 +956,6 @@
       }
     },
     {
-      "name": "qihoo360-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh.360.cn"
-      },
-      "description": "DoH server runned by Qihoo 360, has logs, supports DNSSEC. GFW filtering rules are applied.\nHomepage: https://sdns.360.net/",
-      "filter": true,
-      "log": true
-    },
-    {
       "name": "quad101",
       "endpoint": {
         "protocol": "https:",
@@ -994,14 +984,14 @@
       "name": "quad9-doh-ip4-port443-filter-pri",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns.quad9.net",
-        "ipv4": "149.112.112.112"
+        "host": "dns9.quad9.net",
+        "ipv4": "9.9.9.9"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
-      "country": "United States",
+      "country": "France",
       "location": {
-        "lat": 37.751,
-        "long": -97.822
+        "lat": 48.8582,
+        "long": 2.3387
       },
       "filter": true
     },
@@ -1010,7 +1000,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns12.quad9.net",
-        "ipv4": "9.9.9.12"
+        "ipv4": "149.112.112.12"
       },
       "description": "Quad9 (anycast) no-dnssec/no-log/no-filter/ecs 9.9.9.12 - 149.112.112.12",
       "country": "United States",
@@ -1034,12 +1024,13 @@
       }
     },
     {
-      "name": "quad9-doh-ip6-port443-filter-pri",
+      "name": "quad9-doh-ip4-port5053-filter-pri",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns9.quad9.net"
+        "host": "dns.quad9.net",
+        "ipv4": "149.112.112.112"
       },
-      "description": "Quad9 (anycast) dnssec/no-log/filter 2620:fe::fe - 2620:fe::9 - 2620:fe::fe:9",
+      "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
       "country": "United States",
       "location": {
         "lat": 37.751,

@@ -464,12 +464,19 @@
       "filter": true
     },
     {
-      "name": "dns0-unfiltered",
+      "name": "dnscrypt.ca-ipv4-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "open.dns0.eu"
+        "host": "dns1.dnscrypt.ca",
+        "cors": true
       },
-      "description": "The unfiltered version of dns0.eu.\nhttps://open.dns0.eu/"
+      "description": "Canadian based, unfiltered, DNSSEC validating, and no logs... for your pleasure. https://dnscrypt.ca/",
+      "country": "Croatia",
+      "location": {
+        "lat": 45.1667,
+        "long": 15.5
+      },
+      "cors": true
     },
     {
       "name": "dnsforge.de",
@@ -519,8 +526,7 @@
       "name": "dnswarden-adult-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns.dnswarden.com",
-        "method": "POST"
+        "host": "dns.dnswarden.com"
       },
       "description": "Blocks adult content and enforces safe search on major search engines.\nFor further customization look here: https://dnswarden.com/customfilter.html",
       "filter": true
@@ -592,19 +598,6 @@
       "cors": true
     },
     {
-      "name": "doh-ibksturm",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "ibksturm.synology.me"
-      },
-      "description": "DoH & DoT Server, No Logging, No Filters, DNSSEC\nRunning privately by ibksturm in Thurgau, Switzerland",
-      "country": "Switzerland",
-      "location": {
-        "lat": 47.4091,
-        "long": 9.0362
-      }
-    },
-    {
       "name": "doh.ffmuc.net",
       "endpoint": {
         "protocol": "https:",
@@ -620,11 +613,26 @@
       "cors": true
     },
     {
+      "name": "doh.tiar.app-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "doh.tiar.app",
+        "cors": true
+      },
+      "description": "Non-Logging DNS-over-HTTPS (HTTP/2 & HTTP/3) server located in Singapore.\nFilters out ads, trackers and malware, supports DNSSEC, provided by id-gmail.",
+      "country": "Singapore",
+      "location": {
+        "lat": 1.2929,
+        "long": 103.8547
+      },
+      "filter": true,
+      "cors": true
+    },
+    {
       "name": "doh.tiarap.org",
       "endpoint": {
         "protocol": "https:",
         "host": "doh.tiarap.org",
-        "method": "POST",
         "cors": true
       },
       "description": "Non-Logging DNS-over-HTTPS server, cached via Cloudflare.\nFilters out ads, trackers and malware, NO ECS, supports DNSSEC.",
@@ -786,6 +794,18 @@
       "cors": true
     },
     {
+      "name": "odoh-id-gmail",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "doh.tiar.app",
+        "path": "/odoh",
+        "cors": true
+      },
+      "description": "ODoH target server. Based in Singapore, no logs.\nFilter ads, trackers and malware.",
+      "filter": true,
+      "cors": true
+    },
+    {
       "name": "odoh-jp.tiar.app",
       "endpoint": {
         "protocol": "https:",
@@ -916,7 +936,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns12.quad9.net",
-        "ipv4": "149.112.112.12"
+        "ipv4": "9.9.9.12"
       },
       "description": "Quad9 (anycast) no-dnssec/no-log/no-filter/ecs 9.9.9.12 - 149.112.112.12",
       "country": "United States",
@@ -957,11 +977,9 @@
       "name": "rethinkdns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "sky.rethinkdns.com",
-        "cors": true
+        "host": "max.rethinkdns.com"
       },
-      "description": "DNSSEC, No-log, No-filter\nRethinkDNS, a stub (sky.rethinkdns.com hosted on Cloudflare) and recursive (max.rethinkdns.com hosted on fly.io) resolver\nThe stub server strips identification parameters from the request and acts as a proxy to another recursive resolver.",
-      "cors": true
+      "description": "DNSSEC, No-log, No-filter\nRethinkDNS, a stub (sky.rethinkdns.com hosted on Cloudflare) and recursive (max.rethinkdns.com hosted on fly.io) resolver\nThe stub server strips identification parameters from the request and acts as a proxy to another recursive resolver."
     },
     {
       "name": "safesurfer-doh",

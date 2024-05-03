@@ -185,8 +185,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns.bebasid.com",
-        "path": "/unfiltered",
-        "method": "POST"
+        "path": "/unfiltered"
       },
       "description": "BebasDNS by BebasID. DNSSEC and OpenNIC supported. This variant doesn't block anything",
       "country": "Australia",
@@ -308,8 +307,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "freedns.controld.com",
-        "path": "/p1",
-        "method": "POST"
+        "path": "/p1"
       },
       "description": "ControlD Free DNS. Take CONTROL of your Internet. Block unwanted content, bypass geo-restrictions and be more productive. DoH protocol and No logging. - https://controld.com/free-dns\nThis DNS blocks Malware domains.",
       "country": "Canada",
@@ -430,21 +428,6 @@
         "lat": 51.5164,
         "long": -0.093
       }
-    },
-    {
-      "name": "dns.sb",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "185.222.222.222",
-        "cors": true
-      },
-      "description": "DoH server runned by xTom.com. No logs, no filtering, supports DNSSEC.\nHomepage: https://dns.sb",
-      "country": "Unknown",
-      "location": {
-        "lat": 47,
-        "long": 8
-      },
-      "cors": true
     },
     {
       "name": "dns0",
@@ -605,6 +588,145 @@
         "long": -97.822
       },
       "cors": true
+    },
+    {
+      "name": "doh-ibksturm",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "ibksturm.synology.me"
+      },
+      "description": "DoH & DoT Server, No Logging, No Filters, DNSSEC\nRunning privately by ibksturm in Thurgau, Switzerland",
+      "country": "Switzerland",
+      "location": {
+        "lat": 47.4091,
+        "long": 9.0362
+      }
+    },
+    {
+      "name": "doh.ffmuc.net",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "doh.ffmuc.net",
+        "cors": true
+      },
+      "description": "An open (non-logging, non-filtering, non-censoring) DoH resolver operated by Freifunk Munich with nodes in DE.\nhttps://ffmuc.net/",
+      "country": "Germany",
+      "location": {
+        "lat": 51.2993,
+        "long": 9.491
+      },
+      "cors": true
+    },
+    {
+      "name": "doh.tiar.app-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "doh.tiar.app",
+        "cors": true
+      },
+      "description": "Non-Logging DNS-over-HTTPS (HTTP/2 & HTTP/3) server located in Singapore.\nFilters out ads, trackers and malware, supports DNSSEC, provided by id-gmail.",
+      "country": "Singapore",
+      "location": {
+        "lat": 1.2929,
+        "long": 103.8547
+      },
+      "filter": true,
+      "cors": true
+    },
+    {
+      "name": "doh.tiarap.org",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "doh.tiarap.org",
+        "cors": true
+      },
+      "description": "Non-Logging DNS-over-HTTPS server, cached via Cloudflare.\nFilters out ads, trackers and malware, NO ECS, supports DNSSEC.",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      },
+      "filter": true,
+      "cors": true
+    },
+    {
+      "name": "easymosdns-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "doh.apad.pro"
+      },
+      "description": "DoH forwarded runned personally, as a example server of the project [EasyMosdns](https://github.com/pmkol/easymosdns).\nNo filtering or logs (by the forwarder itself).\nNo DNSSEC support due to one of the upstream servers (AliDNS) that doesn't support it.\nUpstreams are AliDNS and DNSPod for resolving domains in mainland China, and GoogleDNS is for domains.\nCloudflare CDN is used as a front-end for non-China areas, and Mobile CDN is used in China.\nHomepage: https://apad.pro/dns-doh/",
+      "log": true
+    },
+    {
+      "name": "google",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.google",
+        "ipv4": "8.8.8.8",
+        "cors": true
+      },
+      "description": "Google DNS (anycast)",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      },
+      "log": true,
+      "cors": true
+    },
+    {
+      "name": "iij",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "public.dns.iij.jp"
+      },
+      "description": "DoH server operated by Internet Initiative Japan in Tokyo. Blocks child pornography.\nhttps://www.iij.ad.jp/",
+      "country": "Japan",
+      "location": {
+        "lat": 35.69,
+        "long": 139.69
+      },
+      "filter": true,
+      "log": true
+    },
+    {
+      "name": "jp.tiar.app-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "jp.tiar.app",
+        "cors": true
+      },
+      "description": "Non-Logging, Non-Filtering DNS-over-HTTPS server in Japan.\nNo ECS, Support DNSSEC",
+      "country": "Japan",
+      "location": {
+        "lat": 35.6882,
+        "long": 139.7532
+      },
+      "cors": true
+    },
+    {
+      "name": "jp.tiarap.org",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "jp.tiarap.org",
+        "cors": true
+      },
+      "description": "DNS-over-HTTPS Server. Non-Logging, Non-Filtering, No ECS, Support DNSSEC.\nCached via Cloudflare.",
+      "cors": true
+    },
+    {
+      "name": "libredns",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "doh.libredns.gr"
+      },
+      "description": "DoH server in Germany. No logging, but no DNS padding and no DNSSEC support.\nhttps://libredns.gr/",
+      "country": "Germany",
+      "location": {
+        "lat": 51.2993,
+        "long": 9.491
+      }
     },
     {
       "name": "nextdns",
@@ -788,14 +910,14 @@
       "name": "quad9-doh-ip4-port443-filter-pri",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns9.quad9.net",
-        "ipv4": "9.9.9.9"
+        "host": "dns.quad9.net",
+        "ipv4": "149.112.112.112"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
-      "country": "France",
+      "country": "United States",
       "location": {
-        "lat": 48.8582,
-        "long": 2.3387
+        "lat": 37.751,
+        "long": -97.822
       },
       "filter": true
     },
@@ -831,14 +953,14 @@
       "name": "quad9-doh-ip4-port5053-filter-pri",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns.quad9.net",
-        "ipv4": "149.112.112.112"
+        "host": "dns9.quad9.net",
+        "ipv4": "9.9.9.9"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
-      "country": "United States",
+      "country": "France",
       "location": {
-        "lat": 37.751,
-        "long": -97.822
+        "lat": 48.8582,
+        "long": 2.3387
       },
       "filter": true
     },
@@ -846,11 +968,9 @@
       "name": "rethinkdns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "sky.rethinkdns.com",
-        "cors": true
+        "host": "max.rethinkdns.com"
       },
-      "description": "DNSSEC, No-log, No-filter\nRethinkDNS, a stub (sky.rethinkdns.com hosted on Cloudflare) and recursive (max.rethinkdns.com hosted on fly.io) resolver\nThe stub server strips identification parameters from the request and acts as a proxy to another recursive resolver.",
-      "cors": true
+      "description": "DNSSEC, No-log, No-filter\nRethinkDNS, a stub (sky.rethinkdns.com hosted on Cloudflare) and recursive (max.rethinkdns.com hosted on fly.io) resolver\nThe stub server strips identification parameters from the request and acts as a proxy to another recursive resolver."
     },
     {
       "name": "safesurfer-doh",

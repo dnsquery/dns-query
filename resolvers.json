@@ -181,6 +181,21 @@
       "cors": true
     },
     {
+      "name": "artikel10-doh-ipv4",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.artikel10.org",
+        "cors": true
+      },
+      "description": "DNSSEC, No-filter and No-log DoH resolver operated by Artikel10 association. Homepage: https://artikel10.org",
+      "country": "Germany",
+      "location": {
+        "lat": 51.9499,
+        "long": 14.7145
+      },
+      "cors": true
+    },
+    {
       "name": "bebasdns-unfiltered-doh",
       "endpoint": {
         "protocol": "https:",
@@ -433,15 +448,15 @@
       "name": "dns.sb",
       "endpoint": {
         "protocol": "https:",
-        "host": "45.11.45.11",
-        "ipv4": "45.11.45.11",
+        "host": "185.222.222.222",
+        "ipv4": "185.222.222.222",
         "cors": true
       },
       "description": "DoH server runned by xTom.com. No logs, no filtering, supports DNSSEC.\nHomepage: https://dns.sb",
-      "country": "Netherlands",
+      "country": "Unknown",
       "location": {
-        "lat": 52.3824,
-        "long": 4.8995
+        "lat": 47,
+        "long": 8
       },
       "cors": true
     },
@@ -564,21 +579,6 @@
       },
       "description": "Block access to phishing, malware and malicious domains. It does not block adult content.\nBy https://cleanbrowsing.org/",
       "filter": true,
-      "cors": true
-    },
-    {
-      "name": "doh-crypto-sx",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh.crypto.sx",
-        "cors": true
-      },
-      "description": "DNS-over-HTTPS server. Anycast, no logs, no censorship, DNSSEC.\nBackend hosted by Scaleway, globally cached via Cloudflare.\nMaintained by Frank Denis.",
-      "country": "United States",
-      "location": {
-        "lat": 37.751,
-        "long": -97.822
-      },
       "cors": true
     },
     {
@@ -781,16 +781,6 @@
       "cors": true
     },
     {
-      "name": "odoh-crypto-sx",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "odoh.crypto.sx",
-        "cors": true
-      },
-      "description": "ODoH target server. Anycast, no logs.\nBackend hosted by Scaleway. Maintained by Frank Denis.",
-      "cors": true
-    },
-    {
       "name": "odoh-id-gmail",
       "endpoint": {
         "protocol": "https:",
@@ -903,7 +893,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns11.quad9.net",
-        "ipv4": "149.112.112.11"
+        "ipv4": "9.9.9.11"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter/ecs 9.9.9.11 - 149.112.112.11",
       "country": "United States",
@@ -917,8 +907,8 @@
       "name": "quad9-doh-ip4-port443-filter-pri",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns9.quad9.net",
-        "ipv4": "149.112.112.9"
+        "host": "dns.quad9.net",
+        "ipv4": "149.112.112.112"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
       "country": "United States",
@@ -933,7 +923,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns12.quad9.net",
-        "ipv4": "9.9.9.12"
+        "ipv4": "149.112.112.12"
       },
       "description": "Quad9 (anycast) no-dnssec/no-log/no-filter/ecs 9.9.9.12 - 149.112.112.12",
       "country": "United States",
@@ -957,18 +947,32 @@
       }
     },
     {
-      "name": "quad9-doh-ip6-port443-filter-pri",
+      "name": "quad9-doh-ip4-port5053-filter-pri",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns.quad9.net"
+        "host": "dns9.quad9.net",
+        "ipv4": "149.112.112.9"
       },
-      "description": "Quad9 (anycast) dnssec/no-log/filter 2620:fe::fe - 2620:fe::9 - 2620:fe::fe:9",
+      "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
       "country": "United States",
       "location": {
         "lat": 37.751,
         "long": -97.822
       },
       "filter": true
+    },
+    {
+      "name": "restena-doh-ipv4",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dnspub.restena.lu"
+      },
+      "description": "DNSSEC, No-log and No-filter DoH operated by RESTENA. Homepage: https://www.restena.lu",
+      "country": "Luxembourg",
+      "location": {
+        "lat": 49.4986,
+        "long": 5.9784
+      }
     },
     {
       "name": "rethinkdns-doh",
@@ -1018,6 +1022,22 @@
       "location": {
         "lat": 42.696,
         "long": 23.332
+      },
+      "cors": true
+    },
+    {
+      "name": "tirapan-doh-ipv4",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "tirapan.top",
+        "path": "/nomen-quaesitum",
+        "cors": true
+      },
+      "description": "Recursive and caching resolver, no-log/filter, DNSSEC. Homepage: https://www.tirapan.top",
+      "country": "Iran",
+      "location": {
+        "lat": 35.727,
+        "long": 51.3336
       },
       "cors": true
     },

@@ -76,8 +76,8 @@
       "name": "adguard-dns-family-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "94.140.15.16",
-        "ipv4": "94.140.15.16"
+        "host": "94.140.14.15",
+        "ipv4": "94.140.14.15"
       },
       "description": "Adguard DNS with safesearch and adult content blocking (over DoH)",
       "country": "France",
@@ -91,8 +91,8 @@
       "name": "adguard-dns-unfiltered-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "94.140.14.141",
-        "ipv4": "94.140.14.141"
+        "host": "94.140.14.140",
+        "ipv4": "94.140.14.140"
       },
       "description": "AdGuard public DNS servers without filters (over DoH)",
       "country": "France",
@@ -448,15 +448,15 @@
       "name": "dns.sb",
       "endpoint": {
         "protocol": "https:",
-        "host": "45.11.45.11",
-        "ipv4": "45.11.45.11",
+        "host": "185.222.222.222",
+        "ipv4": "185.222.222.222",
         "cors": true
       },
       "description": "DoH server runned by xTom.com. No logs, no filtering, supports DNSSEC.\nHomepage: https://dns.sb",
-      "country": "Netherlands",
+      "country": "Unknown",
       "location": {
-        "lat": 52.3824,
-        "long": 4.8995
+        "lat": 47,
+        "long": 8
       },
       "cors": true
     },
@@ -549,7 +549,8 @@
       "name": "dnswarden-adult-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns.dnswarden.com"
+        "host": "dns.dnswarden.com",
+        "method": "POST"
       },
       "description": "Blocks adult content and enforces safe search on major search engines.\nFor further customization look here: https://dnswarden.com/customfilter.html",
       "filter": true
@@ -903,6 +904,17 @@
       "cors": true
     },
     {
+      "name": "odoh-tirapan",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "tirapan.top",
+        "path": "/nomen-quaesitum",
+        "cors": true
+      },
+      "description": "ODoH target by Tirapan. No-log, No-filter and DNSSEC.\nHomepage: https://www.tirapan.top",
+      "cors": true
+    },
+    {
       "name": "qihoo360-doh",
       "endpoint": {
         "protocol": "https:",
@@ -941,8 +953,8 @@
       "name": "quad9-doh-ip4-port443-filter-pri",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns9.quad9.net",
-        "ipv4": "149.112.112.9"
+        "host": "dns.quad9.net",
+        "ipv4": "149.112.112.112"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
       "country": "United States",
@@ -979,6 +991,21 @@
         "lat": 37.751,
         "long": -97.822
       }
+    },
+    {
+      "name": "quad9-doh-ip4-port5053-filter-pri",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns9.quad9.net",
+        "ipv4": "149.112.112.9"
+      },
+      "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      },
+      "filter": true
     },
     {
       "name": "restena-doh-ipv4",
@@ -1041,22 +1068,6 @@
       "location": {
         "lat": 42.696,
         "long": 23.332
-      },
-      "cors": true
-    },
-    {
-      "name": "tirapan-doh-ipv4",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "tirapan.top",
-        "path": "/nomen-quaesitum",
-        "cors": true
-      },
-      "description": "Recursive and caching resolver, no-log/filter, DNSSEC. Homepage: https://www.tirapan.top",
-      "country": "Iran",
-      "location": {
-        "lat": 35.727,
-        "long": 51.3336
       },
       "cors": true
     },

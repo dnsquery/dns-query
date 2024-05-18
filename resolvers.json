@@ -76,8 +76,8 @@
       "name": "adguard-dns-family-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "94.140.15.16",
-        "ipv4": "94.140.15.16"
+        "host": "94.140.14.15",
+        "ipv4": "94.140.14.15"
       },
       "description": "Adguard DNS with safesearch and adult content blocking (over DoH)",
       "country": "France",
@@ -91,8 +91,8 @@
       "name": "adguard-dns-unfiltered-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "94.140.14.140",
-        "ipv4": "94.140.14.140"
+        "host": "94.140.14.141",
+        "ipv4": "94.140.14.141"
       },
       "description": "AdGuard public DNS servers without filters (over DoH)",
       "country": "France",
@@ -906,11 +906,84 @@
       "cors": true
     },
     {
+      "name": "odoh-tiarap.org",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "doh.tiarap.org",
+        "path": "/odoh",
+        "cors": true
+      },
+      "description": "ODoH target server via Cloudflare, no logs.\nFilter ads, trackers and malware.",
+      "filter": true,
+      "cors": true
+    },
+    {
+      "name": "odoh-tirapan",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "tirapan.top",
+        "path": "/nomen-quaesitum",
+        "cors": true
+      },
+      "description": "ODoH target by Tirapan. No-log, No-filter and DNSSEC.\nHomepage: https://www.tirapan.top",
+      "cors": true
+    },
+    {
+      "name": "qihoo360-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "doh.360.cn"
+      },
+      "description": "DoH server runned by Qihoo 360, has logs, supports DNSSEC. GFW filtering rules are applied.\nHomepage: https://sdns.360.net/",
+      "filter": true,
+      "log": true
+    },
+    {
+      "name": "quad101",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.twnic.tw",
+        "cors": true
+      },
+      "description": "DNSSEC-aware public resolver by the Taiwan Network Information Center (TWNIC)\nhttps://101.101.101.101/index_en.html",
+      "cors": true
+    },
+    {
+      "name": "quad9-doh-ip4-port443-filter-ecs-pri",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns11.quad9.net",
+        "ipv4": "149.112.112.11"
+      },
+      "description": "Quad9 (anycast) dnssec/no-log/filter/ecs 9.9.9.11 - 149.112.112.11",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      },
+      "filter": true
+    },
+    {
+      "name": "quad9-doh-ip4-port443-filter-pri",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns9.quad9.net",
+        "ipv4": "149.112.112.9"
+      },
+      "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      },
+      "filter": true
+    },
+    {
       "name": "quad9-doh-ip4-port443-nofilter-ecs-pri",
       "endpoint": {
         "protocol": "https:",
         "host": "dns12.quad9.net",
-        "ipv4": "149.112.112.12"
+        "ipv4": "9.9.9.12"
       },
       "description": "Quad9 (anycast) no-dnssec/no-log/no-filter/ecs 9.9.9.12 - 149.112.112.12",
       "country": "United States",
@@ -924,7 +997,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns10.quad9.net",
-        "ipv4": "9.9.9.10"
+        "ipv4": "149.112.112.10"
       },
       "description": "Quad9 (anycast) no-dnssec/no-log/no-filter 9.9.9.10 - 149.112.112.10",
       "country": "United States",

@@ -76,8 +76,8 @@
       "name": "adguard-dns-family-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "94.140.14.15",
-        "ipv4": "94.140.14.15"
+        "host": "94.140.15.16",
+        "ipv4": "94.140.15.16"
       },
       "description": "Adguard DNS with safesearch and adult content blocking (over DoH)",
       "country": "France",
@@ -194,6 +194,20 @@
         "long": 14.7145
       },
       "cors": true
+    },
+    {
+      "name": "bebasdns-unfiltered-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.bebasid.com",
+        "path": "/unfiltered"
+      },
+      "description": "BebasDNS by BebasID. DNSSEC and OpenNIC supported. This variant doesn't block anything",
+      "country": "Australia",
+      "location": {
+        "lat": -33.494,
+        "long": 143.2104
+      }
     },
     {
       "name": "brahma-world",
@@ -434,15 +448,15 @@
       "name": "dns.sb",
       "endpoint": {
         "protocol": "https:",
-        "host": "185.222.222.222",
-        "ipv4": "185.222.222.222",
+        "host": "45.11.45.11",
+        "ipv4": "45.11.45.11",
         "cors": true
       },
       "description": "DoH server runned by xTom.com. No logs, no filtering, supports DNSSEC.\nHomepage: https://dns.sb",
-      "country": "Unknown",
+      "country": "Netherlands",
       "location": {
-        "lat": 47,
-        "long": 8
+        "lat": 52.3824,
+        "long": 4.8995
       },
       "cors": true
     },
@@ -530,6 +544,15 @@
       "filter": true,
       "log": true,
       "cors": true
+    },
+    {
+      "name": "dnswarden-adult-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.dnswarden.com"
+      },
+      "description": "Blocks adult content and enforces safe search on major search engines.\nFor further customization look here: https://dnswarden.com/customfilter.html",
+      "filter": true
     },
     {
       "name": "doh-cleanbrowsing-adult",
@@ -881,179 +904,6 @@
       },
       "description": "Oblivious DoH target server in Sweden. No logs, No filter, DNSSEC.",
       "cors": true
-    },
-    {
-      "name": "odoh-tiarap.org",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh.tiarap.org",
-        "path": "/odoh",
-        "cors": true
-      },
-      "description": "ODoH target server via Cloudflare, no logs.\nFilter ads, trackers and malware.",
-      "filter": true,
-      "cors": true
-    },
-    {
-      "name": "odoh-tirapan",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "tirapan.top",
-        "path": "/nomen-quaesitum",
-        "cors": true
-      },
-      "description": "ODoH target by Tirapan. No-log, No-filter and DNSSEC.\nHomepage: https://www.tirapan.top",
-      "cors": true
-    },
-    {
-      "name": "qihoo360-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh.360.cn"
-      },
-      "description": "DoH server runned by Qihoo 360. Has logs. GFW filtering rules are applied.\nHomepage: https://sdns.360.net/",
-      "filter": true,
-      "log": true
-    },
-    {
-      "name": "quad101",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns.twnic.tw",
-        "cors": true
-      },
-      "description": "DNSSEC-aware public resolver by the Taiwan Network Information Center (TWNIC)\nhttps://101.101.101.101/index_en.html",
-      "cors": true
-    },
-    {
-      "name": "quad9-doh-ip4-port443-filter-ecs-pri",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns11.quad9.net",
-        "ipv4": "149.112.112.11"
-      },
-      "description": "Quad9 (anycast) dnssec/no-log/filter/ecs 9.9.9.11 - 149.112.112.11",
-      "country": "United States",
-      "location": {
-        "lat": 37.751,
-        "long": -97.822
-      },
-      "filter": true
-    },
-    {
-      "name": "quad9-doh-ip4-port443-filter-pri",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns9.quad9.net",
-        "ipv4": "9.9.9.9"
-      },
-      "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
-      "country": "France",
-      "location": {
-        "lat": 48.8582,
-        "long": 2.3387
-      },
-      "filter": true
-    },
-    {
-      "name": "quad9-doh-ip4-port443-nofilter-ecs-pri",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns12.quad9.net",
-        "ipv4": "9.9.9.12"
-      },
-      "description": "Quad9 (anycast) no-dnssec/no-log/no-filter/ecs 9.9.9.12 - 149.112.112.12",
-      "country": "United States",
-      "location": {
-        "lat": 37.751,
-        "long": -97.822
-      }
-    },
-    {
-      "name": "quad9-doh-ip4-port443-nofilter-pri",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns10.quad9.net",
-        "ipv4": "149.112.112.10"
-      },
-      "description": "Quad9 (anycast) no-dnssec/no-log/no-filter 9.9.9.10 - 149.112.112.10",
-      "country": "United States",
-      "location": {
-        "lat": 37.751,
-        "long": -97.822
-      }
-    },
-    {
-      "name": "quad9-doh-ip4-port5053-filter-pri",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns.quad9.net",
-        "ipv4": "149.112.112.112"
-      },
-      "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
-      "country": "United States",
-      "location": {
-        "lat": 37.751,
-        "long": -97.822
-      },
-      "filter": true
-    },
-    {
-      "name": "rethinkdns-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "max.rethinkdns.com"
-      },
-      "description": "DNSSEC, No-log, No-filter\nRethinkDNS, a stub (sky.rethinkdns.com hosted on Cloudflare) and recursive (max.rethinkdns.com hosted on fly.io) resolver\nThe stub server strips identification parameters from the request and acts as a proxy to another recursive resolver."
-    },
-    {
-      "name": "safesurfer-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh.safesurfer.io"
-      },
-      "description": "Family safety focused blocklist for over 2 million adult sites, as well as phishing and malware and more.\nFree to use, paid for customizing blocking for more categories+sites and viewing usage at my.safesurfer.io. Logs taken for viewing\nusage, data never sold - https://safesurfer.io",
-      "filter": true,
-      "log": true
-    },
-    {
-      "name": "sth-ads-doh-se",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dnsse-noads.alekberg.net",
-        "cors": true
-      },
-      "description": "Resolver in Stockholm, Sweden. DoH server. Non-logging, remove ads and malware, DNSSEC.",
-      "country": "Bulgaria",
-      "location": {
-        "lat": 42.696,
-        "long": 23.332
-      },
-      "filter": true,
-      "cors": true
-    },
-    {
-      "name": "sth-doh-se",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dnsse.alekberg.net",
-        "cors": true
-      },
-      "description": "Resolver in Stockholm, Sweden. DoH server. Non-logging, non-filtering, DNSSEC.",
-      "country": "Bulgaria",
-      "location": {
-        "lat": 42.696,
-        "long": 23.332
-      },
-      "cors": true
-    },
-    {
-      "name": "wikimedia",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "wikimedia-dns.org"
-      },
-      "description": "Wikimedia DNS (formerly called Wikidough), is a caching, recursive,\npublic resolver service that is run and managed by the Site\nReliability Engineering (Traffic) team at the Foundation.\nWikimedia DNS helps prevent some surveillance and censorship of our\nwikis and other websites by securing DNS lookups."
     }
   ]
 }

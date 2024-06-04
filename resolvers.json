@@ -61,8 +61,8 @@
       "name": "adguard-dns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "94.140.14.14",
-        "ipv4": "94.140.14.14"
+        "host": "94.140.15.15",
+        "ipv4": "94.140.15.15"
       },
       "description": "Remove ads and protect your computer from malware (over DoH)",
       "country": "France",
@@ -76,8 +76,8 @@
       "name": "adguard-dns-family-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "94.140.15.16",
-        "ipv4": "94.140.15.16"
+        "host": "94.140.14.15",
+        "ipv4": "94.140.14.15"
       },
       "description": "Adguard DNS with safesearch and adult content blocking (over DoH)",
       "country": "France",
@@ -137,13 +137,13 @@
       "name": "alidns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "123.151.107.5"
+        "host": "113.142.83.132"
       },
       "description": "A public DNS resolver that supports DoH/DoT in mainland China, provided by Alibaba-Cloud.\nHomepage: https://alidns.com\nWarning: GFW filtering rules are applied by this resolver.",
       "country": "China",
       "location": {
-        "lat": 34.7725,
-        "long": 113.7266
+        "lat": 35.0688,
+        "long": 107.607
       },
       "filter": true,
       "log": true
@@ -167,7 +167,8 @@
       "name": "ams-ads-doh-nl",
       "endpoint": {
         "protocol": "https:",
-        "host": "dnsnl-noads.alekberg.net"
+        "host": "dnsnl-noads.alekberg.net",
+        "cors": true
       },
       "description": "Resolver in Amsterdam. HTTP3, DoH protocol. Non-logging. Blocks ads, malware and trackers. DNSSEC enabled.",
       "country": "Romania",
@@ -175,20 +176,23 @@
         "lat": 45.9968,
         "long": 24.997
       },
-      "filter": true
+      "filter": true,
+      "cors": true
     },
     {
       "name": "ams-doh-nl",
       "endpoint": {
         "protocol": "https:",
-        "host": "dnsnl.alekberg.net"
+        "host": "dnsnl.alekberg.net",
+        "cors": true
       },
       "description": "Resolver in Amsterdam. HTTP3, DoH protocol. Non-logging, non-filtering, DNSSEC.",
       "country": "Romania",
       "location": {
         "lat": 45.9968,
         "long": 24.997
-      }
+      },
+      "cors": true
     },
     {
       "name": "artikel10-doh-ipv4",
@@ -497,21 +501,6 @@
       "description": "The unfiltered version of dns0.eu.\nhttps://open.dns0.eu/"
     },
     {
-      "name": "dnscrypt.ca-ipv4-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns1.dnscrypt.ca",
-        "cors": true
-      },
-      "description": "Canadian based, unfiltered, DNSSEC validating, and no logs... for your pleasure. https://dnscrypt.ca/",
-      "country": "Croatia",
-      "location": {
-        "lat": 45.1667,
-        "long": 15.5
-      },
-      "cors": true
-    },
-    {
       "name": "dnsforge.de",
       "endpoint": {
         "protocol": "https:",
@@ -541,25 +530,18 @@
       "name": "dnspod",
       "endpoint": {
         "protocol": "https:",
-        "host": "1.12.12.12"
+        "host": "doh.pub",
+        "cors": true
       },
       "description": "A public DNS resolver that supports DoH/DoT in mainland China, provided by dnspod/Tencent-cloud.\nHomepage: https://dnspod.cn\nWarning: GFW filtering rules are applied by this resolver.",
-      "country": "China",
+      "country": "Hong Kong",
       "location": {
-        "lat": 34.7725,
-        "long": 113.7266
+        "lat": 22.25,
+        "long": 114.1667
       },
       "filter": true,
-      "log": true
-    },
-    {
-      "name": "dnswarden-adult-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns.dnswarden.com"
-      },
-      "description": "Blocks adult content and enforces safe search on major search engines.\nFor further customization look here: https://dnswarden.com/customfilter.html",
-      "filter": true
+      "log": true,
+      "cors": true
     },
     {
       "name": "doh-cleanbrowsing-adult",
@@ -974,8 +956,8 @@
       "name": "quad9-doh-ip4-port443-filter-pri",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns9.quad9.net",
-        "ipv4": "149.112.112.9"
+        "host": "dns.quad9.net",
+        "ipv4": "149.112.112.112"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
       "country": "United States",
@@ -1004,7 +986,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns10.quad9.net",
-        "ipv4": "149.112.112.10"
+        "ipv4": "9.9.9.10"
       },
       "description": "Quad9 (anycast) no-dnssec/no-log/no-filter 9.9.9.10 - 149.112.112.10",
       "country": "United States",
@@ -1017,14 +999,14 @@
       "name": "quad9-doh-ip4-port5053-filter-pri",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns.quad9.net",
-        "ipv4": "149.112.112.112"
+        "host": "dns9.quad9.net",
+        "ipv4": "9.9.9.9"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
-      "country": "United States",
+      "country": "France",
       "location": {
-        "lat": 37.751,
-        "long": -97.822
+        "lat": 48.8582,
+        "long": 2.3387
       },
       "filter": true
     },
@@ -1032,11 +1014,9 @@
       "name": "rethinkdns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "sky.rethinkdns.com",
-        "cors": true
+        "host": "max.rethinkdns.com"
       },
-      "description": "DNSSEC, No-log, No-filter\nRethinkDNS, a stub (sky.rethinkdns.com hosted on Cloudflare) and recursive (max.rethinkdns.com hosted on fly.io) resolver\nThe stub server strips identification parameters from the request and acts as a proxy to another recursive resolver.",
-      "cors": true
+      "description": "DNSSEC, No-log, No-filter\nRethinkDNS, a stub (sky.rethinkdns.com hosted on Cloudflare) and recursive (max.rethinkdns.com hosted on fly.io) resolver\nThe stub server strips identification parameters from the request and acts as a proxy to another recursive resolver."
     },
     {
       "name": "safesurfer-doh",

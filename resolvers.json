@@ -137,13 +137,13 @@
       "name": "alidns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "139.129.137.137"
+        "host": "113.240.88.172"
       },
       "description": "A public DNS resolver that supports DoH/DoT in mainland China, provided by Alibaba-Cloud.\nHomepage: https://alidns.com\nWarning: GFW filtering rules are applied by this resolver.",
       "country": "China",
       "location": {
-        "lat": 36.066,
-        "long": 120.3694
+        "lat": 34.7725,
+        "long": 113.7266
       },
       "filter": true,
       "log": true
@@ -167,7 +167,8 @@
       "name": "ams-ads-doh-nl",
       "endpoint": {
         "protocol": "https:",
-        "host": "dnsnl-noads.alekberg.net"
+        "host": "dnsnl-noads.alekberg.net",
+        "cors": true
       },
       "description": "Resolver in Amsterdam. HTTP3, DoH protocol. Non-logging. Blocks ads, malware and trackers. DNSSEC enabled.",
       "country": "Romania",
@@ -175,20 +176,23 @@
         "lat": 45.9968,
         "long": 24.997
       },
-      "filter": true
+      "filter": true,
+      "cors": true
     },
     {
       "name": "ams-doh-nl",
       "endpoint": {
         "protocol": "https:",
-        "host": "dnsnl.alekberg.net"
+        "host": "dnsnl.alekberg.net",
+        "cors": true
       },
       "description": "Resolver in Amsterdam. HTTP3, DoH protocol. Non-logging, non-filtering, DNSSEC.",
       "country": "Romania",
       "location": {
         "lat": 45.9968,
         "long": 24.997
-      }
+      },
+      "cors": true
     },
     {
       "name": "artikel10-doh-ipv4",
@@ -204,6 +208,20 @@
         "long": 14.7145
       },
       "cors": true
+    },
+    {
+      "name": "bebasdns-unfiltered-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.bebasid.com",
+        "path": "/unfiltered"
+      },
+      "description": "BebasDNS by BebasID. DNSSEC and OpenNIC supported. This variant doesn't block anything",
+      "country": "Australia",
+      "location": {
+        "lat": -33.494,
+        "long": 143.2104
+      }
     },
     {
       "name": "brahma-world",
@@ -527,16 +545,18 @@
       "name": "dnspod",
       "endpoint": {
         "protocol": "https:",
-        "host": "1.12.12.12"
+        "host": "doh.pub",
+        "cors": true
       },
       "description": "A public DNS resolver that supports DoH/DoT in mainland China, provided by dnspod/Tencent-cloud.\nHomepage: https://dnspod.cn\nWarning: GFW filtering rules are applied by this resolver.",
-      "country": "China",
+      "country": "Hong Kong",
       "location": {
-        "lat": 34.7725,
-        "long": 113.7266
+        "lat": 22.25,
+        "long": 114.1667
       },
       "filter": true,
-      "log": true
+      "log": true,
+      "cors": true
     },
     {
       "name": "doh-cleanbrowsing-adult",
@@ -603,6 +623,19 @@
         "long": -97.822
       },
       "cors": true
+    },
+    {
+      "name": "doh-ibksturm",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "ibksturm.synology.me"
+      },
+      "description": "DoH & DoT Server, No Logging, No Filters, DNSSEC\nRunning privately by ibksturm in Thurgau, Switzerland",
+      "country": "Switzerland",
+      "location": {
+        "lat": 47.4091,
+        "long": 9.0362
+      }
     },
     {
       "name": "doh.ffmuc.net",
@@ -909,7 +942,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns11.quad9.net",
-        "ipv4": "149.112.112.11"
+        "ipv4": "9.9.9.11"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter/ecs 9.9.9.11 - 149.112.112.11",
       "country": "United States",
@@ -923,14 +956,14 @@
       "name": "quad9-doh-ip4-port443-filter-pri",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns.quad9.net",
-        "ipv4": "149.112.112.112"
+        "host": "dns9.quad9.net",
+        "ipv4": "9.9.9.9"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
-      "country": "United States",
+      "country": "France",
       "location": {
-        "lat": 37.751,
-        "long": -97.822
+        "lat": 48.8582,
+        "long": 2.3387
       },
       "filter": true
     },
@@ -961,6 +994,20 @@
         "lat": 37.751,
         "long": -97.822
       }
+    },
+    {
+      "name": "quad9-doh-ip6-port443-filter-pri",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.quad9.net"
+      },
+      "description": "Quad9 (anycast) dnssec/no-log/filter 2620:fe::fe - 2620:fe::9 - 2620:fe::fe:9",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      },
+      "filter": true
     },
     {
       "name": "rethinkdns-doh",

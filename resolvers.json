@@ -137,13 +137,13 @@
       "name": "alidns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "47.122.8.11"
+        "host": "113.142.83.132"
       },
       "description": "A public DNS resolver that supports DoH/DoT in mainland China, provided by Alibaba-Cloud.\nHomepage: https://alidns.com\nWarning: GFW filtering rules are applied by this resolver.",
       "country": "China",
       "location": {
-        "lat": 34.7725,
-        "long": 113.7266
+        "lat": 35.0688,
+        "long": 107.607
       },
       "filter": true,
       "log": true
@@ -545,16 +545,18 @@
       "name": "dnspod",
       "endpoint": {
         "protocol": "https:",
-        "host": "1.12.12.12"
+        "host": "doh.pub",
+        "cors": true
       },
       "description": "A public DNS resolver that supports DoH/DoT in mainland China, provided by dnspod/Tencent-cloud.\nHomepage: https://dnspod.cn\nWarning: GFW filtering rules are applied by this resolver.",
-      "country": "China",
+      "country": "Hong Kong",
       "location": {
-        "lat": 34.7725,
-        "long": 113.7266
+        "lat": 22.25,
+        "long": 114.1667
       },
       "filter": true,
-      "log": true
+      "log": true,
+      "cors": true
     },
     {
       "name": "dnswarden-adult-doh",
@@ -599,6 +601,21 @@
       },
       "description": "Block access to phishing, malware and malicious domains. It does not block adult content.\nBy https://cleanbrowsing.org/",
       "filter": true,
+      "cors": true
+    },
+    {
+      "name": "doh-crypto-sx",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "doh.crypto.sx",
+        "cors": true
+      },
+      "description": "DNS-over-HTTPS server. Anycast, no logs, no censorship, DNSSEC.\nGlobally cached via Cloudflare.\nMaintained by Frank Denis.",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      },
       "cors": true
     },
     {
@@ -786,6 +803,16 @@
       "cors": true
     },
     {
+      "name": "odoh-crypto-sx",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "odoh.crypto.sx",
+        "cors": true
+      },
+      "description": "ODoH target server. Anycast, no logs.\nBackend hosted by Scaleway. Maintained by Frank Denis.",
+      "cors": true
+    },
+    {
       "name": "odoh-id-gmail",
       "endpoint": {
         "protocol": "https:",
@@ -924,13 +951,13 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns9.quad9.net",
-        "ipv4": "149.112.112.9"
+        "ipv4": "9.9.9.9"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
-      "country": "United States",
+      "country": "France",
       "location": {
-        "lat": 37.751,
-        "long": -97.822
+        "lat": 48.8582,
+        "long": 2.3387
       },
       "filter": true
     },
@@ -963,7 +990,7 @@
       }
     },
     {
-      "name": "quad9-doh-ip6-port5053-filter-pri",
+      "name": "quad9-doh-ip6-port443-filter-pri",
       "endpoint": {
         "protocol": "https:",
         "host": "dns.quad9.net"
@@ -980,9 +1007,11 @@
       "name": "rethinkdns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "max.rethinkdns.com"
+        "host": "sky.rethinkdns.com",
+        "cors": true
       },
-      "description": "DNSSEC, No-log, No-filter\nRethinkDNS, a stub (sky.rethinkdns.com hosted on Cloudflare) and recursive (max.rethinkdns.com hosted on fly.io) resolver\nThe stub server strips identification parameters from the request and acts as a proxy to another recursive resolver."
+      "description": "DNSSEC, No-log, No-filter\nRethinkDNS, a stub (sky.rethinkdns.com hosted on Cloudflare) and recursive (max.rethinkdns.com hosted on fly.io) resolver\nThe stub server strips identification parameters from the request and acts as a proxy to another recursive resolver.",
+      "cors": true
     },
     {
       "name": "safesurfer-doh",

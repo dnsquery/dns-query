@@ -62,8 +62,8 @@
       "name": "adguard-dns-family-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "94.140.15.16",
-        "ipv4": "94.140.15.16"
+        "host": "94.140.14.15",
+        "ipv4": "94.140.14.15"
       },
       "description": "Adguard DNS with safesearch and adult content blocking (over DoH)",
       "country": "France",
@@ -123,13 +123,13 @@
       "name": "alidns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "123.184.198.22"
+        "host": "182.40.70.12"
       },
       "description": "A public DNS resolver that supports DoH/DoT in mainland China, provided by Alibaba-Cloud.\nHomepage: https://alidns.com\nWarning: GFW filtering rules are applied by this resolver.",
       "country": "China",
       "location": {
-        "lat": 34.7725,
-        "long": 113.7266
+        "lat": 36.066,
+        "long": 120.3694
       },
       "filter": true,
       "log": true
@@ -531,25 +531,18 @@
       "name": "dnspod",
       "endpoint": {
         "protocol": "https:",
-        "host": "1.12.12.12"
+        "host": "doh.pub",
+        "cors": true
       },
       "description": "A public DNS resolver that supports DoH/DoT in mainland China, provided by dnspod/Tencent-cloud.\nHomepage: https://dnspod.cn\nWarning: GFW filtering rules are applied by this resolver.",
-      "country": "China",
+      "country": "Hong Kong",
       "location": {
-        "lat": 34.7725,
-        "long": 113.7266
+        "lat": 22.25,
+        "long": 114.1667
       },
       "filter": true,
-      "log": true
-    },
-    {
-      "name": "dnswarden-adult-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns.dnswarden.com"
-      },
-      "description": "Blocks adult content and enforces safe search on major search engines.\nFor further customization look here: https://dnswarden.com/customfilter.html",
-      "filter": true
+      "log": true,
+      "cors": true
     },
     {
       "name": "doh-cleanbrowsing-adult",
@@ -846,48 +839,6 @@
       "cors": true
     },
     {
-      "name": "odoh-koki-ams",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "odoh-nl.alekberg.net",
-        "cors": true
-      },
-      "description": "Oblivious DoH target server in The Netherlands. No logs, No filter, DNSSEC.",
-      "cors": true
-    },
-    {
-      "name": "odoh-koki-noads-ams",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "odoh-noads-nl.alekberg.net",
-        "cors": true
-      },
-      "description": "Oblivious DoH target server in The Netherlands. No logs, filter ads and malware, DNSSEC.",
-      "filter": true,
-      "cors": true
-    },
-    {
-      "name": "odoh-koki-noads-se",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "odoh-noads-se.alekberg.net",
-        "cors": true
-      },
-      "description": "Oblivious DoH target server in Sweden. No logs, filter ads and malware, DNSSEC.",
-      "filter": true,
-      "cors": true
-    },
-    {
-      "name": "odoh-koki-se",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "odoh-se.alekberg.net",
-        "cors": true
-      },
-      "description": "Oblivious DoH target server in Sweden. No logs, No filter, DNSSEC.",
-      "cors": true
-    },
-    {
       "name": "odoh-tiarap.org",
       "endpoint": {
         "protocol": "https:",
@@ -898,6 +849,71 @@
       "description": "ODoH target server via Cloudflare, no logs.\nFilter ads, trackers and malware.",
       "filter": true,
       "cors": true
+    },
+    {
+      "name": "odoh-tirapan",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "tirapan.top",
+        "path": "/nomen-quaesitum",
+        "cors": true
+      },
+      "description": "ODoH target by Tirapan. No-log, No-filter and DNSSEC.\nHomepage: https://www.tirapan.top",
+      "cors": true
+    },
+    {
+      "name": "quad101",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.twnic.tw",
+        "cors": true
+      },
+      "description": "DNSSEC-aware public resolver by the Taiwan Network Information Center (TWNIC)\nhttps://101.101.101.101/index_en.html",
+      "cors": true
+    },
+    {
+      "name": "quad9-doh-ip4-port443-filter-ecs-pri",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns11.quad9.net",
+        "ipv4": "149.112.112.11"
+      },
+      "description": "Quad9 (anycast) dnssec/no-log/filter/ecs 9.9.9.11 - 149.112.112.11",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      },
+      "filter": true
+    },
+    {
+      "name": "quad9-doh-ip4-port443-filter-pri",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns9.quad9.net",
+        "ipv4": "9.9.9.9"
+      },
+      "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
+      "country": "France",
+      "location": {
+        "lat": 48.8582,
+        "long": 2.3387
+      },
+      "filter": true
+    },
+    {
+      "name": "quad9-doh-ip4-port443-nofilter-ecs-pri",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns12.quad9.net",
+        "ipv4": "149.112.112.12"
+      },
+      "description": "Quad9 (anycast) no-dnssec/no-log/no-filter/ecs 9.9.9.12 - 149.112.112.12",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      }
     },
     {
       "name": "quad9-doh-ip4-port443-nofilter-pri",
@@ -931,11 +947,9 @@
       "name": "rethinkdns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "sky.rethinkdns.com",
-        "cors": true
+        "host": "max.rethinkdns.com"
       },
-      "description": "DNSSEC, No-log, No-filter\nRethinkDNS, a stub (sky.rethinkdns.com hosted on Cloudflare) and recursive (max.rethinkdns.com hosted on fly.io) resolver\nThe stub server strips identification parameters from the request and acts as a proxy to another recursive resolver.",
-      "cors": true
+      "description": "DNSSEC, No-log, No-filter\nRethinkDNS, a stub (sky.rethinkdns.com hosted on Cloudflare) and recursive (max.rethinkdns.com hosted on fly.io) resolver\nThe stub server strips identification parameters from the request and acts as a proxy to another recursive resolver."
     },
     {
       "name": "safesurfer-doh",

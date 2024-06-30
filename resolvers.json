@@ -47,8 +47,8 @@
       "name": "adguard-dns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "94.140.14.14",
-        "ipv4": "94.140.14.14"
+        "host": "94.140.15.15",
+        "ipv4": "94.140.15.15"
       },
       "description": "Remove ads and protect your computer from malware (over DoH)",
       "country": "France",
@@ -62,8 +62,8 @@
       "name": "adguard-dns-family-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "94.140.14.15",
-        "ipv4": "94.140.14.15"
+        "host": "94.140.15.16",
+        "ipv4": "94.140.15.16"
       },
       "description": "Adguard DNS with safesearch and adult content blocking (over DoH)",
       "country": "France",
@@ -77,8 +77,8 @@
       "name": "adguard-dns-unfiltered-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "94.140.14.141",
-        "ipv4": "94.140.14.141"
+        "host": "94.140.14.140",
+        "ipv4": "94.140.14.140"
       },
       "description": "AdGuard public DNS servers without filters (over DoH)",
       "country": "France",
@@ -123,13 +123,13 @@
       "name": "alidns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "113.142.83.132"
+        "host": "120.55.203.44"
       },
       "description": "A public DNS resolver that supports DoH/DoT in mainland China, provided by Alibaba-Cloud.\nHomepage: https://alidns.com\nWarning: GFW filtering rules are applied by this resolver.",
       "country": "China",
       "location": {
-        "lat": 35.0688,
-        "long": 107.607
+        "lat": 34.7725,
+        "long": 113.7266
       },
       "filter": true,
       "log": true
@@ -448,15 +448,15 @@
       "name": "dns.sb",
       "endpoint": {
         "protocol": "https:",
-        "host": "45.11.45.11",
-        "ipv4": "45.11.45.11",
+        "host": "185.222.222.222",
+        "ipv4": "185.222.222.222",
         "cors": true
       },
       "description": "DoH server runned by xTom.com. No logs, no filtering, supports DNSSEC.\nHomepage: https://dns.sb",
-      "country": "Netherlands",
+      "country": "Unknown",
       "location": {
-        "lat": 52.3824,
-        "long": 4.8995
+        "lat": 47,
+        "long": 8
       },
       "cors": true
     },
@@ -531,27 +531,16 @@
       "name": "dnspod",
       "endpoint": {
         "protocol": "https:",
-        "host": "doh.pub",
-        "cors": true
+        "host": "120.53.53.53"
       },
       "description": "A public DNS resolver that supports DoH/DoT in mainland China, provided by dnspod/Tencent-cloud.\nHomepage: https://dnspod.cn\nWarning: GFW filtering rules are applied by this resolver.",
-      "country": "Hong Kong",
+      "country": "China",
       "location": {
-        "lat": 22.25,
-        "long": 114.1667
+        "lat": 34.7725,
+        "long": 113.7266
       },
       "filter": true,
-      "log": true,
-      "cors": true
-    },
-    {
-      "name": "dnswarden-adult-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns.dnswarden.com"
-      },
-      "description": "Blocks adult content and enforces safe search on major search engines.\nFor further customization look here: https://dnswarden.com/customfilter.html",
-      "filter": true
+      "log": true
     },
     {
       "name": "doh-cleanbrowsing-adult",
@@ -618,19 +607,6 @@
         "long": -97.822
       },
       "cors": true
-    },
-    {
-      "name": "doh-ibksturm",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "ibksturm.synology.me"
-      },
-      "description": "DoH & DoT Server, No Logging, No Filters, DNSSEC\nRunning privately by ibksturm in Thurgau, Switzerland",
-      "country": "Switzerland",
-      "location": {
-        "lat": 47.4091,
-        "long": 9.0362
-      }
     },
     {
       "name": "doh.ffmuc.net",
@@ -909,8 +885,8 @@
       "name": "quad9-doh-ip4-port443-filter-pri",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns.quad9.net",
-        "ipv4": "149.112.112.112"
+        "host": "dns9.quad9.net",
+        "ipv4": "149.112.112.9"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
       "country": "United States",
@@ -949,14 +925,26 @@
       }
     },
     {
+      "name": "quad9-doh-ip6-port443-filter-pri",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.quad9.net"
+      },
+      "description": "Quad9 (anycast) dnssec/no-log/filter 2620:fe::fe - 2620:fe::9 - 2620:fe::fe:9",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      },
+      "filter": true
+    },
+    {
       "name": "rethinkdns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "sky.rethinkdns.com",
-        "cors": true
+        "host": "max.rethinkdns.com"
       },
-      "description": "DNSSEC, No-log, No-filter\nRethinkDNS, a stub (sky.rethinkdns.com hosted on Cloudflare) and recursive (max.rethinkdns.com hosted on fly.io) resolver\nThe stub server strips identification parameters from the request and acts as a proxy to another recursive resolver.",
-      "cors": true
+      "description": "DNSSEC, No-log, No-filter\nRethinkDNS, a stub (sky.rethinkdns.com hosted on Cloudflare) and recursive (max.rethinkdns.com hosted on fly.io) resolver\nThe stub server strips identification parameters from the request and acts as a proxy to another recursive resolver."
     },
     {
       "name": "safesurfer-doh",

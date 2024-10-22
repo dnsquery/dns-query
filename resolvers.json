@@ -60,8 +60,8 @@
       "name": "adguard-dns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "94.140.15.15",
-        "ipv4": "94.140.15.15"
+        "host": "94.140.14.14",
+        "ipv4": "94.140.14.14"
       },
       "description": "Remove ads and protect your computer from malware (over DoH)",
       "country": "France",
@@ -136,14 +136,14 @@
       "name": "alidns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "113.142.83.132",
-        "ipv4": "113.142.83.132"
+        "host": "223.6.6.6",
+        "ipv4": "223.6.6.6"
       },
       "description": "A public DNS resolver that supports DoH/DoT in mainland China, provided by Alibaba-Cloud.\nHomepage: https://alidns.com\nWarning: GFW filtering rules are applied by this resolver.",
       "country": "China",
       "location": {
-        "lat": 35.0688,
-        "long": 107.607
+        "lat": 34.7725,
+        "long": 113.7266
       },
       "filter": true,
       "log": true
@@ -298,11 +298,16 @@
       "name": "cloudflare",
       "endpoint": {
         "protocol": "https:",
-        "host": "162.159.36.1",
-        "ipv4": "162.159.36.1",
+        "host": "1.1.1.1",
+        "ipv4": "1.1.1.1",
         "cors": true
       },
       "description": "Cloudflare DNS (anycast) - aka 1.1.1.1 / 1.0.0.1",
+      "country": "Australia",
+      "location": {
+        "lat": -33.494,
+        "long": 143.2104
+      },
       "cors": true
     },
     {
@@ -341,8 +346,8 @@
       "name": "cloudflare-security",
       "endpoint": {
         "protocol": "https:",
-        "host": "1.0.0.2",
-        "ipv4": "1.0.0.2",
+        "host": "1.1.1.2",
+        "ipv4": "1.1.1.2",
         "cors": true
       },
       "description": "Cloudflare DNS (anycast) with malware blocking - aka 1.1.1.2 / 1.0.0.2",
@@ -572,16 +577,18 @@
       "name": "dnspod",
       "endpoint": {
         "protocol": "https:",
-        "host": "1.12.12.12"
+        "host": "doh.pub",
+        "cors": true
       },
       "description": "A public DNS resolver that supports DoH/DoT in mainland China, provided by dnspod/Tencent-cloud.\nHomepage: https://dnspod.cn\nWarning: GFW filtering rules are applied by this resolver.",
-      "country": "China",
+      "country": "Hong Kong",
       "location": {
-        "lat": 34.7725,
-        "long": 113.7266
+        "lat": 22.25,
+        "long": 114.1667
       },
       "filter": true,
-      "log": true
+      "log": true,
+      "cors": true
     },
     {
       "name": "doh-cleanbrowsing-adult",
@@ -935,34 +942,54 @@
       "cors": true
     },
     {
-      "name": "qihoo360-doh",
+      "name": "quad9-doh-ip4-port443-nofilter-ecs-pri",
       "endpoint": {
         "protocol": "https:",
-        "host": "doh.360.cn"
+        "host": "dns12.quad9.net",
+        "ipv4": "149.112.112.12"
       },
-      "description": "DoH server runned by Qihoo 360, has logs, GFW filtering rules are applied.\nHomepage: https://sdns.360.net",
-      "filter": true,
-      "log": true
+      "description": "Quad9 (anycast) no-dnssec/no-log/no-filter/ecs 9.9.9.12 - 149.112.112.12",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      }
     },
     {
-      "name": "quad101",
+      "name": "quad9-doh-ip4-port443-nofilter-pri",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns.twnic.tw",
-        "cors": true
+        "host": "dns10.quad9.net",
+        "ipv4": "9.9.9.10"
       },
-      "description": "DNSSEC-aware public resolver by the Taiwan Network Information Center (TWNIC)\nhttps://101.101.101.101/index_en.html",
-      "cors": true
+      "description": "Quad9 (anycast) no-dnssec/no-log/no-filter 9.9.9.10 - 149.112.112.10",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      }
+    },
+    {
+      "name": "quad9-doh-ip6-port443-filter-pri",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.quad9.net"
+      },
+      "description": "Quad9 (anycast) dnssec/no-log/filter 2620:fe::fe - 2620:fe::9 - 2620:fe::fe:9",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      },
+      "filter": true
     },
     {
       "name": "rethinkdns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "sky.rethinkdns.com",
-        "cors": true
+        "host": "max.rethinkdns.com"
       },
-      "description": "No-log, No-filter\nRethinkDNS, a stub (sky.rethinkdns.com hosted on Cloudflare) and recursive (max.rethinkdns.com hosted on fly.io) resolver\nThe stub server strips identification parameters from the request and acts as a proxy to another recursive resolver.",
-      "cors": true
+      "description": "No-log, No-filter\nRethinkDNS, a stub (sky.rethinkdns.com hosted on Cloudflare) and recursive (max.rethinkdns.com hosted on fly.io) resolver\nThe stub server strips identification parameters from the request and acts as a proxy to another recursive resolver."
     },
     {
       "name": "safesurfer-doh",

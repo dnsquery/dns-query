@@ -198,7 +198,8 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns.bebasid.com",
-        "path": "/unfiltered"
+        "path": "/unfiltered",
+        "method": "POST"
       },
       "description": "BebasDNS by BebasID. DNSSEC and OpenNIC supported. This variant doesn't block anything",
       "country": "Australia",
@@ -509,6 +510,22 @@
       },
       "filter": true,
       "log": true,
+      "cors": true
+    },
+    {
+      "name": "dnsforge.de",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dnsforge.de",
+        "cors": true
+      },
+      "description": "Public DoH resolver running with Pihole for Adblocking (https://dnsforge.de).\nNon-logging, AD-filtering, supports DNSSEC. Hosted in Germany.",
+      "country": "Germany",
+      "location": {
+        "lat": 52.2998,
+        "long": 9.447
+      },
+      "filter": true,
       "cors": true
     },
     {

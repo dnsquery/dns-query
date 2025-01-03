@@ -148,6 +148,22 @@
       "log": true
     },
     {
+      "name": "ams-ads-doh-nl",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dnsnl-noads.alekberg.net",
+        "cors": true
+      },
+      "description": "Resolver in Amsterdam. HTTP/3, DoH protocol. Non-logging. Blocks ads, malware and trackers. DNSSEC enabled.",
+      "country": "Romania",
+      "location": {
+        "lat": 45.9968,
+        "long": 24.997
+      },
+      "filter": true,
+      "cors": true
+    },
+    {
       "name": "ams-doh-nl",
       "endpoint": {
         "protocol": "https:",
@@ -178,20 +194,6 @@
       "cors": true
     },
     {
-      "name": "bebasdns-unfiltered-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns.bebasid.com",
-        "path": "/unfiltered"
-      },
-      "description": "BebasDNS by BebasID. DNSSEC and OpenNIC supported. This variant doesn't block anything",
-      "country": "Australia",
-      "location": {
-        "lat": -33.494,
-        "long": 143.2104
-      }
-    },
-    {
       "name": "blahdns-de-doh",
       "endpoint": {
         "protocol": "https:",
@@ -202,20 +204,6 @@
       "location": {
         "lat": 51.2993,
         "long": 9.491
-      },
-      "filter": true
-    },
-    {
-      "name": "blahdns-sg-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh-sg.blahdns.com"
-      },
-      "description": "DNS-over-HTTPS server. No Logging, filters ads, trackers and malware. DNSSEC ready, QNAME Minimization, No EDNS Client-Subnet.",
-      "country": "United Kingdom",
-      "location": {
-        "lat": 51.4964,
-        "long": -0.1224
       },
       "filter": true
     },
@@ -836,6 +824,27 @@
       "cors": true
     },
     {
+      "name": "odoh-koki-ams",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "odoh-nl.alekberg.net",
+        "cors": true
+      },
+      "description": "Oblivious DoH target server in The Netherlands. No logs, No filter, DNSSEC.",
+      "cors": true
+    },
+    {
+      "name": "odoh-koki-noads-ams",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "odoh-noads-nl.alekberg.net",
+        "cors": true
+      },
+      "description": "Oblivious DoH target server in The Netherlands. No logs, filter ads and malware, DNSSEC.",
+      "filter": true,
+      "cors": true
+    },
+    {
       "name": "odoh-koki-noads-se",
       "endpoint": {
         "protocol": "https:",
@@ -866,6 +875,26 @@
       },
       "description": "ODoH target server via Cloudflare, no logs.\nFilter ads, trackers and malware.",
       "filter": true,
+      "cors": true
+    },
+    {
+      "name": "qihoo360-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "doh.360.cn"
+      },
+      "description": "DoH server runned by Qihoo 360, has logs, GFW filtering rules are applied.\nHomepage: https://sdns.360.net",
+      "filter": true,
+      "log": true
+    },
+    {
+      "name": "quad101",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.twnic.tw",
+        "cors": true
+      },
+      "description": "DNSSEC-aware public resolver by the Taiwan Network Information Center (TWNIC)\nhttps://101.101.101.101/index_en.html",
       "cors": true
     },
     {

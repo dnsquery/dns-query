@@ -164,6 +164,21 @@
       "cors": true
     },
     {
+      "name": "ams-doh-nl",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dnsnl.alekberg.net",
+        "cors": true
+      },
+      "description": "Resolver in Amsterdam. HTTP/3, DoH protocol. Non-logging, non-filtering, DNSSEC.",
+      "country": "Romania",
+      "location": {
+        "lat": 45.9968,
+        "long": 24.997
+      },
+      "cors": true
+    },
+    {
       "name": "artikel10-doh-ipv4",
       "endpoint": {
         "protocol": "https:",
@@ -208,16 +223,16 @@
       "filter": true
     },
     {
-      "name": "blahdns-sg-doh",
+      "name": "brahma-world",
       "endpoint": {
         "protocol": "https:",
-        "host": "doh-sg.blahdns.com"
+        "host": "dns.brahma.world"
       },
-      "description": "DNS-over-HTTPS server. No Logging, filters ads, trackers and malware. DNSSEC ready, QNAME Minimization, No EDNS Client-Subnet.",
-      "country": "United Kingdom",
+      "description": "DNS-over-HTTPS server. Non Logging, filters ads, trackers and malware. DNSSEC ready, QNAME Minimization, No EDNS Client-Subnet.\nHosted in Nuremberg, Germany. (https://dns.brahma.world)",
+      "country": "Germany",
       "location": {
-        "lat": 51.4964,
-        "long": -0.1224
+        "lat": 51.2993,
+        "long": 9.491
       },
       "filter": true
     },
@@ -484,22 +499,6 @@
       "cors": true
     },
     {
-      "name": "dnsforge.de",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dnsforge.de",
-        "cors": true
-      },
-      "description": "Public DoH resolver running with Pihole for Adblocking (https://dnsforge.de).\nNon-logging, AD-filtering, supports DNSSEC. Hosted in Germany.",
-      "country": "Germany",
-      "location": {
-        "lat": 52.2998,
-        "long": 9.447
-      },
-      "filter": true,
-      "cors": true
-    },
-    {
       "name": "dnslow.me",
       "endpoint": {
         "protocol": "https:",
@@ -755,73 +754,6 @@
         "path": "/dnscrypt-proxy"
       },
       "description": "NextDNS is a cloud-based private DNS service that gives you full control\nover what is allowed and what is blocked on the Internet.\nhttps://www.nextdns.io/\nTo select the server location, the \"-ultralow\" variant relies on bootstrap servers\ninstead of anycast."
-    },
-    {
-      "name": "njalla-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns.njal.la"
-      },
-      "description": "Non-logging DoH server in Sweden operated by Njalla.\nhttps://dns.njal.la/",
-      "country": "Sweden",
-      "location": {
-        "lat": 59.3247,
-        "long": 18.056
-      }
-    },
-    {
-      "name": "odoh-cloudflare",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "odoh.cloudflare-dns.com",
-        "cors": true
-      },
-      "description": "Cloudflare ODoH server.\nhttps://cloudflare.com",
-      "cors": true
-    },
-    {
-      "name": "odoh-crypto-sx",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "odoh.crypto.sx",
-        "cors": true
-      },
-      "description": "ODoH target server. Anycast, no logs.\nBackend hosted by Scaleway. Maintained by Frank Denis.",
-      "cors": true
-    },
-    {
-      "name": "odoh-id-gmail",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh.tiar.app",
-        "path": "/odoh",
-        "cors": true
-      },
-      "description": "ODoH target server. Based in Singapore, no logs.\nFilter ads, trackers and malware.",
-      "filter": true,
-      "cors": true
-    },
-    {
-      "name": "odoh-jp.tiar.app",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "jp.tiar.app",
-        "path": "/odoh",
-        "cors": true
-      },
-      "description": "ODoH target server. no logs.",
-      "cors": true
-    },
-    {
-      "name": "odoh-jp.tiarap.org",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "jp.tiarap.org",
-        "path": "/odoh",
-        "cors": true
-      },
-      "description": "ODoH target server via Cloudflare, no logs.",
-      "cors": true
     },
     {
       "name": "odoh-koki-noads-se",

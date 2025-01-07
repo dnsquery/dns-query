@@ -194,21 +194,6 @@
       "cors": true
     },
     {
-      "name": "bebasdns-unfiltered-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns.bebasid.com",
-        "path": "/unfiltered",
-        "method": "POST"
-      },
-      "description": "BebasDNS by BebasID. DNSSEC and OpenNIC supported. This variant doesn't block anything",
-      "country": "Australia",
-      "location": {
-        "lat": -33.494,
-        "long": 143.2104
-      }
-    },
-    {
       "name": "blahdns-de-doh",
       "endpoint": {
         "protocol": "https:",
@@ -219,6 +204,20 @@
       "location": {
         "lat": 51.2993,
         "long": 9.491
+      },
+      "filter": true
+    },
+    {
+      "name": "blahdns-sg-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "doh-sg.blahdns.com"
+      },
+      "description": "DNS-over-HTTPS server. No Logging, filters ads, trackers and malware. DNSSEC ready, QNAME Minimization, No EDNS Client-Subnet.",
+      "country": "United Kingdom",
+      "location": {
+        "lat": 51.4964,
+        "long": -0.1224
       },
       "filter": true
     },
@@ -499,6 +498,22 @@
       "cors": true
     },
     {
+      "name": "dnsforge.de",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dnsforge.de",
+        "cors": true
+      },
+      "description": "Public DoH resolver running with Pihole for Adblocking (https://dnsforge.de).\nNon-logging, AD-filtering, supports DNSSEC. Hosted in Germany.",
+      "country": "Germany",
+      "location": {
+        "lat": 52.2998,
+        "long": 9.447
+      },
+      "filter": true,
+      "cors": true
+    },
+    {
       "name": "dnslow.me",
       "endpoint": {
         "protocol": "https:",
@@ -756,6 +771,94 @@
       "description": "NextDNS is a cloud-based private DNS service that gives you full control\nover what is allowed and what is blocked on the Internet.\nhttps://www.nextdns.io/\nTo select the server location, the \"-ultralow\" variant relies on bootstrap servers\ninstead of anycast."
     },
     {
+      "name": "njalla-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.njal.la"
+      },
+      "description": "Non-logging DoH server in Sweden operated by Njalla.\nhttps://dns.njal.la/",
+      "country": "Sweden",
+      "location": {
+        "lat": 59.3247,
+        "long": 18.056
+      }
+    },
+    {
+      "name": "odoh-cloudflare",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "odoh.cloudflare-dns.com",
+        "cors": true
+      },
+      "description": "Cloudflare ODoH server.\nhttps://cloudflare.com",
+      "cors": true
+    },
+    {
+      "name": "odoh-crypto-sx",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "odoh.crypto.sx",
+        "cors": true
+      },
+      "description": "ODoH target server. Anycast, no logs.\nBackend hosted by Scaleway. Maintained by Frank Denis.",
+      "cors": true
+    },
+    {
+      "name": "odoh-id-gmail",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "doh.tiar.app",
+        "path": "/odoh",
+        "cors": true
+      },
+      "description": "ODoH target server. Based in Singapore, no logs.\nFilter ads, trackers and malware.",
+      "filter": true,
+      "cors": true
+    },
+    {
+      "name": "odoh-jp.tiar.app",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "jp.tiar.app",
+        "path": "/odoh",
+        "cors": true
+      },
+      "description": "ODoH target server. no logs.",
+      "cors": true
+    },
+    {
+      "name": "odoh-jp.tiarap.org",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "jp.tiarap.org",
+        "path": "/odoh",
+        "cors": true
+      },
+      "description": "ODoH target server via Cloudflare, no logs.",
+      "cors": true
+    },
+    {
+      "name": "odoh-koki-ams",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "odoh-nl.alekberg.net",
+        "cors": true
+      },
+      "description": "Oblivious DoH target server in The Netherlands. No logs, No filter, DNSSEC.",
+      "cors": true
+    },
+    {
+      "name": "odoh-koki-noads-ams",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "odoh-noads-nl.alekberg.net",
+        "cors": true
+      },
+      "description": "Oblivious DoH target server in The Netherlands. No logs, filter ads and malware, DNSSEC.",
+      "filter": true,
+      "cors": true
+    },
+    {
       "name": "odoh-koki-noads-se",
       "endpoint": {
         "protocol": "https:",
@@ -807,78 +910,6 @@
       },
       "description": "DNSSEC-aware public resolver by the Taiwan Network Information Center (TWNIC)\nhttps://101.101.101.101/index_en.html",
       "cors": true
-    },
-    {
-      "name": "quad9-doh-ip4-port443-filter-ecs-pri",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns11.quad9.net",
-        "ipv4": "9.9.9.11"
-      },
-      "description": "Quad9 (anycast) dnssec/no-log/filter/ecs 9.9.9.11 - 149.112.112.11",
-      "country": "United States",
-      "location": {
-        "lat": 37.751,
-        "long": -97.822
-      },
-      "filter": true
-    },
-    {
-      "name": "quad9-doh-ip4-port443-filter-pri",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns9.quad9.net",
-        "ipv4": "9.9.9.9"
-      },
-      "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
-      "country": "France",
-      "location": {
-        "lat": 48.8582,
-        "long": 2.3387
-      },
-      "filter": true
-    },
-    {
-      "name": "quad9-doh-ip4-port443-nofilter-ecs-pri",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns12.quad9.net",
-        "ipv4": "9.9.9.12"
-      },
-      "description": "Quad9 (anycast) no-dnssec/no-log/no-filter/ecs 9.9.9.12 - 149.112.112.12",
-      "country": "United States",
-      "location": {
-        "lat": 37.751,
-        "long": -97.822
-      }
-    },
-    {
-      "name": "quad9-doh-ip4-port443-nofilter-pri",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns10.quad9.net",
-        "ipv4": "149.112.112.10"
-      },
-      "description": "Quad9 (anycast) no-dnssec/no-log/no-filter 9.9.9.10 - 149.112.112.10",
-      "country": "United States",
-      "location": {
-        "lat": 37.751,
-        "long": -97.822
-      }
-    },
-    {
-      "name": "quad9-doh-ip6-port443-filter-pri",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns.quad9.net"
-      },
-      "description": "Quad9 (anycast) dnssec/no-log/filter 2620:fe::fe - 2620:fe::9 - 2620:fe::fe:9",
-      "country": "United States",
-      "location": {
-        "lat": 37.751,
-        "long": -97.822
-      },
-      "filter": true
     },
     {
       "name": "rethinkdns-doh",

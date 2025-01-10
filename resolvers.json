@@ -194,20 +194,6 @@
       "cors": true
     },
     {
-      "name": "bebasdns-unfiltered-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns.bebasid.com",
-        "path": "/unfiltered"
-      },
-      "description": "BebasDNS by BebasID. DNSSEC and OpenNIC supported. This variant doesn't block anything",
-      "country": "Australia",
-      "location": {
-        "lat": -33.494,
-        "long": 143.2104
-      }
-    },
-    {
       "name": "blahdns-de-doh",
       "endpoint": {
         "protocol": "https:",
@@ -472,14 +458,6 @@
       "filter": true
     },
     {
-      "name": "dns0-unfiltered",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "open.dns0.eu"
-      },
-      "description": "The unfiltered version of dns0.eu.\nhttps://open.dns0.eu/"
-    },
-    {
       "name": "dnscrypt.ca-ipv4-doh",
       "endpoint": {
         "protocol": "https:",
@@ -509,6 +487,22 @@
       },
       "filter": true,
       "log": true,
+      "cors": true
+    },
+    {
+      "name": "dnsforge.de",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dnsforge.de",
+        "cors": true
+      },
+      "description": "Public DoH resolver running with Pihole for Adblocking (https://dnsforge.de).\nNon-logging, AD-filtering, supports DNSSEC. Hosted in Germany.",
+      "country": "Germany",
+      "location": {
+        "lat": 52.2998,
+        "long": 9.447
+      },
+      "filter": true,
       "cors": true
     },
     {
@@ -890,16 +884,6 @@
       "cors": true
     },
     {
-      "name": "qihoo360-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh.360.cn"
-      },
-      "description": "DoH server runned by Qihoo 360, has logs, GFW filtering rules are applied.\nHomepage: https://sdns.360.net",
-      "filter": true,
-      "log": true
-    },
-    {
       "name": "quad101",
       "endpoint": {
         "protocol": "https:",
@@ -908,78 +892,6 @@
       },
       "description": "DNSSEC-aware public resolver by the Taiwan Network Information Center (TWNIC)\nhttps://101.101.101.101/index_en.html",
       "cors": true
-    },
-    {
-      "name": "quad9-doh-ip4-port443-filter-ecs-pri",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns11.quad9.net",
-        "ipv4": "9.9.9.11"
-      },
-      "description": "Quad9 (anycast) dnssec/no-log/filter/ecs 9.9.9.11 - 149.112.112.11",
-      "country": "United States",
-      "location": {
-        "lat": 37.751,
-        "long": -97.822
-      },
-      "filter": true
-    },
-    {
-      "name": "quad9-doh-ip4-port443-filter-pri",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns9.quad9.net",
-        "ipv4": "9.9.9.9"
-      },
-      "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
-      "country": "France",
-      "location": {
-        "lat": 48.8582,
-        "long": 2.3387
-      },
-      "filter": true
-    },
-    {
-      "name": "quad9-doh-ip4-port443-nofilter-ecs-pri",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns12.quad9.net",
-        "ipv4": "9.9.9.12"
-      },
-      "description": "Quad9 (anycast) no-dnssec/no-log/no-filter/ecs 9.9.9.12 - 149.112.112.12",
-      "country": "United States",
-      "location": {
-        "lat": 37.751,
-        "long": -97.822
-      }
-    },
-    {
-      "name": "quad9-doh-ip4-port443-nofilter-pri",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns10.quad9.net",
-        "ipv4": "149.112.112.10"
-      },
-      "description": "Quad9 (anycast) no-dnssec/no-log/no-filter 9.9.9.10 - 149.112.112.10",
-      "country": "United States",
-      "location": {
-        "lat": 37.751,
-        "long": -97.822
-      }
-    },
-    {
-      "name": "quad9-doh-ip6-port443-filter-pri",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns.quad9.net"
-      },
-      "description": "Quad9 (anycast) dnssec/no-log/filter 2620:fe::fe - 2620:fe::9 - 2620:fe::fe:9",
-      "country": "United States",
-      "location": {
-        "lat": 37.751,
-        "long": -97.822
-      },
-      "filter": true
     },
     {
       "name": "rethinkdns-doh",

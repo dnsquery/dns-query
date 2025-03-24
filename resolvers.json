@@ -108,8 +108,8 @@
       "name": "adguard-dns-unfiltered-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "94.140.14.141",
-        "ipv4": "94.140.14.141"
+        "host": "94.140.14.140",
+        "ipv4": "94.140.14.140"
       },
       "description": "AdGuard public DNS servers without filters (over DoH)",
       "country": "France",
@@ -146,8 +146,8 @@
       "name": "alidns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "123.184.198.22",
-        "ipv4": "123.184.198.22"
+        "host": "120.55.203.44",
+        "ipv4": "120.55.203.44"
       },
       "description": "A public DNS resolver that supports DoH/DoT in mainland China, provided by Alibaba-Cloud.\nHomepage: https://alidns.com\nWarning: GFW filtering rules are applied by this resolver.",
       "country": "China",
@@ -263,15 +263,14 @@
       "name": "cloudflare",
       "endpoint": {
         "protocol": "https:",
-        "host": "1.0.0.1",
-        "ipv4": "1.0.0.1",
+        "host": "cloudflare-dns.com",
         "cors": true
       },
       "description": "Cloudflare DNS (anycast) - aka 1.1.1.1 / 1.0.0.1",
-      "country": "Australia",
+      "country": "United States",
       "location": {
-        "lat": -33.494,
-        "long": 143.2104
+        "lat": 37.751,
+        "long": -97.822
       },
       "cors": true
     },
@@ -296,8 +295,8 @@
       "name": "cloudflare-security",
       "endpoint": {
         "protocol": "https:",
-        "host": "1.1.1.2",
-        "ipv4": "1.1.1.2",
+        "host": "1.0.0.2",
+        "ipv4": "1.0.0.2",
         "cors": true
       },
       "description": "Cloudflare DNS (anycast) with malware blocking - aka 1.1.1.2 / 1.0.0.2",
@@ -308,6 +307,126 @@
       },
       "filter": true,
       "cors": true
+    },
+    {
+      "name": "controld-block-malware",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "freedns.controld.com",
+        "path": "/p1",
+        "ipv4": "76.76.2.11"
+      },
+      "description": "ControlD Free DNS. Take CONTROL of your Internet. Block unwanted content, bypass geo-restrictions and be more productive. DoH protocol and No logging. - https://controld.com/free-dns\nThis DNS blocks Malware domains.",
+      "country": "Canada",
+      "location": {
+        "lat": 43.6319,
+        "long": -79.3716
+      },
+      "filter": true
+    },
+    {
+      "name": "controld-block-malware-ad",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "freedns.controld.com",
+        "path": "/p2",
+        "ipv4": "76.76.2.11"
+      },
+      "description": "ControlD Free DNS. Take CONTROL of your Internet. Block unwanted content, bypass geo-restrictions and be more productive. DoH protocol and No logging. - https://controld.com/free-dns\nThis DNS blocks Malware, Ads & Tracking domains.",
+      "country": "Canada",
+      "location": {
+        "lat": 43.6319,
+        "long": -79.3716
+      },
+      "filter": true
+    },
+    {
+      "name": "controld-block-malware-ad-social",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "freedns.controld.com",
+        "path": "/p3",
+        "ipv4": "76.76.2.11"
+      },
+      "description": "ControlD Free DNS. Take CONTROL of your Internet. Block unwanted content, bypass geo-restrictions and be more productive. DoH protocol and No logging. - https://controld.com/free-dns\nThis DNS blocks Malware, Ads & Tracking and Social Networks domains.",
+      "country": "Canada",
+      "location": {
+        "lat": 43.6319,
+        "long": -79.3716
+      },
+      "filter": true
+    },
+    {
+      "name": "controld-family-friendly",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "freedns.controld.com",
+        "path": "/family",
+        "ipv4": "76.76.2.11"
+      },
+      "description": "ControlD Free DNS. Take CONTROL of your Internet. Block unwanted content, bypass geo-restrictions and be more productive. DoH protocol and No logging. - https://controld.com/free-dns\nThis DNS blocks Malware, Ads & Tracking, Adult Content and Drugs domains.",
+      "country": "Canada",
+      "location": {
+        "lat": 43.6319,
+        "long": -79.3716
+      },
+      "filter": true
+    },
+    {
+      "name": "controld-uncensored",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "freedns.controld.com",
+        "path": "/uncensored",
+        "ipv4": "76.76.2.11"
+      },
+      "description": "ControlD Free DNS. Take CONTROL of your Internet. Block unwanted content, bypass geo-restrictions and be more productive. DoH protocol and No logging. - https://controld.com/free-dns\nThis DNS unblocks censored domains from various countries.",
+      "country": "Canada",
+      "location": {
+        "lat": 43.6319,
+        "long": -79.3716
+      }
+    },
+    {
+      "name": "controld-unfiltered",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "freedns.controld.com",
+        "path": "/p0",
+        "ipv4": "76.76.2.11"
+      },
+      "description": "ControlD Free DNS. Take CONTROL of your Internet. Block unwanted content, bypass geo-restrictions and be more productive. DoH protocol and No logging. - https://controld.com/free-dns\nThis is a Unfiltered DNS, no DNS record blocking or manipulation here, if you want to block Malware, Ads & Tracking or Social Network domains, use the other ControlD DNS configs.",
+      "country": "Canada",
+      "location": {
+        "lat": 43.6319,
+        "long": -79.3716
+      }
+    },
+    {
+      "name": "dns.digitale-gesellschaft.ch",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.digitale-gesellschaft.ch"
+      },
+      "description": "Public DoH resolver operated by the Digital Society (https://www.digitale-gesellschaft.ch).\nHosted in Zurich, Switzerland.\nNon-logging, non-filtering, supports DNSSEC.",
+      "country": "Switzerland",
+      "location": {
+        "lat": 47.1449,
+        "long": 8.1551
+      }
+    },
+    {
+      "name": "dns.digitalsize.net",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.digitalsize.net"
+      },
+      "description": "A public, non-tracking, non-filtering DNS resolver with DNSSEC enabled, QNAME minimization and no EDNS client subnet (https://dns.digitalsize.net).\nHosted in Germany.",
+      "country": "Germany",
+      "location": {
+        "lat": 51.2993,
+        "long": 9.491
+      }
     },
     {
       "name": "dns.sb",
@@ -324,32 +443,6 @@
         "long": 4.8995
       },
       "cors": true
-    },
-    {
-      "name": "dns0",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns0.eu"
-      },
-      "description": "A free, sovereign and GDPR-compliant recursive DNS resolver with a\nstrong focus on security to protect the citizens and organizations of\nthe European Union.\nBlocks new domains, dynamic DNS, parked domains, uncommon TLDs, etc.\nhttps://www.dns0.eu/",
-      "filter": true
-    },
-    {
-      "name": "dns0-kids",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "kids.dns0.eu"
-      },
-      "description": "A free, sovereign and GDPR-compliant recursive DNS resolver with a\nstrong focus on security to protect the citizens and organizations of\nthe European Union.\nThis version blocks content not suitable for children.\nAlso blocks new domains, dynamic DNS, parked domains, uncommon TLDs, etc.\nhttps://www.dns0.eu/",
-      "filter": true
-    },
-    {
-      "name": "dns0-unfiltered",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "open.dns0.eu"
-      },
-      "description": "The unfiltered version of dns0.eu.\nhttps://open.dns0.eu/"
     },
     {
       "name": "dnscrypt.ca-ipv4-doh",
@@ -396,7 +489,8 @@
       "name": "dnspod",
       "endpoint": {
         "protocol": "https:",
-        "host": "1.12.12.12"
+        "host": "120.53.53.53",
+        "ipv4": "120.53.53.53"
       },
       "description": "A public DNS resolver that supports DoH/DoT in mainland China, provided by dnspod/Tencent-cloud.\nHomepage: https://dnspod.cn\nWarning: GFW filtering rules are applied by this resolver.",
       "country": "China",
@@ -537,8 +631,8 @@
       "name": "google",
       "endpoint": {
         "protocol": "https:",
-        "host": "8.8.8.8",
-        "ipv4": "8.8.8.8",
+        "host": "8.8.4.4",
+        "ipv4": "8.8.4.4",
         "cors": true
       },
       "description": "Google DNS (anycast)",
@@ -728,86 +822,12 @@
       "cors": true
     },
     {
-      "name": "quad9-doh-ip4-port443-filter-ecs-pri",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns11.quad9.net",
-        "ipv4": "9.9.9.11"
-      },
-      "description": "Quad9 (anycast) dnssec/no-log/filter/ecs 9.9.9.11 - 149.112.112.11",
-      "country": "United States",
-      "location": {
-        "lat": 37.751,
-        "long": -97.822
-      },
-      "filter": true
-    },
-    {
-      "name": "quad9-doh-ip4-port443-filter-pri",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns9.quad9.net",
-        "ipv4": "9.9.9.9"
-      },
-      "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
-      "country": "France",
-      "location": {
-        "lat": 48.8582,
-        "long": 2.3387
-      },
-      "filter": true
-    },
-    {
-      "name": "quad9-doh-ip4-port443-nofilter-ecs-pri",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns12.quad9.net",
-        "ipv4": "9.9.9.12"
-      },
-      "description": "Quad9 (anycast) no-dnssec/no-log/no-filter/ecs 9.9.9.12 - 149.112.112.12",
-      "country": "United States",
-      "location": {
-        "lat": 37.751,
-        "long": -97.822
-      }
-    },
-    {
-      "name": "quad9-doh-ip4-port443-nofilter-pri",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns10.quad9.net",
-        "ipv4": "149.112.112.10"
-      },
-      "description": "Quad9 (anycast) no-dnssec/no-log/no-filter 9.9.9.10 - 149.112.112.10",
-      "country": "United States",
-      "location": {
-        "lat": 37.751,
-        "long": -97.822
-      }
-    },
-    {
-      "name": "quad9-doh-ip6-port443-filter-pri",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns.quad9.net"
-      },
-      "description": "Quad9 (anycast) dnssec/no-log/filter 2620:fe::fe - 2620:fe::9 - 2620:fe::fe:9",
-      "country": "United States",
-      "location": {
-        "lat": 37.751,
-        "long": -97.822
-      },
-      "filter": true
-    },
-    {
       "name": "rethinkdns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "sky.rethinkdns.com",
-        "cors": true
+        "host": "max.rethinkdns.com"
       },
-      "description": "No-log, No-filter\nRethinkDNS, a stub (sky.rethinkdns.com hosted on Cloudflare) and recursive (max.rethinkdns.com hosted on fly.io) resolver\nThe stub server strips identification parameters from the request and acts as a proxy to another recursive resolver.",
-      "cors": true
+      "description": "No-log, No-filter\nRethinkDNS, a stub (sky.rethinkdns.com hosted on Cloudflare) and recursive (max.rethinkdns.com hosted on fly.io) resolver\nThe stub server strips identification parameters from the request and acts as a proxy to another recursive resolver."
     },
     {
       "name": "safesurfer-doh",
@@ -818,6 +838,14 @@
       "description": "Family safety focused blocklist for over 2 million adult sites, as well as phishing and malware and more.\nFree to use, paid for customizing blocking for more categories+sites and viewing usage at my.safesurfer.io. Logs taken for viewing\nusage, data never sold - https://safesurfer.io",
       "filter": true,
       "log": true
+    },
+    {
+      "name": "wikimedia",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "wikimedia-dns.org"
+      },
+      "description": "Wikimedia DNS (formerly called Wikidough), is a caching, recursive,\npublic resolver service that is run and managed by the Site\nReliability Engineering (Traffic) team at the Foundation.\nWikimedia DNS helps prevent some surveillance and censorship of our\nwikis and other websites by securing DNS lookups."
     }
   ]
 }

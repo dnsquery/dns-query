@@ -108,8 +108,8 @@
       "name": "adguard-dns-unfiltered-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "94.140.14.140",
-        "ipv4": "94.140.14.140"
+        "host": "94.140.14.141",
+        "ipv4": "94.140.14.141"
       },
       "description": "AdGuard public DNS servers without filters (over DoH)",
       "country": "France",
@@ -146,14 +146,14 @@
       "name": "alidns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "223.6.6.6",
-        "ipv4": "223.6.6.6"
+        "host": "113.142.83.132",
+        "ipv4": "113.142.83.132"
       },
       "description": "A public DNS resolver that supports DoH/DoT in mainland China, provided by Alibaba-Cloud.\nHomepage: https://alidns.com\nWarning: GFW filtering rules are applied by this resolver.",
       "country": "China",
       "location": {
-        "lat": 34.7725,
-        "long": 113.7266
+        "lat": 35.0688,
+        "long": 107.607
       },
       "filter": true,
       "log": true
@@ -219,17 +219,6 @@
       "log": true
     },
     {
-      "name": "cloudflare",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "162.159.36.1",
-        "ipv4": "162.159.36.1",
-        "cors": true
-      },
-      "description": "Cloudflare DNS (anycast) - aka 1.1.1.1 / 1.0.0.1",
-      "cors": true
-    },
-    {
       "name": "cloudflare-family",
       "endpoint": {
         "protocol": "https:",
@@ -262,140 +251,6 @@
       },
       "filter": true,
       "cors": true
-    },
-    {
-      "name": "comss.one",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns.comss.one"
-      },
-      "description": "Comss.one DNS - DNS with adblock filters and antiphishing, gaining popularity among russian-speaking users.",
-      "country": "Russia",
-      "location": {
-        "lat": 55.7386,
-        "long": 37.6068
-      },
-      "filter": true
-    },
-    {
-      "name": "controld-block-malware",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "freedns.controld.com",
-        "path": "/p1",
-        "ipv4": "76.76.2.11"
-      },
-      "description": "ControlD Free DNS. Take CONTROL of your Internet. Block unwanted content, bypass geo-restrictions and be more productive. DoH protocol and No logging. - https://controld.com/free-dns\nThis DNS blocks Malware domains.",
-      "country": "Canada",
-      "location": {
-        "lat": 43.6319,
-        "long": -79.3716
-      },
-      "filter": true
-    },
-    {
-      "name": "controld-block-malware-ad",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "freedns.controld.com",
-        "path": "/p2",
-        "ipv4": "76.76.2.11"
-      },
-      "description": "ControlD Free DNS. Take CONTROL of your Internet. Block unwanted content, bypass geo-restrictions and be more productive. DoH protocol and No logging. - https://controld.com/free-dns\nThis DNS blocks Malware, Ads & Tracking domains.",
-      "country": "Canada",
-      "location": {
-        "lat": 43.6319,
-        "long": -79.3716
-      },
-      "filter": true
-    },
-    {
-      "name": "controld-block-malware-ad-social",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "freedns.controld.com",
-        "path": "/p3",
-        "ipv4": "76.76.2.11"
-      },
-      "description": "ControlD Free DNS. Take CONTROL of your Internet. Block unwanted content, bypass geo-restrictions and be more productive. DoH protocol and No logging. - https://controld.com/free-dns\nThis DNS blocks Malware, Ads & Tracking and Social Networks domains.",
-      "country": "Canada",
-      "location": {
-        "lat": 43.6319,
-        "long": -79.3716
-      },
-      "filter": true
-    },
-    {
-      "name": "controld-family-friendly",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "freedns.controld.com",
-        "path": "/family",
-        "ipv4": "76.76.2.11"
-      },
-      "description": "ControlD Free DNS. Take CONTROL of your Internet. Block unwanted content, bypass geo-restrictions and be more productive. DoH protocol and No logging. - https://controld.com/free-dns\nThis DNS blocks Malware, Ads & Tracking, Adult Content and Drugs domains.",
-      "country": "Canada",
-      "location": {
-        "lat": 43.6319,
-        "long": -79.3716
-      },
-      "filter": true
-    },
-    {
-      "name": "controld-uncensored",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "freedns.controld.com",
-        "path": "/uncensored",
-        "ipv4": "76.76.2.11"
-      },
-      "description": "ControlD Free DNS. Take CONTROL of your Internet. Block unwanted content, bypass geo-restrictions and be more productive. DoH protocol and No logging. - https://controld.com/free-dns\nThis DNS unblocks censored domains from various countries.",
-      "country": "Canada",
-      "location": {
-        "lat": 43.6319,
-        "long": -79.3716
-      }
-    },
-    {
-      "name": "controld-unfiltered",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "freedns.controld.com",
-        "path": "/p0",
-        "ipv4": "76.76.2.11"
-      },
-      "description": "ControlD Free DNS. Take CONTROL of your Internet. Block unwanted content, bypass geo-restrictions and be more productive. DoH protocol and No logging. - https://controld.com/free-dns\nThis is a Unfiltered DNS, no DNS record blocking or manipulation here, if you want to block Malware, Ads & Tracking or Social Network domains, use the other ControlD DNS configs.",
-      "country": "Canada",
-      "location": {
-        "lat": 43.6319,
-        "long": -79.3716
-      }
-    },
-    {
-      "name": "dns.digitale-gesellschaft.ch",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns.digitale-gesellschaft.ch"
-      },
-      "description": "Public DoH resolver operated by the Digital Society (https://www.digitale-gesellschaft.ch).\nHosted in Zurich, Switzerland.\nNon-logging, non-filtering, supports DNSSEC.",
-      "country": "Switzerland",
-      "location": {
-        "lat": 47.1449,
-        "long": 8.1551
-      }
-    },
-    {
-      "name": "dns.digitalsize.net",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns.digitalsize.net"
-      },
-      "description": "A public, non-tracking, non-filtering DNS resolver with DNSSEC enabled, QNAME minimization and no EDNS client subnet (https://dns.digitalsize.net).\nHosted in Germany.",
-      "country": "Germany",
-      "location": {
-        "lat": 51.2993,
-        "long": 9.491
-      }
     },
     {
       "name": "dns.sb",
@@ -458,8 +313,7 @@
       "name": "dnspod",
       "endpoint": {
         "protocol": "https:",
-        "host": "1.12.12.12",
-        "ipv4": "1.12.12.12"
+        "host": "1.12.12.12"
       },
       "description": "A public DNS resolver that supports DoH/DoT in mainland China, provided by dnspod/Tencent-cloud.\nHomepage: https://dnspod.cn\nWarning: GFW filtering rules are applied by this resolver.",
       "country": "China",
@@ -600,8 +454,8 @@
       "name": "google",
       "endpoint": {
         "protocol": "https:",
-        "host": "8.8.4.4",
-        "ipv4": "8.8.4.4",
+        "host": "8.8.8.8",
+        "ipv4": "8.8.8.8",
         "cors": true
       },
       "description": "Google DNS (anycast)",

@@ -447,6 +447,32 @@
       "cors": true
     },
     {
+      "name": "dns0",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns0.eu"
+      },
+      "description": "A free, sovereign and GDPR-compliant recursive DNS resolver with a\nstrong focus on security to protect the citizens and organizations of\nthe European Union.\nBlocks new domains, dynamic DNS, parked domains, uncommon TLDs, etc.\nhttps://www.dns0.eu/",
+      "filter": true
+    },
+    {
+      "name": "dns0-kids",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "kids.dns0.eu"
+      },
+      "description": "A free, sovereign and GDPR-compliant recursive DNS resolver with a\nstrong focus on security to protect the citizens and organizations of\nthe European Union.\nThis version blocks content not suitable for children.\nAlso blocks new domains, dynamic DNS, parked domains, uncommon TLDs, etc.\nhttps://www.dns0.eu/",
+      "filter": true
+    },
+    {
+      "name": "dns0-unfiltered",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "open.dns0.eu"
+      },
+      "description": "The unfiltered version of dns0.eu.\nhttps://open.dns0.eu/"
+    },
+    {
       "name": "dnscrypt.ca-ipv4-doh",
       "endpoint": {
         "protocol": "https:",
@@ -774,6 +800,7 @@
         "protocol": "https:",
         "host": "jp.tiar.app",
         "path": "/odoh",
+        "method": "POST",
         "cors": true
       },
       "description": "ODoH target server. no logs.",

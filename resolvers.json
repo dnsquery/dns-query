@@ -146,10 +146,25 @@
       "name": "alidns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "223.5.5.5",
-        "ipv4": "223.5.5.5"
+        "host": "1.71.20.37",
+        "ipv4": "1.71.20.37"
       },
       "description": "A public DNS resolver that supports DoH/DoT in mainland China, provided by Alibaba-Cloud.\nHomepage: https://alidns.com\nWarning: GFW filtering rules are applied by this resolver.",
+      "country": "China",
+      "location": {
+        "lat": 37.7269,
+        "long": 112.4708
+      },
+      "filter": true,
+      "log": true
+    },
+    {
+      "name": "alidns-doh-ipv6",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "223.5.5.5"
+      },
+      "description": "A public DNS resolver over IPv6 that supports DoH/DoT in mainland China, provided by Alibaba-Cloud.\nHomepage: https://alidns.com\nWarning: GFW filtering rules are applied by this resolver.",
       "country": "China",
       "location": {
         "lat": 34.7725,
@@ -157,21 +172,6 @@
       },
       "filter": true,
       "log": true
-    },
-    {
-      "name": "artikel10-doh-ipv4",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns.artikel10.org",
-        "cors": true
-      },
-      "description": "DNSSEC, No-filter and No-log DoH resolver operated by Artikel10 association. Homepage: https://artikel10.org",
-      "country": "Germany",
-      "location": {
-        "lat": 51.9499,
-        "long": 14.7145
-      },
-      "cors": true
     },
     {
       "name": "blahdns-sg-doh",
@@ -221,14 +221,15 @@
       "name": "cloudflare",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns.cloudflare.com",
+        "host": "1.1.1.1",
+        "ipv4": "1.1.1.1",
         "cors": true
       },
       "description": "Cloudflare DNS (anycast) - aka 1.1.1.1 / 1.0.0.1",
-      "country": "United States",
+      "country": "Australia",
       "location": {
-        "lat": 37.751,
-        "long": -97.822
+        "lat": -33.494,
+        "long": 143.2104
       },
       "cors": true
     },
@@ -253,8 +254,8 @@
       "name": "cloudflare-security",
       "endpoint": {
         "protocol": "https:",
-        "host": "1.1.1.2",
-        "ipv4": "1.1.1.2",
+        "host": "1.0.0.2",
+        "ipv4": "1.0.0.2",
         "cors": true
       },
       "description": "Cloudflare DNS (anycast) with malware blocking - aka 1.1.1.2 / 1.0.0.2",
@@ -404,15 +405,15 @@
       "name": "dns.sb",
       "endpoint": {
         "protocol": "https:",
-        "host": "185.222.222.222",
-        "ipv4": "185.222.222.222",
+        "host": "45.11.45.11",
+        "ipv4": "45.11.45.11",
         "cors": true
       },
       "description": "DoH server runned by xTom.com. No logs, no filtering, supports DNSSEC.\nHomepage: https://dns.sb",
-      "country": "Unknown",
+      "country": "Netherlands",
       "location": {
-        "lat": 47,
-        "long": 8
+        "lat": 52.3824,
+        "long": 4.8995
       },
       "cors": true
     },
@@ -433,14 +434,6 @@
       },
       "description": "A free, sovereign and GDPR-compliant recursive DNS resolver with a\nstrong focus on security to protect the citizens and organizations of\nthe European Union.\nThis version blocks content not suitable for children.\nAlso blocks new domains, dynamic DNS, parked domains, uncommon TLDs, etc.\nhttps://www.dns0.eu/",
       "filter": true
-    },
-    {
-      "name": "dns0-unfiltered",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "open.dns0.eu"
-      },
-      "description": "The unfiltered version of dns0.eu.\nhttps://open.dns0.eu/"
     },
     {
       "name": "dnscrypt.ca-ipv4-doh",
@@ -487,8 +480,7 @@
       "name": "dnspod",
       "endpoint": {
         "protocol": "https:",
-        "host": "1.12.12.12",
-        "ipv4": "1.12.12.12"
+        "host": "1.12.12.12"
       },
       "description": "A public DNS resolver that supports DoH/DoT in mainland China, provided by dnspod/Tencent-cloud.\nHomepage: https://dnspod.cn\nWarning: GFW filtering rules are applied by this resolver.",
       "country": "China",
@@ -629,8 +621,8 @@
       "name": "google",
       "endpoint": {
         "protocol": "https:",
-        "host": "8.8.4.4",
-        "ipv4": "8.8.4.4",
+        "host": "8.8.8.8",
+        "ipv4": "8.8.8.8",
         "cors": true
       },
       "description": "Google DNS (anycast)",
@@ -824,7 +816,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns11.quad9.net",
-        "ipv4": "149.112.112.11"
+        "ipv4": "9.9.9.11"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter/ecs 9.9.9.11 - 149.112.112.11",
       "country": "United States",
@@ -878,14 +870,26 @@
       }
     },
     {
+      "name": "quad9-doh-ip6-port443-filter-pri",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.quad9.net"
+      },
+      "description": "Quad9 (anycast) dnssec/no-log/filter 2620:fe::fe - 2620:fe::9 - 2620:fe::fe:9",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      },
+      "filter": true
+    },
+    {
       "name": "rethinkdns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "sky.rethinkdns.com",
-        "cors": true
+        "host": "max.rethinkdns.com"
       },
-      "description": "No-log, No-filter\nRethinkDNS, a stub (sky.rethinkdns.com hosted on Cloudflare) and recursive (max.rethinkdns.com hosted on fly.io) resolver\nThe stub server strips identification parameters from the request and acts as a proxy to another recursive resolver.",
-      "cors": true
+      "description": "No-log, No-filter\nRethinkDNS, a stub (sky.rethinkdns.com hosted on Cloudflare) and recursive (max.rethinkdns.com hosted on fly.io) resolver\nThe stub server strips identification parameters from the request and acts as a proxy to another recursive resolver."
     },
     {
       "name": "safesurfer-doh",

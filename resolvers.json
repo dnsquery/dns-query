@@ -436,29 +436,6 @@
       "filter": true
     },
     {
-      "name": "dns0-unfiltered",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "open.dns0.eu"
-      },
-      "description": "The unfiltered version of dns0.eu.\nhttps://open.dns0.eu/"
-    },
-    {
-      "name": "dnscrypt.ca-ipv4-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns1.dnscrypt.ca",
-        "cors": true
-      },
-      "description": "Canadian based, unfiltered, DNSSEC validating, and no logs... for your pleasure. https://dnscrypt.ca/",
-      "country": "Croatia",
-      "location": {
-        "lat": 45.1667,
-        "long": 15.5
-      },
-      "cors": true
-    },
-    {
       "name": "dnsforge.de",
       "endpoint": {
         "protocol": "https:",
@@ -534,21 +511,6 @@
       },
       "description": "Block access to phishing, malware and malicious domains. It does not block adult content.\nBy https://cleanbrowsing.org/",
       "filter": true,
-      "cors": true
-    },
-    {
-      "name": "doh-crypto-sx",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh.crypto.sx",
-        "cors": true
-      },
-      "description": "DNS-over-HTTPS server. Anycast, no logs, no censorship, DNSSEC.\nGlobally cached via Cloudflare.\nMaintained by Frank Denis.",
-      "country": "United States",
-      "location": {
-        "lat": 37.751,
-        "long": -97.822
-      },
       "cors": true
     },
     {

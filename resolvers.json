@@ -29,20 +29,6 @@
       "filter": true
     },
     {
-      "name": "adfilter-per",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "per.adfilter.net"
-      },
-      "description": "Hosted in Perth, Australia.\nBlocks ads, malware, trackers and more. No persistent logs. DNSSEC. No EDNS Client-Subnet.",
-      "country": "Australia",
-      "location": {
-        "lat": -31.8575,
-        "long": 115.8913
-      },
-      "filter": true
-    },
-    {
       "name": "adfilter-syd",
       "endpoint": {
         "protocol": "https:",
@@ -60,8 +46,8 @@
       "name": "adguard-dns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "94.140.15.15",
-        "ipv4": "94.140.15.15"
+        "host": "94.140.14.14",
+        "ipv4": "94.140.14.14"
       },
       "description": "Remove ads and protect your computer from malware (over DoH)",
       "country": "France",
@@ -108,8 +94,8 @@
       "name": "adguard-dns-unfiltered-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "94.140.14.141",
-        "ipv4": "94.140.14.141"
+        "host": "94.140.14.140",
+        "ipv4": "94.140.14.140"
       },
       "description": "AdGuard public DNS servers without filters (over DoH)",
       "country": "France",
@@ -146,8 +132,8 @@
       "name": "alidns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "120.55.203.44",
-        "ipv4": "120.55.203.44"
+        "host": "123.184.198.22",
+        "ipv4": "123.184.198.22"
       },
       "description": "A public DNS resolver that supports DoH/DoT in mainland China, provided by Alibaba-Cloud.\nHomepage: https://alidns.com\nWarning: GFW filtering rules are applied by this resolver.",
       "country": "China",
@@ -221,8 +207,8 @@
       "name": "cloudflare",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns.cloudflare.com",
-        "ipv4": "1.0.0.1",
+        "host": "1.1.1.1",
+        "ipv4": "1.1.1.1",
         "cors": true
       },
       "description": "Cloudflare DNS (anycast) - aka 1.1.1.1 / 1.0.0.1",
@@ -266,20 +252,6 @@
       },
       "filter": true,
       "cors": true
-    },
-    {
-      "name": "comss.one",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns.comss.one"
-      },
-      "description": "Comss.one DNS - DNS with adblock filters and antiphishing, gaining popularity among russian-speaking users.",
-      "country": "Russia",
-      "location": {
-        "lat": 55.7386,
-        "long": 37.6068
-      },
-      "filter": true
     },
     {
       "name": "controld-block-malware",
@@ -418,22 +390,19 @@
       "cors": true
     },
     {
-      "name": "dns0",
+      "name": "dnscrypt.ca-ipv4-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns0.eu"
+        "host": "dns1.dnscrypt.ca",
+        "cors": true
       },
-      "description": "A free, sovereign and GDPR-compliant recursive DNS resolver with a\nstrong focus on security to protect the citizens and organizations of\nthe European Union.\nBlocks new domains, dynamic DNS, parked domains, uncommon TLDs, etc.\nhttps://www.dns0.eu/",
-      "filter": true
-    },
-    {
-      "name": "dns0-kids",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "kids.dns0.eu"
+      "description": "Canadian based, unfiltered, DNSSEC validating, and no logs... for your pleasure. https://dnscrypt.ca/",
+      "country": "Croatia",
+      "location": {
+        "lat": 45.1667,
+        "long": 15.5
       },
-      "description": "A free, sovereign and GDPR-compliant recursive DNS resolver with a\nstrong focus on security to protect the citizens and organizations of\nthe European Union.\nThis version blocks content not suitable for children.\nAlso blocks new domains, dynamic DNS, parked domains, uncommon TLDs, etc.\nhttps://www.dns0.eu/",
-      "filter": true
+      "cors": true
     },
     {
       "name": "dnsforge.de",
@@ -465,14 +434,13 @@
       "name": "dnspod",
       "endpoint": {
         "protocol": "https:",
-        "host": "1.12.12.12",
-        "ipv4": "1.12.12.12"
+        "host": "doh.pub"
       },
       "description": "A public DNS resolver that supports DoH/DoT in mainland China, provided by dnspod/Tencent-cloud.\nHomepage: https://dnspod.cn\nWarning: GFW filtering rules are applied by this resolver.",
-      "country": "China",
+      "country": "Hong Kong",
       "location": {
-        "lat": 34.7725,
-        "long": 113.7266
+        "lat": 22.25,
+        "long": 114.1667
       },
       "filter": true,
       "log": true
@@ -511,6 +479,21 @@
       },
       "description": "Block access to phishing, malware and malicious domains. It does not block adult content.\nBy https://cleanbrowsing.org/",
       "filter": true,
+      "cors": true
+    },
+    {
+      "name": "doh-crypto-sx",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "doh.crypto.sx",
+        "cors": true
+      },
+      "description": "DNS-over-HTTPS server. Anycast, no logs, no censorship, DNSSEC.\nGlobally cached via Cloudflare.\nMaintained by Frank Denis.",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      },
       "cors": true
     },
     {
@@ -787,7 +770,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns11.quad9.net",
-        "ipv4": "9.9.9.11"
+        "ipv4": "149.112.112.11"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter/ecs 9.9.9.11 - 149.112.112.11",
       "country": "United States",
@@ -802,13 +785,13 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns9.quad9.net",
-        "ipv4": "149.112.112.9"
+        "ipv4": "9.9.9.9"
       },
       "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
-      "country": "United States",
+      "country": "France",
       "location": {
-        "lat": 37.751,
-        "long": -97.822
+        "lat": 48.8582,
+        "long": 2.3387
       },
       "filter": true
     },
@@ -841,6 +824,20 @@
       }
     },
     {
+      "name": "quad9-doh-ip6-port443-filter-pri",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.quad9.net"
+      },
+      "description": "Quad9 (anycast) dnssec/no-log/filter 2620:fe::fe - 2620:fe::9 - 2620:fe::fe:9",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      },
+      "filter": true
+    },
+    {
       "name": "rethinkdns-doh",
       "endpoint": {
         "protocol": "https:",
@@ -859,14 +856,6 @@
       "description": "Family safety focused blocklist for over 2 million adult sites, as well as phishing and malware and more.\nFree to use, paid for customizing blocking for more categories+sites and viewing usage at my.safesurfer.io. Logs taken for viewing\nusage, data never sold - https://safesurfer.io",
       "filter": true,
       "log": true
-    },
-    {
-      "name": "wikimedia",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "wikimedia-dns.org"
-      },
-      "description": "Wikimedia DNS (formerly called Wikidough), is a caching, recursive,\npublic resolver service that is run and managed by the Site\nReliability Engineering (Traffic) team at the Foundation.\nWikimedia DNS helps prevent some surveillance and censorship of our\nwikis and other websites by securing DNS lookups."
     }
   ]
 }

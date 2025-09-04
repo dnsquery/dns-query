@@ -143,6 +143,21 @@
       "cors": true
     },
     {
+      "name": "alidns-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "47.108.0.63"
+      },
+      "description": "A public DNS resolver that supports DoH/DoT in mainland China, provided by Alibaba-Cloud.\nHomepage: https://alidns.com\nWarning: GFW filtering rules are applied by this resolver.",
+      "country": "China",
+      "location": {
+        "lat": 34.7725,
+        "long": 113.7266
+      },
+      "filter": true,
+      "log": true
+    },
+    {
       "name": "alidns-doh-ipv6",
       "endpoint": {
         "protocol": "https:",
@@ -764,54 +779,16 @@
       "cors": true
     },
     {
-      "name": "qihoo360-doh",
+      "name": "odoh-tiarap.org",
       "endpoint": {
         "protocol": "https:",
-        "host": "doh.360.cn"
-      },
-      "description": "DoH server runned by Qihoo 360, has logs, GFW filtering rules are applied.\nHomepage: https://sdns.360.net",
-      "filter": true,
-      "log": true
-    },
-    {
-      "name": "quad101",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns.twnic.tw",
+        "host": "doh.tiarap.org",
+        "path": "/odoh",
         "cors": true
       },
-      "description": "DNSSEC-aware public resolver by the Taiwan Network Information Center (TWNIC)\nhttps://101.101.101.101/index_en.html",
+      "description": "ODoH target server via Cloudflare, no logs.\nFilter ads, trackers and malware.",
+      "filter": true,
       "cors": true
-    },
-    {
-      "name": "quad9-doh-ip4-port443-filter-ecs-pri",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns11.quad9.net",
-        "ipv4": "9.9.9.11"
-      },
-      "description": "Quad9 (anycast) dnssec/no-log/filter/ecs 9.9.9.11 - 149.112.112.11",
-      "country": "United States",
-      "location": {
-        "lat": 37.751,
-        "long": -97.822
-      },
-      "filter": true
-    },
-    {
-      "name": "quad9-doh-ip4-port443-filter-pri",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns9.quad9.net",
-        "ipv4": "149.112.112.9"
-      },
-      "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
-      "country": "United States",
-      "location": {
-        "lat": 37.751,
-        "long": -97.822
-      },
-      "filter": true
     },
     {
       "name": "quad9-doh-ip4-port443-nofilter-ecs-pri",

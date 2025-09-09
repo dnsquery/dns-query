@@ -60,8 +60,8 @@
       "name": "adguard-dns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "94.140.14.14",
-        "ipv4": "94.140.14.14"
+        "host": "94.140.15.15",
+        "ipv4": "94.140.15.15"
       },
       "description": "Remove ads and protect your computer from malware (over DoH)",
       "country": "France",
@@ -84,8 +84,8 @@
       "name": "adguard-dns-family-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "94.140.14.15",
-        "ipv4": "94.140.14.15"
+        "host": "94.140.15.16",
+        "ipv4": "94.140.15.16"
       },
       "description": "AdGuard DNS with safesearch and adult content blocking (over DoH)",
       "country": "France",
@@ -146,25 +146,10 @@
       "name": "alidns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "139.129.137.137",
-        "ipv4": "139.129.137.137"
+        "host": "223.5.5.5",
+        "ipv4": "223.5.5.5"
       },
       "description": "A public DNS resolver that supports DoH/DoT in mainland China, provided by Alibaba-Cloud.\nHomepage: https://alidns.com\nWarning: GFW filtering rules are applied by this resolver.",
-      "country": "China",
-      "location": {
-        "lat": 36.066,
-        "long": 120.3694
-      },
-      "filter": true,
-      "log": true
-    },
-    {
-      "name": "alidns-doh-ipv6",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "223.5.5.5"
-      },
-      "description": "A public DNS resolver over IPv6 that supports DoH/DoT in mainland China, provided by Alibaba-Cloud.\nHomepage: https://alidns.com\nWarning: GFW filtering rules are applied by this resolver.",
       "country": "China",
       "location": {
         "lat": 34.7725,
@@ -220,23 +205,19 @@
       "name": "cloudflare",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns.cloudflare.com",
+        "host": "162.159.36.1",
+        "ipv4": "162.159.36.1",
         "cors": true
       },
       "description": "Cloudflare DNS (anycast) - aka 1.1.1.1 / 1.0.0.1",
-      "country": "United States",
-      "location": {
-        "lat": 37.751,
-        "long": -97.822
-      },
       "cors": true
     },
     {
       "name": "cloudflare-family",
       "endpoint": {
         "protocol": "https:",
-        "host": "1.0.0.3",
-        "ipv4": "1.0.0.3",
+        "host": "1.1.1.3",
+        "ipv4": "1.1.1.3",
         "cors": true
       },
       "description": "Cloudflare DNS (anycast) with malware protection and parental control - aka 1.1.1.3 / 1.0.0.3",
@@ -246,6 +227,21 @@
         "long": 143.2104
       },
       "filter": true,
+      "cors": true
+    },
+    {
+      "name": "cloudflare-ipv6",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.cloudflare.com",
+        "cors": true
+      },
+      "description": "Cloudflare DNS over IPv6 (anycast)",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      },
       "cors": true
     },
     {
@@ -374,6 +370,19 @@
       }
     },
     {
+      "name": "dns.digitale-gesellschaft.ch",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.digitale-gesellschaft.ch"
+      },
+      "description": "Public DoH resolver operated by the Digital Society (https://www.digitale-gesellschaft.ch).\nHosted in Zurich, Switzerland.\nNon-logging, non-filtering, supports DNSSEC.",
+      "country": "Switzerland",
+      "location": {
+        "lat": 47.1449,
+        "long": 8.1551
+      }
+    },
+    {
       "name": "dns.digitalsize.net",
       "endpoint": {
         "protocol": "https:",
@@ -390,15 +399,15 @@
       "name": "dns.sb",
       "endpoint": {
         "protocol": "https:",
-        "host": "45.11.45.11",
-        "ipv4": "45.11.45.11",
+        "host": "185.222.222.222",
+        "ipv4": "185.222.222.222",
         "cors": true
       },
       "description": "DoH server runned by xTom.com. No logs, no filtering, supports DNSSEC.\nHomepage: https://dns.sb",
-      "country": "Netherlands",
+      "country": "Unknown",
       "location": {
-        "lat": 52.3824,
-        "long": 4.8995
+        "lat": 47,
+        "long": 8
       },
       "cors": true
     },
@@ -410,14 +419,6 @@
       },
       "description": "A free, sovereign and GDPR-compliant recursive DNS resolver with a\nstrong focus on security to protect the citizens and organizations of\nthe European Union.\nThis version blocks content not suitable for children.\nAlso blocks new domains, dynamic DNS, parked domains, uncommon TLDs, etc.\nhttps://www.dns0.eu/",
       "filter": true
-    },
-    {
-      "name": "dns0-unfiltered",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "open.dns0.eu"
-      },
-      "description": "The unfiltered version of dns0.eu.\nhttps://open.dns0.eu/"
     },
     {
       "name": "dnscrypt.ca-ipv4-doh",
@@ -458,10 +459,10 @@
         "cors": true
       },
       "description": "Public DoH resolver (https://dnsforge.de)\nNon-logging, non-filtering, supports DNSSEC. Hosted in Germany.",
-      "country": "Germany",
+      "country": "Unknown",
       "location": {
-        "lat": 51.2993,
-        "long": 9.491
+        "lat": 47,
+        "long": 8
       },
       "cors": true
     },
@@ -605,8 +606,8 @@
       "name": "google",
       "endpoint": {
         "protocol": "https:",
-        "host": "8.8.4.4",
-        "ipv4": "8.8.4.4",
+        "host": "8.8.8.8",
+        "ipv4": "8.8.8.8",
         "cors": true
       },
       "description": "Google DNS (anycast)",
@@ -774,84 +775,6 @@
       "description": "ODoH target server via Cloudflare, no logs.\nFilter ads, trackers and malware.",
       "filter": true,
       "cors": true
-    },
-    {
-      "name": "qihoo360-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh.360.cn"
-      },
-      "description": "DoH server runned by Qihoo 360, has logs, GFW filtering rules are applied.\nHomepage: https://sdns.360.net",
-      "filter": true,
-      "log": true
-    },
-    {
-      "name": "quad101",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns.twnic.tw",
-        "cors": true
-      },
-      "description": "DNSSEC-aware public resolver by the Taiwan Network Information Center (TWNIC)\nhttps://101.101.101.101/index_en.html",
-      "cors": true
-    },
-    {
-      "name": "quad9-doh-ip4-port443-filter-ecs-pri",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns11.quad9.net",
-        "ipv4": "149.112.112.11"
-      },
-      "description": "Quad9 (anycast) dnssec/no-log/filter/ecs 9.9.9.11 - 149.112.112.11",
-      "country": "United States",
-      "location": {
-        "lat": 37.751,
-        "long": -97.822
-      },
-      "filter": true
-    },
-    {
-      "name": "quad9-doh-ip4-port443-filter-pri",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns9.quad9.net",
-        "ipv4": "149.112.112.9"
-      },
-      "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
-      "country": "United States",
-      "location": {
-        "lat": 37.751,
-        "long": -97.822
-      },
-      "filter": true
-    },
-    {
-      "name": "quad9-doh-ip4-port443-nofilter-ecs-pri",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns12.quad9.net",
-        "ipv4": "9.9.9.12"
-      },
-      "description": "Quad9 (anycast) no-dnssec/no-log/no-filter/ecs 9.9.9.12 - 149.112.112.12",
-      "country": "United States",
-      "location": {
-        "lat": 37.751,
-        "long": -97.822
-      }
-    },
-    {
-      "name": "quad9-doh-ip4-port443-nofilter-pri",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns10.quad9.net",
-        "ipv4": "9.9.9.10"
-      },
-      "description": "Quad9 (anycast) no-dnssec/no-log/no-filter 9.9.9.10 - 149.112.112.10",
-      "country": "United States",
-      "location": {
-        "lat": 37.751,
-        "long": -97.822
-      }
     },
     {
       "name": "rethinkdns-doh",

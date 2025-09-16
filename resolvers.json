@@ -146,25 +146,10 @@
       "name": "alidns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "47.122.8.11",
-        "ipv4": "47.122.8.11"
+        "host": "223.5.5.5",
+        "ipv4": "223.5.5.5"
       },
       "description": "A public DNS resolver that supports DoH/DoT in mainland China, provided by Alibaba-Cloud.\nHomepage: https://alidns.com\nWarning: GFW filtering rules are applied by this resolver.",
-      "country": "China",
-      "location": {
-        "lat": 34.7725,
-        "long": 113.7266
-      },
-      "filter": true,
-      "log": true
-    },
-    {
-      "name": "alidns-doh-ipv6",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "223.5.5.5"
-      },
-      "description": "A public DNS resolver over IPv6 that supports DoH/DoT in mainland China, provided by Alibaba-Cloud.\nHomepage: https://alidns.com\nWarning: GFW filtering rules are applied by this resolver.",
       "country": "China",
       "location": {
         "lat": 34.7725,
@@ -220,7 +205,7 @@
       "name": "cloudflare",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns.cloudflare.com",
+        "host": "cloudflare-dns.com",
         "cors": true
       },
       "description": "Cloudflare DNS (anycast) - aka 1.1.1.1 / 1.0.0.1",
@@ -252,8 +237,8 @@
       "name": "cloudflare-security",
       "endpoint": {
         "protocol": "https:",
-        "host": "1.1.1.2",
-        "ipv4": "1.1.1.2",
+        "host": "1.0.0.2",
+        "ipv4": "1.0.0.2",
         "cors": true
       },
       "description": "Cloudflare DNS (anycast) with malware blocking - aka 1.1.1.2 / 1.0.0.2",
@@ -264,6 +249,20 @@
       },
       "filter": true,
       "cors": true
+    },
+    {
+      "name": "comss.one",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.comss.one"
+      },
+      "description": "Comss.one DNS - DNS with adblock filters and antiphishing, gaining popularity among russian-speaking users.",
+      "country": "Russia",
+      "location": {
+        "lat": 55.7386,
+        "long": 37.6068
+      },
+      "filter": true
     },
     {
       "name": "controld-block-malware",
@@ -389,25 +388,17 @@
       "name": "dns.sb",
       "endpoint": {
         "protocol": "https:",
-        "host": "45.11.45.11",
-        "ipv4": "45.11.45.11",
+        "host": "185.222.222.222",
+        "ipv4": "185.222.222.222",
         "cors": true
       },
       "description": "DoH server runned by xTom.com. No logs, no filtering, supports DNSSEC.\nHomepage: https://dns.sb",
-      "country": "Netherlands",
+      "country": "Unknown",
       "location": {
-        "lat": 52.3824,
-        "long": 4.8995
+        "lat": 47,
+        "long": 8
       },
       "cors": true
-    },
-    {
-      "name": "dns0-unfiltered",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "open.dns0.eu"
-      },
-      "description": "The unfiltered version of dns0.eu.\nhttps://open.dns0.eu/"
     },
     {
       "name": "dnscrypt.ca-ipv4-doh",
@@ -469,13 +460,14 @@
       "name": "dnspod",
       "endpoint": {
         "protocol": "https:",
-        "host": "doh.pub"
+        "host": "120.53.53.53",
+        "ipv4": "120.53.53.53"
       },
       "description": "A public DNS resolver that supports DoH/DoT in mainland China, provided by dnspod/Tencent-cloud.\nHomepage: https://dnspod.cn\nWarning: GFW filtering rules are applied by this resolver.",
-      "country": "Hong Kong",
+      "country": "China",
       "location": {
-        "lat": 22.25,
-        "long": 114.1667
+        "lat": 34.7725,
+        "long": 113.7266
       },
       "filter": true,
       "log": true
@@ -595,8 +587,8 @@
       "name": "google",
       "endpoint": {
         "protocol": "https:",
-        "host": "8.8.4.4",
-        "ipv4": "8.8.4.4",
+        "host": "8.8.8.8",
+        "ipv4": "8.8.8.8",
         "cors": true
       },
       "description": "Google DNS (anycast)",
@@ -685,6 +677,203 @@
         "path": "/dnscrypt-proxy"
       },
       "description": "NextDNS is a cloud-based private DNS service that gives you full control\nover what is allowed and what is blocked on the Internet.\nhttps://www.nextdns.io/\nTo select the server location, the \"-ultralow\" variant relies on bootstrap servers\ninstead of anycast."
+    },
+    {
+      "name": "njalla-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.njal.la"
+      },
+      "description": "Non-logging DoH server in Sweden operated by Njalla.\nhttps://dns.njal.la/",
+      "country": "Sweden",
+      "location": {
+        "lat": 59.3247,
+        "long": 18.056
+      }
+    },
+    {
+      "name": "odoh-cloudflare",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "odoh.cloudflare-dns.com",
+        "cors": true
+      },
+      "description": "Cloudflare ODoH server.\nhttps://cloudflare.com",
+      "cors": true
+    },
+    {
+      "name": "odoh-crypto-sx",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "odoh.crypto.sx",
+        "cors": true
+      },
+      "description": "ODoH target server. Anycast, no logs.\nBackend hosted by Scaleway. Maintained by Frank Denis.",
+      "cors": true
+    },
+    {
+      "name": "odoh-id-gmail",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "doh.tiar.app",
+        "path": "/odoh",
+        "cors": true
+      },
+      "description": "ODoH target server. Based in Singapore, no logs.\nFilter ads, trackers and malware.",
+      "filter": true,
+      "cors": true
+    },
+    {
+      "name": "odoh-jp.tiar.app",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "jp.tiar.app",
+        "path": "/odoh",
+        "cors": true
+      },
+      "description": "ODoH target server. no logs.",
+      "cors": true
+    },
+    {
+      "name": "odoh-jp.tiarap.org",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "jp.tiarap.org",
+        "path": "/odoh",
+        "cors": true
+      },
+      "description": "ODoH target server via Cloudflare, no logs.",
+      "cors": true
+    },
+    {
+      "name": "odoh-tiarap.org",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "doh.tiarap.org",
+        "path": "/odoh",
+        "cors": true
+      },
+      "description": "ODoH target server via Cloudflare, no logs.\nFilter ads, trackers and malware.",
+      "filter": true,
+      "cors": true
+    },
+    {
+      "name": "qihoo360-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "doh.360.cn"
+      },
+      "description": "DoH server runned by Qihoo 360, has logs, GFW filtering rules are applied.\nHomepage: https://sdns.360.net",
+      "filter": true,
+      "log": true
+    },
+    {
+      "name": "quad101",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.twnic.tw",
+        "cors": true
+      },
+      "description": "DNSSEC-aware public resolver by the Taiwan Network Information Center (TWNIC)\nhttps://101.101.101.101/index_en.html",
+      "cors": true
+    },
+    {
+      "name": "quad9-doh-ip4-port443-filter-ecs-pri",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns11.quad9.net",
+        "ipv4": "9.9.9.11"
+      },
+      "description": "Quad9 (anycast) dnssec/no-log/filter/ecs 9.9.9.11 - 149.112.112.11",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      },
+      "filter": true
+    },
+    {
+      "name": "quad9-doh-ip4-port443-filter-pri",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns9.quad9.net",
+        "ipv4": "9.9.9.9"
+      },
+      "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
+      "country": "France",
+      "location": {
+        "lat": 48.8582,
+        "long": 2.3387
+      },
+      "filter": true
+    },
+    {
+      "name": "quad9-doh-ip4-port443-nofilter-ecs-pri",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns12.quad9.net",
+        "ipv4": "9.9.9.12"
+      },
+      "description": "Quad9 (anycast) no-dnssec/no-log/no-filter/ecs 9.9.9.12 - 149.112.112.12",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      }
+    },
+    {
+      "name": "quad9-doh-ip4-port443-nofilter-pri",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns10.quad9.net",
+        "ipv4": "9.9.9.10"
+      },
+      "description": "Quad9 (anycast) no-dnssec/no-log/no-filter 9.9.9.10 - 149.112.112.10",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      }
+    },
+    {
+      "name": "quad9-doh-ip6-port443-filter-pri",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.quad9.net"
+      },
+      "description": "Quad9 (anycast) dnssec/no-log/filter 2620:fe::fe - 2620:fe::9 - 2620:fe::fe:9",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      },
+      "filter": true
+    },
+    {
+      "name": "rethinkdns-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "max.rethinkdns.com"
+      },
+      "description": "No-log, No-filter\nRethinkDNS, a stub (sky.rethinkdns.com hosted on Cloudflare) and recursive (max.rethinkdns.com hosted on fly.io) resolver\nThe stub server strips identification parameters from the request and acts as a proxy to another recursive resolver."
+    },
+    {
+      "name": "safesurfer-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "doh.safesurfer.io"
+      },
+      "description": "Family safety focused blocklist for over 2 million adult sites, as well as phishing and malware and more.\nFree to use, paid for customizing blocking for more categories+sites and viewing usage at my.safesurfer.io. Logs taken for viewing\nusage, data never sold - https://safesurfer.io",
+      "filter": true,
+      "log": true
+    },
+    {
+      "name": "wikimedia",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "wikimedia-dns.org"
+      },
+      "description": "Wikimedia DNS (formerly called Wikidough), is a caching, recursive,\npublic resolver service that is run and managed by the Site\nReliability Engineering (Traffic) team at the Foundation.\nWikimedia DNS helps prevent some surveillance and censorship of our\nwikis and other websites by securing DNS lookups."
     }
   ]
 }

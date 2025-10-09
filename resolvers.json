@@ -2,6 +2,19 @@
   "$schema": "https://martinheidegger.github.io/dns-query/resolvers.schema.json",
   "resolvers": [
     {
+      "name": "a-and-a",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.aa.net.uk"
+      },
+      "description": "Non-filtering, No-logging, DNSSEC DoH operated by Andrews & Arnold LTD.\nHomepage: https://www.aa.net.uk/dns/",
+      "country": "United Kingdom",
+      "location": {
+        "lat": 51.5888,
+        "long": -0.0247
+      }
+    },
+    {
       "name": "adfilter-adl",
       "endpoint": {
         "protocol": "https:",
@@ -590,6 +603,15 @@
       }
     },
     {
+      "name": "doh.ibksturm",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "ibksturm.synology.me",
+        "method": "POST"
+      },
+      "description": "DOH Server, No Logging, No Filters, DNSSEC, OpenNIC\nRunning privately by ibksturm in Thurgau, Switzerland"
+    },
+    {
       "name": "doh.tiar.app-doh",
       "endpoint": {
         "protocol": "https:",
@@ -794,56 +816,6 @@
       "description": "ODoH target server via Cloudflare, no logs.\nFilter ads, trackers and malware.",
       "filter": true,
       "cors": true
-    },
-    {
-      "name": "qihoo360-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh.360.cn"
-      },
-      "description": "DoH server runned by Qihoo 360, has logs, GFW filtering rules are applied.\nHomepage: https://sdns.360.net",
-      "filter": true,
-      "log": true
-    },
-    {
-      "name": "quad101",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns.twnic.tw",
-        "cors": true
-      },
-      "description": "DNSSEC-aware public resolver by the Taiwan Network Information Center (TWNIC)\nhttps://101.101.101.101/index_en.html",
-      "cors": true
-    },
-    {
-      "name": "quad9-doh-ip4-port443-filter-ecs-pri",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns11.quad9.net",
-        "ipv4": "149.112.112.11"
-      },
-      "description": "Quad9 (anycast) dnssec/no-log/filter/ecs 9.9.9.11 - 149.112.112.11",
-      "country": "United States",
-      "location": {
-        "lat": 37.751,
-        "long": -97.822
-      },
-      "filter": true
-    },
-    {
-      "name": "quad9-doh-ip4-port443-filter-pri",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns9.quad9.net",
-        "ipv4": "9.9.9.9"
-      },
-      "description": "Quad9 (anycast) dnssec/no-log/filter 9.9.9.9 - 149.112.112.9 - 149.112.112.112",
-      "country": "France",
-      "location": {
-        "lat": 48.8582,
-        "long": 2.3387
-      },
-      "filter": true
     },
     {
       "name": "quad9-doh-ip4-port443-nofilter-ecs-pri",

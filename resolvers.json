@@ -2,19 +2,6 @@
   "$schema": "https://martinheidegger.github.io/dns-query/resolvers.schema.json",
   "resolvers": [
     {
-      "name": "a-and-a",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns.aa.net.uk"
-      },
-      "description": "Non-filtering, No-logging, DNSSEC DoH operated by Andrews & Arnold LTD.\nHomepage: https://www.aa.net.uk/dns/",
-      "country": "United Kingdom",
-      "location": {
-        "lat": 51.5888,
-        "long": -0.0247
-      }
-    },
-    {
       "name": "adguard-dns-doh",
       "endpoint": {
         "protocol": "https:",

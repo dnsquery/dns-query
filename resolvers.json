@@ -132,6 +132,21 @@
       "log": true
     },
     {
+      "name": "cloudflare",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.cloudflare.com",
+        "cors": true
+      },
+      "description": "Cloudflare DNS (anycast) - aka 1.1.1.1 / 1.0.0.1",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      },
+      "cors": true
+    },
+    {
       "name": "cloudflare-family",
       "endpoint": {
         "protocol": "https:",
@@ -164,6 +179,114 @@
       },
       "filter": true,
       "cors": true
+    },
+    {
+      "name": "comss.one",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.comss.one"
+      },
+      "description": "Comss.one DNS - DNS with adblock filters and antiphishing, gaining popularity among russian-speaking users.",
+      "country": "Russia",
+      "location": {
+        "lat": 55.7386,
+        "long": 37.6068
+      },
+      "filter": true
+    },
+    {
+      "name": "controld-block-malware",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "freedns.controld.com",
+        "path": "/p1",
+        "ipv4": "76.76.2.11"
+      },
+      "description": "ControlD Free DNS. Take CONTROL of your Internet. Block unwanted content, bypass geo-restrictions and be more productive. DoH protocol and No logging. - https://controld.com/free-dns\nThis DNS blocks Malware domains.",
+      "country": "Canada",
+      "location": {
+        "lat": 43.6319,
+        "long": -79.3716
+      },
+      "filter": true
+    },
+    {
+      "name": "controld-block-malware-ad",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "freedns.controld.com",
+        "path": "/p2",
+        "ipv4": "76.76.2.11"
+      },
+      "description": "ControlD Free DNS. Take CONTROL of your Internet. Block unwanted content, bypass geo-restrictions and be more productive. DoH protocol and No logging. - https://controld.com/free-dns\nThis DNS blocks Malware, Ads & Tracking domains.",
+      "country": "Canada",
+      "location": {
+        "lat": 43.6319,
+        "long": -79.3716
+      },
+      "filter": true
+    },
+    {
+      "name": "controld-block-malware-ad-social",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "freedns.controld.com",
+        "path": "/p3",
+        "ipv4": "76.76.2.11"
+      },
+      "description": "ControlD Free DNS. Take CONTROL of your Internet. Block unwanted content, bypass geo-restrictions and be more productive. DoH protocol and No logging. - https://controld.com/free-dns\nThis DNS blocks Malware, Ads & Tracking and Social Networks domains.",
+      "country": "Canada",
+      "location": {
+        "lat": 43.6319,
+        "long": -79.3716
+      },
+      "filter": true
+    },
+    {
+      "name": "controld-family-friendly",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "freedns.controld.com",
+        "path": "/family",
+        "ipv4": "76.76.2.11"
+      },
+      "description": "ControlD Free DNS. Take CONTROL of your Internet. Block unwanted content, bypass geo-restrictions and be more productive. DoH protocol and No logging. - https://controld.com/free-dns\nThis DNS blocks Malware, Ads & Tracking, Adult Content and Drugs domains.",
+      "country": "Canada",
+      "location": {
+        "lat": 43.6319,
+        "long": -79.3716
+      },
+      "filter": true
+    },
+    {
+      "name": "controld-uncensored",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "freedns.controld.com",
+        "path": "/uncensored",
+        "ipv4": "76.76.2.11"
+      },
+      "description": "ControlD Free DNS. Take CONTROL of your Internet. Block unwanted content, bypass geo-restrictions and be more productive. DoH protocol and No logging. - https://controld.com/free-dns\nThis DNS unblocks censored domains from various countries.",
+      "country": "Canada",
+      "location": {
+        "lat": 43.6319,
+        "long": -79.3716
+      }
+    },
+    {
+      "name": "controld-unfiltered",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "freedns.controld.com",
+        "path": "/p0",
+        "ipv4": "76.76.2.11"
+      },
+      "description": "ControlD Free DNS. Take CONTROL of your Internet. Block unwanted content, bypass geo-restrictions and be more productive. DoH protocol and No logging. - https://controld.com/free-dns\nThis is a Unfiltered DNS, no DNS record blocking or manipulation here, if you want to block Malware, Ads & Tracking or Social Network domains, use the other ControlD DNS configs.",
+      "country": "Canada",
+      "location": {
+        "lat": 43.6319,
+        "long": -79.3716
+      }
     },
     {
       "name": "dns.sb",
@@ -412,38 +535,6 @@
         "cors": true
       },
       "description": "ODoH target server via Cloudflare, no logs.",
-      "cors": true
-    },
-    {
-      "name": "odoh-tiarap.org",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh.tiarap.org",
-        "path": "/odoh",
-        "cors": true
-      },
-      "description": "ODoH target server via Cloudflare, no logs.\nFilter ads, trackers and malware.",
-      "filter": true,
-      "cors": true
-    },
-    {
-      "name": "qihoo360-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh.360.cn"
-      },
-      "description": "DoH server runned by Qihoo 360, has logs, GFW filtering rules are applied.\nHomepage: https://sdns.360.net",
-      "filter": true,
-      "log": true
-    },
-    {
-      "name": "quad101",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns.twnic.tw",
-        "cors": true
-      },
-      "description": "DNSSEC-aware public resolver by the Taiwan Network Information Center (TWNIC)\nhttps://101.101.101.101/index_en.html",
       "cors": true
     },
     {

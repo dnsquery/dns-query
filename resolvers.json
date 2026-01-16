@@ -2,6 +2,48 @@
   "$schema": "https://martinheidegger.github.io/dns-query/resolvers.schema.json",
   "resolvers": [
     {
+      "name": "adfilter-adl",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "adl.adfilter.net"
+      },
+      "description": "Hosted in Adelaide, Australia.\nBlocks ads, malware, trackers and more. No persistent logs. DNSSEC. No EDNS Client-Subnet.",
+      "country": "Australia",
+      "location": {
+        "lat": -33.494,
+        "long": 143.2104
+      },
+      "filter": true
+    },
+    {
+      "name": "adfilter-per",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "per.adfilter.net"
+      },
+      "description": "Hosted in Perth, Australia.\nBlocks ads, malware, trackers and more. No persistent logs. DNSSEC. No EDNS Client-Subnet.",
+      "country": "Australia",
+      "location": {
+        "lat": -31.8575,
+        "long": 115.8913
+      },
+      "filter": true
+    },
+    {
+      "name": "adfilter-syd",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "syd.adfilter.net"
+      },
+      "description": "Hosted in Sydney, Australia.\nBlocks ads, malware, trackers and more. No persistent logs. DNSSEC. No EDNS Client-Subnet.",
+      "country": "Australia",
+      "location": {
+        "lat": -33.7806,
+        "long": 151.1181
+      },
+      "filter": true
+    },
+    {
       "name": "adguard-dns-doh",
       "endpoint": {
         "protocol": "https:",
@@ -14,6 +56,15 @@
         "lat": 48.8582,
         "long": 2.3387
       },
+      "filter": true
+    },
+    {
+      "name": "adguard-dns-doh-ipv6",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.adguard-dns.com"
+      },
+      "description": "Remove ads and protect your computer from malware (over DoH, over IPv6)",
       "filter": true
     },
     {
@@ -32,6 +83,15 @@
       "filter": true
     },
     {
+      "name": "adguard-dns-family-doh-ipv6",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "family.adguard-dns.com"
+      },
+      "description": "AdGuard DNS with safesearch and adult content blocking (over DoH, over IPv6)",
+      "filter": true
+    },
+    {
       "name": "adguard-dns-unfiltered-doh",
       "endpoint": {
         "protocol": "https:",
@@ -44,6 +104,14 @@
         "lat": 48.8582,
         "long": 2.3387
       }
+    },
+    {
+      "name": "adguard-dns-unfiltered-doh-ipv6",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "unfiltered.adguard-dns.com"
+      },
+      "description": "AdGuard public DNS servers without filters (over DoH, over IPv6)"
     },
     {
       "name": "alidns-doh",
@@ -502,8 +570,7 @@
       "name": "doh.ibksturm",
       "endpoint": {
         "protocol": "https:",
-        "host": "ibksturm.synology.me",
-        "method": "POST"
+        "host": "ibksturm.synology.me"
       },
       "description": "Switzerland, running by ibksturm"
     },
@@ -737,6 +804,16 @@
       "description": "DoH server runned by Qihoo 360, has logs, GFW filtering rules are applied.\nHomepage: https://sdns.360.net",
       "filter": true,
       "log": true
+    },
+    {
+      "name": "quad101",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.twnic.tw",
+        "cors": true
+      },
+      "description": "DNSSEC-aware public resolver by the Taiwan Network Information Center (TWNIC)\nhttps://101.101.101.101/index_en.html",
+      "cors": true
     },
     {
       "name": "rethinkdns-doh",

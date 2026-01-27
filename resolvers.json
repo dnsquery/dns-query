@@ -117,14 +117,14 @@
       "name": "alidns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "182.40.70.12",
-        "ipv4": "182.40.70.12"
+        "host": "47.122.8.11",
+        "ipv4": "47.122.8.11"
       },
       "description": "A public DNS resolver that supports DoH/DoT in mainland China, provided by Alibaba-Cloud.\nHomepage: https://alidns.com\nWarning: GFW filtering rules are applied by this resolver.",
       "country": "China",
       "location": {
-        "lat": 36.066,
-        "long": 120.3694
+        "lat": 34.7725,
+        "long": 113.7266
       },
       "filter": true,
       "log": true
@@ -191,8 +191,8 @@
       "name": "cloudflare",
       "endpoint": {
         "protocol": "https:",
-        "host": "162.159.36.1",
-        "ipv4": "162.159.36.1",
+        "host": "162.159.46.1",
+        "ipv4": "162.159.46.1",
         "cors": true
       },
       "description": "Cloudflare DNS (anycast) - aka 1.1.1.1 / 1.0.0.1",
@@ -450,10 +450,10 @@
         "cors": true
       },
       "description": "Public DoH resolver (https://dnsforge.de)\nNon-logging, non-filtering, supports DNSSEC. Hosted in Germany.",
-      "country": "Germany",
+      "country": "Unknown",
       "location": {
-        "lat": 51.2993,
-        "long": 9.491
+        "lat": 47,
+        "long": 8
       },
       "cors": true
     },
@@ -471,8 +471,7 @@
       "name": "dnspod",
       "endpoint": {
         "protocol": "https:",
-        "host": "1.12.12.12",
-        "ipv4": "1.12.12.12"
+        "host": "1.12.12.12"
       },
       "description": "A public DNS resolver that supports DoH/DoT in mainland China, provided by dnspod/Tencent-cloud.\nHomepage: https://dnspod.cn\nWarning: GFW filtering rules are applied by this resolver.",
       "country": "China",
@@ -606,8 +605,8 @@
       "name": "google",
       "endpoint": {
         "protocol": "https:",
-        "host": "8.8.4.4",
-        "ipv4": "8.8.4.4",
+        "host": "8.8.8.8",
+        "ipv4": "8.8.8.8",
         "cors": true
       },
       "description": "Google DNS (anycast)",
@@ -736,6 +735,16 @@
       "cors": true
     },
     {
+      "name": "odoh-crypto-sx",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "odoh.crypto.sx",
+        "cors": true
+      },
+      "description": "ODoH target server. Anycast, no logs.\nBackend hosted by Scaleway. Maintained by Frank Denis.",
+      "cors": true
+    },
+    {
       "name": "odoh-id-gmail",
       "endpoint": {
         "protocol": "https:",
@@ -795,11 +804,9 @@
       "name": "rethinkdns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "sky.rethinkdns.com",
-        "cors": true
+        "host": "max.rethinkdns.com"
       },
-      "description": "No-log, No-filter\nRethinkDNS, a stub (sky.rethinkdns.com hosted on Cloudflare) and recursive (max.rethinkdns.com hosted on fly.io) resolver\nThe stub server strips identification parameters from the request and acts as a proxy to another recursive resolver.",
-      "cors": true
+      "description": "No-log, No-filter\nRethinkDNS, a stub (sky.rethinkdns.com hosted on Cloudflare) and recursive (max.rethinkdns.com hosted on fly.io) resolver\nThe stub server strips identification parameters from the request and acts as a proxy to another recursive resolver."
     },
     {
       "name": "safesurfer-doh",

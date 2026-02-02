@@ -2,53 +2,11 @@
   "$schema": "https://martinheidegger.github.io/dns-query/resolvers.schema.json",
   "resolvers": [
     {
-      "name": "adfilter-adl",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "adl.adfilter.net"
-      },
-      "description": "Hosted in Adelaide, Australia.\nBlocks ads, malware, trackers and more. No persistent logs. DNSSEC. No EDNS Client-Subnet.",
-      "country": "Australia",
-      "location": {
-        "lat": -33.494,
-        "long": 143.2104
-      },
-      "filter": true
-    },
-    {
-      "name": "adfilter-per",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "per.adfilter.net"
-      },
-      "description": "Hosted in Perth, Australia.\nBlocks ads, malware, trackers and more. No persistent logs. DNSSEC. No EDNS Client-Subnet.",
-      "country": "Australia",
-      "location": {
-        "lat": -31.8575,
-        "long": 115.8913
-      },
-      "filter": true
-    },
-    {
-      "name": "adfilter-syd",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "syd.adfilter.net"
-      },
-      "description": "Hosted in Sydney, Australia.\nBlocks ads, malware, trackers and more. No persistent logs. DNSSEC. No EDNS Client-Subnet.",
-      "country": "Australia",
-      "location": {
-        "lat": -33.7806,
-        "long": 151.1181
-      },
-      "filter": true
-    },
-    {
       "name": "adguard-dns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "94.140.14.14",
-        "ipv4": "94.140.14.14"
+        "host": "94.140.15.15",
+        "ipv4": "94.140.15.15"
       },
       "description": "Remove ads and protect your computer from malware (over DoH)",
       "country": "France",
@@ -56,15 +14,6 @@
         "lat": 48.8582,
         "long": 2.3387
       },
-      "filter": true
-    },
-    {
-      "name": "adguard-dns-doh-ipv6",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns.adguard-dns.com"
-      },
-      "description": "Remove ads and protect your computer from malware (over DoH, over IPv6)",
       "filter": true
     },
     {
@@ -83,15 +32,6 @@
       "filter": true
     },
     {
-      "name": "adguard-dns-family-doh-ipv6",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "family.adguard-dns.com"
-      },
-      "description": "AdGuard DNS with safesearch and adult content blocking (over DoH, over IPv6)",
-      "filter": true
-    },
-    {
       "name": "adguard-dns-unfiltered-doh",
       "endpoint": {
         "protocol": "https:",
@@ -106,25 +46,17 @@
       }
     },
     {
-      "name": "adguard-dns-unfiltered-doh-ipv6",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "unfiltered.adguard-dns.com"
-      },
-      "description": "AdGuard public DNS servers without filters (over DoH, over IPv6)"
-    },
-    {
       "name": "alidns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "8.129.152.230",
-        "ipv4": "8.129.152.230"
+        "host": "123.184.198.22",
+        "ipv4": "123.184.198.22"
       },
       "description": "A public DNS resolver that supports DoH/DoT in mainland China, provided by Alibaba-Cloud.\nHomepage: https://alidns.com\nWarning: GFW filtering rules are applied by this resolver.",
-      "country": "Singapore",
+      "country": "China",
       "location": {
-        "lat": 1.3667,
-        "long": 103.8
+        "lat": 34.7725,
+        "long": 113.7266
       },
       "filter": true,
       "log": true
@@ -191,14 +123,15 @@
       "name": "cloudflare",
       "endpoint": {
         "protocol": "https:",
-        "host": "cloudflare-dns.com",
+        "host": "dns.cloudflare.com",
+        "ipv4": "1.0.0.1",
         "cors": true
       },
       "description": "Cloudflare DNS (anycast) - aka 1.1.1.1 / 1.0.0.1",
-      "country": "United States",
+      "country": "Australia",
       "location": {
-        "lat": 37.751,
-        "long": -97.822
+        "lat": -33.494,
+        "long": 143.2104
       },
       "cors": true
     },
@@ -374,15 +307,15 @@
       "name": "dns.sb",
       "endpoint": {
         "protocol": "https:",
-        "host": "45.11.45.11",
-        "ipv4": "45.11.45.11",
+        "host": "185.222.222.222",
+        "ipv4": "185.222.222.222",
         "cors": true
       },
       "description": "DoH server runned by xTom.com. No logs, no filtering, supports DNSSEC.\nHomepage: https://dns.sb",
-      "country": "Netherlands",
+      "country": "Unknown",
       "location": {
-        "lat": 52.3824,
-        "long": 4.8995
+        "lat": 47,
+        "long": 8
       },
       "cors": true
     },
@@ -425,8 +358,8 @@
       "description": "Public DoH resolver running with Pihole for Adblocking (https://dnsforge.de).\nNon-logging, AD-filtering, supports DNSSEC. Hosted in Germany.",
       "country": "Germany",
       "location": {
-        "lat": 52.2998,
-        "long": 9.447
+        "lat": 51.2993,
+        "long": 9.491
       },
       "filter": true,
       "cors": true
@@ -439,10 +372,10 @@
         "cors": true
       },
       "description": "Public DoH resolver (https://dnsforge.de)\nNon-logging, non-filtering, supports DNSSEC. Hosted in Germany.",
-      "country": "Germany",
+      "country": "Unknown",
       "location": {
-        "lat": 51.2993,
-        "long": 9.491
+        "lat": 47,
+        "long": 8
       },
       "cors": true
     },
@@ -554,8 +487,7 @@
       "name": "doh.ibksturm",
       "endpoint": {
         "protocol": "https:",
-        "host": "ibksturm.synology.me",
-        "method": "POST"
+        "host": "ibksturm.synology.me"
       },
       "description": "Switzerland, running by ibksturm"
     },
@@ -595,8 +527,8 @@
       "name": "google",
       "endpoint": {
         "protocol": "https:",
-        "host": "8.8.4.4",
-        "ipv4": "8.8.4.4",
+        "host": "8.8.8.8",
+        "ipv4": "8.8.8.8",
         "cors": true
       },
       "description": "Google DNS (anycast)",
@@ -779,6 +711,16 @@
       "description": "ODoH target server via Cloudflare, no logs.\nFilter ads, trackers and malware.",
       "filter": true,
       "cors": true
+    },
+    {
+      "name": "qihoo360-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "doh.360.cn"
+      },
+      "description": "DoH server runned by Qihoo 360, has logs, GFW filtering rules are applied.\nHomepage: https://sdns.360.net",
+      "filter": true,
+      "log": true
     },
     {
       "name": "rethinkdns-doh",

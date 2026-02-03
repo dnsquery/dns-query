@@ -2,6 +2,48 @@
   "$schema": "https://martinheidegger.github.io/dns-query/resolvers.schema.json",
   "resolvers": [
     {
+      "name": "adfilter-adl",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "adl.adfilter.net"
+      },
+      "description": "Hosted in Adelaide, Australia.\nBlocks ads, malware, trackers and more. No persistent logs. DNSSEC. No EDNS Client-Subnet.",
+      "country": "Australia",
+      "location": {
+        "lat": -33.494,
+        "long": 143.2104
+      },
+      "filter": true
+    },
+    {
+      "name": "adfilter-per",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "per.adfilter.net"
+      },
+      "description": "Hosted in Perth, Australia.\nBlocks ads, malware, trackers and more. No persistent logs. DNSSEC. No EDNS Client-Subnet.",
+      "country": "Australia",
+      "location": {
+        "lat": -31.8575,
+        "long": 115.8913
+      },
+      "filter": true
+    },
+    {
+      "name": "adfilter-syd",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "syd.adfilter.net"
+      },
+      "description": "Hosted in Sydney, Australia.\nBlocks ads, malware, trackers and more. No persistent logs. DNSSEC. No EDNS Client-Subnet.",
+      "country": "Australia",
+      "location": {
+        "lat": -33.7806,
+        "long": 151.1181
+      },
+      "filter": true
+    },
+    {
       "name": "adguard-dns-doh",
       "endpoint": {
         "protocol": "https:",
@@ -17,11 +59,20 @@
       "filter": true
     },
     {
+      "name": "adguard-dns-doh-ipv6",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.adguard-dns.com"
+      },
+      "description": "Remove ads and protect your computer from malware (over DoH, over IPv6)",
+      "filter": true
+    },
+    {
       "name": "adguard-dns-family-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "94.140.15.16",
-        "ipv4": "94.140.15.16"
+        "host": "94.140.14.15",
+        "ipv4": "94.140.14.15"
       },
       "description": "AdGuard DNS with safesearch and adult content blocking (over DoH)",
       "country": "France",
@@ -32,11 +83,20 @@
       "filter": true
     },
     {
+      "name": "adguard-dns-family-doh-ipv6",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "family.adguard-dns.com"
+      },
+      "description": "AdGuard DNS with safesearch and adult content blocking (over DoH, over IPv6)",
+      "filter": true
+    },
+    {
       "name": "adguard-dns-unfiltered-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "94.140.14.140",
-        "ipv4": "94.140.14.140"
+        "host": "94.140.14.141",
+        "ipv4": "94.140.14.141"
       },
       "description": "AdGuard public DNS servers without filters (over DoH)",
       "country": "France",
@@ -46,17 +106,25 @@
       }
     },
     {
+      "name": "adguard-dns-unfiltered-doh-ipv6",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "unfiltered.adguard-dns.com"
+      },
+      "description": "AdGuard public DNS servers without filters (over DoH, over IPv6)"
+    },
+    {
       "name": "alidns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "123.184.198.22",
-        "ipv4": "123.184.198.22"
+        "host": "113.142.83.132",
+        "ipv4": "113.142.83.132"
       },
       "description": "A public DNS resolver that supports DoH/DoT in mainland China, provided by Alibaba-Cloud.\nHomepage: https://alidns.com\nWarning: GFW filtering rules are applied by this resolver.",
       "country": "China",
       "location": {
-        "lat": 34.7725,
-        "long": 113.7266
+        "lat": 35.0688,
+        "long": 107.607
       },
       "filter": true,
       "log": true
@@ -307,15 +375,15 @@
       "name": "dns.sb",
       "endpoint": {
         "protocol": "https:",
-        "host": "185.222.222.222",
-        "ipv4": "185.222.222.222",
+        "host": "45.11.45.11",
+        "ipv4": "45.11.45.11",
         "cors": true
       },
       "description": "DoH server runned by xTom.com. No logs, no filtering, supports DNSSEC.\nHomepage: https://dns.sb",
-      "country": "Unknown",
+      "country": "Netherlands",
       "location": {
-        "lat": 47,
-        "long": 8
+        "lat": 52.3824,
+        "long": 4.8995
       },
       "cors": true
     },
@@ -358,8 +426,8 @@
       "description": "Public DoH resolver running with Pihole for Adblocking (https://dnsforge.de).\nNon-logging, AD-filtering, supports DNSSEC. Hosted in Germany.",
       "country": "Germany",
       "location": {
-        "lat": 51.2993,
-        "long": 9.491
+        "lat": 52.2998,
+        "long": 9.447
       },
       "filter": true,
       "cors": true
@@ -372,10 +440,10 @@
         "cors": true
       },
       "description": "Public DoH resolver (https://dnsforge.de)\nNon-logging, non-filtering, supports DNSSEC. Hosted in Germany.",
-      "country": "Unknown",
+      "country": "Germany",
       "location": {
-        "lat": 47,
-        "long": 8
+        "lat": 51.2993,
+        "long": 9.491
       },
       "cors": true
     },
@@ -726,11 +794,9 @@
       "name": "rethinkdns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "sky.rethinkdns.com",
-        "cors": true
+        "host": "max.rethinkdns.com"
       },
-      "description": "No-log, No-filter\nRethinkDNS, a stub (sky.rethinkdns.com hosted on Cloudflare) and recursive (max.rethinkdns.com hosted on fly.io) resolver\nThe stub server strips identification parameters from the request and acts as a proxy to another recursive resolver.",
-      "cors": true
+      "description": "No-log, No-filter\nRethinkDNS, a stub (sky.rethinkdns.com hosted on Cloudflare) and recursive (max.rethinkdns.com hosted on fly.io) resolver\nThe stub server strips identification parameters from the request and acts as a proxy to another recursive resolver."
     },
     {
       "name": "safesurfer-doh",

@@ -47,8 +47,8 @@
       "name": "adguard-dns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "94.140.14.14",
-        "ipv4": "94.140.14.14"
+        "host": "94.140.15.15",
+        "ipv4": "94.140.15.15"
       },
       "description": "Remove ads and protect your computer from malware (over DoH)",
       "country": "France",
@@ -95,8 +95,8 @@
       "name": "adguard-dns-unfiltered-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "94.140.14.140",
-        "ipv4": "94.140.14.140"
+        "host": "94.140.14.141",
+        "ipv4": "94.140.14.141"
       },
       "description": "AdGuard public DNS servers without filters (over DoH)",
       "country": "France",
@@ -117,8 +117,8 @@
       "name": "alidns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "47.108.0.63",
-        "ipv4": "47.108.0.63"
+        "host": "123.184.198.22",
+        "ipv4": "123.184.198.22"
       },
       "description": "A public DNS resolver that supports DoH/DoT in mainland China, provided by Alibaba-Cloud.\nHomepage: https://alidns.com\nWarning: GFW filtering rules are applied by this resolver.",
       "country": "China",
@@ -191,11 +191,16 @@
       "name": "cloudflare",
       "endpoint": {
         "protocol": "https:",
-        "host": "162.159.36.1",
-        "ipv4": "162.159.36.1",
+        "host": "dns.cloudflare.com",
+        "ipv4": "1.0.0.1",
         "cors": true
       },
       "description": "Cloudflare DNS (anycast) - aka 1.1.1.1 / 1.0.0.1",
+      "country": "Australia",
+      "location": {
+        "lat": -33.494,
+        "long": 143.2104
+      },
       "cors": true
     },
     {
@@ -408,8 +413,8 @@
       "description": "Public DoH resolver running with Pihole for Adblocking (https://dnsforge.de).\nNon-logging, AD-filtering, supports DNSSEC. Hosted in Germany.",
       "country": "Germany",
       "location": {
-        "lat": 51.2993,
-        "long": 9.491
+        "lat": 52.2998,
+        "long": 9.447
       },
       "filter": true,
       "cors": true
@@ -422,10 +427,10 @@
         "cors": true
       },
       "description": "Public DoH resolver (https://dnsforge.de)\nNon-logging, non-filtering, supports DNSSEC. Hosted in Germany.",
-      "country": "Unknown",
+      "country": "Germany",
       "location": {
-        "lat": 47,
-        "long": 8
+        "lat": 51.2993,
+        "long": 9.491
       },
       "cors": true
     },
@@ -535,14 +540,6 @@
       }
     },
     {
-      "name": "doh.ibksturm",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "ibksturm.synology.me"
-      },
-      "description": "Switzerland, running by ibksturm, Opennic, nologs, DNSSEC"
-    },
-    {
       "name": "doh.tiar.app-doh",
       "endpoint": {
         "protocol": "https:",
@@ -578,8 +575,8 @@
       "name": "google",
       "endpoint": {
         "protocol": "https:",
-        "host": "8.8.4.4",
-        "ipv4": "8.8.4.4",
+        "host": "8.8.8.8",
+        "ipv4": "8.8.8.8",
         "cors": true
       },
       "description": "Google DNS (anycast)",

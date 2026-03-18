@@ -95,8 +95,8 @@
       "name": "adguard-dns-unfiltered-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "94.140.14.140",
-        "ipv4": "94.140.14.140"
+        "host": "94.140.14.141",
+        "ipv4": "94.140.14.141"
       },
       "description": "AdGuard public DNS servers without filters (over DoH)",
       "country": "France",
@@ -117,8 +117,8 @@
       "name": "alidns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "47.108.0.63",
-        "ipv4": "47.108.0.63"
+        "host": "123.184.198.22",
+        "ipv4": "123.184.198.22"
       },
       "description": "A public DNS resolver that supports DoH/DoT in mainland China, provided by Alibaba-Cloud.\nHomepage: https://alidns.com\nWarning: GFW filtering rules are applied by this resolver.",
       "country": "China",
@@ -361,15 +361,15 @@
       "name": "dns.sb",
       "endpoint": {
         "protocol": "https:",
-        "host": "45.11.45.11",
-        "ipv4": "45.11.45.11",
+        "host": "185.222.222.222",
+        "ipv4": "185.222.222.222",
         "cors": true
       },
       "description": "DoH server runned by xTom.com. No logs, no filtering, supports DNSSEC.\nHomepage: https://dns.sb",
-      "country": "Netherlands",
+      "country": "Unknown",
       "location": {
-        "lat": 52.3824,
-        "long": 4.8995
+        "lat": 47,
+        "long": 8
       },
       "cors": true
     },
@@ -412,8 +412,8 @@
       "description": "Public DoH resolver running with Pihole for Adblocking (https://dnsforge.de).\nNon-logging, AD-filtering, supports DNSSEC. Hosted in Germany.",
       "country": "Germany",
       "location": {
-        "lat": 52.2998,
-        "long": 9.447
+        "lat": 51.2993,
+        "long": 9.491
       },
       "filter": true,
       "cors": true
@@ -447,8 +447,8 @@
       "name": "dnspod",
       "endpoint": {
         "protocol": "https:",
-        "host": "120.53.53.53",
-        "ipv4": "120.53.53.53"
+        "host": "1.12.12.12",
+        "ipv4": "1.12.12.12"
       },
       "description": "A public DNS resolver that supports DoH/DoT in mainland China, provided by dnspod/Tencent-cloud.\nHomepage: https://dnspod.cn\nWarning: GFW filtering rules are applied by this resolver.",
       "country": "China",
@@ -574,8 +574,8 @@
       "name": "google",
       "endpoint": {
         "protocol": "https:",
-        "host": "8.8.4.4",
-        "ipv4": "8.8.4.4",
+        "host": "8.8.8.8",
+        "ipv4": "8.8.8.8",
         "cors": true
       },
       "description": "Google DNS (anycast)",
@@ -659,107 +659,6 @@
       "filter": true
     },
     {
-      "name": "nextdns",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "anycast.dns.nextdns.io"
-      },
-      "description": "NextDNS is a cloud-based private DNS service that gives you full control\nover what is allowed and what is blocked on the Internet.\nDNSSEC, Anycast, Non-logging, NoFilters\nhttps://www.nextdns.io/",
-      "country": "United States",
-      "location": {
-        "lat": 37.751,
-        "long": -97.822
-      }
-    },
-    {
-      "name": "nextdns-ultralow",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns.nextdns.io",
-        "path": "/dnscrypt-proxy"
-      },
-      "description": "NextDNS is a cloud-based private DNS service that gives you full control\nover what is allowed and what is blocked on the Internet.\nhttps://www.nextdns.io/\nTo select the server location, the \"-ultralow\" variant relies on bootstrap servers\ninstead of anycast."
-    },
-    {
-      "name": "njalla-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns.njal.la"
-      },
-      "description": "Non-logging DoH server in Sweden operated by Njalla.\nhttps://dns.njal.la/",
-      "country": "Sweden",
-      "location": {
-        "lat": 59.3247,
-        "long": 18.056
-      }
-    },
-    {
-      "name": "odoh-cloudflare",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "odoh.cloudflare-dns.com",
-        "cors": true
-      },
-      "description": "Cloudflare ODoH server.\nhttps://cloudflare.com",
-      "cors": true
-    },
-    {
-      "name": "odoh-crypto-sx",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "odoh.crypto.sx",
-        "cors": true
-      },
-      "description": "ODoH target server. Anycast, no logs.\nBackend hosted by Scaleway. Maintained by Frank Denis.",
-      "cors": true
-    },
-    {
-      "name": "odoh-id-gmail",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh.tiar.app",
-        "path": "/odoh",
-        "cors": true
-      },
-      "description": "ODoH target server. Based in Singapore, no logs.\nFilter ads, trackers and malware.",
-      "filter": true,
-      "cors": true
-    },
-    {
-      "name": "odoh-jp.tiar.app",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "jp.tiar.app",
-        "path": "/odoh",
-        "cors": true
-      },
-      "description": "ODoH target server. no logs.",
-      "cors": true
-    },
-    {
-      "name": "odoh-jp.tiarap.org",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "jp.tiarap.org",
-        "path": "/odoh",
-        "cors": true
-      },
-      "description": "ODoH target server via Cloudflare, no logs.",
-      "cors": true
-    },
-    {
-      "name": "odoh-tiarap.org",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh.tiarap.org",
-        "path": "/odoh",
-        "cors": true
-      },
-      "description": "ODoH target server via Cloudflare, no logs.\nFilter ads, trackers and malware.",
-      "filter": true,
-      "cors": true
-    },
-    {
       "name": "qihoo360-doh",
       "endpoint": {
         "protocol": "https:",
@@ -773,11 +672,9 @@
       "name": "rethinkdns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "sky.rethinkdns.com",
-        "cors": true
+        "host": "max.rethinkdns.com"
       },
-      "description": "No-log, No-filter\nRethinkDNS, a stub (sky.rethinkdns.com hosted on Cloudflare) and recursive (max.rethinkdns.com hosted on fly.io) resolver\nThe stub server strips identification parameters from the request and acts as a proxy to another recursive resolver.",
-      "cors": true
+      "description": "No-log, No-filter\nRethinkDNS, a stub (sky.rethinkdns.com hosted on Cloudflare) and recursive (max.rethinkdns.com hosted on fly.io) resolver\nThe stub server strips identification parameters from the request and acts as a proxy to another recursive resolver."
     },
     {
       "name": "safesurfer-doh",

@@ -47,8 +47,8 @@
       "name": "adguard-dns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "94.140.15.15",
-        "ipv4": "94.140.15.15"
+        "host": "94.140.14.14",
+        "ipv4": "94.140.14.14"
       },
       "description": "Remove ads and protect your computer from malware (over DoH)",
       "country": "France",
@@ -71,8 +71,8 @@
       "name": "adguard-dns-family-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "94.140.14.15",
-        "ipv4": "94.140.14.15"
+        "host": "94.140.15.16",
+        "ipv4": "94.140.15.16"
       },
       "description": "AdGuard DNS with safesearch and adult content blocking (over DoH)",
       "country": "France",
@@ -117,8 +117,8 @@
       "name": "alidns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "123.184.198.22",
-        "ipv4": "123.184.198.22"
+        "host": "39.103.26.204",
+        "ipv4": "39.103.26.204"
       },
       "description": "A public DNS resolver that supports DoH/DoT in mainland China, provided by Alibaba-Cloud.\nHomepage: https://alidns.com\nWarning: GFW filtering rules are applied by this resolver.",
       "country": "China",
@@ -191,15 +191,11 @@
       "name": "cloudflare",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns.cloudflare.com",
+        "host": "162.159.36.1",
+        "ipv4": "162.159.36.1",
         "cors": true
       },
       "description": "Cloudflare DNS (anycast) - aka 1.1.1.1 / 1.0.0.1",
-      "country": "United States",
-      "location": {
-        "lat": 37.751,
-        "long": -97.822
-      },
       "cors": true
     },
     {
@@ -217,6 +213,21 @@
         "long": 143.2104
       },
       "filter": true,
+      "cors": true
+    },
+    {
+      "name": "cloudflare-ipv6",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.cloudflare.com",
+        "cors": true
+      },
+      "description": "Cloudflare DNS over IPv6 (anycast)",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      },
       "cors": true
     },
     {
@@ -403,22 +414,6 @@
       "cors": true
     },
     {
-      "name": "dnsforge.de",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dnsforge.de",
-        "cors": true
-      },
-      "description": "Public DoH resolver running with Pihole for Adblocking (https://dnsforge.de).\nNon-logging, AD-filtering, supports DNSSEC. Hosted in Germany.",
-      "country": "Germany",
-      "location": {
-        "lat": 51.2993,
-        "long": 9.491
-      },
-      "filter": true,
-      "cors": true
-    },
-    {
       "name": "dnsforge.de-nofilter",
       "endpoint": {
         "protocol": "https:",
@@ -447,8 +442,8 @@
       "name": "dnspod",
       "endpoint": {
         "protocol": "https:",
-        "host": "1.12.12.12",
-        "ipv4": "1.12.12.12"
+        "host": "120.53.53.53",
+        "ipv4": "120.53.53.53"
       },
       "description": "A public DNS resolver that supports DoH/DoT in mainland China, provided by dnspod/Tencent-cloud.\nHomepage: https://dnspod.cn\nWarning: GFW filtering rules are applied by this resolver.",
       "country": "China",
@@ -574,8 +569,8 @@
       "name": "google",
       "endpoint": {
         "protocol": "https:",
-        "host": "8.8.8.8",
-        "ipv4": "8.8.8.8",
+        "host": "8.8.4.4",
+        "ipv4": "8.8.4.4",
         "cors": true
       },
       "description": "Google DNS (anycast)",
@@ -657,42 +652,6 @@
         "long": 9.491
       },
       "filter": true
-    },
-    {
-      "name": "qihoo360-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh.360.cn"
-      },
-      "description": "DoH server runned by Qihoo 360, has logs, GFW filtering rules are applied.\nHomepage: https://sdns.360.net",
-      "filter": true,
-      "log": true
-    },
-    {
-      "name": "rethinkdns-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "max.rethinkdns.com"
-      },
-      "description": "No-log, No-filter\nRethinkDNS, a stub (sky.rethinkdns.com hosted on Cloudflare) and recursive (max.rethinkdns.com hosted on fly.io) resolver\nThe stub server strips identification parameters from the request and acts as a proxy to another recursive resolver."
-    },
-    {
-      "name": "safesurfer-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh.safesurfer.io"
-      },
-      "description": "Family safety focused blocklist for over 2 million adult sites, as well as phishing and malware and more.\nFree to use, paid for customizing blocking for more categories+sites and viewing usage at my.safesurfer.io. Logs taken for viewing\nusage, data never sold - https://safesurfer.io",
-      "filter": true,
-      "log": true
-    },
-    {
-      "name": "wikimedia",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "wikimedia-dns.org"
-      },
-      "description": "Wikimedia DNS (formerly called Wikidough), is a caching, recursive,\npublic resolver service that is run and managed by the Site\nReliability Engineering (Traffic) team at the Foundation.\nWikimedia DNS helps prevent some surveillance and censorship of our\nwikis and other websites by securing DNS lookups."
     }
   ]
 }

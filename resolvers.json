@@ -117,14 +117,14 @@
       "name": "alidns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "123.184.198.22",
-        "ipv4": "123.184.198.22"
+        "host": "8.129.152.230",
+        "ipv4": "8.129.152.230"
       },
       "description": "A public DNS resolver that supports DoH/DoT in mainland China, provided by Alibaba-Cloud.\nHomepage: https://alidns.com\nWarning: GFW filtering rules are applied by this resolver.",
-      "country": "China",
+      "country": "Singapore",
       "location": {
-        "lat": 34.7725,
-        "long": 113.7266
+        "lat": 1.3667,
+        "long": 103.8
       },
       "filter": true,
       "log": true
@@ -206,11 +206,15 @@
       "name": "cloudflare",
       "endpoint": {
         "protocol": "https:",
-        "host": "162.159.36.1",
-        "ipv4": "162.159.36.1",
+        "host": "dns.cloudflare.com",
         "cors": true
       },
       "description": "Cloudflare DNS (anycast) - aka 1.1.1.1 / 1.0.0.1",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      },
       "cors": true
     },
     {
@@ -228,6 +232,21 @@
         "long": 143.2104
       },
       "filter": true,
+      "cors": true
+    },
+    {
+      "name": "cloudflare-ipv6",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "cloudflare-dns.com",
+        "cors": true
+      },
+      "description": "Cloudflare DNS over IPv6 (anycast)",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      },
       "cors": true
     },
     {
@@ -372,15 +391,15 @@
       "name": "dns.sb",
       "endpoint": {
         "protocol": "https:",
-        "host": "185.222.222.222",
-        "ipv4": "185.222.222.222",
+        "host": "45.11.45.11",
+        "ipv4": "45.11.45.11",
         "cors": true
       },
       "description": "DoH server runned by xTom.com. No logs, no filtering, supports DNSSEC.\nHomepage: https://dns.sb",
-      "country": "Unknown",
+      "country": "Netherlands",
       "location": {
-        "lat": 47,
-        "long": 8
+        "lat": 52.3824,
+        "long": 4.8995
       },
       "cors": true
     },
@@ -458,8 +477,7 @@
       "name": "dnspod",
       "endpoint": {
         "protocol": "https:",
-        "host": "120.53.53.53",
-        "ipv4": "120.53.53.53"
+        "host": "1.12.12.12"
       },
       "description": "A public DNS resolver that supports DoH/DoT in mainland China, provided by dnspod/Tencent-cloud.\nHomepage: https://dnspod.cn\nWarning: GFW filtering rules are applied by this resolver.",
       "country": "China",
@@ -758,11 +776,9 @@
       "name": "rethinkdns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "sky.rethinkdns.com",
-        "cors": true
+        "host": "max.rethinkdns.com"
       },
-      "description": "No-log, No-filter\nRethinkDNS, a stub (sky.rethinkdns.com hosted on Cloudflare) and recursive (max.rethinkdns.com hosted on fly.io) resolver\nThe stub server strips identification parameters from the request and acts as a proxy to another recursive resolver.",
-      "cors": true
+      "description": "No-log, No-filter\nRethinkDNS, a stub (sky.rethinkdns.com hosted on Cloudflare) and recursive (max.rethinkdns.com hosted on fly.io) resolver\nThe stub server strips identification parameters from the request and acts as a proxy to another recursive resolver."
     },
     {
       "name": "safesurfer-doh",
@@ -770,7 +786,27 @@
         "protocol": "https:",
         "host": "doh.safesurfer.io"
       },
-      "description": "Family safety focused blocklist for over 2 million adult sites, as well as phishing and malware and more.\nFree to use, paid for customizing blocking for more categories+sites and viewing usage at my.safesurfer.io. Logs taken for viewing\nusage, data never sold - https://safesurfer.io",
+      "description": "Family safety blocklist that blocks almost 3 million adult websites, along with CSAM and more. Free to use, with paid options\navailable at my.safesurfer.io for custom blocking with additional content categories. Paid users can review their own logs.\nAccount holder logs are anonymized and used for filter improvement. Data is never sold. – https://safesurfer.io\nWarning: this server is incompatible with DNS anonymization.",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      },
+      "filter": true,
+      "log": true
+    },
+    {
+      "name": "safesurfer-doh-secondary-ipv4",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.safesurfer.co.nz"
+      },
+      "description": "Family safety blocklist that blocks almost 3 million adult websites, along with CSAM and more. Free to use, with paid options\navailable at my.safesurfer.io for custom blocking with additional content categories. Paid users can review their own logs.\nAccount holder logs are anonymized and used for filter improvement. Data is never sold. – https://safesurfer.io\nWarning: this server is incompatible with DNS anonymization.",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      },
       "filter": true,
       "log": true
     },

@@ -8,10 +8,10 @@
         "host": "adl.adfilter.net"
       },
       "description": "Hosted in Adelaide, Australia.\nBlocks ads, malware, trackers and more. No persistent logs. DNSSEC. No EDNS Client-Subnet.",
-      "country": "India",
+      "country": "Australia",
       "location": {
-        "lat": 27.1802,
-        "long": 78.0171
+        "lat": -33.494,
+        "long": 143.2104
       },
       "filter": true
     },
@@ -47,8 +47,8 @@
       "name": "adguard-dns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "94.140.15.15",
-        "ipv4": "94.140.15.15"
+        "host": "94.140.14.14",
+        "ipv4": "94.140.14.14"
       },
       "description": "Remove ads and protect your computer from malware (over DoH)",
       "country": "France",
@@ -117,8 +117,8 @@
       "name": "alidns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "47.108.0.63",
-        "ipv4": "47.108.0.63"
+        "host": "39.103.26.204",
+        "ipv4": "39.103.26.204"
       },
       "description": "A public DNS resolver that supports DoH/DoT in mainland China, provided by Alibaba-Cloud.\nHomepage: https://alidns.com\nWarning: GFW filtering rules are applied by this resolver.",
       "country": "China",
@@ -143,21 +143,6 @@
       },
       "filter": true,
       "log": true
-    },
-    {
-      "name": "artikel10-doh-ipv4",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns.artikel10.org",
-        "cors": true
-      },
-      "description": "DNSSEC, No-filter and No-log DoH resolver operated by Artikel10 association. Homepage: https://artikel10.org",
-      "country": "Germany",
-      "location": {
-        "lat": 51.9499,
-        "long": 14.7145
-      },
-      "cors": true
     },
     {
       "name": "brahma-world",
@@ -206,11 +191,16 @@
       "name": "cloudflare",
       "endpoint": {
         "protocol": "https:",
-        "host": "162.159.36.1",
-        "ipv4": "162.159.36.1",
+        "host": "dns.cloudflare.com",
+        "ipv4": "1.0.0.1",
         "cors": true
       },
       "description": "Cloudflare DNS (anycast) - aka 1.1.1.1 / 1.0.0.1",
+      "country": "Australia",
+      "location": {
+        "lat": -33.494,
+        "long": 143.2104
+      },
       "cors": true
     },
     {
@@ -228,6 +218,21 @@
         "long": 143.2104
       },
       "filter": true,
+      "cors": true
+    },
+    {
+      "name": "cloudflare-ipv6",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "cloudflare-dns.com",
+        "cors": true
+      },
+      "description": "Cloudflare DNS over IPv6 (anycast)",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      },
       "cors": true
     },
     {
@@ -391,10 +396,10 @@
         "host": "dnsbunker.org"
       },
       "description": "A DNS resolver located in Germany.\nDesigned to block ads, malware, and surveillance. No logs.\nhttps://dnsbunker.org",
-      "country": "Germany",
+      "country": "United States",
       "location": {
-        "lat": 51.2993,
-        "long": 9.491
+        "lat": 37.751,
+        "long": -97.822
       },
       "filter": true
     },
@@ -724,6 +729,40 @@
       "cors": true
     },
     {
+      "name": "odoh-id-gmail",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "doh.tiar.app",
+        "path": "/odoh",
+        "cors": true
+      },
+      "description": "ODoH target server. Based in Singapore, no logs.\nFilter ads, trackers and malware.",
+      "filter": true,
+      "cors": true
+    },
+    {
+      "name": "odoh-jp.tiar.app",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "jp.tiar.app",
+        "path": "/odoh",
+        "cors": true
+      },
+      "description": "ODoH target server. no logs.",
+      "cors": true
+    },
+    {
+      "name": "odoh-jp.tiarap.org",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "jp.tiarap.org",
+        "path": "/odoh",
+        "cors": true
+      },
+      "description": "ODoH target server via Cloudflare, no logs.",
+      "cors": true
+    },
+    {
       "name": "odoh-tiarap.org",
       "endpoint": {
         "protocol": "https:",
@@ -736,22 +775,14 @@
       "cors": true
     },
     {
-      "name": "qihoo360-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh.360.cn"
-      },
-      "description": "DoH server runned by Qihoo 360, has logs, GFW filtering rules are applied.\nHomepage: https://sdns.360.net",
-      "filter": true,
-      "log": true
-    },
-    {
       "name": "rethinkdns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "max.rethinkdns.com"
+        "host": "sky.rethinkdns.com",
+        "cors": true
       },
-      "description": "No-log, No-filter\nRethinkDNS, a stub (sky.rethinkdns.com hosted on Cloudflare) and recursive (max.rethinkdns.com hosted on fly.io) resolver\nThe stub server strips identification parameters from the request and acts as a proxy to another recursive resolver."
+      "description": "No-log, No-filter\nRethinkDNS, a stub (sky.rethinkdns.com hosted on Cloudflare) and recursive (max.rethinkdns.com hosted on fly.io) resolver\nThe stub server strips identification parameters from the request and acts as a proxy to another recursive resolver.",
+      "cors": true
     },
     {
       "name": "safesurfer-doh",
@@ -759,27 +790,7 @@
         "protocol": "https:",
         "host": "doh.safesurfer.io"
       },
-      "description": "Family safety blocklist that blocks almost 3 million adult websites, along with CSAM and more. Free to use, with paid options\navailable at my.safesurfer.io for custom blocking with additional content categories. Paid users can review their own logs.\nAccount holder logs are anonymized and used for filter improvement. Data is never sold. – https://safesurfer.io\nWarning: this server is incompatible with DNS anonymization.",
-      "country": "United States",
-      "location": {
-        "lat": 37.751,
-        "long": -97.822
-      },
-      "filter": true,
-      "log": true
-    },
-    {
-      "name": "safesurfer-doh-secondary-ipv4",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns.safesurfer.co.nz"
-      },
-      "description": "Family safety blocklist that blocks almost 3 million adult websites, along with CSAM and more. Free to use, with paid options\navailable at my.safesurfer.io for custom blocking with additional content categories. Paid users can review their own logs.\nAccount holder logs are anonymized and used for filter improvement. Data is never sold. – https://safesurfer.io\nWarning: this server is incompatible with DNS anonymization.",
-      "country": "United States",
-      "location": {
-        "lat": 37.751,
-        "long": -97.822
-      },
+      "description": "Family safety focused blocklist for over 2 million adult sites, as well as phishing and malware and more.\nFree to use, paid for customizing blocking for more categories+sites and viewing usage at my.safesurfer.io. Logs taken for viewing\nusage, data never sold - https://safesurfer.io",
       "filter": true,
       "log": true
     },

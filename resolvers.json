@@ -554,6 +554,15 @@
       }
     },
     {
+      "name": "doh.ibksturm",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "ibksturm.synology.me",
+        "method": "POST"
+      },
+      "description": "Switzerland, running by ibksturm, Opennic, nologs, DNSSEC"
+    },
+    {
       "name": "doh.tiar.app-doh",
       "endpoint": {
         "protocol": "https:",

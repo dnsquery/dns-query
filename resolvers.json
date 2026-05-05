@@ -47,8 +47,8 @@
       "name": "adguard-dns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "94.140.14.14",
-        "ipv4": "94.140.14.14"
+        "host": "94.140.15.15",
+        "ipv4": "94.140.15.15"
       },
       "description": "Remove ads and protect your computer from malware (over DoH)",
       "country": "France",
@@ -71,8 +71,8 @@
       "name": "adguard-dns-family-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "94.140.14.15",
-        "ipv4": "94.140.14.15"
+        "host": "94.140.15.16",
+        "ipv4": "94.140.15.16"
       },
       "description": "AdGuard DNS with safesearch and adult content blocking (over DoH)",
       "country": "France",
@@ -117,8 +117,8 @@
       "name": "alidns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "47.108.0.63",
-        "ipv4": "47.108.0.63"
+        "host": "39.103.26.204",
+        "ipv4": "39.103.26.204"
       },
       "description": "A public DNS resolver that supports DoH/DoT in mainland China, provided by Alibaba-Cloud.\nHomepage: https://alidns.com\nWarning: GFW filtering rules are applied by this resolver.",
       "country": "China",
@@ -206,7 +206,7 @@
       "name": "cloudflare",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns.cloudflare.com",
+        "host": "1.0.0.1",
         "ipv4": "1.0.0.1",
         "cors": true
       },
@@ -233,21 +233,6 @@
         "long": 143.2104
       },
       "filter": true,
-      "cors": true
-    },
-    {
-      "name": "cloudflare-ipv6",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "cloudflare-dns.com",
-        "cors": true
-      },
-      "description": "Cloudflare DNS over IPv6 (anycast)",
-      "country": "United States",
-      "location": {
-        "lat": 37.751,
-        "long": -97.822
-      },
       "cors": true
     },
     {
@@ -443,8 +428,8 @@
       "description": "Public DoH resolver running with Pihole for Adblocking (https://dnsforge.de).\nNon-logging, AD-filtering, supports DNSSEC. Hosted in Germany.",
       "country": "Germany",
       "location": {
-        "lat": 52.2998,
-        "long": 9.447
+        "lat": 51.2993,
+        "long": 9.491
       },
       "filter": true,
       "cors": true
@@ -457,10 +442,10 @@
         "cors": true
       },
       "description": "Public DoH resolver (https://dnsforge.de)\nNon-logging, non-filtering, supports DNSSEC. Hosted in Germany.",
-      "country": "Unknown",
+      "country": "Germany",
       "location": {
-        "lat": 47,
-        "long": 8
+        "lat": 51.2993,
+        "long": 9.491
       },
       "cors": true
     },
@@ -542,21 +527,6 @@
       "cors": true
     },
     {
-      "name": "doh-crypto-sx-ipv6",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh-ipv6.crypto.sx",
-        "cors": true
-      },
-      "description": "DNS-over-HTTPS server accessible over IPv6. Anycast, no logs, no censorship, DNSSEC.\nGlobally cached via Cloudflare.\nMaintained by Frank Denis.",
-      "country": "United States",
-      "location": {
-        "lat": 37.751,
-        "long": -97.822
-      },
-      "cors": true
-    },
-    {
       "name": "doh.ffmuc.net",
       "endpoint": {
         "protocol": "https:",
@@ -570,19 +540,11 @@
       }
     },
     {
-      "name": "doh.ibksturm",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "ibksturm.synology.me",
-        "method": "POST"
-      },
-      "description": "Switzerland, running by ibksturm, Opennic, nologs, DNSSEC"
-    },
-    {
       "name": "doh.tiar.app-doh",
       "endpoint": {
         "protocol": "https:",
         "host": "doh.tiar.app",
+        "method": "POST",
         "cors": true
       },
       "description": "Non-Logging DNS-over-HTTPS (HTTP/2 & HTTP/3) server located in Singapore.\nFilters out ads, trackers and malware, supports DNSSEC, provided by id-gmail.",
@@ -614,8 +576,8 @@
       "name": "google",
       "endpoint": {
         "protocol": "https:",
-        "host": "8.8.8.8",
-        "ipv4": "8.8.8.8",
+        "host": "8.8.4.4",
+        "ipv4": "8.8.4.4",
         "cors": true
       },
       "description": "Google DNS (anycast)",
@@ -779,11 +741,9 @@
       "name": "rethinkdns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "sky.rethinkdns.com",
-        "cors": true
+        "host": "max.rethinkdns.com"
       },
-      "description": "No-log, No-filter\nRethinkDNS, a stub (sky.rethinkdns.com hosted on Cloudflare) and recursive (max.rethinkdns.com hosted on fly.io) resolver\nThe stub server strips identification parameters from the request and acts as a proxy to another recursive resolver.",
-      "cors": true
+      "description": "No-log, No-filter\nRethinkDNS, a stub (sky.rethinkdns.com hosted on Cloudflare) and recursive (max.rethinkdns.com hosted on fly.io) resolver\nThe stub server strips identification parameters from the request and acts as a proxy to another recursive resolver."
     },
     {
       "name": "safesurfer-doh",

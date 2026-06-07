@@ -71,8 +71,8 @@
       "name": "adguard-dns-family-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "94.140.15.16",
-        "ipv4": "94.140.15.16"
+        "host": "94.140.14.15",
+        "ipv4": "94.140.14.15"
       },
       "description": "AdGuard DNS with safesearch and adult content blocking (over DoH)",
       "country": "France",
@@ -95,8 +95,8 @@
       "name": "adguard-dns-unfiltered-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "94.140.14.141",
-        "ipv4": "94.140.14.141"
+        "host": "94.140.14.140",
+        "ipv4": "94.140.14.140"
       },
       "description": "AdGuard public DNS servers without filters (over DoH)",
       "country": "France",
@@ -117,14 +117,14 @@
       "name": "alidns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "113.142.83.132",
-        "ipv4": "113.142.83.132"
+        "host": "47.108.0.63",
+        "ipv4": "47.108.0.63"
       },
       "description": "A public DNS resolver that supports DoH/DoT in mainland China, provided by Alibaba-Cloud.\nHomepage: https://alidns.com\nWarning: GFW filtering rules are applied by this resolver.",
       "country": "China",
       "location": {
-        "lat": 35.0688,
-        "long": 107.607
+        "lat": 34.7725,
+        "long": 113.7266
       },
       "filter": true,
       "log": true
@@ -174,6 +174,16 @@
       "filter": true
     },
     {
+      "name": "cipherdns-jb1-doh-za",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "jb1-doh.cipherdns.co.za",
+        "cors": true
+      },
+      "description": "High-performance privacy DoH resolver based in South Africa. Zero logging, DNSSEC validation, unfiltered raw resolution.",
+      "cors": true
+    },
+    {
       "name": "circl-doh",
       "endpoint": {
         "protocol": "https:",
@@ -206,8 +216,8 @@
       "name": "cloudflare",
       "endpoint": {
         "protocol": "https:",
-        "host": "162.159.46.1",
-        "ipv4": "162.159.46.1",
+        "host": "162.159.36.1",
+        "ipv4": "162.159.36.1",
         "cors": true
       },
       "description": "Cloudflare DNS (anycast) - aka 1.1.1.1 / 1.0.0.1",
@@ -228,21 +238,6 @@
         "long": 143.2104
       },
       "filter": true,
-      "cors": true
-    },
-    {
-      "name": "cloudflare-ipv6",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "cloudflare-dns.com",
-        "cors": true
-      },
-      "description": "Cloudflare DNS over IPv6 (anycast)",
-      "country": "United States",
-      "location": {
-        "lat": 37.751,
-        "long": -97.822
-      },
       "cors": true
     },
     {
@@ -387,15 +382,15 @@
       "name": "dns.sb",
       "endpoint": {
         "protocol": "https:",
-        "host": "185.222.222.222",
-        "ipv4": "185.222.222.222",
+        "host": "45.11.45.11",
+        "ipv4": "45.11.45.11",
         "cors": true
       },
       "description": "DoH server run by xTom.com. No logs, no filtering, supports DNSSEC.\nHomepage: https://dns.sb",
-      "country": "Unknown",
+      "country": "Netherlands",
       "location": {
-        "lat": 47,
-        "long": 8
+        "lat": 52.3824,
+        "long": 4.8995
       },
       "cors": true
     },
@@ -452,10 +447,10 @@
         "cors": true
       },
       "description": "Public DoH resolver (https://dnsforge.de)\nNon-logging, non-filtering, supports DNSSEC. Hosted in Germany.",
-      "country": "Unknown",
+      "country": "Germany",
       "location": {
-        "lat": 47,
-        "long": 8
+        "lat": 51.2993,
+        "long": 9.491
       },
       "cors": true
     },
@@ -473,7 +468,8 @@
       "name": "dnspod",
       "endpoint": {
         "protocol": "https:",
-        "host": "1.12.12.12"
+        "host": "1.12.12.12",
+        "ipv4": "1.12.12.12"
       },
       "description": "A public DNS resolver that supports DoH/DoT in mainland China, provided by dnspod/Tencent-cloud.\nHomepage: https://dnspod.cn\nWarning: GFW filtering rules are applied by this resolver.",
       "country": "China",
@@ -562,14 +558,6 @@
         "lat": 51.2993,
         "long": 9.491
       }
-    },
-    {
-      "name": "doh.ibksturm",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "ibksturm.synology.me"
-      },
-      "description": "Switzerland, running by ibksturm, Opennic, nologs, DNSSEC"
     },
     {
       "name": "doh.tiar.app-doh",

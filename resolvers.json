@@ -95,8 +95,8 @@
       "name": "adguard-dns-unfiltered-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "94.140.14.141",
-        "ipv4": "94.140.14.141"
+        "host": "94.140.14.140",
+        "ipv4": "94.140.14.140"
       },
       "description": "AdGuard public DNS servers without filters (over DoH)",
       "country": "France",
@@ -117,14 +117,14 @@
       "name": "alidns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "139.129.137.137",
-        "ipv4": "139.129.137.137"
+        "host": "47.122.8.11",
+        "ipv4": "47.122.8.11"
       },
       "description": "A public DNS resolver that supports DoH/DoT in mainland China, provided by Alibaba-Cloud.\nHomepage: https://alidns.com\nWarning: GFW filtering rules are applied by this resolver.",
       "country": "China",
       "location": {
-        "lat": 36.066,
-        "long": 120.3694
+        "lat": 34.7725,
+        "long": 113.7266
       },
       "filter": true,
       "log": true
@@ -172,6 +172,16 @@
         "long": 9.491
       },
       "filter": true
+    },
+    {
+      "name": "cipherdns-jb1-doh-za",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "jb1-doh.cipherdns.co.za",
+        "cors": true
+      },
+      "description": "High-performance privacy DoH resolver based in South Africa. Zero logging, DNSSEC validation, unfiltered raw resolution.",
+      "cors": true
     },
     {
       "name": "circl-doh",
@@ -232,6 +242,21 @@
         "long": 143.2104
       },
       "filter": true,
+      "cors": true
+    },
+    {
+      "name": "cloudflare-ipv6",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "cloudflare-dns.com",
+        "cors": true
+      },
+      "description": "Cloudflare DNS over IPv6 (anycast)",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      },
       "cors": true
     },
     {
@@ -441,10 +466,10 @@
         "cors": true
       },
       "description": "Public DoH resolver (https://dnsforge.de)\nNon-logging, non-filtering, supports DNSSEC. Hosted in Germany.",
-      "country": "Germany",
+      "country": "Unknown",
       "location": {
-        "lat": 51.2993,
-        "long": 9.491
+        "lat": 47,
+        "long": 8
       },
       "cors": true
     },
@@ -462,7 +487,8 @@
       "name": "dnspod",
       "endpoint": {
         "protocol": "https:",
-        "host": "1.12.12.12"
+        "host": "120.53.53.53",
+        "ipv4": "120.53.53.53"
       },
       "description": "A public DNS resolver that supports DoH/DoT in mainland China, provided by dnspod/Tencent-cloud.\nHomepage: https://dnspod.cn\nWarning: GFW filtering rules are applied by this resolver.",
       "country": "China",
@@ -628,6 +654,21 @@
       "cors": true
     },
     {
+      "name": "jp.tiar.app-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "jp.tiar.app",
+        "cors": true
+      },
+      "description": "Non-Logging, Non-Filtering DNS-over-HTTPS server in Japan.\nNo ECS, Support DNSSEC",
+      "country": "Japan",
+      "location": {
+        "lat": 35.6882,
+        "long": 139.7532
+      },
+      "cors": true
+    },
+    {
       "name": "jp.tiarap.org",
       "endpoint": {
         "protocol": "https:",
@@ -665,19 +706,6 @@
         "long": 9.491
       },
       "filter": true
-    },
-    {
-      "name": "nextdns",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "anycast.dns.nextdns.io"
-      },
-      "description": "NextDNS is a cloud-based private DNS service that gives you full control\nover what is allowed and what is blocked on the Internet.\nDNSSEC, Anycast, Non-logging, NoFilters\nhttps://www.nextdns.io/",
-      "country": "United States",
-      "location": {
-        "lat": 37.751,
-        "long": -97.822
-      }
     },
     {
       "name": "nextdns-ultralow",

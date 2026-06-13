@@ -47,8 +47,8 @@
       "name": "adguard-dns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "94.140.15.15",
-        "ipv4": "94.140.15.15"
+        "host": "94.140.14.14",
+        "ipv4": "94.140.14.14"
       },
       "description": "Remove ads and protect your computer from malware (over DoH)",
       "country": "France",
@@ -117,14 +117,14 @@
       "name": "alidns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "47.108.0.63",
-        "ipv4": "47.108.0.63"
+        "host": "1.71.20.37",
+        "ipv4": "1.71.20.37"
       },
       "description": "A public DNS resolver that supports DoH/DoT in mainland China, provided by Alibaba-Cloud.\nHomepage: https://alidns.com\nWarning: GFW filtering rules are applied by this resolver.",
       "country": "China",
       "location": {
-        "lat": 34.7725,
-        "long": 113.7266
+        "lat": 37.7269,
+        "long": 112.4708
       },
       "filter": true,
       "log": true
@@ -174,16 +174,6 @@
       "filter": true
     },
     {
-      "name": "cipherdns-jb1-doh-za",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "jb1-doh.cipherdns.co.za",
-        "cors": true
-      },
-      "description": "High-performance privacy DoH resolver based in South Africa. Zero logging, DNSSEC validation, unfiltered raw resolution.",
-      "cors": true
-    },
-    {
       "name": "circl-doh",
       "endpoint": {
         "protocol": "https:",
@@ -216,14 +206,15 @@
       "name": "cloudflare",
       "endpoint": {
         "protocol": "https:",
-        "host": "cloudflare-dns.com",
+        "host": "1.0.0.1",
+        "ipv4": "1.0.0.1",
         "cors": true
       },
       "description": "Cloudflare DNS (anycast) - aka 1.1.1.1 / 1.0.0.1",
-      "country": "United States",
+      "country": "Australia",
       "location": {
-        "lat": 37.751,
-        "long": -97.822
+        "lat": -33.494,
+        "long": 143.2104
       },
       "cors": true
     },
@@ -242,6 +233,21 @@
         "long": 143.2104
       },
       "filter": true,
+      "cors": true
+    },
+    {
+      "name": "cloudflare-ipv6",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.cloudflare.com",
+        "cors": true
+      },
+      "description": "Cloudflare DNS over IPv6 (anycast)",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      },
       "cors": true
     },
     {
@@ -386,15 +392,15 @@
       "name": "dns.sb",
       "endpoint": {
         "protocol": "https:",
-        "host": "45.11.45.11",
-        "ipv4": "45.11.45.11",
+        "host": "185.222.222.222",
+        "ipv4": "185.222.222.222",
         "cors": true
       },
       "description": "DoH server run by xTom.com. No logs, no filtering, supports DNSSEC.\nHomepage: https://dns.sb",
-      "country": "Netherlands",
+      "country": "Unknown",
       "location": {
-        "lat": 52.3824,
-        "long": 4.8995
+        "lat": 47,
+        "long": 8
       },
       "cors": true
     },
@@ -437,8 +443,8 @@
       "description": "Public DoH resolver running with Pihole for Adblocking (https://dnsforge.de).\nNon-logging, AD-filtering, supports DNSSEC. Hosted in Germany.",
       "country": "Germany",
       "location": {
-        "lat": 51.2993,
-        "long": 9.491
+        "lat": 52.2998,
+        "long": 9.447
       },
       "filter": true,
       "cors": true
@@ -567,7 +573,8 @@
       "name": "doh.ibksturm",
       "endpoint": {
         "protocol": "https:",
-        "host": "ibksturm.synology.me"
+        "host": "ibksturm.synology.me",
+        "method": "POST"
       },
       "description": "Switzerland, running by ibksturm, Opennic, nologs, DNSSEC"
     },

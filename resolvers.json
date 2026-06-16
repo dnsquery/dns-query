@@ -47,8 +47,8 @@
       "name": "adguard-dns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "94.140.14.14",
-        "ipv4": "94.140.14.14"
+        "host": "94.140.15.15",
+        "ipv4": "94.140.15.15"
       },
       "description": "Remove ads and protect your computer from malware (over DoH)",
       "country": "France",
@@ -71,8 +71,8 @@
       "name": "adguard-dns-family-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "94.140.15.16",
-        "ipv4": "94.140.15.16"
+        "host": "94.140.14.15",
+        "ipv4": "94.140.14.15"
       },
       "description": "AdGuard DNS with safesearch and adult content blocking (over DoH)",
       "country": "France",
@@ -95,8 +95,8 @@
       "name": "adguard-dns-unfiltered-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "94.140.14.141",
-        "ipv4": "94.140.14.141"
+        "host": "94.140.14.140",
+        "ipv4": "94.140.14.140"
       },
       "description": "AdGuard public DNS servers without filters (over DoH)",
       "country": "France",
@@ -172,6 +172,16 @@
         "long": 9.491
       },
       "filter": true
+    },
+    {
+      "name": "cipherdns-jb1-doh-za",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "jb1-doh.cipherdns.co.za",
+        "cors": true
+      },
+      "description": "High-performance privacy DoH resolver based in South Africa. Zero logging, DNSSEC validation, unfiltered raw resolution.",
+      "cors": true
     },
     {
       "name": "circl-doh",
@@ -272,7 +282,8 @@
         "protocol": "https:",
         "host": "freedns.controld.com",
         "path": "/p1",
-        "ipv4": "76.76.2.11"
+        "ipv4": "76.76.2.11",
+        "cors": true
       },
       "description": "ControlD Free DNS. Take CONTROL of your Internet. Block unwanted content, bypass geo-restrictions and be more productive. DoH protocol and No logging. - https://controld.com/free-dns\nThis DNS blocks Malware domains.",
       "country": "Canada",
@@ -280,7 +291,8 @@
         "lat": 43.6319,
         "long": -79.3716
       },
-      "filter": true
+      "filter": true,
+      "cors": true
     },
     {
       "name": "controld-block-malware-ad",
@@ -288,7 +300,8 @@
         "protocol": "https:",
         "host": "freedns.controld.com",
         "path": "/p2",
-        "ipv4": "76.76.2.11"
+        "ipv4": "76.76.2.11",
+        "cors": true
       },
       "description": "ControlD Free DNS. Take CONTROL of your Internet. Block unwanted content, bypass geo-restrictions and be more productive. DoH protocol and No logging. - https://controld.com/free-dns\nThis DNS blocks Malware, Ads & Tracking domains.",
       "country": "Canada",
@@ -296,7 +309,8 @@
         "lat": 43.6319,
         "long": -79.3716
       },
-      "filter": true
+      "filter": true,
+      "cors": true
     },
     {
       "name": "controld-block-malware-ad-social",
@@ -304,7 +318,8 @@
         "protocol": "https:",
         "host": "freedns.controld.com",
         "path": "/p3",
-        "ipv4": "76.76.2.11"
+        "ipv4": "76.76.2.11",
+        "cors": true
       },
       "description": "ControlD Free DNS. Take CONTROL of your Internet. Block unwanted content, bypass geo-restrictions and be more productive. DoH protocol and No logging. - https://controld.com/free-dns\nThis DNS blocks Malware, Ads & Tracking and Social Networks domains.",
       "country": "Canada",
@@ -312,7 +327,8 @@
         "lat": 43.6319,
         "long": -79.3716
       },
-      "filter": true
+      "filter": true,
+      "cors": true
     },
     {
       "name": "controld-family-friendly",
@@ -320,7 +336,8 @@
         "protocol": "https:",
         "host": "freedns.controld.com",
         "path": "/family",
-        "ipv4": "76.76.2.11"
+        "ipv4": "76.76.2.11",
+        "cors": true
       },
       "description": "ControlD Free DNS. Take CONTROL of your Internet. Block unwanted content, bypass geo-restrictions and be more productive. DoH protocol and No logging. - https://controld.com/free-dns\nThis DNS blocks Malware, Ads & Tracking, Adult Content and Drugs domains.",
       "country": "Canada",
@@ -328,7 +345,8 @@
         "lat": 43.6319,
         "long": -79.3716
       },
-      "filter": true
+      "filter": true,
+      "cors": true
     },
     {
       "name": "controld-uncensored",
@@ -336,14 +354,16 @@
         "protocol": "https:",
         "host": "freedns.controld.com",
         "path": "/uncensored",
-        "ipv4": "76.76.2.11"
+        "ipv4": "76.76.2.11",
+        "cors": true
       },
       "description": "ControlD Free DNS. Take CONTROL of your Internet. Block unwanted content, bypass geo-restrictions and be more productive. DoH protocol and No logging. - https://controld.com/free-dns\nThis DNS unblocks censored domains from various countries.",
       "country": "Canada",
       "location": {
         "lat": 43.6319,
         "long": -79.3716
-      }
+      },
+      "cors": true
     },
     {
       "name": "controld-unfiltered",
@@ -351,14 +371,16 @@
         "protocol": "https:",
         "host": "freedns.controld.com",
         "path": "/p0",
-        "ipv4": "76.76.2.11"
+        "ipv4": "76.76.2.11",
+        "cors": true
       },
       "description": "ControlD Free DNS. Take CONTROL of your Internet. Block unwanted content, bypass geo-restrictions and be more productive. DoH protocol and No logging. - https://controld.com/free-dns\nThis is a Unfiltered DNS, no DNS record blocking or manipulation here, if you want to block Malware, Ads & Tracking or Social Network domains, use the other ControlD DNS configs.",
       "country": "Canada",
       "location": {
         "lat": 43.6319,
         "long": -79.3716
-      }
+      },
+      "cors": true
     },
     {
       "name": "dns.digitalsize.net",
@@ -390,6 +412,20 @@
       "cors": true
     },
     {
+      "name": "dnsbunker",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dnsbunker.org"
+      },
+      "description": "A DNS resolver located in Germany.\nDesigned to block ads, malware, and surveillance. No logs.\nhttps://dnsbunker.org",
+      "country": "Bangladesh",
+      "location": {
+        "lat": 23.7255,
+        "long": 90.4293
+      },
+      "filter": true
+    },
+    {
       "name": "dnscrypt.ca-ipv4-doh",
       "endpoint": {
         "protocol": "https:",
@@ -414,8 +450,8 @@
       "description": "Public DoH resolver running with Pihole for Adblocking (https://dnsforge.de).\nNon-logging, AD-filtering, supports DNSSEC. Hosted in Germany.",
       "country": "Germany",
       "location": {
-        "lat": 52.2998,
-        "long": 9.447
+        "lat": 51.2993,
+        "long": 9.491
       },
       "filter": true,
       "cors": true
@@ -449,8 +485,7 @@
       "name": "dnspod",
       "endpoint": {
         "protocol": "https:",
-        "host": "1.12.12.12",
-        "ipv4": "1.12.12.12"
+        "host": "1.12.12.12"
       },
       "description": "A public DNS resolver that supports DoH/DoT in mainland China, provided by dnspod/Tencent-cloud.\nHomepage: https://dnspod.cn\nWarning: GFW filtering rules are applied by this resolver.",
       "country": "China",
@@ -746,6 +781,16 @@
       "description": "ODoH target server via Cloudflare, no logs.\nFilter ads, trackers and malware.",
       "filter": true,
       "cors": true
+    },
+    {
+      "name": "qihoo360-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "doh.360.cn"
+      },
+      "description": "DoH server run by Qihoo 360, has logs, GFW filtering rules are applied.\nHomepage: https://sdns.360.net",
+      "filter": true,
+      "log": true
     },
     {
       "name": "rethinkdns-doh",

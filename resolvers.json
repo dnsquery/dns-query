@@ -124,16 +124,6 @@
       "filter": true
     },
     {
-      "name": "cipherdns-ct1-doh-za",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "ct1-doh.cipherdns.co.za",
-        "cors": true
-      },
-      "description": "High-performance privacy DoH resolver based in Cape Town, South Africa. Zero logging, DNSSEC validation, unfiltered raw resolution.",
-      "cors": true
-    },
-    {
       "name": "circl-doh",
       "endpoint": {
         "protocol": "https:",
@@ -156,7 +146,8 @@
       "name": "cloudflare",
       "endpoint": {
         "protocol": "https:",
-        "host": "cloudflare-dns.com",
+        "host": "1.0.0.1",
+        "ipv4": "1.0.0.1",
         "cors": true
       },
       "description": "Cloudflare DNS (anycast) - aka 1.1.1.1 / 1.0.0.1",
@@ -283,8 +274,8 @@
       "name": "dns.sb",
       "endpoint": {
         "protocol": "https:",
-        "host": "185.222.222.222",
-        "ipv4": "185.222.222.222",
+        "host": "45.11.45.11",
+        "ipv4": "45.11.45.11",
         "cors": true
       },
       "description": "DoH server run by xTom.com. No logs, no filtering, supports DNSSEC.\nHomepage: https://dns.sb",
@@ -344,8 +335,8 @@
       "name": "dnspod",
       "endpoint": {
         "protocol": "https:",
-        "host": "120.53.53.53",
-        "ipv4": "120.53.53.53"
+        "host": "1.12.12.12",
+        "ipv4": "1.12.12.12"
       },
       "description": "A public DNS resolver that supports DoH/DoT in mainland China, provided by dnspod/Tencent-cloud.\nHomepage: https://dnspod.cn\nWarning: GFW filtering rules are applied by this resolver.",
       "filter": true,
@@ -449,8 +440,8 @@
       "name": "google",
       "endpoint": {
         "protocol": "https:",
-        "host": "8.8.4.4",
-        "ipv4": "8.8.4.4",
+        "host": "8.8.8.8",
+        "ipv4": "8.8.8.8",
         "cors": true
       },
       "description": "Google DNS (anycast)",
@@ -467,16 +458,6 @@
       "description": "DoH server operated by Internet Initiative Japan in Tokyo. Blocks child pornography.\nhttps://www.iij.ad.jp/",
       "filter": true,
       "log": true,
-      "cors": true
-    },
-    {
-      "name": "jp.tiar.app-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "jp.tiar.app",
-        "cors": true
-      },
-      "description": "Non-Logging, Non-Filtering DNS-over-HTTPS server in Japan.\nNo ECS, Support DNSSEC",
       "cors": true
     },
     {
@@ -591,11 +572,9 @@
       "name": "rethinkdns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "sky.rethinkdns.com",
-        "cors": true
+        "host": "max.rethinkdns.com"
       },
-      "description": "No-log, No-filter\nRethinkDNS, a stub (sky.rethinkdns.com hosted on Cloudflare) and recursive (max.rethinkdns.com hosted on fly.io) resolver\nThe stub server strips identification parameters from the request and acts as a proxy to another recursive resolver.",
-      "cors": true
+      "description": "No-log, No-filter\nRethinkDNS, a stub (sky.rethinkdns.com hosted on Cloudflare) and recursive (max.rethinkdns.com hosted on fly.io) resolver\nThe stub server strips identification parameters from the request and acts as a proxy to another recursive resolver."
     },
     {
       "name": "safesurfer-doh",

@@ -2,6 +2,15 @@
   "$schema": "https://martinheidegger.github.io/dns-query/resolvers.schema.json",
   "resolvers": [
     {
+      "name": "adfilter-adl",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "adl.adfilter.net"
+      },
+      "description": "Hosted in Adelaide, Australia.\nBlocks ads, malware, trackers and more. No persistent logs. DNSSEC. No EDNS Client-Subnet.",
+      "filter": true
+    },
+    {
       "name": "adfilter-per",
       "endpoint": {
         "protocol": "https:",
@@ -78,8 +87,8 @@
       "name": "alidns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "8.129.152.230",
-        "ipv4": "8.129.152.230"
+        "host": "139.129.137.137",
+        "ipv4": "139.129.137.137"
       },
       "description": "A public DNS resolver that supports DoH/DoT in mainland China, provided by Alibaba-Cloud.\nHomepage: https://alidns.com\nWarning: GFW filtering rules are applied by this resolver.",
       "filter": true,
@@ -274,8 +283,8 @@
       "name": "dns.sb",
       "endpoint": {
         "protocol": "https:",
-        "host": "45.11.45.11",
-        "ipv4": "45.11.45.11",
+        "host": "185.222.222.222",
+        "ipv4": "185.222.222.222",
         "cors": true
       },
       "description": "DoH server run by xTom.com. No logs, no filtering, supports DNSSEC.\nHomepage: https://dns.sb",
@@ -335,11 +344,48 @@
       "name": "dnspod",
       "endpoint": {
         "protocol": "https:",
-        "host": "1.12.12.12"
+        "host": "1.12.12.12",
+        "ipv4": "1.12.12.12"
       },
       "description": "A public DNS resolver that supports DoH/DoT in mainland China, provided by dnspod/Tencent-cloud.\nHomepage: https://dnspod.cn\nWarning: GFW filtering rules are applied by this resolver.",
       "filter": true,
       "log": true
+    },
+    {
+      "name": "doh-cleanbrowsing-adult",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "doh.cleanbrowsing.org",
+        "path": "/doh/adult-filter/",
+        "cors": true
+      },
+      "description": "Blocks access to adult, pornographic and explicit sites. It does\nnot block proxy or VPNs, nor mixed-content sites. Sites like Reddit\nare allowed. Google and Bing are set to the Safe Mode.\nBy https://cleanbrowsing.org/",
+      "filter": true,
+      "cors": true
+    },
+    {
+      "name": "doh-cleanbrowsing-family",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "doh.cleanbrowsing.org",
+        "path": "/doh/family-filter/",
+        "cors": true
+      },
+      "description": "Blocks access to adult, pornographic and explicit sites. It also\nblocks proxy and VPN domains that are used to bypass the filters.\nMixed content sites (like Reddit) are also blocked. Google, Bing and\nYoutube are set to the Safe Mode.\nBy https://cleanbrowsing.org/",
+      "filter": true,
+      "cors": true
+    },
+    {
+      "name": "doh-cleanbrowsing-security",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "doh.cleanbrowsing.org",
+        "path": "/doh/security-filter/",
+        "cors": true
+      },
+      "description": "Block access to phishing, malware and malicious domains. It does not block adult content.\nBy https://cleanbrowsing.org/",
+      "filter": true,
+      "cors": true
     },
     {
       "name": "doh-crypto-sx",

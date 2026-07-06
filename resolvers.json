@@ -7,16 +7,7 @@
         "protocol": "https:",
         "host": "adl.adfilter.net"
       },
-      "description": "Hosted in Adelaide, Australia.\nBlocks ads, malware, trackers and more. No persistent logs. DNSSEC. No EDNS Client-Subnet.",
-      "filter": true
-    },
-    {
-      "name": "adfilter-per",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "per.adfilter.net"
-      },
-      "description": "Hosted in Perth, Australia.\nBlocks ads, malware, trackers and more. No persistent logs. DNSSEC. No EDNS Client-Subnet.",
+      "description": "Hosted in Adelaide, Australia.\nBlocks ads, malware, trackers and more. No persistent logs. DNSSEC. No EDNS Client-Subnet.\nOperated by ADFilter. Service page: https://adfilter.com/",
       "filter": true
     },
     {
@@ -25,17 +16,17 @@
         "protocol": "https:",
         "host": "syd.adfilter.net"
       },
-      "description": "Hosted in Sydney, Australia.\nBlocks ads, malware, trackers and more. No persistent logs. DNSSEC. No EDNS Client-Subnet.",
+      "description": "Hosted in Sydney, Australia.\nBlocks ads, malware, trackers and more. No persistent logs. DNSSEC. No EDNS Client-Subnet.\nOperated by ADFilter. Service page: https://adfilter.com/",
       "filter": true
     },
     {
       "name": "adguard-dns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "94.140.15.15",
-        "ipv4": "94.140.15.15"
+        "host": "94.140.14.14",
+        "ipv4": "94.140.14.14"
       },
-      "description": "Remove ads and protect your computer from malware (over DoH)",
+      "description": "AdGuard DNS Default public resolver.\nBlocks ads, trackers, phishing and malicious domains.\nOperated by AdGuard. Service page: https://adguard-dns.io/en/public-dns.html",
       "filter": true
     },
     {
@@ -44,17 +35,17 @@
         "protocol": "https:",
         "host": "dns.adguard-dns.com"
       },
-      "description": "Remove ads and protect your computer from malware (over DoH, over IPv6)",
+      "description": "AdGuard DNS Default public resolver.\nIPv6 endpoint. Blocks ads, trackers, phishing and malicious domains.\nOperated by AdGuard. Service page: https://adguard-dns.io/en/public-dns.html",
       "filter": true
     },
     {
       "name": "adguard-dns-family-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "94.140.15.16",
-        "ipv4": "94.140.15.16"
+        "host": "94.140.14.15",
+        "ipv4": "94.140.14.15"
       },
-      "description": "AdGuard DNS with safesearch and adult content blocking (over DoH)",
+      "description": "AdGuard DNS Family Protection resolver.\nBlocks ads, trackers, phishing, malicious and adult domains. Enforces safe search where available.\nOperated by AdGuard. Service page: https://adguard-dns.io/en/public-dns.html",
       "filter": true
     },
     {
@@ -63,17 +54,17 @@
         "protocol": "https:",
         "host": "family.adguard-dns.com"
       },
-      "description": "AdGuard DNS with safesearch and adult content blocking (over DoH, over IPv6)",
+      "description": "AdGuard DNS Family Protection resolver.\nIPv6 endpoint. Blocks ads, trackers, phishing, malicious and adult domains. Enforces safe search where available.\nOperated by AdGuard. Service page: https://adguard-dns.io/en/public-dns.html",
       "filter": true
     },
     {
       "name": "adguard-dns-unfiltered-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "94.140.14.140",
-        "ipv4": "94.140.14.140"
+        "host": "94.140.14.141",
+        "ipv4": "94.140.14.141"
       },
-      "description": "AdGuard public DNS servers without filters (over DoH)"
+      "description": "AdGuard DNS Non-filtering public resolver.\nDoes not block or rewrite domains.\nOperated by AdGuard. Service page: https://adguard-dns.io/en/public-dns.html"
     },
     {
       "name": "adguard-dns-unfiltered-doh-ipv6",
@@ -81,16 +72,16 @@
         "protocol": "https:",
         "host": "unfiltered.adguard-dns.com"
       },
-      "description": "AdGuard public DNS servers without filters (over DoH, over IPv6)"
+      "description": "AdGuard DNS Non-filtering public resolver.\nIPv6 endpoint. Does not block or rewrite domains.\nOperated by AdGuard. Service page: https://adguard-dns.io/en/public-dns.html"
     },
     {
       "name": "alidns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "223.6.6.6",
-        "ipv4": "223.6.6.6"
+        "host": "1.71.20.37",
+        "ipv4": "1.71.20.37"
       },
-      "description": "A public DNS resolver that supports DoH/DoT in mainland China, provided by Alibaba-Cloud.\nHomepage: https://alidns.com\nWarning: GFW filtering rules are applied by this resolver.",
+      "description": "Alibaba Cloud Public DNS resolver.\nOperated by Alibaba Cloud for mainland China, with domestic, Hong Kong and overseas access nodes.\nHomepage: https://alidns.com\nWarning: GFW filtering rules are applied by this resolver.",
       "filter": true,
       "log": true
     },
@@ -100,7 +91,7 @@
         "protocol": "https:",
         "host": "223.5.5.5"
       },
-      "description": "A public DNS resolver over IPv6 that supports DoH/DoT in mainland China, provided by Alibaba-Cloud.\nHomepage: https://alidns.com\nWarning: GFW filtering rules are applied by this resolver.",
+      "description": "Alibaba Cloud Public DNS resolver.\nIPv6 endpoint. Operated by Alibaba Cloud for mainland China, with domestic, Hong Kong and overseas access nodes.\nHomepage: https://alidns.com\nWarning: GFW filtering rules are applied by this resolver.",
       "filter": true,
       "log": true
     },
@@ -111,7 +102,7 @@
         "host": "dns.artikel10.org",
         "cors": true
       },
-      "description": "DNSSEC, No-filter and No-log DoH resolver operated by Artikel10 association. Homepage: https://artikel10.org",
+      "description": "Artikel10 no-log resolver.\nDNSSEC-validating and non-filtering, operated by the Artikel10 association. Homepage: https://artikel10.org",
       "cors": true
     },
     {
@@ -120,7 +111,7 @@
         "protocol": "https:",
         "host": "dns.brahma.world"
       },
-      "description": "DNS-over-HTTPS server. Non Logging, filters ads, trackers and malware. DNSSEC ready, QNAME Minimization, No EDNS Client-Subnet.\nHosted in Nuremberg, Germany. (https://dns.brahma.world)",
+      "description": "Brahma World public resolver in Germany.\nNo logging. Blocks ads, trackers, malware and phishing domains. DNSSEC ready, QNAME minimization, no EDNS Client Subnet.\nHosted in Nuremberg, Germany. (https://dns.brahma.world)",
       "filter": true
     },
     {
@@ -129,7 +120,7 @@
         "protocol": "https:",
         "host": "dns.circl.lu"
       },
-      "description": "DoH server operated by CIRCL, Computer Incident Response Center Luxembourg.\nHosted in Bettembourg, Luxembourg."
+      "description": "CIRCL Luxembourg public resolver.\nOperated by CIRCL, the Computer Incident Response Center Luxembourg. Hosted in Bettembourg, Luxembourg. https://www.circl.lu/"
     },
     {
       "name": "cisco-doh",
@@ -138,7 +129,7 @@
         "host": "doh.opendns.com",
         "ipv4": "146.112.41.2"
       },
-      "description": "Remove your DNS blind spot (DoH protocol)\nWarning: Doesn't work any more in some countries such as France and Portugal.\nWarning: modifies your queries to include a copy of your network\naddress when forwarding them to a selection of companies and organizations.",
+      "description": "Cisco OpenDNS public resolver.\nPart of Cisco consumer and Umbrella DNS services.\nOperated by Cisco OpenDNS. Service page: https://www.opendns.com/\nWarning: Doesn't work any more in some countries such as France and Portugal.\nWarning: modifies your queries to include a copy of your network\naddress when forwarding them to a selection of companies and organizations.",
       "filter": true,
       "log": true
     },
@@ -147,9 +138,10 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns.cloudflare.com",
+        "ipv4": "1.0.0.1",
         "cors": true
       },
-      "description": "Cloudflare DNS (anycast) - aka 1.1.1.1 / 1.0.0.1",
+      "description": "Cloudflare 1.1.1.1 public resolver.\nGlobal anycast, non-filtering.\nOperated by Cloudflare. Service page: https://developers.cloudflare.com/1.1.1.1/",
       "cors": true
     },
     {
@@ -160,8 +152,18 @@
         "ipv4": "1.0.0.3",
         "cors": true
       },
-      "description": "Cloudflare DNS (anycast) with malware protection and parental control - aka 1.1.1.3 / 1.0.0.3",
+      "description": "Cloudflare 1.1.1.1 for Families resolver.\nGlobal anycast. Blocks malware and adult-content domains.\nOperated by Cloudflare. Service page: https://developers.cloudflare.com/1.1.1.1/",
       "filter": true,
+      "cors": true
+    },
+    {
+      "name": "cloudflare-ipv6",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "cloudflare-dns.com",
+        "cors": true
+      },
+      "description": "Cloudflare 1.1.1.1 public resolver.\nIPv6 endpoint. Global anycast, non-filtering.\nOperated by Cloudflare. Service page: https://developers.cloudflare.com/1.1.1.1/",
       "cors": true
     },
     {
@@ -172,7 +174,7 @@
         "ipv4": "1.0.0.2",
         "cors": true
       },
-      "description": "Cloudflare DNS (anycast) with malware blocking - aka 1.1.1.2 / 1.0.0.2",
+      "description": "Cloudflare 1.1.1.1 security resolver.\nGlobal anycast. Blocks malware domains.\nOperated by Cloudflare. Service page: https://developers.cloudflare.com/1.1.1.1/",
       "filter": true,
       "cors": true
     },
@@ -182,7 +184,7 @@
         "protocol": "https:",
         "host": "dns.comss.one"
       },
-      "description": "Comss.one DNS - DNS with adblock filters and antiphishing, gaining popularity among russian-speaking users.",
+      "description": "Comss.one ad-blocking resolver.\nDNS with ad-blocking and anti-phishing filters, popular among Russian-speaking users.",
       "filter": true
     },
     {
@@ -194,7 +196,7 @@
         "ipv4": "76.76.2.11",
         "cors": true
       },
-      "description": "ControlD Free DNS. Take CONTROL of your Internet. Block unwanted content, bypass geo-restrictions and be more productive. DoH protocol and No logging. - https://controld.com/free-dns\nThis DNS blocks Malware domains.",
+      "description": "Control D Free DNS Malware resolver.\nBlocks known dangerous domains. No query logging. Global anycast network. https://controld.com/free-dns\nOperated by Control D. Service page: https://controld.com/free-dns",
       "filter": true,
       "cors": true
     },
@@ -207,7 +209,7 @@
         "ipv4": "76.76.2.11",
         "cors": true
       },
-      "description": "ControlD Free DNS. Take CONTROL of your Internet. Block unwanted content, bypass geo-restrictions and be more productive. DoH protocol and No logging. - https://controld.com/free-dns\nThis DNS blocks Malware, Ads & Tracking domains.",
+      "description": "Control D Free DNS Ads & Tracking resolver.\nBlocks malware, ads and trackers. No query logging. Global anycast network. https://controld.com/free-dns\nOperated by Control D. Service page: https://controld.com/free-dns",
       "filter": true,
       "cors": true
     },
@@ -220,7 +222,7 @@
         "ipv4": "76.76.2.11",
         "cors": true
       },
-      "description": "ControlD Free DNS. Take CONTROL of your Internet. Block unwanted content, bypass geo-restrictions and be more productive. DoH protocol and No logging. - https://controld.com/free-dns\nThis DNS blocks Malware, Ads & Tracking and Social Networks domains.",
+      "description": "Control D Free DNS Social resolver.\nBlocks malware, ads, trackers and major social-media services. No query logging. Global anycast network. https://controld.com/free-dns\nOperated by Control D. Service page: https://controld.com/free-dns",
       "filter": true,
       "cors": true
     },
@@ -233,7 +235,7 @@
         "ipv4": "76.76.2.11",
         "cors": true
       },
-      "description": "ControlD Free DNS. Take CONTROL of your Internet. Block unwanted content, bypass geo-restrictions and be more productive. DoH protocol and No logging. - https://controld.com/free-dns\nThis DNS blocks Malware, Ads & Tracking, Adult Content and Drugs domains.",
+      "description": "Control D Free DNS Family Friendly resolver.\nBlocks malware, ads, trackers, adult content and drug-related domains. No query logging. Global anycast network. https://controld.com/free-dns\nOperated by Control D. Service page: https://controld.com/free-dns",
       "filter": true,
       "cors": true
     },
@@ -246,7 +248,7 @@
         "ipv4": "76.76.2.11",
         "cors": true
       },
-      "description": "ControlD Free DNS. Take CONTROL of your Internet. Block unwanted content, bypass geo-restrictions and be more productive. DoH protocol and No logging. - https://controld.com/free-dns\nThis DNS unblocks censored domains from various countries.",
+      "description": "Control D Free DNS Uncensored resolver.\nAttempts to unblock domains censored in various countries. No query logging. Global anycast network. https://controld.com/free-dns\nOperated by Control D. Service page: https://controld.com/free-dns",
       "cors": true
     },
     {
@@ -258,7 +260,7 @@
         "ipv4": "76.76.2.11",
         "cors": true
       },
-      "description": "ControlD Free DNS. Take CONTROL of your Internet. Block unwanted content, bypass geo-restrictions and be more productive. DoH protocol and No logging. - https://controld.com/free-dns\nThis is a Unfiltered DNS, no DNS record blocking or manipulation here, if you want to block Malware, Ads & Tracking or Social Network domains, use the other ControlD DNS configs.",
+      "description": "Control D Free DNS Unfiltered resolver.\nDoes not block or rewrite domains. No query logging. Global anycast network. https://controld.com/free-dns\nOperated by Control D. Service page: https://controld.com/free-dns",
       "cors": true
     },
     {
@@ -267,17 +269,17 @@
         "protocol": "https:",
         "host": "dns.digitalsize.net"
       },
-      "description": "A public, non-tracking, non-filtering DNS resolver with DNSSEC enabled, QNAME minimization and no EDNS client subnet (https://dns.digitalsize.net).\nHosted in Germany."
+      "description": "DigitalSize non-tracking resolver.\nNon-filtering, DNSSEC enabled, QNAME minimization and no EDNS Client Subnet. https://dns.digitalsize.net\nHosted in Germany."
     },
     {
       "name": "dns.sb",
       "endpoint": {
         "protocol": "https:",
-        "host": "185.222.222.222",
-        "ipv4": "185.222.222.222",
+        "host": "45.11.45.11",
+        "ipv4": "45.11.45.11",
         "cors": true
       },
-      "description": "DoH server run by xTom.com. No logs, no filtering, supports DNSSEC.\nHomepage: https://dns.sb",
+      "description": "DNS.SB public resolver.\nOperated by xTom. No logs, no filtering, supports DNSSEC. Homepage: https://dns.sb",
       "cors": true
     },
     {
@@ -286,7 +288,7 @@
         "protocol": "https:",
         "host": "dnsbunker.org"
       },
-      "description": "A DNS resolver located in Germany.\nDesigned to block ads, malware, and surveillance. No logs.\nhttps://dnsbunker.org",
+      "description": "A DNS resolver located in Germany.\nDesigned to block ads, malware, and surveillance. No logs.\nOperated by DNSBunker.\nhttps://dnsbunker.org",
       "filter": true
     },
     {
@@ -296,7 +298,7 @@
         "host": "dns1.dnscrypt.ca",
         "cors": true
       },
-      "description": "Canadian based, unfiltered, DNSSEC validating, and no logs... for your pleasure. https://dnscrypt.ca/",
+      "description": "dnscrypt.ca Canadian resolver.\nUnfiltered, DNSSEC-validating and no logs. https://dnscrypt.ca/\nMaintained by dnscrypt.ca. Service page: https://dnscrypt.ca/",
       "cors": true
     },
     {
@@ -306,7 +308,7 @@
         "host": "dnsforge.de",
         "cors": true
       },
-      "description": "Public DoH resolver running with Pihole for Adblocking (https://dnsforge.de).\nNon-logging, AD-filtering, supports DNSSEC. Hosted in Germany.",
+      "description": "DNSforge ad-blocking resolver.\nPublic resolver in Germany, running Pi-hole for ad blocking. Non-logging, supports DNSSEC. https://dnsforge.de\nMaintained by DNSforge. Service page: https://dnsforge.de/",
       "filter": true,
       "cors": true
     },
@@ -317,7 +319,7 @@
         "host": "blank.dnsforge.de",
         "cors": true
       },
-      "description": "Public DoH resolver (https://dnsforge.de)\nNon-logging, non-filtering, supports DNSSEC. Hosted in Germany.",
+      "description": "DNSforge non-filtering resolver.\nPublic resolver in Germany. Non-logging, supports DNSSEC. https://dnsforge.de\nMaintained by DNSforge. Service page: https://dnsforge.de/",
       "cors": true
     },
     {
@@ -326,7 +328,7 @@
         "protocol": "https:",
         "host": "dnslow.me"
       },
-      "description": "dnslow.me is an open source project, also your advertisement and threat blocking, privacy-first, encrypted DNS.\nAll DNS requests will be protected with threat-intelligence feeds and randomly distributed to some other DNS resolvers.\nMore info on the [homepage](https://dnslow.me) and [GitHub](https://github.com/PeterDaveHello/dnslow.me)",
+      "description": "dnslow.me privacy-first filtering resolver.\nOpen-source project with advertising and threat blocking. More info on the [homepage](https://dnslow.me) and [GitHub](https://github.com/PeterDaveHello/dnslow.me)",
       "filter": true,
       "log": true
     },
@@ -337,7 +339,7 @@
         "host": "120.53.53.53",
         "ipv4": "120.53.53.53"
       },
-      "description": "A public DNS resolver that supports DoH/DoT in mainland China, provided by dnspod/Tencent-cloud.\nHomepage: https://dnspod.cn\nWarning: GFW filtering rules are applied by this resolver.",
+      "description": "DNSPod Public DNS resolver.\nOperated by Tencent Cloud DNSPod for users in China. Overseas access to the free Public DNS service may be unreliable.\nHomepage: https://dnspod.cn\nWarning: GFW filtering rules are applied by this resolver.",
       "filter": true,
       "log": true
     },
@@ -349,7 +351,7 @@
         "path": "/doh/adult-filter/",
         "cors": true
       },
-      "description": "Blocks access to adult, pornographic and explicit sites. It does\nnot block proxy or VPNs, nor mixed-content sites. Sites like Reddit\nare allowed. Google and Bing are set to the Safe Mode.\nBy https://cleanbrowsing.org/",
+      "description": "CleanBrowsing Adult Filter.\nBlocks adult, pornographic and explicit sites. Allows proxy and VPN domains and mixed-content sites. Google and Bing are set to Safe Mode.\nOperated by CleanBrowsing. Service page: https://cleanbrowsing.org/filters/",
       "filter": true,
       "cors": true
     },
@@ -361,7 +363,7 @@
         "path": "/doh/family-filter/",
         "cors": true
       },
-      "description": "Blocks access to adult, pornographic and explicit sites. It also\nblocks proxy and VPN domains that are used to bypass the filters.\nMixed content sites (like Reddit) are also blocked. Google, Bing and\nYoutube are set to the Safe Mode.\nBy https://cleanbrowsing.org/",
+      "description": "CleanBrowsing Family Filter.\nBlocks adult and explicit sites, proxy and VPN bypass domains, and mixed-content sites. Google, Bing and YouTube are set to Safe Mode.\nOperated by CleanBrowsing. Service page: https://cleanbrowsing.org/filters/",
       "filter": true,
       "cors": true
     },
@@ -373,7 +375,7 @@
         "path": "/doh/security-filter/",
         "cors": true
       },
-      "description": "Block access to phishing, malware and malicious domains. It does not block adult content.\nBy https://cleanbrowsing.org/",
+      "description": "CleanBrowsing Security Filter.\nBlocks phishing, malware and malicious domains. Does not block adult content.\nOperated by CleanBrowsing. Service page: https://cleanbrowsing.org/filters/",
       "filter": true,
       "cors": true
     },
@@ -384,7 +386,7 @@
         "host": "doh.crypto.sx",
         "cors": true
       },
-      "description": "DNS-over-HTTPS server. Anycast, no logs, no censorship, DNSSEC.\nGlobally cached via Cloudflare.\nMaintained by Frank Denis.",
+      "description": "crypto.sx public resolver.\nMaintained by Frank Denis. Anycast, globally cached via Cloudflare, no logs, no censorship, DNSSEC. https://crypto.sx",
       "cors": true
     },
     {
@@ -394,7 +396,7 @@
         "host": "doh-ipv6.crypto.sx",
         "cors": true
       },
-      "description": "DNS-over-HTTPS server accessible over IPv6. Anycast, no logs, no censorship, DNSSEC.\nGlobally cached via Cloudflare.\nMaintained by Frank Denis.",
+      "description": "crypto.sx public resolver.\nIPv6 endpoint. Maintained by Frank Denis. Anycast, globally cached via Cloudflare, no logs, no censorship, DNSSEC. https://crypto.sx",
       "cors": true
     },
     {
@@ -403,7 +405,7 @@
         "protocol": "https:",
         "host": "doh.ffmuc.net"
       },
-      "description": "An open (non-logging, non-filtering, non-censoring) DoH resolver operated by Freifunk Munich with nodes in DE.\nhttps://ffmuc.net/"
+      "description": "Freifunk Munich open resolver.\nOperated by Freifunk Munich with nodes in Germany. Non-logging, non-filtering, non-censoring.\nhttps://ffmuc.net/"
     },
     {
       "name": "doh.ibksturm",
@@ -411,7 +413,7 @@
         "protocol": "https:",
         "host": "ibksturm.synology.me"
       },
-      "description": "Switzerland, running by ibksturm, Opennic, nologs, DNSSEC"
+      "description": "ibksturm OpenNIC resolver in Switzerland.\nNo logs, DNSSEC. OpenNIC-based resolver operated by ibksturm."
     },
     {
       "name": "doh.tiar.app-doh",
@@ -420,7 +422,7 @@
         "host": "doh.tiar.app",
         "cors": true
       },
-      "description": "Non-Logging DNS-over-HTTPS (HTTP/2 & HTTP/3) server located in Singapore.\nFilters out ads, trackers and malware, supports DNSSEC, provided by id-gmail.",
+      "description": "Tiarap Singapore filtering resolver.\nOperated by id-gmail. No logging, blocks ads, trackers and malware, supports DNSSEC. https://doh.tiar.app",
       "filter": true,
       "cors": true
     },
@@ -431,7 +433,7 @@
         "host": "doh.tiarap.org",
         "cors": true
       },
-      "description": "Non-Logging DNS-over-HTTPS server, cached via Cloudflare.\nFilters out ads, trackers and malware, NO ECS, supports DNSSEC.",
+      "description": "Tiarap Cloudflare-cached filtering resolver.\nOperated by id-gmail. No logging, blocks ads, trackers and malware, no EDNS Client Subnet, supports DNSSEC. https://doh.tiarap.org",
       "filter": true,
       "cors": true
     },
@@ -439,11 +441,11 @@
       "name": "google",
       "endpoint": {
         "protocol": "https:",
-        "host": "8.8.4.4",
-        "ipv4": "8.8.4.4",
+        "host": "8.8.8.8",
+        "ipv4": "8.8.8.8",
         "cors": true
       },
-      "description": "Google DNS (anycast)",
+      "description": "Google Public DNS resolver.\nGlobal anycast service operated by Google.\nOperated by Google Public DNS. Service page: https://developers.google.com/speed/public-dns",
       "log": true,
       "cors": true
     },
@@ -454,9 +456,19 @@
         "host": "public.dns.iij.jp",
         "cors": true
       },
-      "description": "DoH server operated by Internet Initiative Japan in Tokyo. Blocks child pornography.\nhttps://www.iij.ad.jp/",
+      "description": "Internet Initiative Japan public resolver.\nOperated by Internet Initiative Japan in Tokyo. Blocks child pornography. https://www.iij.ad.jp/",
       "filter": true,
       "log": true,
+      "cors": true
+    },
+    {
+      "name": "jp.tiar.app-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "jp.tiar.app",
+        "cors": true
+      },
+      "description": "Tiarap Japan non-filtering resolver.\nNo logging, no filtering, no EDNS Client Subnet, supports DNSSEC. https://jp.tiar.app\nMaintained by id-gmail / Tiarap. Service page: https://tiarap.org/",
       "cors": true
     },
     {
@@ -466,8 +478,17 @@
         "host": "jp.tiarap.org",
         "cors": true
       },
-      "description": "DNS-over-HTTPS Server. Non-Logging, Non-Filtering, No ECS, Support DNSSEC.\nCached via Cloudflare.",
+      "description": "Tiarap Japan non-filtering resolver.\nCached via Cloudflare. No logging, no filtering, no EDNS Client Subnet, supports DNSSEC. https://jp.tiarap.org\nMaintained by id-gmail / Tiarap. Service page: https://tiarap.org/",
       "cors": true
+    },
+    {
+      "name": "la-contre-voie",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "doh.lacontrevoie.fr"
+      },
+      "description": "La Contre-Voie non-filtering public resolver.\nLocated in Falkenstein, Germany. DNSSEC validation. Keeps connection logs for 14 days.\nDoes not keep DNS query contents.\nOperated by La Contre-Voie. Service page: https://lacontrevoie.fr/services/doh/",
+      "log": true
     },
     {
       "name": "libredns",
@@ -475,7 +496,7 @@
         "protocol": "https:",
         "host": "doh.libredns.gr"
       },
-      "description": "DoH server in Germany. No logging, but no DNS padding and no DNSSEC support.\nhttps://libredns.gr/",
+      "description": "LibreDNS public resolver in Germany.\nNo logging, but no DNS padding and no DNSSEC support. https://libredns.gr/\nOperated by LibreOps. Service page: https://libredns.gr/",
       "filter": true
     },
     {
@@ -485,7 +506,7 @@
         "host": "doh.libredns.gr",
         "path": "/noads"
       },
-      "description": "DoH server in Germany. No logging, but no DNS padding and no DNSSEC support.\nno ads version, uses StevenBlack's host list: https://github.com/StevenBlack/hosts",
+      "description": "LibreDNS ad-blocking resolver in Germany.\nNo logging, but no DNS padding and no DNSSEC support. Uses StevenBlack's hosts list: https://github.com/StevenBlack/hosts\nOperated by LibreOps. Service page: https://libredns.gr/",
       "filter": true
     },
     {
@@ -494,7 +515,7 @@
         "protocol": "https:",
         "host": "anycast.dns.nextdns.io"
       },
-      "description": "NextDNS is a cloud-based private DNS service that gives you full control\nover what is allowed and what is blocked on the Internet.\nDNSSEC, Anycast, Non-logging, NoFilters\nhttps://www.nextdns.io/"
+      "description": "NextDNS non-filtering private DNS resolver.\nCloud-based service that gives users control over what is allowed and blocked. DNSSEC, anycast, non-logging, no filters.\nOperated by NextDNS. Service page: https://www.nextdns.io/"
     },
     {
       "name": "nextdns-ultralow",
@@ -503,7 +524,7 @@
         "host": "dns.nextdns.io",
         "path": "/dnscrypt-proxy"
       },
-      "description": "NextDNS is a cloud-based private DNS service that gives you full control\nover what is allowed and what is blocked on the Internet.\nhttps://www.nextdns.io/\nTo select the server location, the \"-ultralow\" variant relies on bootstrap servers\ninstead of anycast."
+      "description": "NextDNS ultralow-latency resolver.\nCloud-based service that gives users control over what is allowed and blocked. DNSSEC, anycast, non-logging, no filters.\nOperated by NextDNS. Service page: https://www.nextdns.io/\nTo select the server location, the \"-ultralow\" variant relies on bootstrap servers instead of anycast."
     },
     {
       "name": "njalla-doh",
@@ -511,7 +532,7 @@
         "protocol": "https:",
         "host": "dns.njal.la"
       },
-      "description": "Non-logging DoH server in Sweden operated by Njalla.\nhttps://dns.njal.la/"
+      "description": "Njalla public resolver in Sweden.\nOperated by Njalla. Non-logging. https://njal.la"
     },
     {
       "name": "odoh-cloudflare",
@@ -558,12 +579,22 @@
       "cors": true
     },
     {
+      "name": "qihoo360-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "doh.360.cn"
+      },
+      "description": "Qihoo 360 public resolver.\nOperated by Qihoo 360. Has logs; GFW filtering rules are applied. Homepage: https://sdns.360.net",
+      "filter": true,
+      "log": true
+    },
+    {
       "name": "rethinkdns-doh",
       "endpoint": {
         "protocol": "https:",
         "host": "max.rethinkdns.com"
       },
-      "description": "No-log, No-filter\nRethinkDNS, a stub (sky.rethinkdns.com hosted on Cloudflare) and recursive (max.rethinkdns.com hosted on fly.io) resolver\nThe stub server strips identification parameters from the request and acts as a proxy to another recursive resolver."
+      "description": "RethinkDNS public resolver.\nNo logging, no filtering. `sky.rethinkdns.com` is a Cloudflare-hosted stub resolver; `max.rethinkdns.com` is a recursive resolver hosted on Fly.io. The stub strips identification parameters from the request and proxies to another recursive resolver.\nOperated by RethinkDNS. Service page: https://rethinkdns.com/"
     },
     {
       "name": "safesurfer-doh",
@@ -571,7 +602,7 @@
         "protocol": "https:",
         "host": "doh.safesurfer.io"
       },
-      "description": "Family safety blocklist that blocks almost 3 million adult websites, along with CSAM and more. Free to use, with paid options\navailable at my.safesurfer.io for custom blocking with additional content categories. Paid users can review their own logs.\nAccount holder logs are anonymized and used for filter improvement. Data is never sold. – https://safesurfer.io\nWarning: this server is incompatible with DNS anonymization.",
+      "description": "SafeSurfer family-safety resolver.\nBlocks adult websites, CSAM and related family-safety categories. Free to use, with paid options available at my.safesurfer.io for custom blocking with additional content categories. Paid users can review their own logs.\nOperated by Safe Surfer. Service page: https://helpdesk.safesurfer.io/\nAccount holder logs are anonymized and used for filter improvement. Data is never sold. https://safesurfer.io\nWarning: this server is incompatible with DNS anonymization.",
       "filter": true,
       "log": true
     },
@@ -581,7 +612,7 @@
         "protocol": "https:",
         "host": "dns.safesurfer.co.nz"
       },
-      "description": "Family safety blocklist that blocks almost 3 million adult websites, along with CSAM and more. Free to use, with paid options\navailable at my.safesurfer.io for custom blocking with additional content categories. Paid users can review their own logs.\nAccount holder logs are anonymized and used for filter improvement. Data is never sold. – https://safesurfer.io\nWarning: this server is incompatible with DNS anonymization.",
+      "description": "SafeSurfer family-safety resolver.\nSecondary IPv4 endpoint. Blocks adult websites, CSAM and related family-safety categories. Free to use, with paid options available at my.safesurfer.io for custom blocking with additional content categories. Paid users can review their own logs.\nOperated by Safe Surfer. Service page: https://helpdesk.safesurfer.io/\nAccount holder logs are anonymized and used for filter improvement. Data is never sold. https://safesurfer.io\nWarning: this server is incompatible with DNS anonymization.",
       "filter": true,
       "log": true
     },
@@ -591,7 +622,7 @@
         "protocol": "https:",
         "host": "wikimedia-dns.org"
       },
-      "description": "Wikimedia DNS (formerly called Wikidough), is a caching, recursive,\npublic resolver service that is run and managed by the Site\nReliability Engineering (Traffic) team at the Foundation.\nWikimedia DNS helps prevent some surveillance and censorship of our\nwikis and other websites by securing DNS lookups."
+      "description": "Wikimedia DNS resolver.\nCaching recursive public resolver run by the Wikimedia Foundation Site Reliability Engineering Traffic team. Helps secure DNS lookups for Wikimedia projects and other websites.\nOperated by Wikimedia DNS. Service page: https://wikimedia-dns.org/"
     }
   ]
 }

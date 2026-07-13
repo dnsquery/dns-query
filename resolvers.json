@@ -32,8 +32,8 @@
       "name": "adguard-dns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "94.140.14.14",
-        "ipv4": "94.140.14.14"
+        "host": "94.140.15.15",
+        "ipv4": "94.140.15.15"
       },
       "description": "AdGuard DNS Default public resolver.\nBlocks ads, trackers, phishing and malicious domains.\nOperated by AdGuard. Service page: https://adguard-dns.io/en/public-dns.html",
       "filter": true
@@ -70,8 +70,8 @@
       "name": "adguard-dns-unfiltered-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "94.140.14.140",
-        "ipv4": "94.140.14.140"
+        "host": "94.140.14.141",
+        "ipv4": "94.140.14.141"
       },
       "description": "AdGuard DNS Non-filtering public resolver.\nDoes not block or rewrite domains.\nOperated by AdGuard. Service page: https://adguard-dns.io/en/public-dns.html"
     },
@@ -87,8 +87,8 @@
       "name": "alidns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "113.142.83.132",
-        "ipv4": "113.142.83.132"
+        "host": "8.129.152.230",
+        "ipv4": "8.129.152.230"
       },
       "description": "Alibaba Cloud Public DNS resolver.\nOperated by Alibaba Cloud for mainland China, with domestic, Hong Kong and overseas access nodes.\nHomepage: https://alidns.com\nWarning: GFW filtering rules are applied by this resolver.",
       "filter": true,
@@ -146,8 +146,7 @@
       "name": "cloudflare",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns.cloudflare.com",
-        "ipv4": "1.0.0.1",
+        "host": "cloudflare-dns.com",
         "cors": true
       },
       "description": "Cloudflare 1.1.1.1 public resolver.\nGlobal anycast, non-filtering.\nOperated by Cloudflare. Service page: https://developers.cloudflare.com/1.1.1.1/",
@@ -187,82 +186,6 @@
       "filter": true
     },
     {
-      "name": "controld-block-malware",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "freedns.controld.com",
-        "path": "/p1",
-        "ipv4": "76.76.2.11",
-        "cors": true
-      },
-      "description": "Control D Free DNS Malware resolver.\nBlocks known dangerous domains. No query logging. Global anycast network. https://controld.com/free-dns\nOperated by Control D. Service page: https://controld.com/free-dns",
-      "filter": true,
-      "cors": true
-    },
-    {
-      "name": "controld-block-malware-ad",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "freedns.controld.com",
-        "path": "/p2",
-        "ipv4": "76.76.2.11",
-        "cors": true
-      },
-      "description": "Control D Free DNS Ads & Tracking resolver.\nBlocks malware, ads and trackers. No query logging. Global anycast network. https://controld.com/free-dns\nOperated by Control D. Service page: https://controld.com/free-dns",
-      "filter": true,
-      "cors": true
-    },
-    {
-      "name": "controld-block-malware-ad-social",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "freedns.controld.com",
-        "path": "/p3",
-        "ipv4": "76.76.2.11",
-        "cors": true
-      },
-      "description": "Control D Free DNS Social resolver.\nBlocks malware, ads, trackers and major social-media services. No query logging. Global anycast network. https://controld.com/free-dns\nOperated by Control D. Service page: https://controld.com/free-dns",
-      "filter": true,
-      "cors": true
-    },
-    {
-      "name": "controld-family-friendly",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "freedns.controld.com",
-        "path": "/family",
-        "ipv4": "76.76.2.11",
-        "cors": true
-      },
-      "description": "Control D Free DNS Family Friendly resolver.\nBlocks malware, ads, trackers, adult content and drug-related domains. No query logging. Global anycast network. https://controld.com/free-dns\nOperated by Control D. Service page: https://controld.com/free-dns",
-      "filter": true,
-      "cors": true
-    },
-    {
-      "name": "controld-uncensored",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "freedns.controld.com",
-        "path": "/uncensored",
-        "ipv4": "76.76.2.11",
-        "cors": true
-      },
-      "description": "Control D Free DNS Uncensored resolver.\nAttempts to unblock domains censored in various countries. No query logging. Global anycast network. https://controld.com/free-dns\nOperated by Control D. Service page: https://controld.com/free-dns",
-      "cors": true
-    },
-    {
-      "name": "controld-unfiltered",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "freedns.controld.com",
-        "path": "/p0",
-        "ipv4": "76.76.2.11",
-        "cors": true
-      },
-      "description": "Control D Free DNS Unfiltered resolver.\nDoes not block or rewrite domains. No query logging. Global anycast network. https://controld.com/free-dns\nOperated by Control D. Service page: https://controld.com/free-dns",
-      "cors": true
-    },
-    {
       "name": "dns.digitalsize.net",
       "endpoint": {
         "protocol": "https:",
@@ -274,8 +197,8 @@
       "name": "dns.sb",
       "endpoint": {
         "protocol": "https:",
-        "host": "45.11.45.11",
-        "ipv4": "45.11.45.11",
+        "host": "185.222.222.222",
+        "ipv4": "185.222.222.222",
         "cors": true
       },
       "description": "DNS.SB public resolver.\nOperated by xTom. No logs, no filtering, supports DNSSEC. Homepage: https://dns.sb",
@@ -289,6 +212,16 @@
       },
       "description": "A DNS resolver located in Germany.\nDesigned to block ads, malware, and surveillance. No logs.\nOperated by DNSBunker.\nhttps://dnsbunker.org",
       "filter": true
+    },
+    {
+      "name": "dnscry.pt-doh-mumbai02-ipv6",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "bom02.dnscry.pt",
+        "cors": true
+      },
+      "description": "dnscry.pt Mumbai 02 DoH resolver.\nIPv6 endpoint. Operated by dnscry.pt. No query logs, no intentional filtering, blocking, redirecting or rewriting, DNSSEC validation.\nhttps://www.dnscry.pt",
+      "cors": true
     },
     {
       "name": "dnscrypt.ca-ipv4-doh",
@@ -440,8 +373,8 @@
       "name": "google",
       "endpoint": {
         "protocol": "https:",
-        "host": "8.8.4.4",
-        "ipv4": "8.8.4.4",
+        "host": "8.8.8.8",
+        "ipv4": "8.8.8.8",
         "cors": true
       },
       "description": "Google Public DNS resolver.\nGlobal anycast service operated by Google.\nOperated by Google Public DNS. Service page: https://developers.google.com/speed/public-dns",
@@ -468,16 +401,6 @@
         "cors": true
       },
       "description": "Tiarap Japan non-filtering resolver.\nNo logging, no filtering, no EDNS Client Subnet, supports DNSSEC. https://jp.tiar.app\nMaintained by id-gmail / Tiarap. Service page: https://tiarap.org/",
-      "cors": true
-    },
-    {
-      "name": "jp.tiarap.org",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "jp.tiarap.org",
-        "cors": true
-      },
-      "description": "Tiarap Japan non-filtering resolver.\nCached via Cloudflare. No logging, no filtering, no EDNS Client Subnet, supports DNSSEC. https://jp.tiarap.org\nMaintained by id-gmail / Tiarap. Service page: https://tiarap.org/",
       "cors": true
     },
     {
@@ -578,22 +501,14 @@
       "cors": true
     },
     {
-      "name": "qihoo360-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh.360.cn"
-      },
-      "description": "Qihoo 360 public resolver.\nOperated by Qihoo 360. Has logs; GFW filtering rules are applied. Homepage: https://sdns.360.net",
-      "filter": true,
-      "log": true
-    },
-    {
       "name": "rethinkdns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "max.rethinkdns.com"
+        "host": "sky.rethinkdns.com",
+        "cors": true
       },
-      "description": "RethinkDNS public resolver.\nNo logging, no filtering. `sky.rethinkdns.com` is a Cloudflare-hosted stub resolver; `max.rethinkdns.com` is a recursive resolver hosted on Fly.io. The stub strips identification parameters from the request and proxies to another recursive resolver.\nOperated by RethinkDNS. Service page: https://rethinkdns.com/"
+      "description": "RethinkDNS public resolver.\nNo logging, no filtering. `sky.rethinkdns.com` is a Cloudflare-hosted stub resolver; `max.rethinkdns.com` is a recursive resolver hosted on Fly.io. The stub strips identification parameters from the request and proxies to another recursive resolver.\nOperated by RethinkDNS. Service page: https://rethinkdns.com/",
+      "cors": true
     },
     {
       "name": "safesurfer-doh",

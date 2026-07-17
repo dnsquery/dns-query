@@ -117,8 +117,8 @@
       "name": "alidns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "47.108.0.63",
-        "ipv4": "47.108.0.63"
+        "host": "47.122.8.11",
+        "ipv4": "47.122.8.11"
       },
       "description": "Alibaba Cloud Public DNS resolver.\nOperated by Alibaba Cloud for mainland China, with domestic, Hong Kong and overseas access nodes.\nHomepage: https://alidns.com\nWarning: GFW filtering rules are applied by this resolver.",
       "country": "China",
@@ -192,14 +192,15 @@
       "name": "cloudflare",
       "endpoint": {
         "protocol": "https:",
-        "host": "cloudflare-dns.com",
+        "host": "dns.cloudflare.com",
+        "ipv4": "1.0.0.1",
         "cors": true
       },
       "description": "Cloudflare 1.1.1.1 public resolver.\nGlobal anycast, non-filtering.\nOperated by Cloudflare. Service page: https://developers.cloudflare.com/1.1.1.1/",
-      "country": "United States",
+      "country": "Australia",
       "location": {
-        "lat": 37.751,
-        "long": -97.822
+        "lat": -33.494,
+        "long": 143.2104
       },
       "cors": true
     },
@@ -224,7 +225,7 @@
       "name": "cloudflare-ipv6",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns.cloudflare.com",
+        "host": "cloudflare-dns.com",
         "cors": true
       },
       "description": "Cloudflare 1.1.1.1 public resolver.\nIPv6 endpoint. Global anycast, non-filtering.\nOperated by Cloudflare. Service page: https://developers.cloudflare.com/1.1.1.1/",
@@ -601,21 +602,6 @@
       "cors": true
     },
     {
-      "name": "dnscry.pt-doh-bogota-ipv4",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "bog01.dnscry.pt",
-        "cors": true
-      },
-      "description": "dnscry.pt Bogotá DoH resolver.\nIPv4 endpoint. Operated by dnscry.pt. No query logs, no intentional filtering, blocking, redirecting or rewriting, DNSSEC validation.\nhttps://www.dnscry.pt",
-      "country": "India",
-      "location": {
-        "lat": 20.0063,
-        "long": 77.006
-      },
-      "cors": true
-    },
-    {
       "name": "dnscry.pt-doh-bratislava-ipv4",
       "endpoint": {
         "protocol": "https:",
@@ -831,6 +817,31 @@
       "cors": true
     },
     {
+      "name": "dnscry.pt-doh-dhaka-ipv4",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dac01.dnscry.pt",
+        "cors": true
+      },
+      "description": "dnscry.pt Dhaka DoH resolver.\nIPv4 endpoint. Operated by dnscry.pt. No query logs, no intentional filtering, blocking, redirecting or rewriting, DNSSEC validation.\nhttps://www.dnscry.pt",
+      "cors": true
+    },
+    {
+      "name": "dnscry.pt-doh-dublin-ipv4",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dub01.dnscry.pt",
+        "cors": true
+      },
+      "description": "dnscry.pt Dublin DoH resolver.\nIPv4 endpoint. Operated by dnscry.pt. No query logs, no intentional filtering, blocking, redirecting or rewriting, DNSSEC validation.\nhttps://www.dnscry.pt",
+      "country": "Netherlands",
+      "location": {
+        "lat": 52.3824,
+        "long": 4.8995
+      },
+      "cors": true
+    },
+    {
       "name": "dnscry.pt-doh-durham-ipv4",
       "endpoint": {
         "protocol": "https:",
@@ -842,6 +853,21 @@
       "location": {
         "lat": 37.751,
         "long": -97.822
+      },
+      "cors": true
+    },
+    {
+      "name": "dnscry.pt-doh-dusseldorf-ipv4",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dus01.dnscry.pt",
+        "cors": true
+      },
+      "description": "dnscry.pt Düsseldorf DoH resolver.\nIPv4 endpoint. Operated by dnscry.pt. No query logs, no intentional filtering, blocking, redirecting or rewriting, DNSSEC validation.\nhttps://www.dnscry.pt",
+      "country": "Germany",
+      "location": {
+        "lat": 51.2993,
+        "long": 9.491
       },
       "cors": true
     },
@@ -2419,10 +2445,10 @@
         "cors": true
       },
       "description": "DNSforge non-filtering resolver.\nPublic resolver in Germany. Non-logging, supports DNSSEC. https://dnsforge.de\nMaintained by DNSforge. Service page: https://dnsforge.de/",
-      "country": "Unknown",
+      "country": "Germany",
       "location": {
-        "lat": 47,
-        "long": 8
+        "lat": 51.2993,
+        "long": 9.491
       },
       "cors": true
     },
@@ -2751,9 +2777,11 @@
       "name": "rethinkdns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "max.rethinkdns.com"
+        "host": "sky.rethinkdns.com",
+        "cors": true
       },
-      "description": "RethinkDNS public resolver.\nNo logging, no filtering. `sky.rethinkdns.com` is a Cloudflare-hosted stub resolver; `max.rethinkdns.com` is a recursive resolver hosted on Fly.io. The stub strips identification parameters from the request and proxies to another recursive resolver.\nOperated by RethinkDNS. Service page: https://rethinkdns.com/"
+      "description": "RethinkDNS public resolver.\nNo logging, no filtering. `sky.rethinkdns.com` is a Cloudflare-hosted stub resolver; `max.rethinkdns.com` is a recursive resolver hosted on Fly.io. The stub strips identification parameters from the request and proxies to another recursive resolver.\nOperated by RethinkDNS. Service page: https://rethinkdns.com/",
+      "cors": true
     },
     {
       "name": "safesurfer-doh",

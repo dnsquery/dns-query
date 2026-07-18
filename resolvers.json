@@ -71,8 +71,8 @@
       "name": "adguard-dns-family-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "94.140.15.16",
-        "ipv4": "94.140.15.16"
+        "host": "94.140.14.15",
+        "ipv4": "94.140.14.15"
       },
       "description": "AdGuard DNS Family Protection resolver.\nBlocks ads, trackers, phishing, malicious and adult domains. Enforces safe search where available.\nOperated by AdGuard. Service page: https://adguard-dns.io/en/public-dns.html",
       "country": "France",
@@ -95,8 +95,8 @@
       "name": "adguard-dns-unfiltered-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "94.140.14.141",
-        "ipv4": "94.140.14.141"
+        "host": "94.140.14.140",
+        "ipv4": "94.140.14.140"
       },
       "description": "AdGuard DNS Non-filtering public resolver.\nDoes not block or rewrite domains.\nOperated by AdGuard. Service page: https://adguard-dns.io/en/public-dns.html",
       "country": "France",
@@ -117,14 +117,14 @@
       "name": "alidns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "47.122.8.11",
-        "ipv4": "47.122.8.11"
+        "host": "182.40.70.12",
+        "ipv4": "182.40.70.12"
       },
       "description": "Alibaba Cloud Public DNS resolver.\nOperated by Alibaba Cloud for mainland China, with domestic, Hong Kong and overseas access nodes.\nHomepage: https://alidns.com\nWarning: GFW filtering rules are applied by this resolver.",
       "country": "China",
       "location": {
-        "lat": 34.7725,
-        "long": 113.7266
+        "lat": 36.066,
+        "long": 120.3694
       },
       "filter": true,
       "log": true
@@ -192,16 +192,11 @@
       "name": "cloudflare",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns.cloudflare.com",
-        "ipv4": "1.0.0.1",
+        "host": "162.159.46.1",
+        "ipv4": "162.159.46.1",
         "cors": true
       },
       "description": "Cloudflare 1.1.1.1 public resolver.\nGlobal anycast, non-filtering.\nOperated by Cloudflare. Service page: https://developers.cloudflare.com/1.1.1.1/",
-      "country": "Australia",
-      "location": {
-        "lat": -33.494,
-        "long": 143.2104
-      },
       "cors": true
     },
     {
@@ -225,7 +220,7 @@
       "name": "cloudflare-ipv6",
       "endpoint": {
         "protocol": "https:",
-        "host": "cloudflare-dns.com",
+        "host": "dns.cloudflare.com",
         "cors": true
       },
       "description": "Cloudflare 1.1.1.1 public resolver.\nIPv6 endpoint. Global anycast, non-filtering.\nOperated by Cloudflare. Service page: https://developers.cloudflare.com/1.1.1.1/",
@@ -390,15 +385,15 @@
       "name": "dns.sb",
       "endpoint": {
         "protocol": "https:",
-        "host": "185.222.222.222",
-        "ipv4": "185.222.222.222",
+        "host": "45.11.45.11",
+        "ipv4": "45.11.45.11",
         "cors": true
       },
       "description": "DNS.SB public resolver.\nOperated by xTom. No logs, no filtering, supports DNSSEC. Homepage: https://dns.sb",
-      "country": "Unknown",
+      "country": "Netherlands",
       "location": {
-        "lat": 47,
-        "long": 8
+        "lat": 52.3824,
+        "long": 4.8995
       },
       "cors": true
     },
@@ -536,6 +531,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "akl01.dnscry.pt",
+        "method": "POST",
         "cors": true
       },
       "description": "dnscry.pt Auckland DoH resolver.\nIPv4 endpoint. Operated by dnscry.pt. No query logs, no intentional filtering, blocking, redirecting or rewriting, DNSSEC validation.\nhttps://www.dnscry.pt",
@@ -543,46 +539,6 @@
       "location": {
         "lat": -36.7667,
         "long": 174.6833
-      },
-      "cors": true
-    },
-    {
-      "name": "dnscry.pt-doh-baku-ipv4",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "gyd01.dnscry.pt",
-        "cors": true
-      },
-      "description": "dnscry.pt Baku DoH resolver.\nIPv4 endpoint. Operated by dnscry.pt. No query logs, no intentional filtering, blocking, redirecting or rewriting, DNSSEC validation.\nhttps://www.dnscry.pt",
-      "country": "India",
-      "location": {
-        "lat": 20.0063,
-        "long": 77.006
-      },
-      "cors": true
-    },
-    {
-      "name": "dnscry.pt-doh-bangkok-ipv4",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "bkk01.dnscry.pt",
-        "cors": true
-      },
-      "description": "dnscry.pt Bangkok DoH resolver.\nIPv4 endpoint. Operated by dnscry.pt. No query logs, no intentional filtering, blocking, redirecting or rewriting, DNSSEC validation.\nhttps://www.dnscry.pt",
-      "cors": true
-    },
-    {
-      "name": "dnscry.pt-doh-bengaluru-ipv4",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "blr01.dnscry.pt",
-        "cors": true
-      },
-      "description": "dnscry.pt Bengaluru DoH resolver.\nIPv4 endpoint. Operated by dnscry.pt. No query logs, no intentional filtering, blocking, redirecting or rewriting, DNSSEC validation.\nhttps://www.dnscry.pt",
-      "country": "Japan",
-      "location": {
-        "lat": 35.69,
-        "long": 139.69
       },
       "cors": true
     },
@@ -2407,6 +2363,26 @@
       "cors": true
     },
     {
+      "name": "dnscry.pt-odoh-calgary",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "yyc01.dnscry.pt",
+        "cors": true
+      },
+      "description": "dnscry.pt Calgary ODoH target.\nOperated by dnscry.pt. No query logs, no intentional filtering, blocking, redirecting or rewriting, DNSSEC validation.\nhttps://www.dnscry.pt",
+      "cors": true
+    },
+    {
+      "name": "dnscry.pt-odoh-vientiane",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "vte01.dnscry.pt",
+        "cors": true
+      },
+      "description": "dnscry.pt Vientiane ODoH target.\nOperated by dnscry.pt. No query logs, no intentional filtering, blocking, redirecting or rewriting, DNSSEC validation.\nhttps://www.dnscry.pt",
+      "cors": true
+    },
+    {
       "name": "dnscrypt.ca-ipv4-doh",
       "endpoint": {
         "protocol": "https:",
@@ -2431,8 +2407,8 @@
       "description": "DNSforge ad-blocking resolver.\nPublic resolver in Germany, running Pi-hole for ad blocking. Non-logging, supports DNSSEC. https://dnsforge.de\nMaintained by DNSforge. Service page: https://dnsforge.de/",
       "country": "Germany",
       "location": {
-        "lat": 52.2998,
-        "long": 9.447
+        "lat": 51.2993,
+        "long": 9.491
       },
       "filter": true,
       "cors": true
@@ -2445,10 +2421,10 @@
         "cors": true
       },
       "description": "DNSforge non-filtering resolver.\nPublic resolver in Germany. Non-logging, supports DNSSEC. https://dnsforge.de\nMaintained by DNSforge. Service page: https://dnsforge.de/",
-      "country": "Germany",
+      "country": "Unknown",
       "location": {
-        "lat": 51.2993,
-        "long": 9.491
+        "lat": 47,
+        "long": 8
       },
       "cors": true
     },
@@ -2466,8 +2442,7 @@
       "name": "dnspod",
       "endpoint": {
         "protocol": "https:",
-        "host": "1.12.12.12",
-        "ipv4": "1.12.12.12"
+        "host": "1.12.12.12"
       },
       "description": "DNSPod Public DNS resolver.\nOperated by Tencent Cloud DNSPod for users in China. Overseas access to the free Public DNS service may be unreliable.\nHomepage: https://dnspod.cn\nWarning: GFW filtering rules are applied by this resolver.",
       "country": "China",
@@ -2601,8 +2576,8 @@
       "name": "google",
       "endpoint": {
         "protocol": "https:",
-        "host": "8.8.4.4",
-        "ipv4": "8.8.4.4",
+        "host": "8.8.8.8",
+        "ipv4": "8.8.8.8",
         "cors": true
       },
       "description": "Google Public DNS resolver.\nGlobal anycast service operated by Google.\nOperated by Google Public DNS. Service page: https://developers.google.com/speed/public-dns",
@@ -2629,6 +2604,21 @@
       },
       "filter": true,
       "log": true,
+      "cors": true
+    },
+    {
+      "name": "jp.tiar.app-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "jp.tiar.app",
+        "cors": true
+      },
+      "description": "Tiarap Japan non-filtering resolver.\nNo logging, no filtering, no EDNS Client Subnet, supports DNSSEC. https://jp.tiar.app\nMaintained by id-gmail / Tiarap. Service page: https://tiarap.org/",
+      "country": "Japan",
+      "location": {
+        "lat": 35.6882,
+        "long": 139.7532
+      },
       "cors": true
     },
     {
@@ -2777,11 +2767,9 @@
       "name": "rethinkdns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "sky.rethinkdns.com",
-        "cors": true
+        "host": "max.rethinkdns.com"
       },
-      "description": "RethinkDNS public resolver.\nNo logging, no filtering. `sky.rethinkdns.com` is a Cloudflare-hosted stub resolver; `max.rethinkdns.com` is a recursive resolver hosted on Fly.io. The stub strips identification parameters from the request and proxies to another recursive resolver.\nOperated by RethinkDNS. Service page: https://rethinkdns.com/",
-      "cors": true
+      "description": "RethinkDNS public resolver.\nNo logging, no filtering. `sky.rethinkdns.com` is a Cloudflare-hosted stub resolver; `max.rethinkdns.com` is a recursive resolver hosted on Fly.io. The stub strips identification parameters from the request and proxies to another recursive resolver.\nOperated by RethinkDNS. Service page: https://rethinkdns.com/"
     },
     {
       "name": "safesurfer-doh",

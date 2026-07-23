@@ -47,8 +47,8 @@
       "name": "adguard-dns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "94.140.14.14",
-        "ipv4": "94.140.14.14"
+        "host": "94.140.15.15",
+        "ipv4": "94.140.15.15"
       },
       "description": "AdGuard DNS Default public resolver.\nBlocks ads, trackers, phishing and malicious domains.\nOperated by AdGuard. Service page: https://adguard-dns.io/en/public-dns.html",
       "country": "France",
@@ -95,8 +95,8 @@
       "name": "adguard-dns-unfiltered-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "94.140.14.141",
-        "ipv4": "94.140.14.141"
+        "host": "94.140.14.140",
+        "ipv4": "94.140.14.140"
       },
       "description": "AdGuard DNS Non-filtering public resolver.\nDoes not block or rewrite domains.\nOperated by AdGuard. Service page: https://adguard-dns.io/en/public-dns.html",
       "country": "France",
@@ -117,14 +117,14 @@
       "name": "alidns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "1.71.20.37",
-        "ipv4": "1.71.20.37"
+        "host": "39.103.26.204",
+        "ipv4": "39.103.26.204"
       },
       "description": "Alibaba Cloud Public DNS resolver.\nOperated by Alibaba Cloud for mainland China, with domestic, Hong Kong and overseas access nodes.\nHomepage: https://alidns.com\nWarning: GFW filtering rules are applied by this resolver.",
       "country": "China",
       "location": {
-        "lat": 37.7269,
-        "long": 112.4708
+        "lat": 34.7725,
+        "long": 113.7266
       },
       "filter": true,
       "log": true
@@ -999,61 +999,6 @@
         "lat": 59.3247,
         "long": 18.056
       },
-      "cors": true
-    },
-    {
-      "name": "dnscry.pt-doh-halifax-ipv4",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "yhz01.dnscry.pt",
-        "cors": true
-      },
-      "description": "dnscry.pt Halifax DoH resolver.\nIPv4 endpoint. Operated by dnscry.pt. No query logs, no intentional filtering, blocking, redirecting or rewriting, DNSSEC validation.\nhttps://www.dnscry.pt",
-      "country": "Unknown",
-      "location": {
-        "lat": null,
-        "long": null
-      },
-      "cors": true
-    },
-    {
-      "name": "dnscry.pt-doh-hanoi-ipv4",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "han01.dnscry.pt",
-        "cors": true
-      },
-      "description": "dnscry.pt Hanoi DoH resolver.\nIPv4 endpoint. Operated by dnscry.pt. No query logs, no intentional filtering, blocking, redirecting or rewriting, DNSSEC validation.\nhttps://www.dnscry.pt",
-      "country": "Vietnam",
-      "location": {
-        "lat": 21.0313,
-        "long": 105.8516
-      },
-      "cors": true
-    },
-    {
-      "name": "dnscry.pt-doh-helsinki-ipv4",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "hel01.dnscry.pt",
-        "cors": true
-      },
-      "description": "dnscry.pt Helsinki DoH resolver.\nIPv4 endpoint. Operated by dnscry.pt. No query logs, no intentional filtering, blocking, redirecting or rewriting, DNSSEC validation.\nhttps://www.dnscry.pt",
-      "country": "Seychelles",
-      "location": {
-        "lat": -4.5833,
-        "long": 55.6667
-      },
-      "cors": true
-    },
-    {
-      "name": "dnscry.pt-doh-hochiminhcity-ipv4",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "sgn01.dnscry.pt",
-        "cors": true
-      },
-      "description": "dnscry.pt Ho-Chi-Minh City DoH resolver.\nIPv4 endpoint. Operated by dnscry.pt. No query logs, no intentional filtering, blocking, redirecting or rewriting, DNSSEC validation.\nhttps://www.dnscry.pt",
       "cors": true
     },
     {
@@ -2307,47 +2252,6 @@
       "cors": true
     },
     {
-      "name": "dnsforge.de",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dnsforge.de",
-        "cors": true
-      },
-      "description": "DNSforge ad-blocking resolver.\nPublic resolver in Germany, running Pi-hole for ad blocking. Non-logging, supports DNSSEC. https://dnsforge.de\nMaintained by DNSforge. Service page: https://dnsforge.de/",
-      "country": "Germany",
-      "location": {
-        "lat": 52.2998,
-        "long": 9.447
-      },
-      "filter": true,
-      "cors": true
-    },
-    {
-      "name": "dnsforge.de-nofilter",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "blank.dnsforge.de",
-        "cors": true
-      },
-      "description": "DNSforge non-filtering resolver.\nPublic resolver in Germany. Non-logging, supports DNSSEC. https://dnsforge.de\nMaintained by DNSforge. Service page: https://dnsforge.de/",
-      "country": "Germany",
-      "location": {
-        "lat": 51.2993,
-        "long": 9.491
-      },
-      "cors": true
-    },
-    {
-      "name": "dnslow.me",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dnslow.me"
-      },
-      "description": "dnslow.me privacy-first filtering resolver.\nOpen-source project with advertising and threat blocking. More info on the [homepage](https://dnslow.me) and [GitHub](https://github.com/PeterDaveHello/dnslow.me)",
-      "filter": true,
-      "log": true
-    },
-    {
       "name": "dnspod",
       "endpoint": {
         "protocol": "https:",
@@ -2362,18 +2266,6 @@
       },
       "filter": true,
       "log": true
-    },
-    {
-      "name": "doh-cleanbrowsing-adult",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "doh.cleanbrowsing.org",
-        "path": "/doh/adult-filter/",
-        "cors": true
-      },
-      "description": "CleanBrowsing Adult Filter.\nBlocks adult, pornographic and explicit sites. Allows proxy and VPN domains and mixed-content sites. Google and Bing are set to Safe Mode.\nOperated by CleanBrowsing. Service page: https://cleanbrowsing.org/filters/",
-      "filter": true,
-      "cors": true
     },
     {
       "name": "doh-cleanbrowsing-family",
@@ -2486,8 +2378,8 @@
       "name": "google",
       "endpoint": {
         "protocol": "https:",
-        "host": "8.8.8.8",
-        "ipv4": "8.8.8.8",
+        "host": "8.8.4.4",
+        "ipv4": "8.8.4.4",
         "cors": true
       },
       "description": "Google Public DNS resolver.\nGlobal anycast service operated by Google.\nOperated by Google Public DNS. Service page: https://developers.google.com/speed/public-dns",

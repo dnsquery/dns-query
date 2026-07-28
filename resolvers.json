@@ -117,14 +117,14 @@
       "name": "alidns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "8.129.152.230",
-        "ipv4": "8.129.152.230"
+        "host": "47.108.0.63",
+        "ipv4": "47.108.0.63"
       },
       "description": "Alibaba Cloud Public DNS resolver.\nOperated by Alibaba Cloud for mainland China, with domestic, Hong Kong and overseas access nodes.\nHomepage: https://alidns.com\nWarning: GFW filtering rules are applied by this resolver.",
-      "country": "Singapore",
+      "country": "China",
       "location": {
-        "lat": 1.3667,
-        "long": 103.8
+        "lat": 34.7725,
+        "long": 113.7266
       },
       "filter": true,
       "log": true
@@ -218,6 +218,21 @@
         "long": 143.2104
       },
       "filter": true,
+      "cors": true
+    },
+    {
+      "name": "cloudflare-ipv6",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "cloudflare-dns.com",
+        "cors": true
+      },
+      "description": "Cloudflare 1.1.1.1 public resolver.\nIPv6 endpoint. Global anycast, non-filtering.\nOperated by Cloudflare. Service page: https://developers.cloudflare.com/1.1.1.1/",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      },
       "cors": true
     },
     {
@@ -374,16 +389,32 @@
       "name": "dns.sb",
       "endpoint": {
         "protocol": "https:",
-        "host": "185.222.222.222",
-        "ipv4": "185.222.222.222",
+        "host": "45.11.45.11",
+        "ipv4": "45.11.45.11",
         "cors": true
       },
       "description": "DNS.SB public resolver.\nOperated by xTom. No logs, no filtering, supports DNSSEC. Homepage: https://dns.sb",
-      "country": "Unknown",
+      "country": "Netherlands",
       "location": {
-        "lat": 47,
-        "long": 8
+        "lat": 52.3824,
+        "long": 4.8995
       },
+      "cors": true
+    },
+    {
+      "name": "dnsbunker",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dnsbunker.org",
+        "cors": true
+      },
+      "description": "A DNS resolver located in Germany.\nDesigned to block ads, malware, and surveillance. No logs.\nOperated by DNSBunker.\nhttps://dnsbunker.org",
+      "country": "Germany",
+      "location": {
+        "lat": 51.2993,
+        "long": 9.491
+      },
+      "filter": true,
       "cors": true
     },
     {
@@ -2494,6 +2525,66 @@
       "cors": true
     },
     {
+      "name": "iij",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "public.dns.iij.jp",
+        "cors": true
+      },
+      "description": "Internet Initiative Japan public resolver.\nOperated by Internet Initiative Japan in Tokyo. Blocks child pornography. https://www.iij.ad.jp/",
+      "country": "Japan",
+      "location": {
+        "lat": 35.69,
+        "long": 139.69
+      },
+      "filter": true,
+      "log": true,
+      "cors": true
+    },
+    {
+      "name": "la-contre-voie",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "doh.lacontrevoie.fr"
+      },
+      "description": "La Contre-Voie non-filtering public resolver.\nLocated in Falkenstein, Germany. DNSSEC validation. Keeps connection logs for 14 days.\nDoes not keep DNS query contents.\nOperated by La Contre-Voie. Service page: https://lacontrevoie.fr/services/doh/",
+      "country": "United Kingdom",
+      "location": {
+        "lat": 51.7768,
+        "long": -0.2843
+      },
+      "log": true
+    },
+    {
+      "name": "libredns",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "doh.libredns.gr"
+      },
+      "description": "LibreDNS public resolver in Germany.\nNo logging, but no DNS padding and no DNSSEC support. https://libredns.gr/\nOperated by LibreOps. Service page: https://libredns.gr/",
+      "country": "Germany",
+      "location": {
+        "lat": 51.2993,
+        "long": 9.491
+      },
+      "filter": true
+    },
+    {
+      "name": "libredns-noads",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "doh.libredns.gr",
+        "path": "/noads"
+      },
+      "description": "LibreDNS ad-blocking resolver in Germany.\nNo logging, but no DNS padding and no DNSSEC support. Uses StevenBlack's hosts list: https://github.com/StevenBlack/hosts\nOperated by LibreOps. Service page: https://libredns.gr/",
+      "country": "Germany",
+      "location": {
+        "lat": 51.2993,
+        "long": 9.491
+      },
+      "filter": true
+    },
+    {
       "name": "nextdns",
       "endpoint": {
         "protocol": "https:",
@@ -2586,9 +2677,11 @@
       "name": "rethinkdns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "max.rethinkdns.com"
+        "host": "sky.rethinkdns.com",
+        "cors": true
       },
-      "description": "RethinkDNS public resolver.\nNo logging, no filtering. `sky.rethinkdns.com` is a Cloudflare-hosted stub resolver; `max.rethinkdns.com` is a recursive resolver hosted on Fly.io. The stub strips identification parameters from the request and proxies to another recursive resolver.\nOperated by RethinkDNS. Service page: https://rethinkdns.com/"
+      "description": "RethinkDNS public resolver.\nNo logging, no filtering. `sky.rethinkdns.com` is a Cloudflare-hosted stub resolver; `max.rethinkdns.com` is a recursive resolver hosted on Fly.io. The stub strips identification parameters from the request and proxies to another recursive resolver.\nOperated by RethinkDNS. Service page: https://rethinkdns.com/",
+      "cors": true
     },
     {
       "name": "safesurfer-doh",

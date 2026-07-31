@@ -71,8 +71,8 @@
       "name": "adguard-dns-family-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "94.140.15.16",
-        "ipv4": "94.140.15.16"
+        "host": "94.140.14.15",
+        "ipv4": "94.140.14.15"
       },
       "description": "AdGuard DNS Family Protection resolver.\nBlocks ads, trackers, phishing, malicious and adult domains. Enforces safe search where available.\nOperated by AdGuard. Service page: https://adguard-dns.io/en/public-dns.html",
       "country": "France",
@@ -117,8 +117,8 @@
       "name": "alidns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "120.55.203.44",
-        "ipv4": "120.55.203.44"
+        "host": "223.6.6.6",
+        "ipv4": "223.6.6.6"
       },
       "description": "Alibaba Cloud Public DNS resolver.\nOperated by Alibaba Cloud for mainland China, with domestic, Hong Kong and overseas access nodes.\nHomepage: https://alidns.com\nWarning: GFW filtering rules are applied by this resolver.",
       "country": "China",
@@ -192,7 +192,7 @@
       "name": "cloudflare",
       "endpoint": {
         "protocol": "https:",
-        "host": "cloudflare-dns.com",
+        "host": "dns.cloudflare.com",
         "cors": true
       },
       "description": "Cloudflare 1.1.1.1 public resolver.\nGlobal anycast, non-filtering.\nOperated by Cloudflare. Service page: https://developers.cloudflare.com/1.1.1.1/",
@@ -224,7 +224,7 @@
       "name": "cloudflare-ipv6",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns.cloudflare.com",
+        "host": "cloudflare-dns.com",
         "cors": true
       },
       "description": "Cloudflare 1.1.1.1 public resolver.\nIPv6 endpoint. Global anycast, non-filtering.\nOperated by Cloudflare. Service page: https://developers.cloudflare.com/1.1.1.1/",
@@ -899,6 +899,21 @@
       "location": {
         "lat": -20.2833,
         "long": 57.55
+      },
+      "cors": true
+    },
+    {
+      "name": "dnscry.pt-doh-eygelshoven-ipv4",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "eyg01.dnscry.pt",
+        "cors": true
+      },
+      "description": "dnscry.pt Eygelshoven DoH resolver.\nIPv4 endpoint. Operated by dnscry.pt. No query logs, no intentional filtering, blocking, redirecting or rewriting, DNSSEC validation.\nhttps://www.dnscry.pt",
+      "country": "Netherlands",
+      "location": {
+        "lat": 52.3824,
+        "long": 4.8995
       },
       "cors": true
     },
@@ -2283,16 +2298,6 @@
       "cors": true
     },
     {
-      "name": "dnscry.pt-odoh-eygelshoven",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "eyg01.dnscry.pt",
-        "cors": true
-      },
-      "description": "dnscry.pt Eygelshoven ODoH target.\nOperated by dnscry.pt. No query logs, no intentional filtering, blocking, redirecting or rewriting, DNSSEC validation.\nhttps://www.dnscry.pt",
-      "cors": true
-    },
-    {
       "name": "dnscrypt.ca-ipv4-doh",
       "endpoint": {
         "protocol": "https:",
@@ -2653,11 +2658,9 @@
       "name": "rethinkdns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "sky.rethinkdns.com",
-        "cors": true
+        "host": "max.rethinkdns.com"
       },
-      "description": "RethinkDNS public resolver.\nNo logging, no filtering. `sky.rethinkdns.com` is a Cloudflare-hosted stub resolver; `max.rethinkdns.com` is a recursive resolver hosted on Fly.io. The stub strips identification parameters from the request and proxies to another recursive resolver.\nOperated by RethinkDNS. Service page: https://rethinkdns.com/",
-      "cors": true
+      "description": "RethinkDNS public resolver.\nNo logging, no filtering. `sky.rethinkdns.com` is a Cloudflare-hosted stub resolver; `max.rethinkdns.com` is a recursive resolver hosted on Fly.io. The stub strips identification parameters from the request and proxies to another recursive resolver.\nOperated by RethinkDNS. Service page: https://rethinkdns.com/"
     },
     {
       "name": "safesurfer-doh",

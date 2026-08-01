@@ -95,8 +95,8 @@
       "name": "adguard-dns-unfiltered-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "94.140.14.141",
-        "ipv4": "94.140.14.141"
+        "host": "94.140.14.140",
+        "ipv4": "94.140.14.140"
       },
       "description": "AdGuard DNS Non-filtering public resolver.\nDoes not block or rewrite domains.\nOperated by AdGuard. Service page: https://adguard-dns.io/en/public-dns.html",
       "country": "France",
@@ -117,14 +117,14 @@
       "name": "alidns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "223.6.6.6",
-        "ipv4": "223.6.6.6"
+        "host": "8.129.152.230",
+        "ipv4": "8.129.152.230"
       },
       "description": "Alibaba Cloud Public DNS resolver.\nOperated by Alibaba Cloud for mainland China, with domestic, Hong Kong and overseas access nodes.\nHomepage: https://alidns.com\nWarning: GFW filtering rules are applied by this resolver.",
-      "country": "China",
+      "country": "Singapore",
       "location": {
-        "lat": 34.7725,
-        "long": 113.7266
+        "lat": 1.3667,
+        "long": 103.8
       },
       "filter": true,
       "log": true
@@ -192,7 +192,7 @@
       "name": "cloudflare",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns.cloudflare.com",
+        "host": "cloudflare-dns.com",
         "cors": true
       },
       "description": "Cloudflare 1.1.1.1 public resolver.\nGlobal anycast, non-filtering.\nOperated by Cloudflare. Service page: https://developers.cloudflare.com/1.1.1.1/",
@@ -224,7 +224,7 @@
       "name": "cloudflare-ipv6",
       "endpoint": {
         "protocol": "https:",
-        "host": "cloudflare-dns.com",
+        "host": "dns.cloudflare.com",
         "cors": true
       },
       "description": "Cloudflare 1.1.1.1 public resolver.\nIPv6 endpoint. Global anycast, non-filtering.\nOperated by Cloudflare. Service page: https://developers.cloudflare.com/1.1.1.1/",
@@ -499,21 +499,6 @@
       "location": {
         "lat": 37.751,
         "long": -97.822
-      },
-      "cors": true
-    },
-    {
-      "name": "dnscry.pt-doh-ashburn-ipv4",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "abn01.dnscry.pt",
-        "cors": true
-      },
-      "description": "dnscry.pt Ashburn DoH resolver.\nIPv4 endpoint. Operated by dnscry.pt. No query logs, no intentional filtering, blocking, redirecting or rewriting, DNSSEC validation.\nhttps://www.dnscry.pt",
-      "country": "United Kingdom",
-      "location": {
-        "lat": 51.4964,
-        "long": -0.1224
       },
       "cors": true
     },
@@ -1478,21 +1463,6 @@
       "cors": true
     },
     {
-      "name": "dnscry.pt-doh-manchester-ipv4",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "man01.dnscry.pt",
-        "cors": true
-      },
-      "description": "dnscry.pt Manchester DoH resolver.\nIPv4 endpoint. Operated by dnscry.pt. No query logs, no intentional filtering, blocking, redirecting or rewriting, DNSSEC validation.\nhttps://www.dnscry.pt",
-      "country": "United States",
-      "location": {
-        "lat": 39.9038,
-        "long": -104.9419
-      },
-      "cors": true
-    },
-    {
       "name": "dnscry.pt-doh-marseille-ipv4",
       "endpoint": {
         "protocol": "https:",
@@ -2322,8 +2292,8 @@
       "description": "DNSforge ad-blocking resolver.\nPublic resolver in Germany, running Pi-hole for ad blocking. Non-logging, supports DNSSEC. https://dnsforge.de\nMaintained by DNSforge. Service page: https://dnsforge.de/",
       "country": "Germany",
       "location": {
-        "lat": 52.2998,
-        "long": 9.447
+        "lat": 51.2993,
+        "long": 9.491
       },
       "filter": true,
       "cors": true

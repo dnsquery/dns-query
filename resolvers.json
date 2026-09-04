@@ -95,8 +95,8 @@
       "name": "adguard-dns-unfiltered-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "94.140.14.141",
-        "ipv4": "94.140.14.141"
+        "host": "94.140.14.140",
+        "ipv4": "94.140.14.140"
       },
       "description": "AdGuard DNS Non-filtering public resolver.\nDoes not block or rewrite domains.\nOperated by AdGuard. Service page: https://adguard-dns.io/en/public-dns.html",
       "country": "France",
@@ -117,14 +117,14 @@
       "name": "alidns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "182.40.70.12",
-        "ipv4": "182.40.70.12"
+        "host": "39.103.26.204",
+        "ipv4": "39.103.26.204"
       },
       "description": "Alibaba Cloud Public DNS resolver.\nOperated by Alibaba Cloud for mainland China, with domestic, Hong Kong and overseas access nodes.\nHomepage: https://alidns.com\nWarning: GFW filtering rules are applied by this resolver.",
       "country": "China",
       "location": {
-        "lat": 36.066,
-        "long": 120.3694
+        "lat": 34.7725,
+        "long": 113.7266
       },
       "filter": true,
       "log": true
@@ -218,21 +218,6 @@
         "long": 143.2104
       },
       "filter": true,
-      "cors": true
-    },
-    {
-      "name": "cloudflare-ipv6",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns.cloudflare.com",
-        "cors": true
-      },
-      "description": "Cloudflare 1.1.1.1 public resolver.\nIPv6 endpoint. Global anycast, non-filtering.\nOperated by Cloudflare. Service page: https://developers.cloudflare.com/1.1.1.1/",
-      "country": "United States",
-      "location": {
-        "lat": 37.751,
-        "long": -97.822
-      },
       "cors": true
     },
     {
@@ -386,22 +371,6 @@
       }
     },
     {
-      "name": "dns.sb",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "185.222.222.222",
-        "ipv4": "185.222.222.222",
-        "cors": true
-      },
-      "description": "DNS.SB public resolver.\nOperated by xTom. No logs, no filtering, supports DNSSEC. Homepage: https://dns.sb",
-      "country": "Unknown",
-      "location": {
-        "lat": 47,
-        "long": 8
-      },
-      "cors": true
-    },
-    {
       "name": "dnsbunker",
       "endpoint": {
         "protocol": "https:",
@@ -499,6 +468,21 @@
       "location": {
         "lat": 37.751,
         "long": -97.822
+      },
+      "cors": true
+    },
+    {
+      "name": "dnscry.pt-doh-ashburn-ipv4",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "abn01.dnscry.pt",
+        "cors": true
+      },
+      "description": "dnscry.pt Ashburn DoH resolver.\nIPv4 endpoint. Operated by dnscry.pt. No query logs, no intentional filtering, blocking, redirecting or rewriting, DNSSEC validation.\nhttps://www.dnscry.pt",
+      "country": "United Kingdom",
+      "location": {
+        "lat": 51.4964,
+        "long": -0.1224
       },
       "cors": true
     },
@@ -1318,21 +1302,6 @@
       "cors": true
     },
     {
-      "name": "dnscry.pt-doh-lisbon-ipv4",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "lis01.dnscry.pt",
-        "cors": true
-      },
-      "description": "dnscry.pt Lisbon DoH resolver.\nIPv4 endpoint. Operated by dnscry.pt. No query logs, no intentional filtering, blocking, redirecting or rewriting, DNSSEC validation.\nhttps://www.dnscry.pt",
-      "country": "United States",
-      "location": {
-        "lat": 37.751,
-        "long": -97.822
-      },
-      "cors": true
-    },
-    {
       "name": "dnscry.pt-doh-lisbon02-ipv4",
       "endpoint": {
         "protocol": "https:",
@@ -1404,6 +1373,21 @@
       "location": {
         "lat": 40.4143,
         "long": -3.7016
+      },
+      "cors": true
+    },
+    {
+      "name": "dnscry.pt-doh-manchester-ipv4",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "man01.dnscry.pt",
+        "cors": true
+      },
+      "description": "dnscry.pt Manchester DoH resolver.\nIPv4 endpoint. Operated by dnscry.pt. No query logs, no intentional filtering, blocking, redirecting or rewriting, DNSSEC validation.\nhttps://www.dnscry.pt",
+      "country": "United States",
+      "location": {
+        "lat": 39.9038,
+        "long": -104.9419
       },
       "cors": true
     },
@@ -1943,6 +1927,21 @@
       "cors": true
     },
     {
+      "name": "dnscry.pt-doh-taipeh-ipv4",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "tpe01.dnscry.pt",
+        "cors": true
+      },
+      "description": "dnscry.pt Taipeh DoH resolver.\nIPv4 endpoint. Operated by dnscry.pt. No query logs, no intentional filtering, blocking, redirecting or rewriting, DNSSEC validation.\nhttps://www.dnscry.pt",
+      "country": "Singapore",
+      "location": {
+        "lat": 1.387,
+        "long": 103.7479
+      },
+      "cors": true
+    },
+    {
       "name": "dnscry.pt-doh-tallinn-ipv4",
       "endpoint": {
         "protocol": "https:",
@@ -2349,6 +2348,14 @@
       }
     },
     {
+      "name": "doh.ibksturm",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "ibksturm.synology.me"
+      },
+      "description": "ibksturm OpenNIC resolver in Switzerland.\nNo logs, DNSSEC. OpenNIC-based resolver operated by ibksturm."
+    },
+    {
       "name": "doh.tiar.app-doh",
       "endpoint": {
         "protocol": "https:",
@@ -2384,8 +2391,8 @@
       "name": "google",
       "endpoint": {
         "protocol": "https:",
-        "host": "8.8.8.8",
-        "ipv4": "8.8.8.8",
+        "host": "8.8.4.4",
+        "ipv4": "8.8.4.4",
         "cors": true
       },
       "description": "Google Public DNS resolver.\nGlobal anycast service operated by Google.\nOperated by Google Public DNS. Service page: https://developers.google.com/speed/public-dns",

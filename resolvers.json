@@ -95,8 +95,8 @@
       "name": "adguard-dns-unfiltered-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "94.140.14.141",
-        "ipv4": "94.140.14.141"
+        "host": "94.140.14.140",
+        "ipv4": "94.140.14.140"
       },
       "description": "AdGuard DNS Non-filtering public resolver.\nDoes not block or rewrite domains.\nOperated by AdGuard. Service page: https://adguard-dns.io/en/public-dns.html",
       "country": "France",
@@ -160,19 +160,6 @@
       "cors": true
     },
     {
-      "name": "circl-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns.circl.lu"
-      },
-      "description": "CIRCL Luxembourg public resolver.\nOperated by CIRCL, the Computer Incident Response Center Luxembourg. Hosted in Bettembourg, Luxembourg. https://www.circl.lu/",
-      "country": "Luxembourg",
-      "location": {
-        "lat": 49.7498,
-        "long": 6.1661
-      }
-    },
-    {
       "name": "cisco-doh",
       "endpoint": {
         "protocol": "https:",
@@ -192,7 +179,7 @@
       "name": "cloudflare",
       "endpoint": {
         "protocol": "https:",
-        "host": "1.0.0.1",
+        "host": "dns.cloudflare.com",
         "ipv4": "1.0.0.1",
         "cors": true
       },
@@ -219,21 +206,6 @@
         "long": 143.2104
       },
       "filter": true,
-      "cors": true
-    },
-    {
-      "name": "cloudflare-ipv6",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "cloudflare-dns.com",
-        "cors": true
-      },
-      "description": "Cloudflare 1.1.1.1 public resolver.\nIPv6 endpoint. Global anycast, non-filtering.\nOperated by Cloudflare. Service page: https://developers.cloudflare.com/1.1.1.1/",
-      "country": "United States",
-      "location": {
-        "lat": 37.751,
-        "long": -97.822
-      },
       "cors": true
     },
     {
@@ -390,15 +362,15 @@
       "name": "dns.sb",
       "endpoint": {
         "protocol": "https:",
-        "host": "185.222.222.222",
-        "ipv4": "185.222.222.222",
+        "host": "45.11.45.11",
+        "ipv4": "45.11.45.11",
         "cors": true
       },
       "description": "DNS.SB public resolver.\nOperated by xTom. No logs, no filtering, supports DNSSEC. Homepage: https://dns.sb",
-      "country": "Unknown",
+      "country": "Netherlands",
       "location": {
-        "lat": 47,
-        "long": 8
+        "lat": 52.3824,
+        "long": 4.8995
       },
       "cors": true
     },
@@ -945,21 +917,6 @@
       "location": {
         "lat": 43.6319,
         "long": -79.3716
-      },
-      "cors": true
-    },
-    {
-      "name": "dnscry.pt-doh-gdansk-ipv4",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "gdn01.dnscry.pt",
-        "cors": true
-      },
-      "description": "dnscry.pt Gdańsk DoH resolver.\nIPv4 endpoint. Operated by dnscry.pt. No query logs, no intentional filtering, blocking, redirecting or rewriting, DNSSEC validation.\nhttps://www.dnscry.pt",
-      "country": "Ukraine",
-      "location": {
-        "lat": 50.4522,
-        "long": 30.5287
       },
       "cors": true
     },
@@ -2278,8 +2235,8 @@
       "description": "DNSforge ad-blocking resolver.\nPublic resolver in Germany, running Pi-hole for ad blocking. Non-logging, supports DNSSEC. https://dnsforge.de\nMaintained by DNSforge. Service page: https://dnsforge.de/",
       "country": "Germany",
       "location": {
-        "lat": 52.2998,
-        "long": 9.447
+        "lat": 51.2993,
+        "long": 9.491
       },
       "filter": true,
       "cors": true
@@ -2292,10 +2249,10 @@
         "cors": true
       },
       "description": "DNSforge non-filtering resolver.\nPublic resolver in Germany. Non-logging, supports DNSSEC. https://dnsforge.de\nMaintained by DNSforge. Service page: https://dnsforge.de/",
-      "country": "Unknown",
+      "country": "Germany",
       "location": {
-        "lat": 47,
-        "long": 8
+        "lat": 51.2993,
+        "long": 9.491
       },
       "cors": true
     },
@@ -2313,8 +2270,8 @@
       "name": "dnspod",
       "endpoint": {
         "protocol": "https:",
-        "host": "1.12.12.12",
-        "ipv4": "1.12.12.12"
+        "host": "120.53.53.53",
+        "ipv4": "120.53.53.53"
       },
       "description": "DNSPod Public DNS resolver.\nOperated by Tencent Cloud DNSPod for users in China. Overseas access to the free Public DNS service may be unreliable.\nHomepage: https://dnspod.cn\nWarning: GFW filtering rules are applied by this resolver.",
       "country": "China",
@@ -2405,14 +2362,6 @@
       }
     },
     {
-      "name": "doh.ibksturm",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "ibksturm.synology.me"
-      },
-      "description": "ibksturm OpenNIC resolver in Switzerland.\nNo logs, DNSSEC. OpenNIC-based resolver operated by ibksturm."
-    },
-    {
       "name": "doh.tiar.app-doh",
       "endpoint": {
         "protocol": "https:",
@@ -2448,8 +2397,8 @@
       "name": "google",
       "endpoint": {
         "protocol": "https:",
-        "host": "8.8.4.4",
-        "ipv4": "8.8.4.4",
+        "host": "8.8.8.8",
+        "ipv4": "8.8.8.8",
         "cors": true
       },
       "description": "Google Public DNS resolver.\nGlobal anycast service operated by Google.\nOperated by Google Public DNS. Service page: https://developers.google.com/speed/public-dns",
@@ -2609,16 +2558,6 @@
       "description": "Qihoo 360 public resolver.\nOperated by Qihoo 360. Has logs; GFW filtering rules are applied. Homepage: https://sdns.360.net",
       "filter": true,
       "log": true
-    },
-    {
-      "name": "rethinkdns-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "sky.rethinkdns.com",
-        "cors": true
-      },
-      "description": "RethinkDNS public resolver.\nNo logging, no filtering. `sky.rethinkdns.com` is a Cloudflare-hosted stub resolver; `max.rethinkdns.com` is a recursive resolver hosted on Fly.io. The stub strips identification parameters from the request and proxies to another recursive resolver.\nOperated by RethinkDNS. Service page: https://rethinkdns.com/",
-      "cors": true
     },
     {
       "name": "safesurfer-doh",

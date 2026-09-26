@@ -117,10 +117,25 @@
       "name": "alidns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "223.5.5.5",
-        "ipv4": "223.5.5.5"
+        "host": "8.129.152.230",
+        "ipv4": "8.129.152.230"
       },
       "description": "Alibaba Cloud Public DNS resolver.\nOperated by Alibaba Cloud for mainland China, with domestic, Hong Kong and overseas access nodes.\nHomepage: https://alidns.com\nWarning: GFW filtering rules are applied by this resolver.",
+      "country": "Singapore",
+      "location": {
+        "lat": 1.3667,
+        "long": 103.8
+      },
+      "filter": true,
+      "log": true
+    },
+    {
+      "name": "alidns-doh-ipv6",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "223.5.5.5"
+      },
+      "description": "Alibaba Cloud Public DNS resolver.\nIPv6 endpoint. Operated by Alibaba Cloud for mainland China, with domestic, Hong Kong and overseas access nodes.\nHomepage: https://alidns.com\nWarning: GFW filtering rules are applied by this resolver.",
       "country": "China",
       "location": {
         "lat": 34.7725,
@@ -177,8 +192,8 @@
       "name": "cloudflare",
       "endpoint": {
         "protocol": "https:",
-        "host": "162.159.46.1",
-        "ipv4": "162.159.46.1",
+        "host": "162.159.36.1",
+        "ipv4": "162.159.36.1",
         "cors": true
       },
       "description": "Cloudflare 1.1.1.1 public resolver.\nGlobal anycast, non-filtering.\nOperated by Cloudflare. Service page: https://developers.cloudflare.com/1.1.1.1/",
@@ -421,6 +436,21 @@
         "cors": true
       },
       "description": "dnscry.pt Allendale DoH resolver.\nIPv4 endpoint. Operated by dnscry.pt. No query logs, no intentional filtering, blocking, redirecting or rewriting, DNSSEC validation.\nhttps://www.dnscry.pt",
+      "cors": true
+    },
+    {
+      "name": "dnscry.pt-doh-allentown-ipv4",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "abe01.dnscry.pt",
+        "cors": true
+      },
+      "description": "dnscry.pt Allentown DoH resolver.\nIPv4 endpoint. Operated by dnscry.pt. No query logs, no intentional filtering, blocking, redirecting or rewriting, DNSSEC validation.\nhttps://www.dnscry.pt",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      },
       "cors": true
     },
     {
@@ -910,6 +940,21 @@
       "location": {
         "lat": 43.6319,
         "long": -79.3716
+      },
+      "cors": true
+    },
+    {
+      "name": "dnscry.pt-doh-gdansk-ipv4",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "gdn01.dnscry.pt",
+        "cors": true
+      },
+      "description": "dnscry.pt Gdańsk DoH resolver.\nIPv4 endpoint. Operated by dnscry.pt. No query logs, no intentional filtering, blocking, redirecting or rewriting, DNSSEC validation.\nhttps://www.dnscry.pt",
+      "country": "Ukraine",
+      "location": {
+        "lat": 50.4522,
+        "long": 30.5287
       },
       "cors": true
     },
@@ -2188,8 +2233,8 @@
       "description": "DNSforge ad-blocking resolver.\nPublic resolver in Germany, running Pi-hole for ad blocking. Non-logging, supports DNSSEC. https://dnsforge.de\nMaintained by DNSforge. Service page: https://dnsforge.de/",
       "country": "Germany",
       "location": {
-        "lat": 52.2998,
-        "long": 9.447
+        "lat": 51.2993,
+        "long": 9.491
       },
       "filter": true,
       "cors": true
@@ -2215,22 +2260,7 @@
         "protocol": "https:",
         "host": "dnslow.me"
       },
-      "description": "dnslow.me privacy-first filtering resolver.\nOpen-source project with advertising and threat blocking. More info on the [homepage](https://dnslow.me) and [GitHub](https://github.com/PeterDaveHello/dnslow.me)",
-      "filter": true,
-      "log": true
-    },
-    {
-      "name": "dnspod",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "1.12.12.12"
-      },
-      "description": "DNSPod Public DNS resolver.\nOperated by Tencent Cloud DNSPod for users in China. Overseas access to the free Public DNS service may be unreliable.\nHomepage: https://dnspod.cn\nWarning: GFW filtering rules are applied by this resolver.",
-      "country": "China",
-      "location": {
-        "lat": 34.7725,
-        "long": 113.7266
-      },
+      "description": "dnslow.me privacy-first filtering resolver.\nOpen-source project with advertising and threat blocking. More info on the homepage (https://dnslow.me) and GitHub (https://github.com/PeterDaveHello/dnslow.me)",
       "filter": true,
       "log": true
     },
@@ -2366,22 +2396,6 @@
         "lat": -36.8506,
         "long": 174.7679
       },
-      "cors": true
-    },
-    {
-      "name": "dremaxx-family",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "family.dns.dremaxx.com",
-        "cors": true
-      },
-      "description": "Dremaxx Family resolver. Blocks adult content, no logs, DNSSEC validation. Recursive, sites in Zurich, Dusseldorf and Houston.\nBlocks about 489,000 adult domains (OISD NSFW list, refreshed hourly); no ad, tracker or malware filtering. IPv4 endpoint.\nBlocked names are rewritten, so clients validating DNSSEC themselves get SERVFAIL for blocked signed domains.\nOperated by Yannick Dreher. Homepage: https://dremaxx.de/en/dns-resolvers",
-      "country": "Saudi Arabia",
-      "location": {
-        "lat": 25,
-        "long": 45
-      },
-      "filter": true,
       "cors": true
     },
     {
@@ -2554,9 +2568,11 @@
       "name": "rethinkdns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "max.rethinkdns.com"
+        "host": "sky.rethinkdns.com",
+        "cors": true
       },
-      "description": "RethinkDNS public resolver.\nNo logging, no filtering. `sky.rethinkdns.com` is a Cloudflare-hosted stub resolver; `max.rethinkdns.com` is a recursive resolver hosted on Fly.io. The stub strips identification parameters from the request and proxies to another recursive resolver.\nOperated by RethinkDNS. Service page: https://rethinkdns.com/"
+      "description": "RethinkDNS public resolver.\nNo logging, no filtering. `sky.rethinkdns.com` is a Cloudflare-hosted stub resolver; `max.rethinkdns.com` is a recursive resolver hosted on Fly.io. The stub strips identification parameters from the request and proxies to another recursive resolver.\nOperated by RethinkDNS. Service page: https://rethinkdns.com/",
+      "cors": true
     },
     {
       "name": "safesurfer-doh",

@@ -47,8 +47,8 @@
       "name": "adguard-dns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "94.140.14.14",
-        "ipv4": "94.140.14.14"
+        "host": "94.140.15.15",
+        "ipv4": "94.140.15.15"
       },
       "description": "AdGuard DNS Default public resolver.\nBlocks ads, trackers, phishing and malicious domains.\nOperated by AdGuard. Service page: https://adguard-dns.io/en/public-dns.html",
       "country": "France",
@@ -95,8 +95,8 @@
       "name": "adguard-dns-unfiltered-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "94.140.14.141",
-        "ipv4": "94.140.14.141"
+        "host": "94.140.14.140",
+        "ipv4": "94.140.14.140"
       },
       "description": "AdGuard DNS Non-filtering public resolver.\nDoes not block or rewrite domains.\nOperated by AdGuard. Service page: https://adguard-dns.io/en/public-dns.html",
       "country": "France",
@@ -117,14 +117,14 @@
       "name": "alidns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "8.129.152.230",
-        "ipv4": "8.129.152.230"
+        "host": "139.129.137.137",
+        "ipv4": "139.129.137.137"
       },
       "description": "Alibaba Cloud Public DNS resolver.\nOperated by Alibaba Cloud for mainland China, with domestic, Hong Kong and overseas access nodes.\nHomepage: https://alidns.com\nWarning: GFW filtering rules are applied by this resolver.",
-      "country": "Singapore",
+      "country": "China",
       "location": {
-        "lat": 1.3667,
-        "long": 103.8
+        "lat": 36.066,
+        "long": 120.3694
       },
       "filter": true,
       "log": true
@@ -192,8 +192,8 @@
       "name": "cloudflare",
       "endpoint": {
         "protocol": "https:",
-        "host": "162.159.36.1",
-        "ipv4": "162.159.36.1",
+        "host": "162.159.46.1",
+        "ipv4": "162.159.46.1",
         "cors": true
       },
       "description": "Cloudflare 1.1.1.1 public resolver.\nGlobal anycast, non-filtering.\nOperated by Cloudflare. Service page: https://developers.cloudflare.com/1.1.1.1/",
@@ -385,15 +385,15 @@
       "name": "dns.sb",
       "endpoint": {
         "protocol": "https:",
-        "host": "45.11.45.11",
-        "ipv4": "45.11.45.11",
+        "host": "185.222.222.222",
+        "ipv4": "185.222.222.222",
         "cors": true
       },
       "description": "DNS.SB public resolver.\nOperated by xTom. No logs, no filtering, supports DNSSEC. Homepage: https://dns.sb",
-      "country": "Netherlands",
+      "country": "Unknown",
       "location": {
-        "lat": 52.3824,
-        "long": 4.8995
+        "lat": 47,
+        "long": 8
       },
       "cors": true
     },
@@ -2233,8 +2233,8 @@
       "description": "DNSforge ad-blocking resolver.\nPublic resolver in Germany, running Pi-hole for ad blocking. Non-logging, supports DNSSEC. https://dnsforge.de\nMaintained by DNSforge. Service page: https://dnsforge.de/",
       "country": "Germany",
       "location": {
-        "lat": 51.2993,
-        "long": 9.491
+        "lat": 52.2998,
+        "long": 9.447
       },
       "filter": true,
       "cors": true
@@ -2247,10 +2247,10 @@
         "cors": true
       },
       "description": "DNSforge non-filtering resolver.\nPublic resolver in Germany. Non-logging, supports DNSSEC. https://dnsforge.de\nMaintained by DNSforge. Service page: https://dnsforge.de/",
-      "country": "Unknown",
+      "country": "Germany",
       "location": {
-        "lat": 47,
-        "long": 8
+        "lat": 51.2993,
+        "long": 9.491
       },
       "cors": true
     },
@@ -2261,6 +2261,21 @@
         "host": "dnslow.me"
       },
       "description": "dnslow.me privacy-first filtering resolver.\nOpen-source project with advertising and threat blocking. More info on the homepage (https://dnslow.me) and GitHub (https://github.com/PeterDaveHello/dnslow.me)",
+      "filter": true,
+      "log": true
+    },
+    {
+      "name": "dnspod",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "1.12.12.12"
+      },
+      "description": "DNSPod Public DNS resolver.\nOperated by Tencent Cloud DNSPod for users in China. Overseas access to the free Public DNS service may be unreliable.\nHomepage: https://dnspod.cn\nWarning: GFW filtering rules are applied by this resolver.",
+      "country": "China",
+      "location": {
+        "lat": 34.7725,
+        "long": 113.7266
+      },
       "filter": true,
       "log": true
     },
@@ -2391,11 +2406,27 @@
         "cors": true
       },
       "description": "Dremaxx Open resolver. Non-filtering, no logs, DNSSEC validation. Recursive, sites in Zurich, Dusseldorf and Houston.\nResolves on its own (not a frontend to another public resolver). IPv4 endpoint; IPv6 is anycast from AS218835.\nOperated by Yannick Dreher. Homepage: https://dremaxx.de/en/dns-resolvers",
-      "country": "New Zealand",
+      "country": "Belgium",
       "location": {
-        "lat": -36.8506,
-        "long": 174.7679
+        "lat": 51.2385,
+        "long": 5.1145
       },
+      "cors": true
+    },
+    {
+      "name": "dremaxx-family",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "family.dns.dremaxx.com",
+        "cors": true
+      },
+      "description": "Dremaxx Family resolver. Blocks adult content, no logs, DNSSEC validation. Recursive, sites in Zurich, Dusseldorf and Houston.\nBlocks about 489,000 adult domains (OISD NSFW list, refreshed hourly); no ad, tracker or malware filtering. IPv4 endpoint.\nBlocked names are rewritten, so clients validating DNSSEC themselves get SERVFAIL for blocked signed domains.\nOperated by Yannick Dreher. Homepage: https://dremaxx.de/en/dns-resolvers",
+      "country": "Belgium",
+      "location": {
+        "lat": 51.2385,
+        "long": 5.1145
+      },
+      "filter": true,
       "cors": true
     },
     {

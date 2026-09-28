@@ -117,8 +117,8 @@
       "name": "alidns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "139.129.137.137",
-        "ipv4": "139.129.137.137"
+        "host": "182.40.70.12",
+        "ipv4": "182.40.70.12"
       },
       "description": "Alibaba Cloud Public DNS resolver.\nOperated by Alibaba Cloud for mainland China, with domestic, Hong Kong and overseas access nodes.\nHomepage: https://alidns.com\nWarning: GFW filtering rules are applied by this resolver.",
       "country": "China",
@@ -192,11 +192,15 @@
       "name": "cloudflare",
       "endpoint": {
         "protocol": "https:",
-        "host": "162.159.46.1",
-        "ipv4": "162.159.46.1",
+        "host": "dns.cloudflare.com",
         "cors": true
       },
       "description": "Cloudflare 1.1.1.1 public resolver.\nGlobal anycast, non-filtering.\nOperated by Cloudflare. Service page: https://developers.cloudflare.com/1.1.1.1/",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      },
       "cors": true
     },
     {
@@ -214,21 +218,6 @@
         "long": 143.2104
       },
       "filter": true,
-      "cors": true
-    },
-    {
-      "name": "cloudflare-ipv6",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns.cloudflare.com",
-        "cors": true
-      },
-      "description": "Cloudflare 1.1.1.1 public resolver.\nIPv6 endpoint. Global anycast, non-filtering.\nOperated by Cloudflare. Service page: https://developers.cloudflare.com/1.1.1.1/",
-      "country": "United States",
-      "location": {
-        "lat": 37.751,
-        "long": -97.822
-      },
       "cors": true
     },
     {
@@ -261,112 +250,6 @@
         "long": 37.6068
       },
       "filter": true
-    },
-    {
-      "name": "controld-block-malware",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "freedns.controld.com",
-        "path": "/p1",
-        "ipv4": "76.76.2.11",
-        "cors": true
-      },
-      "description": "Control D Free DNS Malware resolver.\nBlocks known dangerous domains. No query logging. Global anycast network. https://controld.com/free-dns\nOperated by Control D. Service page: https://controld.com/free-dns",
-      "country": "Canada",
-      "location": {
-        "lat": 43.6319,
-        "long": -79.3716
-      },
-      "filter": true,
-      "cors": true
-    },
-    {
-      "name": "controld-block-malware-ad",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "freedns.controld.com",
-        "path": "/p2",
-        "ipv4": "76.76.2.11",
-        "cors": true
-      },
-      "description": "Control D Free DNS Ads & Tracking resolver.\nBlocks malware, ads and trackers. No query logging. Global anycast network. https://controld.com/free-dns\nOperated by Control D. Service page: https://controld.com/free-dns",
-      "country": "Canada",
-      "location": {
-        "lat": 43.6319,
-        "long": -79.3716
-      },
-      "filter": true,
-      "cors": true
-    },
-    {
-      "name": "controld-block-malware-ad-social",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "freedns.controld.com",
-        "path": "/p3",
-        "ipv4": "76.76.2.11",
-        "cors": true
-      },
-      "description": "Control D Free DNS Social resolver.\nBlocks malware, ads, trackers and major social-media services. No query logging. Global anycast network. https://controld.com/free-dns\nOperated by Control D. Service page: https://controld.com/free-dns",
-      "country": "Canada",
-      "location": {
-        "lat": 43.6319,
-        "long": -79.3716
-      },
-      "filter": true,
-      "cors": true
-    },
-    {
-      "name": "controld-family-friendly",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "freedns.controld.com",
-        "path": "/family",
-        "ipv4": "76.76.2.11",
-        "cors": true
-      },
-      "description": "Control D Free DNS Family Friendly resolver.\nBlocks malware, ads, trackers, adult content and drug-related domains. No query logging. Global anycast network. https://controld.com/free-dns\nOperated by Control D. Service page: https://controld.com/free-dns",
-      "country": "Canada",
-      "location": {
-        "lat": 43.6319,
-        "long": -79.3716
-      },
-      "filter": true,
-      "cors": true
-    },
-    {
-      "name": "controld-uncensored",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "freedns.controld.com",
-        "path": "/uncensored",
-        "ipv4": "76.76.2.11",
-        "cors": true
-      },
-      "description": "Control D Free DNS Uncensored resolver.\nAttempts to unblock domains censored in various countries. No query logging. Global anycast network. https://controld.com/free-dns\nOperated by Control D. Service page: https://controld.com/free-dns",
-      "country": "Canada",
-      "location": {
-        "lat": 43.6319,
-        "long": -79.3716
-      },
-      "cors": true
-    },
-    {
-      "name": "controld-unfiltered",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "freedns.controld.com",
-        "path": "/p0",
-        "ipv4": "76.76.2.11",
-        "cors": true
-      },
-      "description": "Control D Free DNS Unfiltered resolver.\nDoes not block or rewrite domains. No query logging. Global anycast network. https://controld.com/free-dns\nOperated by Control D. Service page: https://controld.com/free-dns",
-      "country": "Canada",
-      "location": {
-        "lat": 43.6319,
-        "long": -79.3716
-      },
-      "cors": true
     },
     {
       "name": "dns.digitalsize.net",
@@ -2247,10 +2130,10 @@
         "cors": true
       },
       "description": "DNSforge non-filtering resolver.\nPublic resolver in Germany. Non-logging, supports DNSSEC. https://dnsforge.de\nMaintained by DNSforge. Service page: https://dnsforge.de/",
-      "country": "Germany",
+      "country": "Unknown",
       "location": {
-        "lat": 51.2993,
-        "long": 9.491
+        "lat": 47,
+        "long": 8
       },
       "cors": true
     },
@@ -2261,21 +2144,6 @@
         "host": "dnslow.me"
       },
       "description": "dnslow.me privacy-first filtering resolver.\nOpen-source project with advertising and threat blocking. More info on the homepage (https://dnslow.me) and GitHub (https://github.com/PeterDaveHello/dnslow.me)",
-      "filter": true,
-      "log": true
-    },
-    {
-      "name": "dnspod",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "1.12.12.12"
-      },
-      "description": "DNSPod Public DNS resolver.\nOperated by Tencent Cloud DNSPod for users in China. Overseas access to the free Public DNS service may be unreliable.\nHomepage: https://dnspod.cn\nWarning: GFW filtering rules are applied by this resolver.",
-      "country": "China",
-      "location": {
-        "lat": 34.7725,
-        "long": 113.7266
-      },
       "filter": true,
       "log": true
     },
@@ -2421,10 +2289,10 @@
         "cors": true
       },
       "description": "Dremaxx Family resolver. Blocks adult content, no logs, DNSSEC validation. Recursive, sites in Zurich, Dusseldorf and Houston.\nBlocks about 489,000 adult domains (OISD NSFW list, refreshed hourly); no ad, tracker or malware filtering. IPv4 endpoint.\nBlocked names are rewritten, so clients validating DNSSEC themselves get SERVFAIL for blocked signed domains.\nOperated by Yannick Dreher. Homepage: https://dremaxx.de/en/dns-resolvers",
-      "country": "Belgium",
+      "country": "New Zealand",
       "location": {
-        "lat": 51.2385,
-        "long": 5.1145
+        "lat": -36.8506,
+        "long": 174.7679
       },
       "filter": true,
       "cors": true
@@ -2433,8 +2301,8 @@
       "name": "google",
       "endpoint": {
         "protocol": "https:",
-        "host": "8.8.4.4",
-        "ipv4": "8.8.4.4",
+        "host": "8.8.8.8",
+        "ipv4": "8.8.8.8",
         "cors": true
       },
       "description": "Google Public DNS resolver.\nGlobal anycast service operated by Google.\nOperated by Google Public DNS. Service page: https://developers.google.com/speed/public-dns",

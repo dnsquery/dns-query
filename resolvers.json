@@ -71,8 +71,8 @@
       "name": "adguard-dns-family-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "94.140.14.15",
-        "ipv4": "94.140.14.15"
+        "host": "94.140.15.16",
+        "ipv4": "94.140.15.16"
       },
       "description": "AdGuard DNS Family Protection resolver.\nBlocks ads, trackers, phishing, malicious and adult domains. Enforces safe search where available.\nOperated by AdGuard. Service page: https://adguard-dns.io/en/public-dns.html",
       "country": "France",
@@ -117,8 +117,8 @@
       "name": "alidns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "123.184.198.22",
-        "ipv4": "123.184.198.22"
+        "host": "223.6.6.6",
+        "ipv4": "223.6.6.6"
       },
       "description": "Alibaba Cloud Public DNS resolver.\nOperated by Alibaba Cloud for mainland China, with domestic, Hong Kong and overseas access nodes.\nHomepage: https://alidns.com\nWarning: GFW filtering rules are applied by this resolver.",
       "country": "China",
@@ -160,19 +160,6 @@
       "cors": true
     },
     {
-      "name": "circl-doh",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns.circl.lu"
-      },
-      "description": "CIRCL Luxembourg public resolver.\nOperated by CIRCL, the Computer Incident Response Center Luxembourg. Hosted in Bettembourg, Luxembourg. https://www.circl.lu/",
-      "country": "Luxembourg",
-      "location": {
-        "lat": 49.7498,
-        "long": 6.1661
-      }
-    },
-    {
       "name": "cisco-doh",
       "endpoint": {
         "protocol": "https:",
@@ -192,15 +179,14 @@
       "name": "cloudflare",
       "endpoint": {
         "protocol": "https:",
-        "host": "1.0.0.1",
-        "ipv4": "1.0.0.1",
+        "host": "dns.cloudflare.com",
         "cors": true
       },
       "description": "Cloudflare 1.1.1.1 public resolver.\nGlobal anycast, non-filtering.\nOperated by Cloudflare. Service page: https://developers.cloudflare.com/1.1.1.1/",
-      "country": "Australia",
+      "country": "United States",
       "location": {
-        "lat": -33.494,
-        "long": 143.2104
+        "lat": 37.751,
+        "long": -97.822
       },
       "cors": true
     },
@@ -390,15 +376,15 @@
       "name": "dns.sb",
       "endpoint": {
         "protocol": "https:",
-        "host": "45.11.45.11",
-        "ipv4": "45.11.45.11",
+        "host": "185.222.222.222",
+        "ipv4": "185.222.222.222",
         "cors": true
       },
       "description": "DNS.SB public resolver.\nOperated by xTom. No logs, no filtering, supports DNSSEC. Homepage: https://dns.sb",
-      "country": "Netherlands",
+      "country": "Unknown",
       "location": {
-        "lat": 52.3824,
-        "long": 4.8995
+        "lat": 47,
+        "long": 8
       },
       "cors": true
     },
@@ -1878,6 +1864,7 @@
       "endpoint": {
         "protocol": "https:",
         "host": "sin02.dnscry.pt",
+        "method": "POST",
         "cors": true
       },
       "description": "dnscry.pt Singapore 02 DoH resolver.\nIPv4 endpoint. Operated by dnscry.pt. No query logs, no intentional filtering, blocking, redirecting or rewriting, DNSSEC validation.\nhttps://www.dnscry.pt",
@@ -2214,6 +2201,16 @@
       "cors": true
     },
     {
+      "name": "dnscry.pt-odoh-taipeh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "tpe01.dnscry.pt",
+        "cors": true
+      },
+      "description": "dnscry.pt Taipeh ODoH target.\nOperated by dnscry.pt. No query logs, no intentional filtering, blocking, redirecting or rewriting, DNSSEC validation.\nhttps://www.dnscry.pt",
+      "cors": true
+    },
+    {
       "name": "dnscrypt.ca-ipv4-doh",
       "endpoint": {
         "protocol": "https:",
@@ -2252,10 +2249,10 @@
         "cors": true
       },
       "description": "DNSforge non-filtering resolver.\nPublic resolver in Germany. Non-logging, supports DNSSEC. https://dnsforge.de\nMaintained by DNSforge. Service page: https://dnsforge.de/",
-      "country": "Germany",
+      "country": "Unknown",
       "location": {
-        "lat": 51.2993,
-        "long": 9.491
+        "lat": 47,
+        "long": 8
       },
       "cors": true
     },
@@ -2412,10 +2409,10 @@
         "cors": true
       },
       "description": "Dremaxx Open resolver. Non-filtering, no logs, DNSSEC validation. Recursive, sites in Zurich, Dusseldorf and Houston.\nResolves on its own (not a frontend to another public resolver). IPv4 endpoint; IPv6 is anycast from AS218835.\nOperated by Yannick Dreher. Homepage: https://dremaxx.de/en/dns-resolvers",
-      "country": "New Zealand",
+      "country": "Belgium",
       "location": {
-        "lat": -36.8506,
-        "long": 174.7679
+        "lat": 51.2385,
+        "long": 5.1145
       },
       "cors": true
     },
@@ -2427,10 +2424,10 @@
         "cors": true
       },
       "description": "Dremaxx Family resolver. Blocks adult content, no logs, DNSSEC validation. Recursive, sites in Zurich, Dusseldorf and Houston.\nBlocks about 489,000 adult domains (OISD NSFW list, refreshed hourly); no ad, tracker or malware filtering. IPv4 endpoint.\nBlocked names are rewritten, so clients validating DNSSEC themselves get SERVFAIL for blocked signed domains.\nOperated by Yannick Dreher. Homepage: https://dremaxx.de/en/dns-resolvers",
-      "country": "New Zealand",
+      "country": "Belgium",
       "location": {
-        "lat": -36.8506,
-        "long": 174.7679
+        "lat": 51.2385,
+        "long": 5.1145
       },
       "filter": true,
       "cors": true
@@ -2451,6 +2448,21 @@
       },
       "log": true,
       "cors": true
+    },
+    {
+      "name": "hqdns-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.hqdns.sarl"
+      },
+      "description": "Independent public DNS resolver with filtering for ads, trackers, malware and phishing.\nPersonal, non-commercial project. HQDNS does not retain DNS query logs and performs its own recursive DNS resolution.\nHomepage: https://hqdns.sarl",
+      "country": "Germany",
+      "location": {
+        "lat": 51.2993,
+        "long": 9.491
+      },
+      "filter": true,
+      "log": true
     },
     {
       "name": "iij",
@@ -2646,6 +2658,49 @@
         "host": "wikimedia-dns.org"
       },
       "description": "Wikimedia DNS resolver.\nCaching recursive public resolver run by the Wikimedia Foundation Site Reliability Engineering Traffic team. Helps secure DNS lookups for Wikimedia projects and other websites.\nOperated by Wikimedia DNS. Service page: https://wikimedia-dns.org/"
+    },
+    {
+      "name": "yunzheng",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.yunzheng.space",
+        "ipv4": "177.177.83.83"
+      },
+      "description": "YunZheng LAB public resolver.\nAnycast service with DNSSEC validation and no filtering. No per-query logs are kept. Service addresses: 177.177.83.83, 2602:f3ff:83::83. DoH, DoT and DoQ on dns.yunzheng.space.\nOperated by YunZheng LAB (AS204921), a non-profit educational and research laboratory. Service page: https://orbit.yunzheng.space/public-resolver/ Privacy policy: https://orbit.yunzheng.space/public-resolver/privacy/",
+      "country": "Brazil",
+      "location": {
+        "lat": -5.0822,
+        "long": -42.8037
+      }
+    },
+    {
+      "name": "yunzheng-dns64",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns64.dns.yunzheng.space",
+        "ipv4": "177.177.83.64"
+      },
+      "description": "YunZheng LAB public resolver, DNS64.\nAnycast service with DNSSEC validation and no filtering, plus DNS64 (RFC 6147) on the well-known prefix 64:ff9b::/96: a name with no AAAA record is answered with an address built from its A record, for IPv6-only networks whose NAT64 gateway uses that prefix. No per-query logs are kept. Service addresses: 177.177.83.64, 2602:f3ff:83::64. DoH, DoT and DoQ on dns64.dns.yunzheng.space.\nOperated by YunZheng LAB (AS204921), a non-profit educational and research laboratory. Service page: https://orbit.yunzheng.space/public-resolver/ Privacy policy: https://orbit.yunzheng.space/public-resolver/privacy/",
+      "country": "Brazil",
+      "location": {
+        "lat": -5.0822,
+        "long": -42.8037
+      }
+    },
+    {
+      "name": "yunzheng-filtered",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "filter.dns.yunzheng.space",
+        "ipv4": "177.177.83.84"
+      },
+      "description": "YunZheng LAB public resolver, filtering.\nAnycast service with DNSSEC validation. Advertising, tracking and known-malware domains are refused and answered with a notice page. No per-query logs are kept. Service addresses: 177.177.83.84, 2602:f3ff:83::84. DoH, DoT and DoQ on filter.dns.yunzheng.space.\nOperated by YunZheng LAB (AS204921), a non-profit educational and research laboratory. Service page: https://orbit.yunzheng.space/public-resolver/ Privacy policy: https://orbit.yunzheng.space/public-resolver/privacy/",
+      "country": "Brazil",
+      "location": {
+        "lat": -5.0822,
+        "long": -42.8037
+      },
+      "filter": true
     }
   ]
 }

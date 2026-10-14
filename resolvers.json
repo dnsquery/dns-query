@@ -117,8 +117,8 @@
       "name": "alidns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "139.129.137.137",
-        "ipv4": "139.129.137.137"
+        "host": "182.40.70.12",
+        "ipv4": "182.40.70.12"
       },
       "description": "Alibaba Cloud Public DNS resolver.\nOperated by Alibaba Cloud for mainland China, with domestic, Hong Kong and overseas access nodes.\nHomepage: https://alidns.com\nWarning: GFW filtering rules are applied by this resolver.",
       "country": "China",
@@ -180,13 +180,14 @@
       "endpoint": {
         "protocol": "https:",
         "host": "dns.cloudflare.com",
+        "ipv4": "1.0.0.1",
         "cors": true
       },
       "description": "Cloudflare 1.1.1.1 public resolver.\nAvailable through servers in multiple locations around the world.\nNon-filtering.\nOperated by Cloudflare. Service page: https://developers.cloudflare.com/1.1.1.1/",
-      "country": "United States",
+      "country": "Australia",
       "location": {
-        "lat": 37.751,
-        "long": -97.822
+        "lat": -33.494,
+        "long": 143.2104
       },
       "cors": true
     },
@@ -2209,8 +2210,8 @@
       "description": "DNSforge ad-blocking resolver.\nPublic resolver in Germany, running Pi-hole for ad blocking. Non-logging, supports DNSSEC. https://dnsforge.de\nMaintained by DNSforge. Service page: https://dnsforge.de/",
       "country": "Germany",
       "location": {
-        "lat": 51.2993,
-        "long": 9.491
+        "lat": 52.2998,
+        "long": 9.447
       },
       "filter": true,
       "cors": true
@@ -2382,10 +2383,10 @@
         "cors": true
       },
       "description": "Dremaxx Open resolver. Non-filtering, no logs, DNSSEC validation. Recursive.\nAvailable through servers in Zurich, Dusseldorf and Houston.\nResolves on its own (not a frontend to another public resolver). IPv4 endpoint.\nOperated by Yannick Dreher. Homepage: https://dremaxx.de/en/dns-resolvers",
-      "country": "Belgium",
+      "country": "New Zealand",
       "location": {
-        "lat": 50.8509,
-        "long": 4.3447
+        "lat": -36.8506,
+        "long": 174.7679
       },
       "cors": true
     },
@@ -2409,8 +2410,8 @@
       "name": "google",
       "endpoint": {
         "protocol": "https:",
-        "host": "8.8.4.4",
-        "ipv4": "8.8.4.4",
+        "host": "8.8.8.8",
+        "ipv4": "8.8.8.8",
         "cors": true
       },
       "description": "Google Public DNS resolver.\nAvailable through servers in multiple locations around the world.\nService operated by Google.\nOperated by Google Public DNS. Service page: https://developers.google.com/speed/public-dns",
@@ -2570,10 +2571,10 @@
         "host": "pidoh.mapledns.net"
       },
       "description": "MapleDNS public recursive resolver. Blocks ads, trackers and malware. DNSSEC validating. No query logging. DoH and DoT. No plain DNS.\nAvailable through servers in multiple locations around the world.",
-      "country": "Iran",
+      "country": "United States",
       "location": {
-        "lat": 35.698,
-        "long": 51.4115
+        "lat": 37.751,
+        "long": -97.822
       },
       "filter": true
     },
@@ -2591,11 +2592,9 @@
       "name": "rethinkdns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "sky.rethinkdns.com",
-        "cors": true
+        "host": "max.rethinkdns.com"
       },
-      "description": "RethinkDNS public resolver.\nAvailable through servers in multiple locations around the world.\nNo logging, no filtering. `sky.rethinkdns.com` is a Cloudflare-hosted stub resolver; `max.rethinkdns.com` is a recursive resolver hosted on Fly.io. The stub strips identification parameters from the request and proxies to another recursive resolver.\nOperated by RethinkDNS. Service page: https://rethinkdns.com/",
-      "cors": true
+      "description": "RethinkDNS public resolver.\nAvailable through servers in multiple locations around the world.\nNo logging, no filtering. `sky.rethinkdns.com` is a Cloudflare-hosted stub resolver; `max.rethinkdns.com` is a recursive resolver hosted on Fly.io. The stub strips identification parameters from the request and proxies to another recursive resolver.\nOperated by RethinkDNS. Service page: https://rethinkdns.com/"
     },
     {
       "name": "safesurfer-doh",

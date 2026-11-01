@@ -71,8 +71,8 @@
       "name": "adguard-dns-family-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "94.140.15.16",
-        "ipv4": "94.140.15.16"
+        "host": "94.140.14.15",
+        "ipv4": "94.140.14.15"
       },
       "description": "AdGuard DNS Family Protection resolver.\nAvailable through servers in multiple locations around the world.\nBlocks ads, trackers, phishing, malicious and adult domains. Enforces safe search where available.\nOperated by AdGuard. Service page: https://adguard-dns.io/en/public-dns.html",
       "country": "France",
@@ -117,8 +117,8 @@
       "name": "alidns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "47.108.0.63",
-        "ipv4": "47.108.0.63"
+        "host": "120.55.203.44",
+        "ipv4": "120.55.203.44"
       },
       "description": "Alibaba Cloud Public DNS resolver.\nOperated by Alibaba Cloud for mainland China, with domestic, Hong Kong and overseas access nodes.\nHomepage: https://alidns.com\nWarning: GFW filtering rules are applied by this resolver.",
       "country": "China",
@@ -179,14 +179,15 @@
       "name": "cloudflare",
       "endpoint": {
         "protocol": "https:",
-        "host": "cloudflare-dns.com",
+        "host": "1.0.0.1",
+        "ipv4": "1.0.0.1",
         "cors": true
       },
       "description": "Cloudflare 1.1.1.1 public resolver.\nAvailable through servers in multiple locations around the world.\nNon-filtering.\nOperated by Cloudflare. Service page: https://developers.cloudflare.com/1.1.1.1/",
-      "country": "United States",
+      "country": "Australia",
       "location": {
-        "lat": 37.751,
-        "long": -97.822
+        "lat": -33.494,
+        "long": 143.2104
       },
       "cors": true
     },
@@ -205,6 +206,21 @@
         "long": 143.2104
       },
       "filter": true,
+      "cors": true
+    },
+    {
+      "name": "cloudflare-ipv6",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "cloudflare-dns.com",
+        "cors": true
+      },
+      "description": "Cloudflare 1.1.1.1 public resolver.\nAvailable through servers in multiple locations around the world.\nIPv6 endpoint. Non-filtering.\nOperated by Cloudflare. Service page: https://developers.cloudflare.com/1.1.1.1/",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      },
       "cors": true
     },
     {
@@ -910,6 +926,21 @@
       "cors": true
     },
     {
+      "name": "dnscry.pt-doh-gdansk-ipv4",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "gdn01.dnscry.pt",
+        "cors": true
+      },
+      "description": "dnscry.pt Gdańsk DoH resolver.\nIPv4 endpoint. Operated by dnscry.pt. No query logs, no intentional filtering, blocking, redirecting or rewriting, DNSSEC validation.\nhttps://www.dnscry.pt",
+      "country": "Ukraine",
+      "location": {
+        "lat": 50.4522,
+        "long": 30.5287
+      },
+      "cors": true
+    },
+    {
       "name": "dnscry.pt-doh-geneva-ipv4",
       "endpoint": {
         "protocol": "https:",
@@ -1241,21 +1272,6 @@
       "location": {
         "lat": 59,
         "long": 26
-      },
-      "cors": true
-    },
-    {
-      "name": "dnscry.pt-doh-lasvegas-ipv4",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "las01.dnscry.pt",
-        "cors": true
-      },
-      "description": "dnscry.pt Las Vegas DoH resolver.\nIPv4 endpoint. Operated by dnscry.pt. No query logs, no intentional filtering, blocking, redirecting or rewriting, DNSSEC validation.\nhttps://www.dnscry.pt",
-      "country": "Unknown",
-      "location": {
-        "lat": null,
-        "long": null
       },
       "cors": true
     },
@@ -1915,21 +1931,6 @@
       "cors": true
     },
     {
-      "name": "dnscry.pt-doh-tallinn-ipv4",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "tll01.dnscry.pt",
-        "cors": true
-      },
-      "description": "dnscry.pt Tallinn DoH resolver.\nIPv4 endpoint. Operated by dnscry.pt. No query logs, no intentional filtering, blocking, redirecting or rewriting, DNSSEC validation.\nhttps://www.dnscry.pt",
-      "country": "United Kingdom",
-      "location": {
-        "lat": 51.4964,
-        "long": -0.1224
-      },
-      "cors": true
-    },
-    {
       "name": "dnscry.pt-doh-tampa-ipv4",
       "endpoint": {
         "protocol": "https:",
@@ -2194,8 +2195,8 @@
       "description": "DNSforge ad-blocking resolver.\nPublic resolver in Germany, running Pi-hole for ad blocking. Non-logging, supports DNSSEC. https://dnsforge.de\nMaintained by DNSforge. Service page: https://dnsforge.de/",
       "country": "Germany",
       "location": {
-        "lat": 52.2998,
-        "long": 9.447
+        "lat": 51.2993,
+        "long": 9.491
       },
       "filter": true,
       "cors": true
@@ -2229,8 +2230,8 @@
       "name": "dnspod",
       "endpoint": {
         "protocol": "https:",
-        "host": "1.12.12.12",
-        "ipv4": "1.12.12.12"
+        "host": "120.53.53.53",
+        "ipv4": "120.53.53.53"
       },
       "description": "DNSPod Public DNS resolver.\nAvailable through servers in multiple locations.\nOperated by Tencent Cloud DNSPod for users in China. Overseas access to the free Public DNS service may be unreliable.\nHomepage: https://dnspod.cn\nWarning: GFW filtering rules are applied by this resolver.",
       "country": "China",
@@ -2321,6 +2322,14 @@
       }
     },
     {
+      "name": "doh.ibksturm",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "ibksturm.synology.me"
+      },
+      "description": "ibksturm OpenNIC resolver in Switzerland.\nNo logs, DNSSEC. OpenNIC-based resolver operated by ibksturm."
+    },
+    {
       "name": "doh.tiar.app-doh",
       "endpoint": {
         "protocol": "https:",
@@ -2362,8 +2371,8 @@
       "description": "Dremaxx Open resolver. Non-filtering, no logs, DNSSEC validation. Recursive.\nAvailable through servers in Zurich, Dusseldorf and Houston.\nResolves on its own (not a frontend to another public resolver). IPv4 endpoint.\nOperated by Yannick Dreher. Homepage: https://dremaxx.de/en/dns-resolvers",
       "country": "Belgium",
       "location": {
-        "lat": 51.2385,
-        "long": 5.1145
+        "lat": 50.8509,
+        "long": 4.3447
       },
       "cors": true
     },
@@ -2387,8 +2396,8 @@
       "name": "google",
       "endpoint": {
         "protocol": "https:",
-        "host": "8.8.4.4",
-        "ipv4": "8.8.4.4",
+        "host": "8.8.8.8",
+        "ipv4": "8.8.8.8",
         "cors": true
       },
       "description": "Google Public DNS resolver.\nAvailable through servers in multiple locations around the world.\nService operated by Google.\nOperated by Google Public DNS. Service page: https://developers.google.com/speed/public-dns",
@@ -2546,10 +2555,10 @@
         "host": "pidoh.mapledns.net"
       },
       "description": "MapleDNS public recursive resolver. Blocks ads, trackers and malware. DNSSEC validating. No query logging. DoH and DoT. No plain DNS.\nAvailable through servers in multiple locations around the world.",
-      "country": "United States",
+      "country": "United Kingdom",
       "location": {
-        "lat": 37.751,
-        "long": -97.822
+        "lat": 51.4964,
+        "long": -0.1224
       },
       "filter": true
     },

@@ -114,6 +114,22 @@
       "description": "AdGuard DNS Non-filtering public resolver.\nAvailable through servers in multiple locations around the world.\nIPv6 endpoint. Does not block or rewrite domains.\nOperated by AdGuard. Service page: https://adguard-dns.io/en/public-dns.html"
     },
     {
+      "name": "alidns-doh",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "223.6.6.6",
+        "ipv4": "223.6.6.6"
+      },
+      "description": "Alibaba Cloud Public DNS resolver.\nOperated by Alibaba Cloud for mainland China, with domestic, Hong Kong and overseas access nodes.\nHomepage: https://alidns.com\nWarning: GFW filtering rules are applied by this resolver.",
+      "country": "China",
+      "location": {
+        "lat": 34.7725,
+        "long": 113.7266
+      },
+      "filter": true,
+      "log": true
+    },
+    {
       "name": "alidns-doh-ipv6",
       "endpoint": {
         "protocol": "https:",
@@ -172,7 +188,7 @@
       "name": "cloudflare",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns.cloudflare.com",
+        "host": "cloudflare-dns.com",
         "cors": true
       },
       "description": "Cloudflare 1.1.1.1 public resolver.\nAvailable through servers in multiple locations around the world.\nNon-filtering.\nOperated by Cloudflare. Service page: https://developers.cloudflare.com/1.1.1.1/",
@@ -216,6 +232,20 @@
       },
       "filter": true,
       "cors": true
+    },
+    {
+      "name": "comss.one",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "dns.comss.one"
+      },
+      "description": "Comss.one ad-blocking resolver.\nDNS with ad-blocking and anti-phishing filters, popular among Russian-speaking users.",
+      "country": "Russia",
+      "location": {
+        "lat": 55.7386,
+        "long": 37.6068
+      },
+      "filter": true
     },
     {
       "name": "controld-block-malware",
@@ -340,15 +370,15 @@
       "name": "dns.sb",
       "endpoint": {
         "protocol": "https:",
-        "host": "45.11.45.11",
-        "ipv4": "45.11.45.11",
+        "host": "185.222.222.222",
+        "ipv4": "185.222.222.222",
         "cors": true
       },
       "description": "DNS.SB public resolver.\nAvailable through servers in multiple locations around the world.\nOperated by xTom. No logs, no filtering, supports DNSSEC. Homepage: https://dns.sb",
-      "country": "Netherlands",
+      "country": "Unknown",
       "location": {
-        "lat": 52.3824,
-        "long": 4.8995
+        "lat": 47,
+        "long": 8
       },
       "cors": true
     },
@@ -1139,7 +1169,6 @@
       "endpoint": {
         "protocol": "https:",
         "host": "jkt01.dnscry.pt",
-        "method": "POST",
         "cors": true
       },
       "description": "dnscry.pt Jakarta DoH resolver.\nIPv4 endpoint. Operated by dnscry.pt. No query logs, no intentional filtering, blocking, redirecting or rewriting, DNSSEC validation.\nhttps://www.dnscry.pt",
@@ -2210,8 +2239,8 @@
       "name": "dnspod",
       "endpoint": {
         "protocol": "https:",
-        "host": "120.53.53.53",
-        "ipv4": "120.53.53.53"
+        "host": "1.12.12.12",
+        "ipv4": "1.12.12.12"
       },
       "description": "DNSPod Public DNS resolver.\nAvailable through servers in multiple locations.\nOperated by Tencent Cloud DNSPod for users in China. Overseas access to the free Public DNS service may be unreliable.\nHomepage: https://dnspod.cn\nWarning: GFW filtering rules are applied by this resolver.",
       "country": "China",
@@ -2291,6 +2320,22 @@
       "cors": true
     },
     {
+      "name": "doh.tiarap.org",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "doh.tiarap.org",
+        "cors": true
+      },
+      "description": "Tiarap Cloudflare-cached filtering resolver.\nAvailable through servers in multiple locations around the world.\nOperated by id-gmail. No logging, blocks ads, trackers and malware, no EDNS Client Subnet, supports DNSSEC. https://doh.tiarap.org",
+      "country": "United States",
+      "location": {
+        "lat": 37.751,
+        "long": -97.822
+      },
+      "filter": true,
+      "cors": true
+    },
+    {
       "name": "dremaxx",
       "endpoint": {
         "protocol": "https:",
@@ -2313,10 +2358,10 @@
         "cors": true
       },
       "description": "Dremaxx Family resolver. Blocks adult content, no logs, DNSSEC validation. Recursive.\nAvailable through servers in Zurich, Dusseldorf and Houston.\nBlocks about 489,000 adult domains (OISD NSFW list, refreshed hourly); no ad, tracker or malware filtering. IPv4 endpoint.\nBlocked names are rewritten, so clients validating DNSSEC themselves get SERVFAIL for blocked signed domains.\nOperated by Yannick Dreher. Homepage: https://dremaxx.de/en/dns-resolvers",
-      "country": "Belgium",
+      "country": "Saudi Arabia",
       "location": {
-        "lat": 51.2385,
-        "long": 5.1145
+        "lat": 25,
+        "long": 45
       },
       "filter": true,
       "cors": true
@@ -2325,8 +2370,8 @@
       "name": "google",
       "endpoint": {
         "protocol": "https:",
-        "host": "8.8.8.8",
-        "ipv4": "8.8.8.8",
+        "host": "8.8.4.4",
+        "ipv4": "8.8.4.4",
         "cors": true
       },
       "description": "Google Public DNS resolver.\nAvailable through servers in multiple locations around the world.\nService operated by Google.\nOperated by Google Public DNS. Service page: https://developers.google.com/speed/public-dns",
@@ -2461,16 +2506,28 @@
       "cors": true
     },
     {
+      "name": "odoh-tiarap.org",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "doh.tiarap.org",
+        "path": "/odoh",
+        "cors": true
+      },
+      "description": "Tiarap Cloudflare-cached ODoH target.\nAvailable through servers in multiple locations around the world.\nMaintained by id-gmail. No logs. Filters ads, trackers and malware.\nMaintained by id-gmail / Tiarap. Service page: https://tiarap.org/",
+      "filter": true,
+      "cors": true
+    },
+    {
       "name": "pidoh-mapledns",
       "endpoint": {
         "protocol": "https:",
         "host": "pidoh.mapledns.net"
       },
       "description": "MapleDNS public recursive resolver. Blocks ads, trackers and malware. DNSSEC validating. No query logging. DoH and DoT. No plain DNS.\nAvailable through servers in multiple locations around the world.",
-      "country": "Iran",
+      "country": "United Kingdom",
       "location": {
-        "lat": 35.698,
-        "long": 51.4115
+        "lat": 51.4964,
+        "long": -0.1224
       },
       "filter": true
     },

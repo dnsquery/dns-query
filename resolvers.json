@@ -47,8 +47,8 @@
       "name": "adguard-dns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "94.140.15.15",
-        "ipv4": "94.140.15.15"
+        "host": "94.140.14.14",
+        "ipv4": "94.140.14.14"
       },
       "description": "AdGuard DNS Default public resolver.\nAvailable through servers in multiple locations around the world.\nBlocks ads, trackers, phishing and malicious domains.\nOperated by AdGuard. Service page: https://adguard-dns.io/en/public-dns.html",
       "country": "France",
@@ -95,8 +95,8 @@
       "name": "adguard-dns-unfiltered-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "94.140.14.141",
-        "ipv4": "94.140.14.141"
+        "host": "94.140.14.140",
+        "ipv4": "94.140.14.140"
       },
       "description": "AdGuard DNS Non-filtering public resolver.\nAvailable through servers in multiple locations around the world.\nDoes not block or rewrite domains.\nOperated by AdGuard. Service page: https://adguard-dns.io/en/public-dns.html",
       "country": "France",
@@ -172,8 +172,8 @@
       "name": "cloudflare",
       "endpoint": {
         "protocol": "https:",
-        "host": "162.159.46.1",
-        "ipv4": "162.159.46.1",
+        "host": "162.159.36.1",
+        "ipv4": "162.159.36.1",
         "cors": true
       },
       "description": "Cloudflare 1.1.1.1 public resolver.\nAvailable through servers in multiple locations around the world.\nNon-filtering.\nOperated by Cloudflare. Service page: https://developers.cloudflare.com/1.1.1.1/",
@@ -194,21 +194,6 @@
         "long": 143.2104
       },
       "filter": true,
-      "cors": true
-    },
-    {
-      "name": "cloudflare-ipv6",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns.cloudflare.com",
-        "cors": true
-      },
-      "description": "Cloudflare 1.1.1.1 public resolver.\nAvailable through servers in multiple locations around the world.\nIPv6 endpoint. Non-filtering.\nOperated by Cloudflare. Service page: https://developers.cloudflare.com/1.1.1.1/",
-      "country": "United States",
-      "location": {
-        "lat": 37.751,
-        "long": -97.822
-      },
       "cors": true
     },
     {
@@ -365,15 +350,15 @@
       "name": "dns.sb",
       "endpoint": {
         "protocol": "https:",
-        "host": "185.222.222.222",
-        "ipv4": "185.222.222.222",
+        "host": "45.11.45.11",
+        "ipv4": "45.11.45.11",
         "cors": true
       },
       "description": "DNS.SB public resolver.\nAvailable through servers in multiple locations around the world.\nOperated by xTom. No logs, no filtering, supports DNSSEC. Homepage: https://dns.sb",
-      "country": "Unknown",
+      "country": "Netherlands",
       "location": {
-        "lat": 47,
-        "long": 8
+        "lat": 52.3824,
+        "long": 4.8995
       },
       "cors": true
     },
@@ -611,6 +596,21 @@
       "location": {
         "lat": 47.1449,
         "long": 8.1551
+      },
+      "cors": true
+    },
+    {
+      "name": "dnscry.pt-doh-calgary-ipv4",
+      "endpoint": {
+        "protocol": "https:",
+        "host": "yyc01.dnscry.pt",
+        "cors": true
+      },
+      "description": "DNSCry.pt Calgary - DoH, no filter, no logs, DNSSEC support (IPv4 server)\nhttps://www.dnscry.pt",
+      "country": "Canada",
+      "location": {
+        "lat": 43.6319,
+        "long": -79.3716
       },
       "cors": true
     },
@@ -2184,8 +2184,8 @@
       "description": "DNSforge ad-blocking resolver.\nPublic resolver in Germany, running Pi-hole for ad blocking. Non-logging, supports DNSSEC. https://dnsforge.de\nMaintained by DNSforge. Service page: https://dnsforge.de/",
       "country": "Germany",
       "location": {
-        "lat": 52.2998,
-        "long": 9.447
+        "lat": 51.2993,
+        "long": 9.491
       },
       "filter": true,
       "cors": true
@@ -2338,10 +2338,10 @@
         "cors": true
       },
       "description": "Dremaxx Family resolver. Blocks adult content, no logs, DNSSEC validation. Recursive.\nAvailable through servers in Zurich, Dusseldorf and Houston.\nBlocks about 489,000 adult domains (OISD NSFW list, refreshed hourly); no ad, tracker or malware filtering. IPv4 endpoint.\nBlocked names are rewritten, so clients validating DNSSEC themselves get SERVFAIL for blocked signed domains.\nOperated by Yannick Dreher. Homepage: https://dremaxx.de/en/dns-resolvers",
-      "country": "Belgium",
+      "country": "Saudi Arabia",
       "location": {
-        "lat": 51.2385,
-        "long": 5.1145
+        "lat": 25,
+        "long": 45
       },
       "filter": true,
       "cors": true
@@ -2350,8 +2350,8 @@
       "name": "google",
       "endpoint": {
         "protocol": "https:",
-        "host": "8.8.8.8",
-        "ipv4": "8.8.8.8",
+        "host": "8.8.4.4",
+        "ipv4": "8.8.4.4",
         "cors": true
       },
       "description": "Google Public DNS resolver.\nAvailable through servers in multiple locations around the world.\nService operated by Google.\nOperated by Google Public DNS. Service page: https://developers.google.com/speed/public-dns",
@@ -2417,16 +2417,6 @@
         "long": 9.491
       },
       "filter": true
-    },
-    {
-      "name": "moklav-dns",
-      "endpoint": {
-        "protocol": "https:",
-        "host": "dns.moklav.co.jp",
-        "cors": true
-      },
-      "description": "MOKLAV Public DNS, operated by MOKLAV GLOBAL GK (AS154448), Tokyo, Japan.\nNon-filtering resolver with DNSSEC validation. No query logs are kept.\nDoT and plain DNS are also available on the same addresses.\nOperated by MOKLAV GLOBAL GK. Service page: https://www.moklav.co.jp/en/dns",
-      "cors": true
     },
     {
       "name": "nextdns",
@@ -2514,10 +2504,10 @@
         "host": "pidoh.mapledns.net"
       },
       "description": "MapleDNS public recursive resolver. Blocks ads, trackers and malware. DNSSEC validating. No query logging. DoH and DoT. No plain DNS.\nAvailable through servers in multiple locations around the world.",
-      "country": "United States",
+      "country": "United Kingdom",
       "location": {
-        "lat": 37.751,
-        "long": -97.822
+        "lat": 51.4964,
+        "long": -0.1224
       },
       "filter": true
     },
@@ -2535,11 +2525,9 @@
       "name": "rethinkdns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "sky.rethinkdns.com",
-        "cors": true
+        "host": "max.rethinkdns.com"
       },
-      "description": "RethinkDNS public resolver.\nAvailable through servers in multiple locations around the world.\nNo logging, no filtering. `sky.rethinkdns.com` is a Cloudflare-hosted stub resolver; `max.rethinkdns.com` is a recursive resolver hosted on Fly.io. The stub strips identification parameters from the request and proxies to another recursive resolver.\nOperated by RethinkDNS. Service page: https://rethinkdns.com/",
-      "cors": true
+      "description": "RethinkDNS public resolver.\nAvailable through servers in multiple locations around the world.\nNo logging, no filtering. `sky.rethinkdns.com` is a Cloudflare-hosted stub resolver; `max.rethinkdns.com` is a recursive resolver hosted on Fly.io. The stub strips identification parameters from the request and proxies to another recursive resolver.\nOperated by RethinkDNS. Service page: https://rethinkdns.com/"
     },
     {
       "name": "safesurfer-doh",

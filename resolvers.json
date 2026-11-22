@@ -117,8 +117,8 @@
       "name": "alidns-doh",
       "endpoint": {
         "protocol": "https:",
-        "host": "139.129.137.137",
-        "ipv4": "139.129.137.137"
+        "host": "182.40.70.12",
+        "ipv4": "182.40.70.12"
       },
       "description": "Alibaba Cloud Public DNS resolver.\nOperated by Alibaba Cloud for mainland China, with domestic, Hong Kong and overseas access nodes.\nHomepage: https://alidns.com\nWarning: GFW filtering rules are applied by this resolver.",
       "country": "China",
@@ -188,7 +188,7 @@
       "name": "cloudflare",
       "endpoint": {
         "protocol": "https:",
-        "host": "cloudflare-dns.com",
+        "host": "dns.cloudflare.com",
         "cors": true
       },
       "description": "Cloudflare 1.1.1.1 public resolver.\nAvailable through servers in multiple locations around the world.\nNon-filtering.\nOperated by Cloudflare. Service page: https://developers.cloudflare.com/1.1.1.1/",
@@ -220,7 +220,7 @@
       "name": "cloudflare-ipv6",
       "endpoint": {
         "protocol": "https:",
-        "host": "dns.cloudflare.com",
+        "host": "cloudflare-dns.com",
         "cors": true
       },
       "description": "Cloudflare 1.1.1.1 public resolver.\nAvailable through servers in multiple locations around the world.\nIPv6 endpoint. Non-filtering.\nOperated by Cloudflare. Service page: https://developers.cloudflare.com/1.1.1.1/",
@@ -385,15 +385,15 @@
       "name": "dns.sb",
       "endpoint": {
         "protocol": "https:",
-        "host": "185.222.222.222",
-        "ipv4": "185.222.222.222",
+        "host": "45.11.45.11",
+        "ipv4": "45.11.45.11",
         "cors": true
       },
       "description": "DNS.SB public resolver.\nAvailable through servers in multiple locations around the world.\nOperated by xTom. No logs, no filtering, supports DNSSEC. Homepage: https://dns.sb",
-      "country": "Unknown",
+      "country": "Netherlands",
       "location": {
-        "lat": 47,
-        "long": 8
+        "lat": 52.3824,
+        "long": 4.8995
       },
       "cors": true
     },
@@ -2263,10 +2263,10 @@
         "cors": true
       },
       "description": "DNSforge non-filtering resolver.\nPublic resolver in Germany. Non-logging, supports DNSSEC. https://dnsforge.de\nMaintained by DNSforge. Service page: https://dnsforge.de/",
-      "country": "Germany",
+      "country": "Unknown",
       "location": {
-        "lat": 51.2993,
-        "long": 9.491
+        "lat": 47,
+        "long": 8
       },
       "cors": true
     },
@@ -2390,8 +2390,8 @@
       "description": "Dremaxx Open resolver. Non-filtering, no logs, DNSSEC validation. Recursive.\nAvailable through servers in Zurich, Dusseldorf and Houston.\nResolves on its own (not a frontend to another public resolver). IPv4 endpoint.\nOperated by Yannick Dreher. Homepage: https://dremaxx.de/en/dns-resolvers",
       "country": "Belgium",
       "location": {
-        "lat": 50.8509,
-        "long": 4.3447
+        "lat": 51.2385,
+        "long": 5.1145
       },
       "cors": true
     },
@@ -2403,10 +2403,10 @@
         "cors": true
       },
       "description": "Dremaxx Family resolver. Blocks adult content, no logs, DNSSEC validation. Recursive.\nAvailable through servers in Zurich, Dusseldorf and Houston.\nBlocks about 489,000 adult domains (OISD NSFW list, refreshed hourly); no ad, tracker or malware filtering. IPv4 endpoint.\nBlocked names are rewritten, so clients validating DNSSEC themselves get SERVFAIL for blocked signed domains.\nOperated by Yannick Dreher. Homepage: https://dremaxx.de/en/dns-resolvers",
-      "country": "Saudi Arabia",
+      "country": "New Zealand",
       "location": {
-        "lat": 25,
-        "long": 45
+        "lat": -36.8506,
+        "long": 174.7679
       },
       "filter": true,
       "cors": true
@@ -2579,10 +2579,10 @@
         "host": "pidoh.mapledns.net"
       },
       "description": "MapleDNS public recursive resolver. Blocks ads, trackers and malware. DNSSEC validating. No query logging. DoH and DoT. No plain DNS.\nAvailable through servers in multiple locations around the world.",
-      "country": "United States",
+      "country": "Canada",
       "location": {
-        "lat": 37.751,
-        "long": -97.822
+        "lat": 43.6403,
+        "long": -79.3711
       },
       "filter": true
     },
